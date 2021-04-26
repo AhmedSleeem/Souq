@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Souq</string>
+    <string name="logo">logo</string>
+    <string name="sign_in">Sign In</string>
+    <string name="have_a_account">have a account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="password_again">Password Again</string>
+    <string name="password">Password</string>
+    <string name="your_email">Your Email</string>
+    <string name="full_name">Full Name</string>
+    <string name="create_an_new_account">Create an new account</string>
+    <string name="let_s_get_started">Let’s Get Started</string>
 </resources>
