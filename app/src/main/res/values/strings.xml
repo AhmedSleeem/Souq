@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Souq</string>
+    <string name="app_name">My Application</string>
+    <string name="login">Sign In</string>
+    <string name="image">image</string>
+    <string name="E_Mail">Your Email</string>
+    <string name="password">Password</string>
+    <string name="create_a_new_account">Create a new account</string>
+    <string name="welcome">Welcome to E-Come</string>
+    <string name="or">OR</string>
+    <string name="googleLogin">Login With Google</string>
+    <string name="facebookLogin">Login With Facebook</string>
+    <string name="sign">Sign in to Continue</string>
+    <string name="forgetPassword">Forget Password?</string>
+    <string name="account">Don\'t have account?</string>
 </resources>
