@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_lwhite_ogo" />
+        android:src="@drawable/ic_lwhite_ogo" />
 
     <TextView
         android:id="@+id/title_txt"
