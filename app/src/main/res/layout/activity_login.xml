@@ -20,7 +20,7 @@
             android:adjustViewBounds="true"
 
             android:cropToPadding="true"
-            android:src="@drawable/logo"
+            android:src="@drawable/ic_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
