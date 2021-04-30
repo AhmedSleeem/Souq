@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Souq" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryBlue</item>
+        <item name="colorPrimaryVariant">@color/neutralDark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="BottomNavigationView.ChangeFontFamily"
+        parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="fontFamily">@font/poppins_light</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+    </style>
+
+    <style name="BottomNavigationView.ActiveItemTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#EBF0FF</item>
+        <item name="colorControlActivated">#FFC833</item>
+    </style>
+</resources>

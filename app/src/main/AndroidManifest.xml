@@ -10,6 +10,13 @@
         android:supportsRtl="true">
         <activity android:name=".SplashActivity"
             android:theme="@style/LoginTheme">
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Souq">
+
+            <activity android:name=".ui.MainActivity">
+
+            </activity>
+        <activity android:name=".ReviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,5 +29,6 @@
         </activity>
         <activity android:name=".MainActivity"></activity>
     </application>
+        </application>
 
 </manifest>
