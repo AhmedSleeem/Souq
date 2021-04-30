@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:context=".ReviewActivity">
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,7 +13,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="@dimen/_60sdp"
             android:fitsSystemWindows="true"
             android:background="@color/white"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -29,19 +28,20 @@
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/customToolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
+                    android:layout_height="@dimen/_60sdp"
                     app:layout_collapseMode="pin">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_left"
                         android:drawablePadding="@dimen/_8sdp"
                         android:fontFamily="@font/poppins_bold"
                         android:text="@string/review"
-                        android:textColor="@color/darkBlue"
+                        android:textColor="@color/neutralDark"
                         android:textSize="@dimen/_13ssp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:drawableStartCompat="@drawable/ic_arrow_back_24"
+                        android:drawableTint="@color/neutralDark"/>
                 </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -51,7 +51,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="85dp"
+                android:fillViewport="true"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
+
+            </androidx.core.widget.NestedScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 </androidx.core.widget.NestedScrollView>
