@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NotificationFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Notification"
+        app:theme="@style/AppTheme.ToolbarFont" />
+
+
+    <ImageView
+        android:id="@+id/offer_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_offer_blue"
+        android:layout_marginStart="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        android:layout_marginTop="@dimen/_31sdp"
+        android:layout_marginLeft="@dimen/_12sdp" />
+
+    <TextView
+        android:id="@+id/notification_offer_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="@string/offer"
+        android:textColor="@color/neutralDark"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/offer_iv"
+        app:layout_constraintStart_toEndOf="@+id/offer_iv"
+        app:layout_constraintTop_toTopOf="@+id/offer_iv"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/notification_offer_badge_tv"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/notification_badge_background"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:gravity="center"
+        android:paddingTop="@dimen/_2sdp"
+        android:text="2"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/notification_offer_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/notification_offer_tv"
+        android:layout_marginRight="@dimen/_12sdp" />
+
+    <ImageView
+        android:id="@+id/feed_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_list_blue"
+        android:layout_marginTop="@dimen/_31sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/offer_iv"
+        android:layout_marginLeft="@dimen/_12sdp" />
+
+    <TextView
+        android:id="@+id/notification_feed_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="@string/feed"
+        android:textColor="@color/neutralDark"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/feed_iv"
+        app:layout_constraintStart_toEndOf="@+id/feed_iv"
+        app:layout_constraintTop_toTopOf="@+id/feed_iv"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/notification_feed_badge_tv"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/notification_badge_background"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:gravity="center"
+        android:paddingTop="@dimen/_2sdp"
+        android:text="2"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/notification_feed_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/notification_feed_tv"
+        android:layout_marginRight="@dimen/_12sdp" />
+
+    <ImageView
+        android:id="@+id/activity_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_notification_blue"
+        android:layout_marginTop="@dimen/_31sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/feed_iv"
+        android:layout_marginLeft="@dimen/_12sdp" />
+
+    <TextView
+        android:id="@+id/notification_activity_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="@string/feed"
+        android:textColor="@color/neutralDark"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_iv"
+        app:layout_constraintStart_toEndOf="@+id/activity_iv"
+        app:layout_constraintTop_toTopOf="@+id/activity_iv"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/notification_activity_badge_tv"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/notification_badge_background"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:gravity="center"
+        android:paddingTop="@dimen/_2sdp"
+        android:text="2"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/notification_activity_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/notification_activity_tv"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginRight="@dimen/_12sdp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

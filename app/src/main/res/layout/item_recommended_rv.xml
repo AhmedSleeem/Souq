@@ -64,7 +64,7 @@
             android:numStars="5"
             android:rating="4"
             android:stepSize="1"
-            android:theme="@style/RatingBar"
+            android:theme="@style/RatingBar.YellowStyle"
             android:layout_marginTop="@dimen/_2sdp"
             app:layout_constraintStart_toStartOf="@+id/tv_product_name"
             app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
