@@ -24,4 +24,10 @@
     <string name="create_an_new_account">Create an new account</string>
     <string name="let_s_get_started">Let’s Get Started</string>
     <string name="review">Review</string>
+    <string name="write_review">Write Review</string>
+    <string name="write_review">Write Review</string>
+    <string name="overall_review">Please write Overall level of satisfaction with your shipping / Delivery Service</string>
+    <string name="write_your_review">Write Your Review</string>
+    <string name="write_your_review_here">Write your review here</string>
+    <string name="add_photo">Add Photo</string>
 </resources>

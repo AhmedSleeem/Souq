@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.cart_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import android.os.Bundle

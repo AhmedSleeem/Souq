@@ -1,5 +1,6 @@
-package ahmed.adel.sleeem.clowyy.souq
+package ahmed.adel.sleeem.clowyy.souq.ui.login
 
+import ahmed.adel.sleeem.clowyy.souq.R
 import android.os.Build
 import android.os.Bundle
 import android.view.Window

@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import android.view.LayoutInflater

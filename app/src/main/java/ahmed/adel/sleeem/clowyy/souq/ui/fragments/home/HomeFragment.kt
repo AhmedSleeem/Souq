@@ -1,22 +1,24 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.home_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home
 
 import ahmed.adel.sleeem.clowyy.souq.*
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.CategoryRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.RecommendedRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.SaleRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.SaleViewPagerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleViewPagerAdapter
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),View.OnClickListener {
 
     val images = intArrayOf(
         R.drawable.i1,
@@ -88,6 +90,7 @@ class HomeFragment : Fragment() {
         categoryRecyclerAdapter = CategoryRecyclerAdapter(categories)
         binding.categoryRv.adapter = categoryRecyclerAdapter
 
+        binding.moreCategoryTv.setOnClickListener(this)
 
 
     }
@@ -102,6 +105,16 @@ class HomeFragment : Fragment() {
                 binding.saleViewPager.currentItem = 0
             }
 
+        }
+    }
+
+    override fun onClick(v: View) {
+        when(v){
+            binding.moreCategoryTv ->{
+                val action = HomeFragmentDirections.actionHomeFragmentToReviewFragment()
+                view?.findNavController()?.navigate(action)
+                Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -58,4 +59,7 @@ dependencies {
 
     //view pager dots
     implementation 'com.tbuonomo:dotsindicator:4.2'
+
+    //circleimageview
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
