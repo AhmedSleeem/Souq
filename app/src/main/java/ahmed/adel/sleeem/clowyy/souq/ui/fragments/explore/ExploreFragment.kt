@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import android.os.Bundle

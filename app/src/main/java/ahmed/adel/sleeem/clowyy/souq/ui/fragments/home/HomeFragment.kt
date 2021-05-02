@@ -97,6 +97,9 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
         navController = Navigation.findNavController(view)
         view.findViewById<TextView>(R.id.moreCategory_tv).setOnClickListener(this)
+        binding.moreCategoryTv.setOnClickListener(this)
+
+
     }
 
     private val sliderRunnable:Runnable = Runnable {
@@ -122,6 +125,16 @@ class HomeFragment : Fragment() , View.OnClickListener {
             }
                 //navController!!.navigate(R.id.action_homeFragment_to_detailsFragment)
 
+        }
+    }
+
+    override fun onClick(v: View) {
+        when(v){
+            binding.moreCategoryTv ->{
+                val action = HomeFragmentDirections.actionHomeFragmentToReviewFragment()
+                view?.findNavController()?.navigate(action)
+                Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

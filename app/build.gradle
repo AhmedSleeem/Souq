@@ -61,10 +61,6 @@ dependencies {
     //view pager dots
     implementation 'com.tbuonomo:dotsindicator:4.2'
 
+    //circleimageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-
-
-
-
 }

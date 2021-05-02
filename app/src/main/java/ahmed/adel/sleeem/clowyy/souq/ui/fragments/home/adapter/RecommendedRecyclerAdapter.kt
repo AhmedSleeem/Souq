@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
