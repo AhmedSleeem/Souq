@@ -22,7 +22,7 @@
 
     <style name="BottomNavigationView.ActiveItemTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
         <item name="android:textSize">@dimen/_10ssp</item>
     </style>
 

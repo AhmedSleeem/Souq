@@ -1,5 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq
 
+import ahmed.adel.sleeem.clowyy.souq.ui.MainActivity
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Intent
@@ -39,7 +40,7 @@ class SplashActivity : AppCompatActivity() {
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
         Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }, 5000) // 3000 is the delayed time in milliseconds.

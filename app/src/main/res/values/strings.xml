@@ -18,13 +18,11 @@
     <string name="have_a_account">have a account?</string>
     <string name="sign_up">Sign Up</string>
     <string name="password_again">Password Again</string>
-    <string name="password">Password</string>
     <string name="your_email">Your Email</string>
     <string name="full_name">Full Name</string>
     <string name="create_an_new_account">Create an new account</string>
     <string name="let_s_get_started">Let’s Get Started</string>
     <string name="review">Review</string>
-    <string name="app_name">E-Come</string>
     <string name="login">Sign In</string>
     <string name="image">image</string>
     <string name="E_Mail">Your Email</string>
@@ -37,4 +35,17 @@
     <string name="sign">Sign in to Continue</string>
     <string name="forgetPassword">Forget Password?</string>
     <string name="account">Don\'t have account?</string>
+    <string name="details">Nike Air Max</string>
+    <string name="item_title">Nike Air Zoom Pegasus 36 Miami</string>
+    <string name="price">$299,43</string>
+    <string name="select_size">Select Size</string>
+    <string name="select_color">Select Color</string>
+    <string name="specification">Specification</string>
+    <string name="shown">Shown</string>
+    <string name="style">Style</string>
+    <string name="reviewProduct">Review Product</string>
+    <string name="like">You Might Also Like</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="rate">4.5</string>
+    <string name="review1">( 5 Review )</string>
 </resources>

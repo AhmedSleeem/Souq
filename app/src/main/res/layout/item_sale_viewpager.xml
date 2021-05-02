@@ -32,7 +32,7 @@
             android:text="08"
             android:gravity="center"
             android:textColor="@color/neutralDark"
-            android:fontFamily="@font/poppins_semi_bold"
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="@dimen/_16sdp"
             android:background="@drawable/tv_time_counter_background"/>
 
@@ -42,7 +42,7 @@
             android:gravity="center"
             android:layout_margin="@dimen/_4sdp"
             android:text=":"
-            android:fontFamily="@font/poppins_semi_bold"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/white"
             android:textSize="@dimen/_14ssp"/>
 
@@ -52,7 +52,7 @@
             android:text="34"
             android:gravity="center"
             android:textColor="@color/neutralDark"
-            android:fontFamily="@font/poppins_semi_bold"
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="@dimen/_16sdp"
             android:background="@drawable/tv_time_counter_background"/>
 
@@ -62,7 +62,7 @@
             android:gravity="center"
             android:layout_margin="@dimen/_4sdp"
             android:text=":"
-            android:fontFamily="@font/poppins_semi_bold"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/white"
             android:textSize="@dimen/_14ssp"/>
 
@@ -72,7 +72,7 @@
             android:text="52"
             android:gravity="center"
             android:textColor="@color/neutralDark"
-            android:fontFamily="@font/poppins_semi_bold"
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="@dimen/_16sdp"
             android:background="@drawable/tv_time_counter_background"/>
 
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginLeft="@dimen/_16sdp"
-        android:fontFamily="@font/poppins_semi_bold"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/super_flash_sale_n50_off"
         android:maxLines="2"
         android:textColor="@color/white"

@@ -13,10 +13,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment() , View.OnClickListener {
+
+    var navController : NavController? = null
 
     val images = intArrayOf(
         R.drawable.i1,
@@ -88,8 +95,8 @@ class HomeFragment : Fragment() {
         categoryRecyclerAdapter = CategoryRecyclerAdapter(categories)
         binding.categoryRv.adapter = categoryRecyclerAdapter
 
-
-
+        navController = Navigation.findNavController(view)
+        view.findViewById<TextView>(R.id.moreCategory_tv).setOnClickListener(this)
     }
 
     private val sliderRunnable:Runnable = Runnable {
@@ -101,6 +108,19 @@ class HomeFragment : Fragment() {
                 viewPagerAdapter.changeData(images)
                 binding.saleViewPager.currentItem = 0
             }
+
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.moreCategory_tv -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment()
+                view?.findNavController()?.navigate(action)
+                Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
+
+            }
+                //navController!!.navigate(R.id.action_homeFragment_to_detailsFragment)
 
         }
     }
