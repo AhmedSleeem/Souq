@@ -9,12 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Souq">
-        <activity android:name=".WriteReviewActivity">
 
-        </activity>
-        <activity android:name=".ui.MainActivity">
-        android:theme="@style/Theme.Souq"
-        android:supportsRtl="true">
+        <activity android:name=".ui.MainActivity"></activity>
+
         <activity android:name=".SplashActivity"
             android:theme="@style/LoginTheme">
             <intent-filter>
@@ -23,23 +20,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReviewActivity">
 
-        </activity>
-            <activity android:name=".ui.MainActivity">
 
-            </activity>
-        <activity android:name=".ReviewActivity">
-
-        </activity>
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".ui.login.RegisterActivity">
 
         </activity>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/LoginTheme">
         </activity>
-<!--        <activity android:name=".MainActivity"></activity>-->
+
     </application>
 
 

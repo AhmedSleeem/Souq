@@ -1,8 +1,7 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.details_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.SaleRecyclerAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

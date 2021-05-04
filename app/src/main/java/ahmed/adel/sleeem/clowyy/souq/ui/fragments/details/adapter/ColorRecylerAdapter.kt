@@ -1,12 +1,10 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.details_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.CategoryRecyclerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView

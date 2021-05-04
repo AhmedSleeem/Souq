@@ -1,14 +1,12 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.details_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.details_fragment.adapter.ColorRecylerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.details_fragment.adapter.SizeRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.details_fragment.adapter.ViewPagerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.RecommendedRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.SaleRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

@@ -1,7 +1,6 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.details_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
