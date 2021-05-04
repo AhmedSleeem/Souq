@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class CategoryRecyclerAdapter(private var images:IntArray) : RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-         var imageView = itemView.findViewById<ImageView>(R.id.iv_category_item);
+        var imageView = itemView.findViewById<ImageView>(R.id.iv_category_item);
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

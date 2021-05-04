@@ -6,253 +6,253 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home_fragment.HomeFragment">
 
-        <LinearLayout
-            android:id="@+id/topView"
+    <LinearLayout
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_vertical"
+        android:weightSum="9">
+
+        <EditText
+            android:id="@+id/search_ed"
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:drawableStart="@drawable/ic_search_24"
+            android:padding="@dimen/_9sdp"
+            android:drawablePadding="@dimen/_8sdp"
+            android:hint="Search Product"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/poppins_light"
+            android:background="@drawable/ed_search_background"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlCompat" />
+        <ImageButton
+            android:id="@+id/favorite_iv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_favorite_border_24"/>
+
+        <ImageButton
+            android:background="@color/white"
+            android:id="@+id/notification_iv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_notifications_none_24"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/overlayGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topView" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_vertical"
-            android:weightSum="9">
+            android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/search_ed"
-                android:layout_width="0dp"
-                android:layout_weight="7"
-                android:drawableStart="@drawable/ic_search_24"
-                android:padding="@dimen/_9sdp"
-                android:drawablePadding="@dimen/_8sdp"
-                android:hint="Search Product"
-                android:textSize="@dimen/_12ssp"
-                android:fontFamily="@font/poppins_light"
-                android:background="@drawable/ed_search_background"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:layout_height="wrap_content"
-                tools:ignore="RtlCompat" />
-            <ImageButton
-                android:id="@+id/favorite_iv"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:src="@drawable/ic_baseline_favorite_border_24"/>
-            
-            <ImageButton
-                android:background="@color/white"
-                android:id="@+id/notification_iv"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_notifications_none_24"/>
-
-        </LinearLayout>
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/overlayGray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topView" />
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/topView">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/viewpager_card"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/viewpager_card"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/sale_viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_12sdp"
-                    app:cardCornerRadius="@dimen/_8sdp"
+                    android:layout_height="@dimen/_170sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/sale_viewPager"
+            </androidx.cardview.widget.CardView>
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:dotsColor="#EBF0FF"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="@dimen/_8sdp"
+                app:dotsSpacing="4dp"
+                app:dotsWidthFactor="2.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewpager_card"
+                app:progressMode="true"
+                app:selectedDotColor="@color/primaryBlue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/category"
+                android:textColor="@color/neutralDark"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
+                tools:ignore="RtlCompat" />
+
+            <TextView
+                android:id="@+id/moreCategory_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/more_category"
+                android:textColor="@color/primaryBlue"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
+                tools:ignore="RtlCompat" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/moreCategory_tv"
+                tools:listitem="@layout/item_category_rv"
+                android:layout_marginStart="@dimen/_12sdp"
+                tools:ignore="RtlCompat" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="Flash Sale"
+                android:textColor="@color/neutralDark"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/category_rv"
+                tools:ignore="RtlCompat" />
+
+            <TextView
+                android:id="@+id/saleSeeMore_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/see_more"
+                android:textColor="@color/primaryBlue"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/category_rv"
+                tools:ignore="RtlCompat" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sale_rv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_sale_rv"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_12sdp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                app:layout_constraintTop_toBottomOf="@id/saleSeeMore_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/image_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sale_rv">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/recommended_iv"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_170sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:scaleType="centerCrop"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/i2"/>
+                    <TextView
+                        android:id="@+id/recommended_product_tv"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/recommended_iv"
+                        app:layout_constraintStart_toStartOf="@id/recommended_iv"
+                        android:text="@string/recommended_product"
+                        android:textSize="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textColor="@color/white"
+                        tools:ignore="RtlCompat" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/we_recommend_the_best_for_you"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/poppins_light"
+                        android:textColor="@color/white"
+                        app:layout_constraintTop_toBottomOf="@id/recommended_product_tv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="RtlCompat" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.cardview.widget.CardView>
-                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                    android:id="@+id/dots_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    app:dotsColor="#EBF0FF"
-                    app:dotsCornerRadius="8dp"
-                    app:dotsSize="@dimen/_8sdp"
-                    app:dotsSpacing="4dp"
-                    app:dotsWidthFactor="2.5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewpager_card"
-                    app:progressMode="true"
-                    app:selectedDotColor="@color/primaryBlue" />
+            </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semi_bold"
-                    android:text="@string/category"
-                    android:textColor="@color/neutralDark"
-                    android:textSize="@dimen/_12ssp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
-                    tools:ignore="RtlCompat" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recommended_rv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_sale_rv"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                app:layout_constraintTop_toBottomOf="@id/image_card"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
 
-                <TextView
-                    android:id="@+id/moreCategory_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/more_category"
-                    android:textColor="@color/primaryBlue"
-                    android:textSize="@dimen/_12ssp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
-                    tools:ignore="RtlCompat" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/category_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/moreCategory_tv"
-                    tools:listitem="@layout/item_category_rv"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    tools:ignore="RtlCompat" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semi_bold"
-                    android:text="Flash Sale"
-                    android:textColor="@color/neutralDark"
-                    android:textSize="@dimen/_12ssp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/category_rv"
-                    tools:ignore="RtlCompat" />
-
-                <TextView
-                    android:id="@+id/saleSeeMore_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/see_more"
-                    android:textColor="@color/primaryBlue"
-                    android:textSize="@dimen/_12ssp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/category_rv"
-                    tools:ignore="RtlCompat" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/sale_rv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_sale_rv"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="@dimen/_12sdp"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2"
-                    app:layout_constraintTop_toBottomOf="@id/saleSeeMore_tv"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-
-                    />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/image_card"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_12sdp"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/sale_rv">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:id="@+id/recommended_iv"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_170sdp"
-                            android:scaleType="centerCrop"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:src="@drawable/i2"/>
-                        <TextView
-                            android:id="@+id/recommended_product_tv"
-                            android:layout_width="@dimen/_180sdp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="@id/recommended_iv"
-                            app:layout_constraintStart_toStartOf="@id/recommended_iv"
-                            android:text="@string/recommended_product"
-                            android:textSize="@dimen/_22sdp"
-                            android:layout_marginTop="@dimen/_40sdp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:fontFamily="@font/poppins_semi_bold"
-                            android:textColor="@color/white"
-                            tools:ignore="RtlCompat" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/we_recommend_the_best_for_you"
-                            android:layout_marginTop="@dimen/_12sdp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:textSize="@dimen/_12sdp"
-                            android:fontFamily="@font/poppins_light"
-                            android:textColor="@color/white"
-                            app:layout_constraintTop_toBottomOf="@id/recommended_product_tv"
-                            app:layout_constraintStart_toStartOf="parent"
-                            tools:ignore="RtlCompat" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recommended_rv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_sale_rv"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_marginLeft="@dimen/_12sdp"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2"
-                    app:layout_constraintTop_toBottomOf="@id/image_card"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-
-                    />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

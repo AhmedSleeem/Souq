@@ -60,20 +60,24 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationFragment);
         }
 
-        
+        binding.favoriteIv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_favoriteFragment);
+        }
+
+
 
         viewPagerAdapter = SaleViewPagerAdapter(images = images)
         binding.saleViewPager.adapter = viewPagerAdapter
         binding.dotsIndicator.setViewPager2(binding.saleViewPager)
 
         var list = mutableListOf<SaleItem>(
-                SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.womem_bag,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.womem_bag,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
         )
         saleRecyclerAdapter = SaleRecyclerAdapter(items = list)
         binding.saleRv.adapter = saleRecyclerAdapter
@@ -93,7 +97,6 @@ class HomeFragment : Fragment() {
 
         categoryRecyclerAdapter = CategoryRecyclerAdapter(categories)
         binding.categoryRv.adapter = categoryRecyclerAdapter
-
 
 
     }

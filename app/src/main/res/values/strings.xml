@@ -25,4 +25,9 @@
     <string name="let_s_get_started">Let’s Get Started</string>
     <string name="review">Review</string>
     <string name="feed">Feed</string>
+    <string name="man_fashion">Man Fashion</string>
+    <string name="woman_fashion">Woman Fashion</string>
+    <string name="super_flash_sale">Super Flash Sale</string>
+    <string name="favorite_product">Favorite Product</string>
+
 </resources>

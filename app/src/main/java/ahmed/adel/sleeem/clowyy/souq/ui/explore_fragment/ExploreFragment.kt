@@ -1,60 +1,75 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment
 
 import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentExploreBinding
+import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
+import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
+import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter.ExploreCategoryAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.RecommendedRecyclerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.GridView
+import androidx.recyclerview.widget.RecyclerView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ExploreFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ExploreFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var manRecyclerView: RecyclerView? = null
+    private var woManRecyclerView: RecyclerView? = null
+    private var manExploreCategoryAdapter: ExploreCategoryAdapter? = null
+    private var womanExploreCategoryAdapter: ExploreCategoryAdapter? = null
+    private lateinit var binding: FragmentExploreBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_explore, container, false)
+        binding = FragmentExploreBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ExploreFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ExploreFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        manRecyclerView = view.findViewById(R.id.category_man_fashion)
+        woManRecyclerView = view.findViewById(R.id.category_woman_fashion)
+
+
+        manExploreCategoryAdapter = ExploreCategoryAdapter(items = manList)
+        womanExploreCategoryAdapter = ExploreCategoryAdapter(items = womanList)
+        binding.categoryManFashion.adapter = manExploreCategoryAdapter
+        binding.categoryWomanFashion.adapter = womanExploreCategoryAdapter
+
+        manRecyclerView?.adapter = manExploreCategoryAdapter
+        woManRecyclerView?.adapter = womanExploreCategoryAdapter
+
     }
+
+    var manList = mutableListOf<ExplorerItem>(
+        ExplorerItem(R.drawable.ic_shirt, "Man Shirt"),
+        ExplorerItem(R.drawable.ic_dress, "Man Work Equipment"),
+        ExplorerItem(R.drawable.ic_dress, "Man T-Shirt"),
+        ExplorerItem(R.drawable.ic_dress, "Man Shoes"),
+        ExplorerItem(R.drawable.ic_dress, "Man Pants"),
+        ExplorerItem(R.drawable.ic_dress, "Man Underwear")
+    )
+
+    var womanList = mutableListOf<ExplorerItem>(
+        ExplorerItem(R.drawable.ic_dress, "Dress"),
+        ExplorerItem(R.drawable.ic_dress, "Woman T-Shirt"),
+        ExplorerItem(R.drawable.ic_dress, "Woman Pants"),
+        ExplorerItem(R.drawable.ic_dress, "Skirt"),
+        ExplorerItem(R.drawable.ic_dress, "Woman Bag"),
+        ExplorerItem(R.drawable.ic_dress, "High Heels"),
+        ExplorerItem(R.drawable.ic_dress, "Bikini")
+
+    )
+
 }

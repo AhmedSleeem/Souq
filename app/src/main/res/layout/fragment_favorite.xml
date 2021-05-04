@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FavoriteFragment">
+    tools:context=".ui.favorite_fragment.FavoriteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="78dp"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/white"
+            app:expandedTitleMarginStart="@dimen/_10sdp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/customToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                app:layout_collapseMode="pin">
+
+                <TextView
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/neutralDark"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/favorite_product"
+                    android:textColor="@color/neutralDark"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_arrow_back_24" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favorite_gridView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:columnWidth="@dimen/_127sdp"
+        android:horizontalSpacing="@dimen/_10sdp"
+        android:numColumns="auto_fit"
+        android:padding="@dimen/_12sdp"
+        android:verticalSpacing="@dimen/_9sdp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:spanCount="2"
+        tools:listitem="@layout/item_favorite_gv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,60 +1,100 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.offer_fragment
 
 import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
+import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOfferBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
+import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.CategoryRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.RecommendedRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.SaleRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.SaleViewPagerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.offer_fragment.adapter.OfferAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [OfferFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OfferFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+
+    private lateinit var saleRecyclerAdapter: OfferAdapter
+    private lateinit var binding: FragmentOfferBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_offer, container, false)
+        binding = FragmentOfferBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OfferFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OfferFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        var list1 = mutableListOf<SaleItem>(
+            SaleItem(
+                R.drawable.bag2,
+                "FS - Nike Air Max 270 React...",
+                "24% Off",
+                299.34f,
+                534.34f
+            ),
+            SaleItem(
+                R.drawable.shoes,
+                "FS - Nike Air Max 270 React...",
+                "24% Off",
+                299.34f,
+                534.34f
+            ),
+            SaleItem(
+                R.drawable.shoes2,
+                "FS - Nike Air Max 270 React...",
+                "24% Off",
+                299.34f,
+                534.34f
+            ),
+            SaleItem(
+                R.drawable.womem_bag,
+                "FS - Nike Air Max 270 React...",
+                "24% Off",
+                299.34f,
+                534.34f
+            ),
+            SaleItem(
+                R.drawable.shoes,
+                "FS - Nike Air Max 270 React...",
+                "24% Off",
+                299.34f,
+                534.34f
+            ),
+            SaleItem(
+                R.drawable.bag2,
+                "FS - Nike Air Max 270 React...",
+                "24% Off",
+                299.34f,
+                534.34f
+            ),
+            SaleItem(
+                R.drawable.shoes2,
+                "FS - Nike Air Max 270 React...",
+                "24% Off",
+                299.34f,
+                534.34f
+            ),
+        )
+        saleRecyclerAdapter = OfferAdapter(items = list1)
+        binding.recommendedRv.adapter = saleRecyclerAdapter
+
+
     }
+
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fav_cardView"
     android:layout_width="@dimen/_126sdp"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_216sdp"
     android:layout_marginStart="@dimen/_1sdp"
     android:layout_marginTop="@dimen/_10sdp"
     android:layout_marginEnd="@dimen/_10sdp"
@@ -19,14 +20,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <ImageView
-            android:id="@+id/img_product_sale_iv"
+            android:id="@+id/img_product"
             android:layout_width="@dimen/_102sdp"
             android:layout_height="@dimen/_102sdp"
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_102sdp"
             android:scaleType="centerCrop"
             android:src="@drawable/womem_bag"
             app:layout_constraintCircleRadius="@dimen/_4sdp"
@@ -36,59 +37,71 @@
 
 
         <TextView
-            android:id="@+id/product_name_sale_tc"
+            android:id="@+id/tv_product_name"
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="@dimen/_102sdp"
             android:layout_height="@dimen/_28sdp"
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_medium"
             android:gravity="top|start"
             android:lineHeight="@dimen/_14sdp"
-            android:maxLines="2"
             android:textColor="@color/neutralDark"
             android:textSize="@dimen/_9ssp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_product_sale_iv"
+            app:layout_constraintTop_toBottomOf="@+id/img_product"
             tools:text="Nike Air Max 270 React ENG" />
 
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:max="5"
+            android:numStars="5"
+            android:rating="4"
+            android:stepSize="1"
+            android:theme="@style/RatingBar.YellowStyle"
+            app:layout_constraintStart_toStartOf="@+id/tv_product_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
+
         <TextView
-            android:id="@+id/cost_sale_tv"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_17sdp"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginLeft="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:layout_marginBottom="@dimen/_27sdp"
-            android:fontFamily="@font/poppins_medium"
+            android:id="@+id/tv_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_bold"
             android:gravity="start"
             android:textAlignment="textStart"
             android:textColor="@color/primaryBlue"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_9ssp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/product_name_sale_tc"
+            app:layout_constraintStart_toStartOf="@+id/rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar"
             tools:text="$299,43" />
 
         <TextView
-            android:id="@+id/old_cost_sale_tv"
+            android:id="@+id/tv_old_cost"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_11sdp"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:layout_marginBottom="@dimen/_6sdp"
-            android:fontFamily="@font/poppins_light"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_medium"
             android:textColor="@color/gray"
             android:textSize="@dimen/_8ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/cost_sale_tv"
-            app:layout_constraintTop_toBottomOf="@+id/cost_sale_tv"
+            app:layout_constraintStart_toStartOf="@+id/tv_cost"
+            app:layout_constraintTop_toBottomOf="@+id/tv_cost"
             tools:text="$534,33" />
 
         <TextView
-            android:id="@+id/off_percentage_sale_tv"
+            android:id="@+id/tv_off_percentage"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="@dimen/_39sdp"
             android:layout_height="@dimen/_12sdp"
@@ -97,13 +110,24 @@
             android:fontFamily="@font/poppins_medium"
             android:gravity="start"
             android:textAlignment="textStart"
-            android:textColor="#FB7181"
+            android:textColor="@color/red"
             android:textSize="@dimen/_8ssp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/old_cost_sale_tv"
-            app:layout_constraintStart_toEndOf="@+id/old_cost_sale_tv"
-            app:layout_constraintTop_toTopOf="@+id/old_cost_sale_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_old_cost"
+            app:layout_constraintStart_toEndOf="@+id/tv_old_cost"
+            app:layout_constraintTop_toTopOf="@+id/tv_old_cost"
             tools:text="24% Off" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_11sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:src="@drawable/delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
