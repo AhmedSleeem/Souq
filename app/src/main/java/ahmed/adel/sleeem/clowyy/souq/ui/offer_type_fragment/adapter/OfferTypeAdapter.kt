@@ -1,15 +1,13 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.offer_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.offer_type_fragment.adapter
 
-import ahmed.adel.sleeem.clowyy.souq.databinding.ItemExploreCategoryBinding
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class OfferAdapter(private var items: MutableList<SaleItem>) :
-    RecyclerView.Adapter<OfferAdapter.ViewHolder>() {
+class OfferTypeAdapter(private var items: MutableList<SaleItem>) :
+    RecyclerView.Adapter<OfferTypeAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemSaleRvBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -17,7 +15,7 @@ class OfferAdapter(private var items: MutableList<SaleItem>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): OfferAdapter.ViewHolder {
+    ): ViewHolder {
         return ViewHolder(
             ItemSaleRvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
@@ -27,7 +25,7 @@ class OfferAdapter(private var items: MutableList<SaleItem>) :
         return items.size
     }
 
-    override fun onBindViewHolder(holder: OfferAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = items[position]
         holder.binding.imgProductSaleIv.setImageResource(data.image)
         holder.binding.productNameSaleTc.text = data.name

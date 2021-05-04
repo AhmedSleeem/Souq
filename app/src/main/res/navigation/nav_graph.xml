@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_offerTypeFragment"
+            app:destination="@id/offerTypeFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -39,7 +42,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.FavoriteFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.favorite_fragment.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
     <fragment
@@ -72,4 +75,9 @@
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFeedFragment"
         android:label="fragment_notification_feed"
         tools:layout="@layout/fragment_notification_feed" />
+    <fragment
+        android:id="@+id/offerTypeFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.offer_type_fragment.OfferTypeFragment"
+        android:label="fragment_offer_type"
+        tools:layout="@layout/fragment_offer_type" />
 </navigation>

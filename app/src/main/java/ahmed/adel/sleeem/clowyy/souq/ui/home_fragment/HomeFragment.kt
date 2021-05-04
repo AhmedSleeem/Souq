@@ -64,6 +64,9 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_favoriteFragment);
         }
 
+        binding.saleSeeMoreTv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_offerTypeFragment);
+        }
 
 
         viewPagerAdapter = SaleViewPagerAdapter(images = images)
@@ -83,7 +86,7 @@ class HomeFragment : Fragment() {
         binding.saleRv.adapter = saleRecyclerAdapter
 
         recommendedRecyclerAdapter = RecommendedRecyclerAdapter(items = list)
-        binding.recommendedRv.adapter = recommendedRecyclerAdapter
+        binding.recommended.adapter = recommendedRecyclerAdapter
 
         binding.saleViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback()  {
