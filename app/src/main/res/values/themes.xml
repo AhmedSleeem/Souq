@@ -26,8 +26,17 @@
         <item name="android:textSize">@dimen/_10ssp</item>
     </style>
 
-    <style name="RatingBar" parent="Theme.AppCompat">
+    <style name="RatingBar.YellowStyle" parent="Theme.AppCompat">
         <item name="colorControlNormal">#EBF0FF</item>
         <item name="colorControlActivated">#FFC833</item>
+    </style>
+
+    <style name="AppTheme.ToolbarFont" parent="Widget.AppCompat.Toolbar">
+        <!--This line changes the color of text in Toolbar-->
+        <item name="android:textColorPrimary">@color/neutralDark</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
     </style>
 </resources>

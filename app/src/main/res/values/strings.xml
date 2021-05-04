@@ -53,4 +53,11 @@
     <string name="write_your_review">Write Your Review</string>
     <string name="write_your_review_here">Write your review here</string>
     <string name="add_photo">Add Photo</string>
+    <string name="feed">Feed</string>
+    <string name="man_fashion">Man Fashion</string>
+    <string name="woman_fashion">Woman Fashion</string>
+    <string name="super_flash_sale">Super Flash Sale</string>
+    <string name="favorite_product">Favorite Product</string>
+
+    <string name="notification">Notification</string>
 </resources>

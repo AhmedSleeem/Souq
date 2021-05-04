@@ -14,26 +14,77 @@
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_offerTypeFragment"
+            app:destination="@id/offerTypeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ExploreFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ExploreFragment"
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart.CartFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.cart_fragment.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/offerFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer.OfferFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.offer_fragment.OfferFragment"
         android:label="fragment_offer"
         tools:layout="@layout/fragment_offer" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.profile.ProfileFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.profile_fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.favorite_fragment.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_notficationOfferFragment"
+            app:destination="@id/notficationOfferFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_notificationActivityFragment"
+            app:destination="@id/notificationActivityFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_notificationFeedFragment"
+            app:destination="@id/notificationFeedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notficationOfferFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationOfferFragment"
+        android:label="fragment_notfication_offer"
+        tools:layout="@layout/fragment_notfication_offer" />
+    <fragment
+        android:id="@+id/notificationActivityFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationActivityFragment"
+        android:label="fragment_notification_activity"
+        tools:layout="@layout/fragment_notification_activity" />
+    <fragment
+        android:id="@+id/notificationFeedFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFeedFragment"
+        android:label="fragment_notification_feed"
+        tools:layout="@layout/fragment_notification_feed" />
+    <fragment
+        android:id="@+id/offerTypeFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.offer_type_fragment.OfferTypeFragment"
+        android:label="fragment_offer_type"
+        tools:layout="@layout/fragment_offer_type" />
     <fragment
         android:id="@+id/writeReviewFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.writeReview.WriteReviewFragment"

@@ -1,13 +1,12 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.home_fragment
 
-import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.*
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleViewPagerAdapter
-
+import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.CategoryRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.RecommendedRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.SaleRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.SaleViewPagerAdapter
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -19,12 +18,13 @@ import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 
 
-class HomeFragment : Fragment() , View.OnClickListener {
-
-    var navController : NavController? = null
+class HomeFragment : Fragment() {
 
     val images = intArrayOf(
         R.drawable.i1,
@@ -61,7 +61,17 @@ class HomeFragment : Fragment() , View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.notificationIv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationFragment);
+        }
 
+        binding.favoriteIv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_favoriteFragment);
+        }
+
+        binding.saleSeeMoreTv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_offerTypeFragment);
+        }
 
 
         viewPagerAdapter = SaleViewPagerAdapter(images = images)
@@ -69,13 +79,13 @@ class HomeFragment : Fragment() , View.OnClickListener {
         binding.dotsIndicator.setViewPager2(binding.saleViewPager)
 
         var list = mutableListOf<SaleItem>(
-            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.womem_bag,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+                SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+                SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+                SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+                SaleItem(R.drawable.womem_bag,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+                SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+                SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+                SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
         )
         saleRecyclerAdapter = SaleRecyclerAdapter(items = list)
         binding.saleRv.adapter = saleRecyclerAdapter

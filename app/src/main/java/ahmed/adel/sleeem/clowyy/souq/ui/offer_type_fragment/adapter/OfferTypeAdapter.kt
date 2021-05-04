@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.offer_type_fragment.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class SaleRecyclerAdapter(private var items: MutableList<SaleItem>) :
-    RecyclerView.Adapter<SaleRecyclerAdapter.ViewHolder>() {
+class OfferTypeAdapter(private var items: MutableList<SaleItem>) :
+    RecyclerView.Adapter<OfferTypeAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ItemSaleRvBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: ItemSaleRvBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
         return ViewHolder(
             ItemSaleRvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
