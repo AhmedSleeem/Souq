@@ -107,7 +107,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semi_bold"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/category"
                 android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_12ssp"
@@ -149,7 +149,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semi_bold"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Flash Sale"
                 android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_12ssp"
@@ -219,7 +219,7 @@
                         android:textSize="@dimen/_22sdp"
                         android:layout_marginTop="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_20sdp"
-                        android:fontFamily="@font/poppins_semi_bold"
+                        android:fontFamily="@font/poppins_semibold"
                         android:textColor="@color/white"
                         tools:ignore="RtlCompat" />
                     <TextView

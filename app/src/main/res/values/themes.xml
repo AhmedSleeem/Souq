@@ -37,6 +37,6 @@
         <item name="textAllCaps">false</item>
         <item name="android:textSize">@dimen/_16ssp</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
     </style>
 </resources>

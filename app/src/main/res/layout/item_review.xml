@@ -26,7 +26,7 @@
         android:numStars="5"
         android:rating="4"
         android:stepSize="1"
-        android:theme="@style/RatingBar"
+        android:theme="@style/RatingBar.YellowStyle"
         android:transformPivotX="0dp"
         android:transformPivotY="0dp"
         app:layout_constraintStart_toStartOf="@+id/usernameReviewTextView"

@@ -12,8 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-
+import androidx.navigation.Navigation
 
 
 class DetailsFragment : Fragment() {
@@ -68,6 +67,10 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.morweReviews.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_detailsFragment_to_reviewFragment);
+        }
 
 
         viewPager = ViewPagerAdapter(images = images)

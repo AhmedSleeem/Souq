@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.offer_fragment.OfferFragment">
+    tools:context=".ui.fragments.offer_type_fragment.OfferTypeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.appbar.AppBarLayout
@@ -111,7 +111,7 @@
                             android:layout_width="@dimen/_38sdp"
                             android:layout_height="@dimen/_38sdp"
                             android:background="@drawable/tv_time_counter_background"
-                            android:fontFamily="@font/poppins_semi_bold"
+                            android:fontFamily="@font/poppins_semibold"
                             android:gravity="center"
                             android:text="08"
                             android:textColor="@color/neutralDark"
@@ -121,7 +121,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/_4sdp"
-                            android:fontFamily="@font/poppins_semi_bold"
+                            android:fontFamily="@font/poppins_semibold"
                             android:gravity="center"
                             android:text=":"
                             android:textColor="@color/white"
@@ -131,7 +131,7 @@
                             android:layout_width="@dimen/_38sdp"
                             android:layout_height="@dimen/_38sdp"
                             android:background="@drawable/tv_time_counter_background"
-                            android:fontFamily="@font/poppins_semi_bold"
+                            android:fontFamily="@font/poppins_semibold"
                             android:gravity="center"
                             android:text="34"
                             android:textColor="@color/neutralDark"
@@ -141,7 +141,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/_4sdp"
-                            android:fontFamily="@font/poppins_semi_bold"
+                            android:fontFamily="@font/poppins_semibold"
                             android:gravity="center"
                             android:text=":"
                             android:textColor="@color/white"
@@ -151,7 +151,7 @@
                             android:layout_width="@dimen/_38sdp"
                             android:layout_height="@dimen/_38sdp"
                             android:background="@drawable/tv_time_counter_background"
-                            android:fontFamily="@font/poppins_semi_bold"
+                            android:fontFamily="@font/poppins_semibold"
                             android:gravity="center"
                             android:text="52"
                             android:textColor="@color/neutralDark"
@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_16sdp"
                         android:layout_marginTop="@dimen/_16sdp"
-                        android:fontFamily="@font/poppins_semi_bold"
+                        android:fontFamily="@font/poppins_semibold"
                         android:maxLines="2"
                         android:text="@string/super_flash_sale_n50_off"
                         android:textColor="@color/white"

@@ -13,8 +13,6 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
-    </fragment>
-        tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
@@ -27,22 +25,22 @@
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ExploreFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ExploreFragment"
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.cart_fragment.CartFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/offerFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.offer_fragment.OfferFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer.OfferFragment"
         android:label="fragment_offer"
         tools:layout="@layout/fragment_offer" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.profile_fragment.ProfileFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
@@ -82,7 +80,7 @@
         tools:layout="@layout/fragment_notification_feed" />
     <fragment
         android:id="@+id/offerTypeFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.offer_type_fragment.OfferTypeFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer_type_fragment.OfferTypeFragment"
         android:label="fragment_offer_type"
         tools:layout="@layout/fragment_offer_type" />
     <fragment
