@@ -44,7 +44,32 @@
         tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.NotificationFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFragment"
         android:label="fragment_notification"
-        tools:layout="@layout/fragment_notification" />
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_notficationOfferFragment"
+            app:destination="@id/notficationOfferFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_notificationActivityFragment"
+            app:destination="@id/notificationActivityFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_notificationFeedFragment"
+            app:destination="@id/notificationFeedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notficationOfferFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationOfferFragment"
+        android:label="fragment_notfication_offer"
+        tools:layout="@layout/fragment_notfication_offer" />
+    <fragment
+        android:id="@+id/notificationActivityFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationActivityFragment"
+        android:label="fragment_notification_activity"
+        tools:layout="@layout/fragment_notification_activity" />
+    <fragment
+        android:id="@+id/notificationFeedFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFeedFragment"
+        android:label="fragment_notification_feed"
+        tools:layout="@layout/fragment_notification_feed" />
 </navigation>
