@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.order.OrderDetailsFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:title="@string/order_details"
+        app:buttonGravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/AppTheme.ToolbarFont" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        android:background="@color/overlayGray"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp">
+
+            <LinearLayout
+                android:id="@+id/stepView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+      >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/packingCheck"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/order_details_shipping_check_blue"
+                        android:src="@drawable/ic_check"
+                        android:padding="@dimen/_5sdp"
+                        android:contentDescription="TODO" />
+
+                    <View
+                        android:id="@+id/shippingLine"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="2dp"
+                        android:background="@color/primaryBlue"
+                        android:layout_gravity="center_vertical"/>
+
+                    <ImageView
+                        android:id="@+id/shippingCheck"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/order_details_shipping_check_blue"
+                        android:src="@drawable/ic_check"
+                        android:padding="@dimen/_5sdp"
+                        />
+
+                    <View
+                        android:id="@+id/arrivingLine"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="2dp"
+                        android:background="@color/primaryBlue"
+                        android:layout_gravity="center_vertical"/>
+
+                    <ImageView
+                        android:id="@+id/arrivingCheck"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/order_details_shipping_check_blue"
+                        android:src="@drawable/ic_check"
+                        android:padding="@dimen/_5sdp"
+                        />
+
+                    <View
+                        android:id="@+id/successLine"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="2dp"
+                        android:background="@color/overlayGray"
+                        android:layout_gravity="center_vertical"/>
+
+                    <ImageView
+                        android:id="@+id/successCheck"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/order_details_shipping_check_gray"
+                        android:src="@drawable/ic_check"
+                        android:padding="@dimen/_5sdp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="start"
+                        android:paddingStart="@dimen/_7sdp"
+                        android:paddingLeft="@dimen/_7sdp"
+                        android:text="@string/packing"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        android:text="@string/shipping"
+                        android:textColor="@color/gray"
+
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingLeft="@dimen/_8sdp"
+                        android:text="@string/arriving"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="end"
+                        android:paddingEnd="@dimen/_4sdp"
+                        android:text="@string/success"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_11ssp"
+                        tools:ignore="RtlCompat" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/product"
+                android:textColor="@color/neutralDark"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stepView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productsRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+            <TextView
+                android:id="@id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/shipping_details"
+                android:textColor="@color/neutralDark"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/productsRv" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/shippingDetailsCard"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintTop_toBottomOf="@id/textView13"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:elevation="@dimen/_5sdp"
+                app:cardElevation="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:padding="@dimen/_9sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_9sdp"
+                            android:text="@string/date_shipping"
+                            android:textColor="@color/gray"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/_12ssp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_9sdp"
+                            android:text="@string/shipping"
+                            android:textColor="@color/gray"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/_12ssp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_9sdp"
+                            android:text="@string/no_resi"
+                            android:textColor="@color/gray"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/_12ssp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/address"
+                            android:textColor="@color/gray"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/_12ssp"
+                            />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="end">
+                        <TextView
+                            android:id="@+id/dateShippingTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_9sdp"
+                            android:textColor="@color/neutralDark"
+                            tools:text="January 16, 2020"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/_12ssp"
+                            />
+                        <TextView
+                            android:id="@+id/shippingTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_9sdp"
+                            tools:text="POS Reggular"
+                            android:textColor="@color/neutralDark"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/_12ssp"
+                            />
+                        <TextView
+                            android:id="@+id/resiNoTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_9sdp"
+                            tools:text="000192848573"
+                            android:textColor="@color/neutralDark"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/_12ssp"
+                            />
+                        <TextView
+                            android:id="@+id/addressTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            tools:text="2727 New  Owerri, Owerri, Imo State 78410"
+                            android:textColor="@color/neutralDark"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="@dimen/_12ssp"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/payment_details"
+                android:textColor="@color/neutralDark"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shippingDetailsCard" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/paymentDetailsCard"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintTop_toBottomOf="@id/textView14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:elevation="@dimen/_5sdp"
+                app:cardElevation="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_9sdp">
+
+                    <LinearLayout
+                        android:id="@+id/paymentView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        android:weightSum="5"
+                        app:layout_constraintBottom_toTopOf="@id/dashed_line"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/itemsTv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_9sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="Items (3)"
+                                android:textColor="@color/gray"
+                                android:textSize="@dimen/_12ssp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_9sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/shipping"
+                                android:textColor="@color/gray"
+                                android:textSize="@dimen/_12ssp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_9sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/import_charges"
+                                android:textColor="@color/gray"
+                                android:textSize="@dimen/_12ssp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/itemsPriceTv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_9sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/neutralDark"
+                                android:textSize="@dimen/_12ssp"
+                                tools:text="$598.86" />
+
+                            <TextView
+                                android:id="@+id/shippingPriceTv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_9sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/neutralDark"
+                                android:textSize="@dimen/_12ssp"
+                                tools:text="$40.00" />
+
+                            <TextView
+                                android:id="@+id/importChargesTv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_9sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/neutralDark"
+                                android:textSize="@dimen/_12ssp"
+                                tools:text="$128.00" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/dashed_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
+                        android:src="@drawable/dashed_line"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/paymentView" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        app:layout_constraintTop_toBottomOf="@id/dashed_line"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/neutralDark"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="@string/total_price" />
+
+                    <TextView
+                        android:id="@+id/totalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        app:layout_constraintTop_toBottomOf="@id/dashed_line"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/primaryBlue"
+                        android:textSize="@dimen/_12ssp"
+                        tools:text="$766.86" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                app:layout_constraintTop_toBottomOf="@id/paymentDetailsCard"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_12sdp"
+                android:text="@string/notify_me"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:background="@drawable/register_button_shape" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

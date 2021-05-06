@@ -70,7 +70,8 @@ class HomeFragment : Fragment() , View.OnClickListener {
         }
 
         binding.saleSeeMoreTv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_offerTypeFragment);
+            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_offerTypeFragment);
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_orderFragment);
         }
 
 
