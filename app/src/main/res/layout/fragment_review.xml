@@ -47,7 +47,11 @@
 
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+    <View
+        android:id="@+id/view7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/overlayGray" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -59,6 +63,7 @@
             android:layout_width="@dimen/_77sdp"
             android:layout_height="@dimen/_39sdp"
             android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginLeft="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_6sdp"
             android:background="@drawable/ic_active" />
 

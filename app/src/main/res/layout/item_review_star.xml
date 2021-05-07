@@ -18,7 +18,7 @@
       app:layout_constraintTop_toTopOf="parent" />
 
   <ImageView
-      android:id="@+id/imageView2"
+      android:id="@+id/itemCartImageView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="@dimen/_12sdp"
@@ -44,7 +44,7 @@
       android:textSize="@dimen/_8ssp"
       app:layout_constraintBottom_toBottomOf="@+id/view"
       app:layout_constraintEnd_toEndOf="@+id/view"
-      app:layout_constraintStart_toEndOf="@+id/imageView2"
+      app:layout_constraintStart_toEndOf="@+id/itemCartImageView"
       app:layout_constraintTop_toTopOf="@+id/view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

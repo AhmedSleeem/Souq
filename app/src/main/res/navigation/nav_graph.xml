@@ -23,7 +23,11 @@
         android:id="@+id/cartFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_shipToFragment"
+            app:destination="@id/shipToFragment" />
+    </fragment>
     <fragment
         android:id="@+id/offerFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer.OfferFragment"
@@ -48,4 +52,18 @@
             android:id="@+id/action_reviewFragment_to_writeReviewFragment"
             app:destination="@id/writeReviewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/shipToFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.address.ShipToFragment"
+        android:label="fragment_ship_to"
+        tools:layout="@layout/fragment_ship_to" >
+        <action
+            android:id="@+id/action_shipToFragment_to_successFragment"
+            app:destination="@id/successFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.success.SuccessFragment"
+        android:label="fragment_success"
+        tools:layout="@layout/fragment_success" />
 </navigation>

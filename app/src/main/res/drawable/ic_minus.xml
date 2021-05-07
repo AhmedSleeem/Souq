@@ -2,10 +2,6 @@
     android:viewportHeight="16" android:viewportWidth="16"
     android:width="16dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#00000000"
-        android:pathData="M8,3.3335V12.6668"
-        android:strokeColor="#9098B1" android:strokeLineCap="round"
-        android:strokeLineJoin="round" android:strokeWidth="2"/>
-    <path android:fillColor="#00000000"
         android:pathData="M3.333,8H12.6663"
         android:strokeColor="#9098B1" android:strokeLineCap="round"
         android:strokeLineJoin="round" android:strokeWidth="2"/>
