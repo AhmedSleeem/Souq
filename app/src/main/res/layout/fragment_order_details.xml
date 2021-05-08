@@ -188,11 +188,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/productsRv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_height="@dimen/_190sdp"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                app:layout_constraintTop_toBottomOf="@+id/textView12"
+                tools:listitem="@layout/item_order_cart_item_rv" />
 
             <TextView
                 android:id="@id/textView13"
@@ -276,7 +279,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
                             android:textColor="@color/neutralDark"
-                            tools:text="January 16, 2020"
+                            android:text="January 16, 2020"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="@dimen/_12ssp"
                             />
@@ -285,7 +288,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
-                            tools:text="POS Reggular"
+                            android:text="POS Reggular"
                             android:textColor="@color/neutralDark"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="@dimen/_12ssp"
@@ -295,7 +298,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
-                            tools:text="000192848573"
+                            android:text="000192848573"
                             android:textColor="@color/neutralDark"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="@dimen/_12ssp"
@@ -305,7 +308,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            tools:text="2727 New  Owerri, Owerri, Imo State 78410"
+                            android:text="2727 New  Owerri, Owerri, Imo State 78410"
                             android:textColor="@color/neutralDark"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="@dimen/_12ssp"
@@ -407,7 +410,7 @@
                                 android:fontFamily="@font/poppins_medium"
                                 android:textColor="@color/neutralDark"
                                 android:textSize="@dimen/_12ssp"
-                                tools:text="$598.86" />
+                                android:text="$598.86" />
 
                             <TextView
                                 android:id="@+id/shippingPriceTv"
@@ -417,7 +420,7 @@
                                 android:fontFamily="@font/poppins_medium"
                                 android:textColor="@color/neutralDark"
                                 android:textSize="@dimen/_12ssp"
-                                tools:text="$40.00" />
+                                android:text="$40.00" />
 
                             <TextView
                                 android:id="@+id/importChargesTv"
@@ -427,7 +430,7 @@
                                 android:fontFamily="@font/poppins_medium"
                                 android:textColor="@color/neutralDark"
                                 android:textSize="@dimen/_12ssp"
-                                tools:text="$128.00" />
+                                android:text="$128.00" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -461,7 +464,7 @@
                         android:fontFamily="@font/poppins_bold"
                         android:textColor="@color/primaryBlue"
                         android:textSize="@dimen/_12ssp"
-                        tools:text="$766.86" />
+                        android:text="$766.86" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>

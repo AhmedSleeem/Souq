@@ -78,4 +78,7 @@
     <string name="import_charges">Import charges</string>
     <string name="total_price">Total Price</string>
     <string name="notify_me">Notify Me</string>
+    <string name="_90_off_super_mega_sale">90% Off Super Mega Sale</string>
+    <string name="special_birthday_lafyuu">Special birthday Lafyuu</string>
+    <string name="use_megsl_cupon_for_get_90_off">Use “MEGSL” Cupon For Get 90%off</string>
 </resources>

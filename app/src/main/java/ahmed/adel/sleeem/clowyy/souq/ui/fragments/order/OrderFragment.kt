@@ -1,9 +1,9 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOrderBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.Order
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter.OrderRecyclerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import androidx.navigation.Navigation
 class OrderFragment : Fragment() {
 
     lateinit var binding:FragmentOrderBinding
-    lateinit var adapter:OrderRecyclerAdapter
+    lateinit var adapter: OrderRecyclerAdapter
     val data = listOf<Order>(
         Order("LQNSU346JK","Order at E-comm : August 1, 2017","Shipping",2,299.50f),
         Order("SDG1345KJD","Order at E-comm : August 1, 2017","Shipping",1,350.50f),
@@ -34,8 +34,14 @@ class OrderFragment : Fragment() {
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
         }
-        adapter= OrderRecyclerAdapter(data)
+        adapter=
+            OrderRecyclerAdapter(
+                data
+            )
         binding.ordersRv.adapter = adapter
+
+
+
 
 
     }
