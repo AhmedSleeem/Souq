@@ -8,6 +8,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
         android:fitsSystemWindows="true"
@@ -36,6 +37,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/item_title"
                 android:textColor="@color/neutralDark"
+                android:maxWidth="@dimen/_100sdp"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/ic_arrow_back_24" />

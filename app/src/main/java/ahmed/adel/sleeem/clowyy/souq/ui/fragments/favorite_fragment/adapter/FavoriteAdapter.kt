@@ -1,14 +1,9 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.favorite_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite_fragment.adapter
 
-import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemFavoriteGvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import android.database.DataSetObserver
-import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ListAdapter
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class FavoriteAdapter(private var items: MutableList<SaleItem>) :

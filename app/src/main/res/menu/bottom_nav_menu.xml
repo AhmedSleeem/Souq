@@ -22,8 +22,8 @@
         android:icon="@drawable/ic_offer"
         />
 
-    <item android:id="@+id/profileFragment"
-        android:title="@string/profile"
+    <item android:id="@+id/accountFragment"
+        android:title="@string/Account"
         android:icon="@drawable/ic_user"
         />
 </menu>

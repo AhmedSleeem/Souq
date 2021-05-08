@@ -39,13 +39,17 @@
         android:label="fragment_offer"
         tools:layout="@layout/fragment_offer" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.profile.ProfileFragment"
+        android:id="@+id/accountFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.AccountFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.favorite_fragment.FavoriteFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite_fragment.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
     <fragment
@@ -106,5 +110,59 @@
             android:id="@+id/action_detailsFragment_to_reviewFragment"
             app:destination="@id/reviewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_changeNameFragment"
+            app:destination="@id/changeNameFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_chooseGenderFragment"
+            app:destination="@id/chooseGenderFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_changeMailFragment"
+            app:destination="@id/changeMailFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_phoneNumberFragment"
+            app:destination="@id/phoneNumberFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_birthdayFragment"
+            app:destination="@id/birthdayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeNameFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.ChangeNameFragment"
+        android:label="fragment_change_name"
+        tools:layout="@layout/fragment_change_name" />
+    <fragment
+        android:id="@+id/chooseGenderFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.ChooseGenderFragment"
+        android:label="fragment_choose_gender"
+        tools:layout="@layout/fragment_choose_gender" />
+    <fragment
+        android:id="@+id/changeMailFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.ChangeMailFragment"
+        android:label="fragment_change_mail"
+        tools:layout="@layout/fragment_change_mail" />
+    <fragment
+        android:id="@+id/phoneNumberFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.PhoneNumberFragment"
+        android:label="fragment_phone_number"
+        tools:layout="@layout/fragment_phone_number" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/birthdayFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.BirthdayFragment"
+        android:label="fragment_birthday"
+        tools:layout="@layout/fragment_birthday" />
 
 </navigation>

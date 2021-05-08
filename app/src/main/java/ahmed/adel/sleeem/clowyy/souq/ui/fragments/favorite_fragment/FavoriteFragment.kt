@@ -1,16 +1,14 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.favorite_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite_fragment
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentFavoriteBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.favorite_fragment.adapter.FavoriteAdapter
-import android.graphics.Paint
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite_fragment.adapter.FavoriteAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class FavoriteFragment : Fragment() {

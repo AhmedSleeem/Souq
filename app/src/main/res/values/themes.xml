@@ -20,6 +20,13 @@
         <item name="android:textSize">@dimen/_10ssp</item>
     </style>
 
+    <style name="spinner.ChangeFontFamily"
+        parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="fontFamily">@font/poppins_light</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
+        <item name="android:textColor">@color/primaryBlue</item>
+    </style>
+
     <style name="BottomNavigationView.ActiveItemTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/poppins_semibold</item>

@@ -60,4 +60,37 @@
     <string name="favorite_product">Favorite Product</string>
 
     <string name="notification">Notification</string>
+    <string name="Account">Account</string>
+    <string name="order">Order</string>
+    <string name="address">Address</string>
+    <string name="payment">Payment</string>
+    <string name="gender">Gender</string>
+    <string name="birthdate">Birthday</string>
+    <string name="mail">Email</string>
+    <string name="phone">Phone Number</string>
+    <string name="change_password">Change Password</string>
+    <string name="more">More</string>
+    <string name="date">12-12-2000</string>
+    <string name="email_examble">rex4dom@gmail.com</string>
+    <string name="num">(307) 555-0133</string>
+    <string name="pass">•••••••••••••••••</string>
+    <string name="name">Name</string>
+    <string name="frist_name">Frist Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="save">Save</string>
+    <string name="choose_gender">Choose Gender</string>
+    <string name="change_mail">Change Email</string>
+    <string name="send_virification">We Will Send verification to your New Email</string>
+    <string name="phone_examble">(307) 555-0133</string>
+    <string name="old_password">Old Password</string>
+    <string name="password_examble">•••••••••••••••••</string>
+    <string name="new_password">New Password</string>
+    <string name="new_password_again">New Password Again</string>
+    <string name="your_birthdate">Your Birhday</string>
+
+
+    <string-array name="gender_list">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>
