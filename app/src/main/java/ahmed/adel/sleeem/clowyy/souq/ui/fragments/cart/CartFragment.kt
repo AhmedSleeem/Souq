@@ -1,60 +1,56 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 
-import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.CartItem
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.ReviewFragmentDirections
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class CartFragment : Fragment(),View.OnClickListener {
+    private lateinit var cartAdapter: CartAdapter
+    private var _binding: FragmentCartBinding? = null
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CartFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val binding get() = _binding!!
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentCartBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initCartRecyclerView()
+        binding.checkOutButton.setOnClickListener(this)
+    }
+
+    private fun initCartRecyclerView() {
+        cartAdapter = CartAdapter { _, _, _ -> }
+
+        var item1 = CartItem()
+
+        var item2 = CartItem(itemIsFavorite = false)
+        var item3 = CartItem()
+        var item4 = CartItem(itemIsFavorite = false)
+        var starList = mutableListOf<CartItem>(item1, item2,item3,item4)
+        cartAdapter.swapData(starList)
+        binding.cartRecyclerView.apply {
+            adapter = cartAdapter
+        }
+    }
+    override fun onClick(v: View) {
+        when (v) {
+            binding.checkOutButton ->{
+                val action = CartFragmentDirections.actionCartFragmentToShipToFragment()
+                view?.findNavController()?.navigate(action)
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CartFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CartFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

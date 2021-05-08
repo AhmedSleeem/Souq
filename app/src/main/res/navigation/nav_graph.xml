@@ -7,21 +7,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.HomeFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_offerTypeFragment"
-            app:destination="@id/offerTypeFragment" />
+            android:id="@+id/action_homeFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -32,64 +23,21 @@
         android:id="@+id/cartFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_shipToFragment"
+            app:destination="@id/shipToFragment" />
+    </fragment>
     <fragment
         android:id="@+id/offerFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer.OfferFragment"
         android:label="fragment_offer"
         tools:layout="@layout/fragment_offer" />
     <fragment
-        android:id="@+id/accountFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.AccountFragment"
+        android:id="@+id/profileFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_account" >
-        <action
-            android:id="@+id/action_accountFragment_to_profileFragment2"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_accountFragment_to_orderFragment"
-            app:destination="@id/orderFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite_fragment.FavoriteFragment"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
-    <fragment
-        android:id="@+id/notificationFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFragment"
-        android:label="fragment_notification"
-        tools:layout="@layout/fragment_notification" >
-        <action
-            android:id="@+id/action_notificationFragment_to_notficationOfferFragment"
-            app:destination="@id/notficationOfferFragment" />
-        <action
-            android:id="@+id/action_notificationFragment_to_notificationActivityFragment"
-            app:destination="@id/notificationActivityFragment" />
-        <action
-            android:id="@+id/action_notificationFragment_to_notificationFeedFragment"
-            app:destination="@id/notificationFeedFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/notficationOfferFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationOfferFragment"
-        android:label="fragment_notfication_offer"
-        tools:layout="@layout/fragment_notfication_offer" />
-    <fragment
-        android:id="@+id/notificationActivityFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationActivityFragment"
-        android:label="fragment_notification_activity"
-        tools:layout="@layout/fragment_notification_activity" />
-    <fragment
-        android:id="@+id/notificationFeedFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFeedFragment"
-        android:label="fragment_notification_feed"
-        tools:layout="@layout/fragment_notification_feed" />
-    <fragment
-        android:id="@+id/offerTypeFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer_type_fragment.OfferTypeFragment"
-        android:label="fragment_offer_type"
-        tools:layout="@layout/fragment_offer_type" />
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/writeReviewFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.writeReview.WriteReviewFragment"
@@ -104,6 +52,20 @@
             android:id="@+id/action_reviewFragment_to_writeReviewFragment"
             app:destination="@id/writeReviewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/shipToFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.address.ShipToFragment"
+        android:label="fragment_ship_to"
+        tools:layout="@layout/fragment_ship_to" >
+        <action
+            android:id="@+id/action_shipToFragment_to_successFragment"
+            app:destination="@id/successFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.success.SuccessFragment"
+        android:label="fragment_success"
+        tools:layout="@layout/fragment_success" />
     <fragment
         android:id="@+id/detailsFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment"
