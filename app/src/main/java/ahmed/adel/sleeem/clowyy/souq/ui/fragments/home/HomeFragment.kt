@@ -69,10 +69,6 @@ class HomeFragment : Fragment() , View.OnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_favoriteFragment);
         }
 
-        binding.saleSeeMoreTv.setOnClickListener {
-            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_offerTypeFragment);
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_orderFragment);
-        }
 
 
         viewPagerAdapter = SaleViewPagerAdapter(images = images)

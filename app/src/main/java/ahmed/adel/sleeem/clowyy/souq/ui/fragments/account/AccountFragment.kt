@@ -35,16 +35,16 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // app bar arrow back
-        binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
-        binding.appBar.setNavigationOnClickListener {
-            Navigation.findNavController(it).navigateUp()
-        }
 
 
         // profile navigatoin
-        binding.layout1.setOnClickListener{
+        binding.profileLayout.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.action_accountFragment_to_profileFragment2);
+        }
+
+        // profile navigatoin
+        binding.orderLayout.setOnClickListener{
+            Navigation.findNavController(it).navigate(R.id.action_accountFragment_to_orderFragment);
         }
 
     }

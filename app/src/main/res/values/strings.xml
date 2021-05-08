@@ -87,13 +87,6 @@
     <string name="new_password">New Password</string>
     <string name="new_password_again">New Password Again</string>
     <string name="your_birthdate">Your Birhday</string>
-
-
-    <string-array name="gender_list">
-        <item>Male</item>
-        <item>Female</item>
-    </string-array>
-    <string name="order">Order</string>
     <string name="items_purchased">Items purchased</string>
     <string name="order_status">Order Status</string>
     <string name="items">Items</string>
@@ -105,7 +98,6 @@
     <string name="product">Product</string>
     <string name="date_shipping">Date Shipping</string>
     <string name="no_resi">No. Resi</string>
-    <string name="address">Address</string>
     <string name="shipping_details">Shipping Details</string>
     <string name="payment_details">Payment Details</string>
     <string name="import_charges">Import charges</string>
@@ -114,4 +106,9 @@
     <string name="_90_off_super_mega_sale">90% Off Super Mega Sale</string>
     <string name="special_birthday_lafyuu">Special birthday Lafyuu</string>
     <string name="use_megsl_cupon_for_get_90_off">Use “MEGSL” Cupon For Get 90%off</string>
+
+    <string-array name="gender_list">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

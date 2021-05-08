@@ -27,7 +27,7 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layout1"
+        android:id="@+id/profile_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_style"
@@ -61,13 +61,13 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layout2"
+        android:id="@+id/order_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout1">
+        app:layout_constraintTop_toBottomOf="@+id/profile_layout">
 
     <ImageView
         android:id="@+id/order_image"
@@ -79,7 +79,7 @@
         android:layout_marginBottom="@dimen/_12sdp"
         android:src="@drawable/ic_order"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout1" />
+        app:layout_constraintTop_toBottomOf="@id/profile_layout" />
 
     <TextView
         android:id="@+id/order_txt"
@@ -99,13 +99,13 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layout3"
+        android:id="@+id/address_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout2">
+        app:layout_constraintTop_toBottomOf="@+id/order_layout">
 
     <ImageView
         android:id="@+id/address_image"
@@ -133,13 +133,13 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layout4"
+        android:id="@+id/payment_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout3">
+        app:layout_constraintTop_toBottomOf="@+id/address_layout">
 
     <ImageView
         android:id="@+id/payment_image"

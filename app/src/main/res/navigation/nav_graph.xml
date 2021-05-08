@@ -22,9 +22,6 @@
         <action
             android:id="@+id/action_homeFragment_to_offerTypeFragment"
             app:destination="@id/offerTypeFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_orderFragment"
-            app:destination="@id/orderFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -49,6 +46,9 @@
         <action
             android:id="@+id/action_accountFragment_to_profileFragment2"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
