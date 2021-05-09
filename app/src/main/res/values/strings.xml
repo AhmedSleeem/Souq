@@ -49,7 +49,6 @@
     <string name="add_to_cart">Add To Cart</string>
     <string name="rate">4.5</string>
     <string name="review1">( 5 Review )</string>
-    <string name="write_review">Write Review</string>
     <string name="overall_review">Please write Overall level of satisfaction with your shipping / Delivery Service</string>
     <string name="write_your_review">Write Your Review</string>
     <string name="write_your_review_here">Write your review here</string>
@@ -58,11 +57,8 @@
     <string name="enter_cupon_code">Enter Cupon Code</string>
     <string name="apply">Apply</string>
     <string name="items_3">Items (3)</string>
-    <string name="shipping">Shipping</string>
-    <string name="import_charges">Import charges</string>
-    <string name="total_price">Total Price</string>
+
     <string name="check_out">Check Out</string>
-    <string name="success">Success</string>
     <string name="thank_you_for_shopping_using_lafyuu">thank you for shopping using lafyuu</string>
     <string name="back_to_order">Back To Order</string>
     <string name="ship_to">Ship To</string>
