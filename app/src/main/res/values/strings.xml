@@ -86,7 +86,7 @@
     <string name="num">(307) 555-0133</string>
     <string name="pass">•••••••••••••••••</string>
     <string name="name">Name</string>
-    <string name="frist_name">Frist Name</string>
+    <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="save">Save</string>
     <string name="choose_gender">Choose Gender</string>
@@ -117,9 +117,27 @@
     <string name="_90_off_super_mega_sale">90% Off Super Mega Sale</string>
     <string name="special_birthday_lafyuu">Special birthday Lafyuu</string>
     <string name="use_megsl_cupon_for_get_90_off">Use “MEGSL” Cupon For Get 90%off</string>
+    <string name="addaddress">Add Address</string>
+    <string name="country">Country or region</string>
+    <string name="streer_address">Street Address</string>
+    <string name="streer_address2">Street Address 2 (Optional)</string>
+    <string name="city">City</string>
+    <string name="state">State/Province/Region</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="are_you_sure_wanna_delete_address">Are you sure wanna delete address</string>
+    <string name="confirmation">Confirmation</string>
 
     <string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>
+    </string-array>
+
+    <string-array name="country_list">
+        <item>Cairo</item>
+        <item>Cairo</item>
+        <item>Cairo</item>
+        <item>Cairo</item>
     </string-array>
 </resources>

@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_accountFragment_to_orderFragment"
             app:destination="@id/orderFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_adressFragment"
+            app:destination="@id/adressFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -202,5 +205,31 @@
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.success.SuccessFragment"
         android:label="fragment_success"
         tools:layout="@layout/fragment_success" />
+    <fragment
+        android:id="@+id/adressFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.AddressFragment"
+        android:label="fragment_adress"
+        tools:layout="@layout/fragment_address" >
+        <action
+            android:id="@+id/action_adressFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+        <action
+            android:id="@+id/action_adressFragment_to_deleteAddressConfigrationFragment"
+            app:destination="@id/deleteAddressConfigrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addAddressFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.AddAddressFragment"
+        android:label="fragment_add_address"
+        tools:layout="@layout/fragment_add_address" >
+        <action
+            android:id="@+id/action_addAddressFragment_to_deleteAddressConfigrationFragment"
+            app:destination="@id/deleteAddressConfigrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteAddressConfigrationFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.DeleteAddressConfigrationFragment"
+        android:label="fragment_delete_address_configration"
+        tools:layout="@layout/fragment_delete_address_configration" />
 
 </navigation>

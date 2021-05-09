@@ -42,10 +42,14 @@ class AccountFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_accountFragment_to_profileFragment2);
         }
 
-        // profile navigatoin
+        // order navigatoin
         binding.orderLayout.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.action_accountFragment_to_orderFragment);
         }
 
+        // address navigatoin
+        binding.addressLayout.setOnClickListener{
+            Navigation.findNavController(it).navigate(R.id.action_accountFragment_to_adressFragment);
+        }
     }
 }
