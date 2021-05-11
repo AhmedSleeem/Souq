@@ -5,7 +5,6 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentExploreBinding
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentSearchSucceedBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter.SearchSucceedAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.offer_type_fragment.adapter.OfferTypeAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

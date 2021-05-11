@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentExploreBinding
@@ -6,7 +6,6 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter.ExploreCategoryAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.adapter.RecommendedRecyclerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

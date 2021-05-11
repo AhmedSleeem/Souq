@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -24,24 +24,6 @@
             app:destination="@id/offerTypeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/exploreFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ExploreFragment"
-        android:label="fragment_explore"
-        tools:layout="@layout/fragment_explore" >
-        <action
-            android:id="@+id/action_exploreFragment_to_searchSucceedFragment"
-            app:destination="@id/searchSucceedFragment" />
-        <action
-            android:id="@+id/action_exploreFragment_to_searchFailedFragment"
-            app:destination="@id/searchFailedFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/cartFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.cart_fragment.CartFragment"
-        android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
-        tools:layout="@layout/fragment_explore" />
-    <fragment
         android:id="@+id/offerFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer.OfferFragment"
         android:label="fragment_offer"
@@ -50,7 +32,7 @@
         android:id="@+id/accountFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.AccountFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_account" >
+        tools:layout="@layout/fragment_account">
         <action
             android:id="@+id/action_accountFragment_to_profileFragment2"
             app:destination="@id/profileFragment" />
@@ -70,7 +52,7 @@
         android:id="@+id/notificationFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFragment"
         android:label="fragment_notification"
-        tools:layout="@layout/fragment_notification" >
+        tools:layout="@layout/fragment_notification">
         <action
             android:id="@+id/action_notificationFragment_to_notficationOfferFragment"
             app:destination="@id/notficationOfferFragment" />
@@ -110,7 +92,7 @@
         android:id="@+id/reviewFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.ReviewFragment"
         android:label="fragment_review"
-        tools:layout="@layout/fragment_review" >
+        tools:layout="@layout/fragment_review">
         <action
             android:id="@+id/action_reviewFragment_to_writeReviewFragment"
             app:destination="@id/writeReviewFragment" />
@@ -119,7 +101,7 @@
         android:id="@+id/detailsFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        tools:layout="@layout/fragment_details">
         <action
             android:id="@+id/action_detailsFragment_to_reviewFragment"
             app:destination="@id/reviewFragment" />
@@ -128,7 +110,7 @@
         android:id="@+id/profileFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_changeNameFragment"
             app:destination="@id/changeNameFragment" />
@@ -182,7 +164,7 @@
         android:id="@+id/orderFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.OrderFragment"
         android:label="fragment_order"
-        tools:layout="@layout/fragment_order" >
+        tools:layout="@layout/fragment_order">
         <action
             android:id="@+id/action_orderFragment_to_orderDetailsFragment"
             app:destination="@id/orderDetailsFragment" />
@@ -194,12 +176,25 @@
         tools:layout="@layout/fragment_order_details" />
 
 
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ExploreFragment"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore">
+        <action
+            android:id="@+id/action_exploreFragment_to_searchSucceedFragment"
+            app:destination="@id/searchSucceedFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_searchFailedFragment"
+            app:destination="@id/searchFailedFragment" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/cartFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
+        tools:layout="@layout/fragment_cart">
         <action
             android:id="@+id/action_cartFragment_to_shipToFragment"
             app:destination="@id/shipToFragment" />
@@ -209,7 +204,7 @@
         android:id="@+id/shipToFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.address.ShipToFragment"
         android:label="fragment_ship_to"
-        tools:layout="@layout/fragment_ship_to" >
+        tools:layout="@layout/fragment_ship_to">
         <action
             android:id="@+id/action_shipToFragment_to_successFragment"
             app:destination="@id/successFragment" />
@@ -223,7 +218,7 @@
         android:id="@+id/adressFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.AddressFragment"
         android:label="fragment_adress"
-        tools:layout="@layout/fragment_address" >
+        tools:layout="@layout/fragment_address">
         <action
             android:id="@+id/action_adressFragment_to_addAddressFragment"
             app:destination="@id/addAddressFragment" />
@@ -235,7 +230,7 @@
         android:id="@+id/addAddressFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.AddAddressFragment"
         android:label="fragment_add_address"
-        tools:layout="@layout/fragment_add_address" >
+        tools:layout="@layout/fragment_add_address">
         <action
             android:id="@+id/action_addAddressFragment_to_deleteAddressConfigrationFragment"
             app:destination="@id/deleteAddressConfigrationFragment" />
@@ -250,7 +245,7 @@
         android:id="@+id/searchFailedFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.SearchFailedFragment"
         android:label="fragment_search_failed"
-        tools:layout="@layout/fragment_search_failed" >
+        tools:layout="@layout/fragment_search_failed">
         <action
             android:id="@+id/action_searchFailedFragment_to_listCategoryFragment"
             app:destination="@id/listCategoryFragment" />
@@ -265,7 +260,7 @@
         android:id="@+id/searchSucceedFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.SearchSucceedFragment"
         android:label="fragment_search_succeed"
-        tools:layout="@layout/fragment_search_succeed" >
+        tools:layout="@layout/fragment_search_succeed">
         <action
             android:id="@+id/action_searchSucceedFragment_to_listCategoryFragment"
             app:destination="@id/listCategoryFragment" />
