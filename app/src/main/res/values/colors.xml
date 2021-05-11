@@ -11,5 +11,7 @@
     <color name="primaryBlue">#40BFFF</color>
     <color name="neutralDark">#223263</color>
     <color name="overlayGray">#EBF0FF</color>
-    <color name="gray">#9098B1</color>
+    <color name="gray">#9098B1</color>#
+    <color name="babyBlue">#1A40BFFF</color>
+
 </resources>

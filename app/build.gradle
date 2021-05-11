@@ -58,4 +58,7 @@ dependencies {
 
     //view pager dots
     implementation 'com.tbuonomo:dotsindicator:4.2'
+
+
+
 }

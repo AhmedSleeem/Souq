@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.explore_fragment.SearchSucceedFragment">
+
+    <LinearLayout
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/search_ed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="7"
+            android:background="@drawable/ed_search_background"
+            android:drawableStart="@drawable/ic_search_24"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_light"
+            android:hint="Search Product"
+            android:padding="@dimen/_9sdp"
+            android:textSize="@dimen/_12ssp"
+            tools:ignore="RtlCompat" />
+
+        <ImageButton
+            android:id="@+id/short_iv"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_short" />
+
+        <ImageButton
+            android:id="@+id/filter_iv"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_filter" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ic_category_vector"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_18sdp"
+        android:layout_marginRight="@dimen/_18sdp"
+        android:src="@drawable/ic_vector_down"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_category" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="@dimen/_41sdp"
+        android:layout_height="@dimen/_17sdp"
+        android:layout_marginStart="@dimen/_3sdp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="start"
+        android:text="@string/result"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/_9ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/result_count"
+        app:layout_constraintStart_toEndOf="@+id/result_count"
+        app:layout_constraintTop_toTopOf="@+id/result_count" />
+
+    <TextView
+        android:id="@+id/result_count"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_17sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="start"
+        android:text="145"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/_9ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topView" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_rv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="18dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:spanCount="2"
+        tools:listitem="@layout/item_sale_rv" />
+
+    <TextView
+        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_17sdp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="start"
+        android:text="@string/man_shoes"
+        android:textColor="@color/neutralDark"
+        android:textSize="@dimen/_9ssp"
+        app:layout_constraintEnd_toStartOf="@+id/ic_category_vector"
+        app:layout_constraintTop_toBottomOf="@+id/topView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

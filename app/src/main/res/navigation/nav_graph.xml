@@ -24,7 +24,14 @@
         android:id="@+id/exploreFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ExploreFragment"
         android:label="fragment_explore"
-        tools:layout="@layout/fragment_explore" />
+        tools:layout="@layout/fragment_explore" >
+        <action
+            android:id="@+id/action_exploreFragment_to_searchSucceedFragment"
+            app:destination="@id/searchSucceedFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_searchFailedFragment"
+            app:destination="@id/searchFailedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.cart_fragment.CartFragment"
@@ -80,4 +87,49 @@
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.offer_type_fragment.OfferTypeFragment"
         android:label="fragment_offer_type"
         tools:layout="@layout/fragment_offer_type" />
+    <fragment
+        android:id="@+id/searchFailedFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.SearchFailedFragment"
+        android:label="fragment_search_failed"
+        tools:layout="@layout/fragment_search_failed" >
+        <action
+            android:id="@+id/action_searchFailedFragment_to_listCategoryFragment"
+            app:destination="@id/listCategoryFragment" />
+        <action
+            android:id="@+id/action_searchFailedFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_searchFailedFragment_to_shortByFragment"
+            app:destination="@id/shortByFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchSucceedFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.SearchSucceedFragment"
+        android:label="fragment_search_succeed"
+        tools:layout="@layout/fragment_search_succeed" >
+        <action
+            android:id="@+id/action_searchSucceedFragment_to_listCategoryFragment"
+            app:destination="@id/listCategoryFragment" />
+        <action
+            android:id="@+id/action_searchSucceedFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_searchSucceedFragment_to_shortByFragment"
+            app:destination="@id/shortByFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listCategoryFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ListCategoryFragment"
+        android:label="fragment_list_category"
+        tools:layout="@layout/fragment_list_category" />
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.FilterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter" />
+    <fragment
+        android:id="@+id/shortByFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ShortByFragment"
+        android:label="fragment_short_by"
+        tools:layout="@layout/fragment_short_by" />
 </navigation>

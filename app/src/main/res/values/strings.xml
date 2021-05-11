@@ -31,4 +31,45 @@
     <string name="favorite_product">Favorite Product</string>
 
     <string name="notification">Notification</string>
+    <string name="product_not_found">Product Not Found</string>
+    <string name="thanks_for_shopping">thank you for shopping using lafyuu</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="result_0">0 Result</string>
+    <string name="result">Result</string>
+    <string name="man_shoes">Man Shoes</string>
+    <string name="short_by">Short By</string>
+    <string name="best_match">Best Match</string>
+    <string name="time1">Time: ending soonest</string>
+    <string name="time2">Time: newly listed</string>
+    <string name="price_and_shipping">Price + Shipping: lowest first</string>
+    <string name="price_and_shipping2">Price + Shipping: highest first</string>
+    <string name="distance">Distance: nearest first</string>
+    <string name="filter_search">Filter Search</string>
+    <string name="price_range">Price Range</string>
+    <string name="min">MIN</string>
+    <string name="max">MAX</string>
+    <string name="condition">Condition</string>
+    <string name="not_specified">Not Specified</string>
+    <string name="used">Used</string>
+    <string name="new1">New</string>
+    <string name="buying_format">Buying Format</string>
+    <string name="show_only">Show Only</string>
+    <string name="all_listings">All Listings</string>
+    <string name="accepts_offers">Accepts Offers</string>
+    <string name="auction">Auction</string>
+    <string name="buy_it_now">Buy It Now</string>
+    <string name="classified_ads">Classified Ads</string>
+    <string name="free_returns">Free Returns</string>
+    <string name="returns_accepted">Returns Accepted</string>
+    <string name="authorized_seller">Authorized Seller</string>
+    <string name="completed_items">Completed Items</string>
+    <string name="sold_items">Sold Items</string>
+    <string name="deals_and_savings">Deals And Savings</string>
+    <string name="Sale_items">Sale Items</string>
+    <string name="listed_as_lots">Listed as Lots</string>
+    <string name="search_in_description">Search in Description</string>
+    <string name="benefits_charity">Benefits charity</string>
+    <string name="authenticity_verified">Authenticity Verified</string>
+    <string name="apply">Apply</string>
+
 </resources>

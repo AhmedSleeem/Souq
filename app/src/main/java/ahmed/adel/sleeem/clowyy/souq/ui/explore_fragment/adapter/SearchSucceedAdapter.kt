@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.offer_type_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleRvBinding
@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class OfferTypeAdapter(private var items: MutableList<SaleItem>) :
-    RecyclerView.Adapter<OfferTypeAdapter.ViewHolder>() {
+class SearchSucceedAdapter (private var items: MutableList<SaleItem>) :
+    RecyclerView.Adapter<SearchSucceedAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemRecommendedRvBinding) :
         RecyclerView.ViewHolder(binding.root)
