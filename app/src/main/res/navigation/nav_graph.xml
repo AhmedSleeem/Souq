@@ -13,6 +13,11 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_listCategoryFragment"
+            app:destination="@id/listCategoryFragment" />
+
         <action
             android:id="@+id/action_homeFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />

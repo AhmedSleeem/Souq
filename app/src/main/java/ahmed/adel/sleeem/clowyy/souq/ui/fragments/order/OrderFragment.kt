@@ -2,7 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOrderBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.Order
+import ahmed.adel.sleeem.clowyy.souq.pojo.OrderItem
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter.OrderRecyclerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,10 +15,10 @@ class OrderFragment : Fragment() {
 
     lateinit var binding:FragmentOrderBinding
     lateinit var adapter: OrderRecyclerAdapter
-    val data = listOf<Order>(
-        Order("LQNSU346JK","Order at E-comm : August 1, 2017","Shipping",2,299.50f),
-        Order("SDG1345KJD","Order at E-comm : August 1, 2017","Shipping",1,350.50f),
-        Order("SDG1345KJD","Order at E-comm : August 5, 2017","Shipping",10,3500f)
+    val data = listOf<OrderItem>(
+        OrderItem("LQNSU346JK","Order at E-comm : August 1, 2017","Shipping",2,299.50f),
+        OrderItem("SDG1345KJD","Order at E-comm : August 1, 2017","Shipping",1,350.50f),
+        OrderItem("SDG1345KJD","Order at E-comm : August 5, 2017","Shipping",10,3500f)
     )
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

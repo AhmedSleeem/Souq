@@ -1,27 +1,33 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCategoryRvBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-class CategoryRecyclerAdapter(private var images:IntArray) : RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder>() {
+class CategoryRecyclerAdapter(private var data:List<ExplorerItem> ): RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView = itemView.findViewById<ImageView>(R.id.iv_category_item);
+    class ViewHolder(val binding: ItemCategoryRvBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun binding(item:ExplorerItem) = with(itemView){
+            binding.ivCategoryItem.setImageResource(item.categoryImage)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_category_rv, parent, false))
+        return ViewHolder(
+            ItemCategoryRvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
-        return images.size
+        return data.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.imageView.setImageResource(images[position])
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.binding(data[position])
+
 }

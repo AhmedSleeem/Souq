@@ -2,6 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.home_fragment
 
 import ahmed.adel.sleeem.clowyy.souq.*
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
@@ -34,13 +35,12 @@ class HomeFragment : Fragment() , View.OnClickListener {
         R.drawable.i2,
         R.drawable.i3
     )
-    val categories = intArrayOf(
-        R.drawable.ic_dress,
-        R.drawable.ic_man_bag,
-        R.drawable.ic_woman_bag,
-        R.drawable.ic_shirt,
-        R.drawable.ic_man_bag,
-        R.drawable.ic_dress
+    val categories = listOf<ExplorerItem>(
+        ExplorerItem( R.drawable.ic_dress),
+        ExplorerItem( R.drawable.ic_man_bag),
+        ExplorerItem( R.drawable.ic_woman_bag),
+        ExplorerItem( R.drawable.ic_man_bag),
+        ExplorerItem( R.drawable.ic_dress)
     )
     private lateinit var viewPagerAdapter: SaleViewPagerAdapter
     private lateinit var saleRecyclerAdapter: SaleRecyclerAdapter
@@ -67,6 +67,10 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
         binding.favoriteIv.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_favoriteFragment);
+        }
+
+        binding.moreCategoryTv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_listCategoryFragment);
         }
 
 

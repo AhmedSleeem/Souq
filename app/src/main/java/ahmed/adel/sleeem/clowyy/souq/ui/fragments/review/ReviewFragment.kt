@@ -70,7 +70,7 @@ class ReviewFragment : Fragment(), View.OnClickListener {
         var star2 = ReviewItem()
 
         var starList = mutableListOf<ReviewItem>(star1, star2)
-        reviewAdapter.swapData(starList)
+        reviewAdapter.changeData(starList)
         binding.reviewRecyclerView.apply {
             adapter = reviewAdapter
         }
