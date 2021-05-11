@@ -1,9 +1,9 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer_type_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOfferTypeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer_type_fragment.adapter.OfferTypeAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType.adapter.OfferTypeAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

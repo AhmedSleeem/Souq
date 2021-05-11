@@ -45,12 +45,12 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite_fragment.FavoriteFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification">
         <action
@@ -65,22 +65,22 @@
     </fragment>
     <fragment
         android:id="@+id/notficationOfferFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationOfferFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification.NotificationOfferFragment"
         android:label="fragment_notfication_offer"
         tools:layout="@layout/fragment_notfication_offer" />
     <fragment
         android:id="@+id/notificationActivityFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationActivityFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification.NotificationActivityFragment"
         android:label="fragment_notification_activity"
         tools:layout="@layout/fragment_notification_activity" />
     <fragment
         android:id="@+id/notificationFeedFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.NotificationFeedFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification.NotificationFeedFragment"
         android:label="fragment_notification_feed"
         tools:layout="@layout/fragment_notification_feed" />
     <fragment
         android:id="@+id/offerTypeFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer_type_fragment.OfferTypeFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType.OfferTypeFragment"
         android:label="fragment_offer_type"
         tools:layout="@layout/fragment_offer_type" />
     <fragment

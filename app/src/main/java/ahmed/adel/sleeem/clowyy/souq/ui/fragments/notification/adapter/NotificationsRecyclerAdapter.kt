@@ -1,10 +1,8 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemNotificationsRvBinding
-import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.NotificationItem
-import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

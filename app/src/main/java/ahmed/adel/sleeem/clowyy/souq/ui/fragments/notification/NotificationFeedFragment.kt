@@ -1,10 +1,9 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentNotificationActivityBinding
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentNotificationFeedBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.NotificationItem
-import ahmed.adel.sleeem.clowyy.souq.ui.notification_fragments.adapter.NotificationsRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification.adapter.NotificationsRecyclerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

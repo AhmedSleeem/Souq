@@ -1,15 +1,12 @@
-package ahmed.adel.sleeem.clowyy.souq
+package ahmed.adel.sleeem.clowyy.souq.ui
 
-import ahmed.adel.sleeem.clowyy.souq.ui.MainActivity
-import android.animation.Animator
-import android.animation.ValueAnimator
+import ahmed.adel.sleeem.clowyy.souq.R
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
-import android.view.animation.BounceInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 

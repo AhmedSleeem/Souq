@@ -50,7 +50,7 @@
             app:layout_constraintTop_toBottomOf="@+id/descCartTextView" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/fullNameRegisterEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
@@ -70,7 +70,7 @@
             android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/emailRegisterEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
@@ -86,11 +86,11 @@
             android:textSize="@dimen/_10ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/fullNameRegisterEditText"
             android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/passwordRegisterEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
@@ -106,11 +106,11 @@
             android:textSize="@dimen/_10ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+            app:layout_constraintTop_toBottomOf="@+id/emailRegisterEditText"
             android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/editTextTextPassword2"
+            android:id="@+id/confirmPasswordRegisterEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
@@ -126,11 +126,11 @@
             android:textSize="@dimen/_10ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+            app:layout_constraintTop_toBottomOf="@+id/passwordRegisterEditText"
             android:importantForAutofill="no" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/signUpRegisterButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
@@ -146,7 +146,7 @@
             app:backgroundTint="@color/primaryBlue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+            app:layout_constraintTop_toBottomOf="@+id/confirmPasswordRegisterEditText" />
 
         <TextView
             android:id="@+id/textView3"
@@ -156,13 +156,13 @@
             android:fontFamily="@font/poppins_regular"
             android:text="@string/have_a_account"
             android:textSize="@dimen/_10ssp"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintEnd_toStartOf="@+id/SignInRegisterTextView"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpRegisterButton" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/SignInRegisterTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"
