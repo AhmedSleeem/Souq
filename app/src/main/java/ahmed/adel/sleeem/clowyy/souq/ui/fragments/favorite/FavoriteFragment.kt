@@ -1,9 +1,9 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentFavoriteBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite_fragment.adapter.FavoriteAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite.adapter.FavoriteAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

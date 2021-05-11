@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemFavoriteGvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
