@@ -1,36 +1,49 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer_type_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOfferTypeBinding
+import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentExploreBinding
+import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentSearchSucceedBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer_type_fragment.adapter.OfferTypeAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter.SearchSucceedAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.offer_type_fragment.adapter.OfferTypeAdapter
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 
+class SearchSucceedFragment : Fragment() {
 
-class OfferTypeFragment : Fragment() {
-
-    private lateinit var saleRecyclerAdapter: OfferTypeAdapter
-    private lateinit var binding: FragmentOfferTypeBinding
+    private lateinit var searchRecyclerAdapter: SearchSucceedAdapter
+    private lateinit var binding: FragmentSearchSucceedBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentOfferTypeBinding.inflate(inflater, container, false)
+        binding = FragmentSearchSucceedBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.tvCategory.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_searchSucceedFragment_to_listCategoryFragment);
+        }
 
-        saleRecyclerAdapter = OfferTypeAdapter(items = list1)
-        binding.recommended.adapter = saleRecyclerAdapter
+        binding.filterIv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_searchSucceedFragment_to_filterFragment);
+        }
+
+        binding.shortIv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_searchSucceedFragment_to_shortByFragment);
+        }
+
+        searchRecyclerAdapter = SearchSucceedAdapter(items = list1)
+        binding.searchRv.adapter = searchRecyclerAdapter
 
     }
 

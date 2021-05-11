@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.explore_fragment.ShortByFragment">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="78dp"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/white"
+            app:expandedTitleMarginStart="@dimen/_10sdp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/customToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                app:layout_collapseMode="pin">
+
+                <TextView
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/neutralDark"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/short_by"
+                    android:textColor="@color/neutralDark"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_arrow_back_24" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_41sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/best_match"
+            android:textColor="@color/primaryBlue"
+            android:textSize="@dimen/_9ssp"
+            tools:ignore="RtlCompat"
+            tools:text="Best Match" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_41sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout1">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/time1"
+            android:textColor="@color/neutralDark"
+            android:textSize="@dimen/_9ssp"
+            tools:ignore="RtlCompat"
+            tools:text="Time: ending soonest" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_41sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/time2"
+            android:textColor="@color/neutralDark"
+            android:textSize="@dimen/_9ssp"
+            tools:ignore="RtlCompat"
+            tools:text="Time: newly listed" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_41sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/price_and_shipping"
+            android:textColor="@color/neutralDark"
+            android:textSize="@dimen/_9ssp"
+            tools:ignore="RtlCompat"
+            tools:text="Price + Shipping: lowest first" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_41sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/price_and_shipping2"
+            android:textColor="@color/neutralDark"
+            android:textSize="@dimen/_9ssp"
+            tools:ignore="RtlCompat"
+            tools:text="Price + Shipping: highest first" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout6"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_41sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/distance"
+            android:textColor="@color/neutralDark"
+            android:textSize="@dimen/_9ssp"
+            tools:ignore="RtlCompat"
+            tools:text="Distance: nearest first" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

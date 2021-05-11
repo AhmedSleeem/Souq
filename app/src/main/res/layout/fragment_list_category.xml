@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.favorite_fragment.FavoriteFragment">
+    tools:context=".ui.explore_fragment.ListCategoryFragment">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -38,7 +38,7 @@
                     android:drawablePadding="@dimen/_8sdp"
                     android:drawableTint="@color/neutralDark"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="@string/favorite_product"
+                    android:text="@string/category"
                     android:textColor="@color/neutralDark"
                     android:textSize="@dimen/_13ssp"
                     android:textStyle="bold"
@@ -49,23 +49,14 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/favorite_gridView"
-        android:layout_width="0dp"
+        android:id="@+id/category_list_rv"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginLeft="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:columnWidth="@dimen/_127sdp"
-        android:horizontalSpacing="@dimen/_10sdp"
-        android:numColumns="auto_fit"
-        android:padding="@dimen/_12sdp"
-        android:verticalSpacing="@dimen/_9sdp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:spanCount="2"
-        tools:listitem="@layout/item_favorite_gv" />
+        tools:listitem="@layout/item_category_list_rv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
