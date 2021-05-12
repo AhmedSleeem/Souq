@@ -36,11 +36,11 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/layout_style"
             android:src="@drawable/ic_baseline_favorite_border_24"/>
 
         <ImageButton
-            android:background="@color/white"
+            android:background="@drawable/layout_style"
             android:id="@+id/notification_iv"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -124,6 +124,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/more_category"
                 android:textColor="@color/primaryBlue"
+                android:background="@drawable/layout_style"
                 android:textSize="@dimen/_12ssp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_12sdp"
@@ -166,6 +167,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/see_more"
                 android:textColor="@color/primaryBlue"
+                android:background="@drawable/layout_style"
                 android:textSize="@dimen/_12ssp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_12sdp"

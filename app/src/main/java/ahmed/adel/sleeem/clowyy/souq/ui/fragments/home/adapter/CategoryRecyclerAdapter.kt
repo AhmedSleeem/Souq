@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
 class CategoryRecyclerAdapter(private var data:List<ExplorerItem> ): RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder>() {
@@ -15,6 +16,11 @@ class CategoryRecyclerAdapter(private var data:List<ExplorerItem> ): RecyclerVie
 
         fun binding(item:ExplorerItem) = with(itemView){
             binding.ivCategoryItem.setImageResource(item.categoryImage)
+
+            setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_searchSucceedFragment)
+            }
+
         }
     }
 

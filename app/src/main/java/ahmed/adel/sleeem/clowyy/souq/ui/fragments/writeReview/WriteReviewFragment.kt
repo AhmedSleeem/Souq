@@ -8,7 +8,7 @@ import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-
+import androidx.navigation.Navigation
 
 
 class WriteReviewFragment : Fragment() {
@@ -23,10 +23,17 @@ class WriteReviewFragment : Fragment() {
         _binding = FragmentWriteReviewBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setStatusBarColor()
+
+        // app bar arrow back
+        binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.appBar.setNavigationOnClickListener {
+            Navigation.findNavController(it).navigateUp()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -40,4 +47,5 @@ class WriteReviewFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

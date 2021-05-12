@@ -44,7 +44,7 @@ class ExploreFragment : Fragment() {
         }
         binding.favoriteIv.setOnClickListener {
             Navigation.findNavController(it)
-                .navigate(R.id.action_exploreFragment_to_searchSucceedFragment);
+                .navigate(R.id.action_exploreFragment_to_favoriteFragment);
         }
 
         manRecyclerView = view.findViewById(R.id.category_man_fashion)

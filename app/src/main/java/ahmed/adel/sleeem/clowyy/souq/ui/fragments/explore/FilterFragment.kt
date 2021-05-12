@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.Navigation
 import com.google.android.material.slider.RangeSlider
 import java.text.NumberFormat
 import java.util.*
@@ -42,6 +43,12 @@ class FilterFragment : Fragment() {
         rangeSlider = view.findViewById(R.id.rangeSlider)
         etMin = view.findViewById(R.id.et_min)
         etMax = view.findViewById(R.id.et_max)
+
+        // app bar arrow back
+        binding.appBar.setNavigationIcon(R.drawable.ic_x)
+        binding.appBar.setNavigationOnClickListener {
+            Navigation.findNavController(it).navigateUp()
+        }
 
 
         //rangeSlider

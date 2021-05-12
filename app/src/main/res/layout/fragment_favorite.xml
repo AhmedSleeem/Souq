@@ -8,44 +8,24 @@
     tools:context=".ui.fragments.favorite_fragment.FavoriteFragment">
 
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
-        android:layout_height="78dp"
-        android:background="@color/white"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:title="@string/favorite"
+        app:buttonGravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/AppTheme.ToolbarFont" />
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/white"
-            app:expandedTitleMarginStart="@dimen/_10sdp">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/customToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
-                app:layout_collapseMode="pin">
-
-                <TextView
-                    android:layout_width="@dimen/_180sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:drawableTint="@color/neutralDark"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="@string/favorite_product"
-                    android:textColor="@color/neutralDark"
-                    android:textSize="@dimen/_13ssp"
-                    android:textStyle="bold"
-                    app:drawableStartCompat="@drawable/ic_arrow_back_24" />
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        android:background="@color/overlayGray"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -64,7 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintTop_toBottomOf="@+id/view"
         app:spanCount="2"
         tools:listitem="@layout/item_favorite_gv" />
 

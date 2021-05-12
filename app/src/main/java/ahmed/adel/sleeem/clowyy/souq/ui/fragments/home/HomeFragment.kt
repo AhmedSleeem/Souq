@@ -55,11 +55,31 @@ class HomeFragment : Fragment() , View.OnClickListener {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        var list = mutableListOf<SaleItem>(
+            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.womem_bag,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+        )
+
+        recommendedRecyclerAdapter = RecommendedRecyclerAdapter(items = list)
+        binding.recommended.adapter = recommendedRecyclerAdapter
+
+
+        saleRecyclerAdapter = SaleRecyclerAdapter(items = list)
+        binding.saleRv.adapter = saleRecyclerAdapter
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         binding.notificationIv.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationFragment);
@@ -73,26 +93,26 @@ class HomeFragment : Fragment() , View.OnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_listCategoryFragment);
         }
 
+        binding.saleSeeMoreTv.setOnClickListener {
+            onClick(it)
+        }
 
+
+        recommendedRecyclerAdapter.itemClickListner = object: RecommendedRecyclerAdapter.ItemClickListner{
+            override fun onClick(view: View) {
+               Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
+            }
+
+        }
 
         viewPagerAdapter = SaleViewPagerAdapter(images = images)
         binding.saleViewPager.adapter = viewPagerAdapter
         binding.dotsIndicator.setViewPager2(binding.saleViewPager)
 
-        var list = mutableListOf<SaleItem>(
-                SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.womem_bag,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-                SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-        )
-        saleRecyclerAdapter = SaleRecyclerAdapter(items = list)
-        binding.saleRv.adapter = saleRecyclerAdapter
 
-        recommendedRecyclerAdapter = RecommendedRecyclerAdapter(items = list)
-        binding.recommended.adapter = recommendedRecyclerAdapter
+
+
+
 
         binding.saleViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback()  {
@@ -132,12 +152,20 @@ class HomeFragment : Fragment() , View.OnClickListener {
     override fun onClick(v: View) {
         when(v){
             binding.moreCategoryTv ->{
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment()
+                val action = HomeFragmentDirections.actionHomeFragmentToListCategoryFragment()
+                view?.findNavController()?.navigate(action)
+                Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
+            }
+
+            binding.saleSeeMoreTv ->{
+                val action = HomeFragmentDirections.actionHomeFragmentToOfferTypeFragment()
                 view?.findNavController()?.navigate(action)
                 Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+
 
 
 }

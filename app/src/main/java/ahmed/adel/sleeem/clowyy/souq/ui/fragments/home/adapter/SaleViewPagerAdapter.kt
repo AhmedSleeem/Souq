@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -30,6 +31,9 @@ class SaleViewPagerAdapter(private var images: IntArray) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.imageView.setImageResource(images[position]);
+        holder.itemView.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_detailsFragment)
+        }
     }
 
 }

@@ -7,79 +7,29 @@
     android:orientation="vertical"
     tools:context=".ui.fragments.address.ShipToFragment">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-            android:background="@color/white"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:contentScrim="@color/white"
-                app:expandedTitleMarginStart="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/customToolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
-                    app:layout_collapseMode="pin">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawablePadding="@dimen/_8sdp"
-                            android:drawableTint="@color/neutralDark"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="@string/ship_to"
-                            android:textColor="@color/neutralDark"
-                            android:textSize="@dimen/_13ssp"
-                            android:textStyle="bold"
-                            app:drawableStartCompat="@drawable/ic_arrow_back_24"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="28dp"
-                            android:layout_marginRight="28dp"
-                            android:background="@color/white"
-                            android:src="@drawable/ic_plus_add"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="VectorDrawableCompat" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.appcompat.widget.Toolbar>
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:layout_height="@dimen/_60sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:title="@string/ship_to"
+        app:buttonGravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/AppTheme.ToolbarFont" />
 
     <View
-        android:id="@+id/view7"
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/overlayGray" />
+        android:layout_height="@dimen/_1sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        android:background="@color/overlayGray"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/shipToRecyclerView"

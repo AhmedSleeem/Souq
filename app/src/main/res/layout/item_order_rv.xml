@@ -7,6 +7,7 @@
     android:layout_marginTop="@dimen/_12sdp"
     android:layout_marginRight="@dimen/_12sdp"
     android:layout_marginLeft="@dimen/_12sdp"
+    android:background="@drawable/layout_style"
     android:elevation="5dp"
     app:cardCornerRadius="5dp"
     xmlns:tools="http://schemas.android.com/tools">
@@ -14,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/layout_style"
         android:padding="@dimen/_12sdp">
 
         <TextView

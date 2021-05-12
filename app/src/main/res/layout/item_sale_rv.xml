@@ -9,7 +9,7 @@
     android:layout_marginTop="@dimen/_10sdp"
     android:layout_marginEnd="@dimen/_10sdp"
     android:layout_marginBottom="@dimen/_1sdp"
-    android:background="@color/white"
+    android:background="@drawable/layout_style"
     app:cardCornerRadius="@dimen/_4sdp"
     app:cardElevation="@dimen/_4sdp"
     app:cardPreventCornerOverlap="true"
@@ -17,7 +17,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/layout_style"
+        >
 
         <ImageView
             android:id="@+id/img_product_sale_iv"

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 
 
 class OfferTypeFragment : Fragment() {
@@ -31,6 +32,12 @@ class OfferTypeFragment : Fragment() {
 
         saleRecyclerAdapter = OfferTypeAdapter(items = list1)
         binding.recommended.adapter = saleRecyclerAdapter
+
+        // app bar arrow back
+        binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.appBar.setNavigationOnClickListener {
+            Navigation.findNavController(it).navigateUp()
+        }
 
     }
 
