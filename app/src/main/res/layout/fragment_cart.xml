@@ -44,6 +44,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
+                tools:listitem="@layout/item_cart"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +57,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="32dp"
-                android:background="@drawable/cupon_custom_edittext_shape"
+                android:background="@drawable/register_custom_edittext_shape"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="@string/enter_cupon_code"
                 android:inputType="textPersonName"
@@ -75,6 +76,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/apply_button_shape"
+                app:backgroundTint="@color/primaryBlue"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/apply"
                 android:textAllCaps="false"
@@ -243,21 +245,27 @@
 
             <Button
                 android:id="@+id/checkOutButton"
-                android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/check_out"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="@dimen/_12ssp"
+                app:background="@drawable/register_button_shape"
+                app:backgroundTint="@color/primaryBlue"
+                app:layout_constraintTop_toBottomOf="@id/view6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view6" />
+                app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
