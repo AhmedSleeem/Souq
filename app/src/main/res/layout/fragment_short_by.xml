@@ -67,7 +67,6 @@
             android:layout_marginBottom="@dimen/_12sdp"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/time1"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_9ssp"
             tools:ignore="RtlCompat"
             tools:text="Time: ending soonest" />
@@ -92,7 +91,6 @@
             android:layout_marginBottom="@dimen/_12sdp"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/time2"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_9ssp"
             tools:ignore="RtlCompat"
             tools:text="Time: newly listed" />
@@ -117,7 +115,6 @@
             android:layout_marginBottom="@dimen/_12sdp"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/price_and_shipping"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_9ssp"
             tools:ignore="RtlCompat"
             tools:text="Price + Shipping: lowest first" />
@@ -142,7 +139,6 @@
             android:layout_marginBottom="@dimen/_12sdp"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/price_and_shipping2"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_9ssp"
             tools:ignore="RtlCompat"
             tools:text="Price + Shipping: highest first" />
@@ -167,7 +163,6 @@
             android:layout_marginBottom="@dimen/_12sdp"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/distance"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_9ssp"
             tools:ignore="RtlCompat"
             tools:text="Distance: nearest first" />

@@ -51,7 +51,6 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/price_range"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -152,7 +151,6 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/condition"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -215,7 +213,6 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/buying_format"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_new" />
@@ -310,7 +307,6 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/show_only"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_buy_it_now" />

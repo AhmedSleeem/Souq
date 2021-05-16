@@ -50,7 +50,6 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/overall_review"
-                android:textColor="@color/neutralDark"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +94,6 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/write_your_review"
-                android:textColor="@color/neutralDark"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rating_bar" />
@@ -130,7 +128,6 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/add_photo"
-                android:textColor="@color/neutralDark"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />

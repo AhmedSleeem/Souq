@@ -120,7 +120,6 @@
         android:fontFamily="@font/poppins_bold"
         android:gravity="start"
         android:text="@string/man_shoes"
-        android:textColor="@color/neutralDark"
         android:textSize="@dimen/_9ssp"
         app:layout_constraintEnd_toStartOf="@+id/ic_category_vector"
         app:layout_constraintTop_toBottomOf="@+id/topView" />
