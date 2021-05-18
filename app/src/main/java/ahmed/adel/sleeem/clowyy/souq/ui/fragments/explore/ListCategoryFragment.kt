@@ -33,6 +33,11 @@ class ListCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // app bar arrow back
+        binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.appBar.setNavigationOnClickListener {
+            Navigation.findNavController(it).navigateUp()
+        }
 
         categoryListRecyclerAdapter = ListCategoryAdapter(items = list)
         binding.categoryListRv.adapter = categoryListRecyclerAdapter

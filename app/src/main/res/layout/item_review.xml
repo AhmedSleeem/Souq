@@ -40,7 +40,6 @@
         android:layout_marginLeft="16dp"
         android:textSize="14sp"
         android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/neutralDark"
         android:text="James Lawson"
         app:layout_constraintStart_toEndOf="@+id/profileReviewImageView"
         app:layout_constraintTop_toTopOf="@+id/profileReviewImageView" />

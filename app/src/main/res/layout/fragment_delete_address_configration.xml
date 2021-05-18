@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/confirmation"
-        android:textColor="@color/neutralDark"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/textView19"
         app:layout_constraintEnd_toEndOf="parent"

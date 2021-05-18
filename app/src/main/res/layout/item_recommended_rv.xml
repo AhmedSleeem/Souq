@@ -6,7 +6,7 @@
     android:id="@+id/fav_cardView"
     android:layout_width="@dimen/_126sdp"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@drawable/layout_style"
     android:layout_marginBottom="@dimen/_1sdp"
     android:layout_marginStart="@dimen/_1sdp"
     android:layout_marginTop="@dimen/_10sdp"
@@ -18,7 +18,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/layout_style">
 
 
         <ImageView
@@ -46,7 +47,6 @@
             android:layout_marginEnd="@dimen/_12sdp"
             android:gravity="top|start"
             android:lineHeight="@dimen/_14sdp"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_9ssp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

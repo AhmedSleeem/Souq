@@ -12,7 +12,20 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_listCategoryFragment"
+            app:destination="@id/listCategoryFragment"
+            app:enterAnim="@anim/top_animation"
+            app:exitAnim="@animator/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+
         <action
             android:id="@+id/action_homeFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
@@ -22,6 +35,9 @@
         <action
             android:id="@+id/action_homeFragment_to_offerTypeFragment"
             app:destination="@id/offerTypeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchSucceedFragment"
+            app:destination="@id/searchSucceedFragment" />
     </fragment>
     <fragment
         android:id="@+id/offerFragment"
@@ -47,7 +63,11 @@
         android:id="@+id/favoriteFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification.NotificationFragment"
@@ -77,12 +97,22 @@
         android:id="@+id/notificationFeedFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification.NotificationFeedFragment"
         android:label="fragment_notification_feed"
-        tools:layout="@layout/fragment_notification_feed" />
+        tools:layout="@layout/fragment_notification_feed" >
+        <action
+            android:id="@+id/action_notificationFeedFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/top_animation" />
+    </fragment>
     <fragment
         android:id="@+id/offerTypeFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType.OfferTypeFragment"
         android:label="fragment_offer_type"
-        tools:layout="@layout/fragment_offer_type" />
+        tools:layout="@layout/fragment_offer_type" >
+        <action
+            android:id="@+id/action_offerTypeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/top_animation" />
+    </fragment>
     <fragment
         android:id="@+id/writeReviewFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.writeReview.WriteReviewFragment"
@@ -105,6 +135,10 @@
         <action
             android:id="@+id/action_detailsFragment_to_reviewFragment"
             app:destination="@id/reviewFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_self"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/top_animation" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -187,6 +221,10 @@
         <action
             android:id="@+id/action_exploreFragment_to_searchFailedFragment"
             app:destination="@id/searchFailedFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment"
+            app:enterAnim="@anim/top_animation" />
     </fragment>
 
 
@@ -239,7 +277,11 @@
         android:id="@+id/deleteAddressConfigrationFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.DeleteAddressConfigrationFragment"
         android:label="fragment_delete_address_configration"
-        tools:layout="@layout/fragment_delete_address_configration" />
+        tools:layout="@layout/fragment_delete_address_configration" >
+        <action
+            android:id="@+id/action_deleteAddressConfigrationFragment_to_adressFragment"
+            app:destination="@id/adressFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchFailedFragment"
@@ -270,6 +312,11 @@
         <action
             android:id="@+id/action_searchSucceedFragment_to_shortByFragment"
             app:destination="@id/shortByFragment" />
+        <action
+            android:id="@+id/action_searchSucceedFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/top_animation"
+            app:exitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/listCategoryFragment"

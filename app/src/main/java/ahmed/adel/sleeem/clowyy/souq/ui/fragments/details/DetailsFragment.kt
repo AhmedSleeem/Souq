@@ -62,11 +62,39 @@ class DetailsFragment : Fragment() {
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        var list = mutableListOf<SaleItem>(
+            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.womem_bag,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
+        )
+        recommendRecyclerAdapter = RecommendedRecyclerAdapter(items = list)
+        binding.recommend.adapter = recommendRecyclerAdapter
+
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // app bar arrow back
+        binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.appBar.setNavigationOnClickListener {
+            Navigation.findNavController(it).navigateUp()
+        }
+
+
+        recommendRecyclerAdapter.itemClickListner = object: RecommendedRecyclerAdapter.ItemClickListner {
+            override fun onClick(view: View) {
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_detailsFragment_self)
+            }
+        }
 
         binding.morweReviews.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_detailsFragment_to_reviewFragment);
@@ -84,16 +112,6 @@ class DetailsFragment : Fragment() {
         binding.colorRv.adapter = colorAdapter
 
 
-        var list = mutableListOf<SaleItem>(
-            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.womem_bag,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-        )
-        recommendRecyclerAdapter = RecommendedRecyclerAdapter(items = list)
-        binding.recommend.adapter = recommendRecyclerAdapter
+
     }
 }

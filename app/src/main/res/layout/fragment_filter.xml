@@ -8,45 +8,24 @@
     tools:context=".ui.explore_fragment.FilterFragment">
 
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
-        android:layout_height="78dp"
-        android:background="@color/white"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:title="@string/filter_search"
+        app:buttonGravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/AppTheme.ToolbarFont" />
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/white"
-            app:expandedTitleMarginStart="@dimen/_10sdp">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/customToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
-                app:layout_collapseMode="pin">
-
-                <TextView
-                    android:layout_width="@dimen/_180sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:drawableTint="@color/gray"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="@string/filter_search"
-                    android:textColor="@color/neutralDark"
-                    android:textSize="@dimen/_13ssp"
-                    android:textStyle="bold"
-                    app:drawableStartCompat="@drawable/ic_x" />
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        android:background="@color/overlayGray"/>
 
 
     <androidx.core.widget.NestedScrollView
@@ -56,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,7 +51,6 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/price_range"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -173,55 +151,54 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/condition"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_new"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_9sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/new1"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-            <Button
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_used"
                 android:layout_width="wrap_content"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
                 android:background="@drawable/filter_btn_selected_shape"
                 android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/primaryBlue"
-                android:layout_height="@dimen/_38sdp"
-
+                android:padding="@dimen/_12sdp"
                 android:text="@string/used"
+                android:textColor="@color/primaryBlue"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_new"
                 app:layout_constraintStart_toEndOf="@+id/btn_new"
                 app:layout_constraintTop_toTopOf="@+id/btn_new" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_not_specified"
                 android:layout_width="wrap_content"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
                 android:background="@drawable/filter_btn_selected_shape"
                 android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/primaryBlue"
-                android:layout_height="@dimen/_38sdp"
-
-
+                android:padding="@dimen/_12sdp"
                 android:text="@string/not_specified"
+                android:textColor="@color/primaryBlue"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_used"
                 app:layout_constraintStart_toEndOf="@+id/btn_used"
@@ -236,52 +213,52 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/buying_format"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_new" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_all_listings"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_9sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/all_listings"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+
                 android:id="@+id/btn_accepts_offers"
                 android:layout_width="wrap_content"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
-                android:text="@string/accepts_offers"
-
                 android:background="@drawable/filter_btn_selected_shape"
                 android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_12sdp"
+                android:text="@string/accepts_offers"
                 android:textColor="@color/primaryBlue"
-                android:layout_height="@dimen/_38sdp"
-
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_all_listings"
                 app:layout_constraintStart_toEndOf="@+id/btn_all_listings"
                 app:layout_constraintTop_toTopOf="@+id/btn_all_listings" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_auction"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/auction"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
@@ -289,30 +266,32 @@
                 app:layout_constraintStart_toEndOf="@+id/btn_accepts_offers"
                 app:layout_constraintTop_toTopOf="@+id/btn_accepts_offers" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_buy_it_now"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/buy_it_now"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_all_listings" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_classified_ads"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/classified_ads"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
@@ -328,177 +307,183 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/show_only"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_buy_it_now" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_free_returns"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/free_returns"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_authorized_seller"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/authorized_seller"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_free_returns" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_sold_items"
                 android:layout_width="wrap_content"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
                 android:background="@drawable/filter_btn_selected_shape"
                 android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/primaryBlue"
-                android:layout_height="@dimen/_38sdp"
-
+                android:padding="@dimen/_12sdp"
                 android:text="@string/sold_items"
+                android:textColor="@color/primaryBlue"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_authorized_seller" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_Sale_items"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/Sale_items"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_sold_items" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_search_in_description"
                 android:layout_width="wrap_content"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
-
                 android:background="@drawable/filter_btn_selected_shape"
                 android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/primaryBlue"
-                android:layout_height="@dimen/_38sdp"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/search_in_description"
+                android:textColor="@color/primaryBlue"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_Sale_items" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_authenticity_verified"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/authenticity_verified"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_search_in_description" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_returns_accepted"
                 android:layout_width="wrap_content"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
-                android:text="@string/returns_accepted"
-
                 android:background="@drawable/filter_btn_selected_shape"
                 android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_12sdp"
+                android:text="@string/returns_accepted"
                 android:textColor="@color/primaryBlue"
-                android:layout_height="@dimen/_38sdp"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_free_returns"
                 app:layout_constraintStart_toEndOf="@+id/btn_free_returns" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_completed_items"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
+                android:background="@drawable/filter_btn_shape"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/completed_items"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_authorized_seller"
                 app:layout_constraintStart_toEndOf="@+id/btn_authorized_seller" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_deals_and_savings"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
+                android:background="@drawable/filter_btn_shape"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/deals_and_savings"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_sold_items"
                 app:layout_constraintStart_toEndOf="@+id/btn_sold_items" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_listed_as_lots"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/listed_as_lots"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_Sale_items"
                 app:layout_constraintStart_toEndOf="@+id/btn_Sale_items" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_benefits_charity"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_6sdp"
                 android:layout_marginLeft="@dimen/_6sdp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/filter_btn_shape"
                 android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/benefits_charity"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_search_in_description"
                 app:layout_constraintStart_toEndOf="@+id/btn_search_in_description" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_apply"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_44sdp"
@@ -511,6 +496,7 @@
                 android:background="@drawable/register_button_shape"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/apply"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

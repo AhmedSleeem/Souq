@@ -25,7 +25,6 @@
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_25sdp"
         android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/neutralDark"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toStartOf="@+id/favoriteCartImageView"
         app:layout_constraintStart_toEndOf="@+id/itemCartImageView"

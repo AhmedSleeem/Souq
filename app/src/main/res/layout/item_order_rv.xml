@@ -7,6 +7,7 @@
     android:layout_marginTop="@dimen/_12sdp"
     android:layout_marginRight="@dimen/_12sdp"
     android:layout_marginLeft="@dimen/_12sdp"
+    android:background="@drawable/layout_style"
     android:elevation="5dp"
     app:cardCornerRadius="5dp"
     xmlns:tools="http://schemas.android.com/tools">
@@ -14,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/layout_style"
         android:padding="@dimen/_12sdp">
 
         <TextView
@@ -21,7 +23,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -90,7 +91,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="@+id/textView13"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_12ssp"
             android:layout_marginEnd="@dimen/_3sdp"
             app:layout_constraintBottom_toBottomOf="@+id/textView14"
@@ -116,7 +115,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="@+id/textView14"
             app:layout_constraintEnd_toEndOf="parent"

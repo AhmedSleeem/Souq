@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-class ReviewAdapter(val listener: (View, ReviewItem, Int) -> Unit) :
+class ReviewAdapter(val listener: (View, ReviewItem, Int) -> Unit?) :
     RecyclerView.Adapter<ReviewAdapter.RepoViewHolder>() {
+
     private var data: MutableList<ReviewItem> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
@@ -25,7 +26,7 @@ class ReviewAdapter(val listener: (View, ReviewItem, Int) -> Unit) :
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) =
         holder.bind(data[position])
 
-    fun swapData(data: MutableList<ReviewItem>) {
+    fun changeData(data: MutableList<ReviewItem>) {
         this.data = data
         notifyDataSetChanged()
     }

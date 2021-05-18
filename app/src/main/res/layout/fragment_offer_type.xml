@@ -7,52 +7,24 @@
     tools:context=".ui.fragments.offerType.OfferTypeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        android:background="@color/white"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:title="@string/super_flash_sale"
+        app:buttonGravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/AppTheme.ToolbarFont" />
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/white"
-            app:expandedTitleMarginStart="@dimen/_10sdp">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/customToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
-
-                app:layout_collapseMode="pin">
-
-                <TextView
-                    android:layout_width="@dimen/_180sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:drawableTint="@color/neutralDark"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="@string/super_flash_sale"
-                    android:textColor="@color/neutralDark"
-                    android:textSize="@dimen/_13ssp"
-                    android:textStyle="bold"
-                    app:drawableStartCompat="@drawable/ic_arrow_back_24" />
-
-                <ImageButton
-                    android:id="@+id/search_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_92sdp"
-                    android:layout_marginLeft="@dimen/_34sdp"
-                    android:background="@color/white"
-                    android:src="@drawable/ic_gray_search_24" />
-
-
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        android:background="@color/overlayGray"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -60,7 +32,7 @@
         android:layout_marginTop="70dp"
         android:fillViewport="true"
         android:paddingBottom="@dimen/_20sdp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view"
         tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

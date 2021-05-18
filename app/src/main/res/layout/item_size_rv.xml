@@ -3,7 +3,6 @@
     android:id="@+id/size_layout"
     android:layout_width="@dimen/_48sdp"
     android:layout_height="@dimen/_48sdp"
-    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:layout_marginRight="@dimen/_12sdp"
     android:background="@drawable/iv_size_item_background">
@@ -15,7 +14,6 @@
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
         android:text="6"
-        android:textColor="@color/neutralDark"
         android:textSize="@dimen/_12sdp"
         android:gravity="center"
         android:fontFamily="@font/poppins_regular"

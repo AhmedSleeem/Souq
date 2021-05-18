@@ -1,75 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.details.DetailsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        android:fitsSystemWindows="true"
-        android:background="@color/white"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:title="@string/details"
+        app:buttonGravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/AppTheme.ToolbarFont" />
 
-    <com.google.android.material.appbar.CollapsingToolbarLayout
+    <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        app:contentScrim="@color/white"
-        app:expandedTitleMarginStart="@dimen/_10sdp">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/customToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-
-            app:layout_collapseMode="pin">
-
-            <TextView
-                android:layout_width="@dimen/_180sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:drawablePadding="@dimen/_8sdp"
-                android:drawableTint="@color/neutralDark"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/item_title"
-                android:textColor="@color/neutralDark"
-                android:maxWidth="@dimen/_100sdp"
-                android:textSize="@dimen/_13ssp"
-                android:textStyle="bold"
-                app:drawableStartCompat="@drawable/ic_arrow_back_24" />
-
-            <ImageButton
-                android:id="@+id/search_btn"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="@dimen/_80sdp"
-                android:layout_marginLeft="@dimen/_34sdp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:src="@drawable/ic_gray_search_24" />
-
-            <ImageButton
-                android:id="@+id/menue_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:background="@color/white"
-                android:src="@drawable/menu" />
-
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="@dimen/_1sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        android:background="@color/overlayGray"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
         android:paddingBottom="@dimen/_20sdp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -120,20 +82,18 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/item_title"
-                android:textColor="@color/neutralDark"
                 android:textFontWeight="700"
                 android:textSize="@dimen/_18ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dots_indicator1"
                 tools:ignore="RtlCompat" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/favorit_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
                 android:layout_marginRight="18dp"
-                android:background="@color/white"
                 android:src="@drawable/ic_baseline_favorite_border_24"
                 app:layout_constraintBottom_toBottomOf="@+id/textView7"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -181,7 +141,6 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/select_size"
-                android:textColor="@color/neutralDark"
                 android:textFontWeight="700"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -212,7 +171,6 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/select_color"
-                android:textColor="@color/neutralDark"
                 android:textFontWeight="700"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -243,7 +201,6 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/specification"
-                android:textColor="@color/neutralDark"
                 android:textFontWeight="700"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -258,7 +215,6 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/shown"
-                android:textColor="@color/neutralDark"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_9sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -320,7 +276,6 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/style"
-                android:textColor="@color/neutralDark"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_9sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -374,7 +329,6 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/reviewProduct"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/style_details2"
@@ -388,6 +342,7 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/see_more"
+                android:background="@drawable/layout_style"
                 android:textColor="@color/primaryBlue"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -485,7 +440,6 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_marginLeft="16dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="James Lawson"
-                android:textColor="@color/neutralDark"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/profileReviewImageView"
                 app:layout_constraintTop_toTopOf="@+id/profileReviewImageView" />
@@ -569,7 +523,6 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/like"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/barrier3"
@@ -614,4 +567,4 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
 
 
 
-</FrameLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

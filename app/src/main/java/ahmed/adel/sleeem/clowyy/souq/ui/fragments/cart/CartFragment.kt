@@ -1,5 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 
+import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.CartItem
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.ReviewFragmentDirections
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 
 class CartFragment : Fragment(),View.OnClickListener {
@@ -26,6 +28,14 @@ class CartFragment : Fragment(),View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // app bar arrow back
+        binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.appBar.setNavigationOnClickListener {
+            Navigation.findNavController(it).navigateUp()
+        }
+
+
         initCartRecyclerView()
         binding.checkOutButton.setOnClickListener(this)
     }

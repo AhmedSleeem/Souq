@@ -2,12 +2,12 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemOrderCartItemRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.OrderProduct
+import ahmed.adel.sleeem.clowyy.souq.pojo.OrderProductItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class OrderProductsRecyclerAdapter(val data:List<OrderProduct>): RecyclerView.Adapter<OrderProductsRecyclerAdapter.ViewHolder>() {
+class OrderProductsRecyclerAdapter(val data:List<OrderProductItem>): RecyclerView.Adapter<OrderProductsRecyclerAdapter.ViewHolder>() {
    inner class ViewHolder(val binding:ItemOrderCartItemRvBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

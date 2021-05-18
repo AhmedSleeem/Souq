@@ -1,15 +1,29 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
+import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
 class SaleRecyclerAdapter(private var items: MutableList<SaleItem>) :
     RecyclerView.Adapter<SaleRecyclerAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ItemSaleRvBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: ItemSaleRvBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind( item : SaleItem ) = with(itemView){
+            binding.imgProductSaleIv.setImageResource(item.image)
+            binding.productNameSaleTc.text = item.name
+            binding.costSaleTv.text = item.newPrice.toString()
+            binding.oldCostSaleTv.text = item.price.toString()
+            binding.offPercentageSaleTv.text = item.salePercent.toString()
+
+            setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_detailsFragment)
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -21,12 +35,5 @@ class SaleRecyclerAdapter(private var items: MutableList<SaleItem>) :
         return items.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = items[position]
-        holder.binding.imgProductSaleIv.setImageResource(data.image)
-        holder.binding.productNameSaleTc.text = data.name
-        holder.binding.costSaleTv.text = data.newPrice.toString()
-        holder.binding.oldCostSaleTv.text = data.price.toString()
-        holder.binding.offPercentageSaleTv.text = data.salePercent.toString()
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
 }

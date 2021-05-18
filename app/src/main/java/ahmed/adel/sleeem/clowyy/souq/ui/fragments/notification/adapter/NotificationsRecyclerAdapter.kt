@@ -5,6 +5,7 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.ItemNotificationsRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.NotificationItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
 class NotificationsRecyclerAdapter(
@@ -34,6 +35,10 @@ private var isActivity:Boolean=false) : RecyclerView.Adapter<NotificationsRecycl
             holder.binding.notificationImg.setImageResource(R.drawable.shoes)
             holder.binding.notificationImg.layoutParams.height =120
             holder.binding.notificationImg.layoutParams.width =120
+
+            holder.itemView.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_notificationFeedFragment_to_detailsFragment)
+            }
         }
 
 

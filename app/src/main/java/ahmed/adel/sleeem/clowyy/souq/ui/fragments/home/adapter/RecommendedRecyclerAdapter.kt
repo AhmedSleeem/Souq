@@ -1,14 +1,36 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
+import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
 class RecommendedRecyclerAdapter(private var items:MutableList<SaleItem>) : RecyclerView.Adapter<RecommendedRecyclerAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ItemRecommendedRvBinding) : RecyclerView.ViewHolder(binding.root)
+    var itemClickListner : ItemClickListner? = null
+
+    inner class ViewHolder(val binding: ItemRecommendedRvBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind( item : SaleItem ) = with(itemView){
+            binding.imgProduct.setImageResource(item.image)
+            binding.tvProductName.text = item.name
+            binding.tvCost.text = item.newPrice.toString()
+            binding.tvOldCost.text = item.price.toString()
+            binding.tvOffPercentage.text = item.salePercent.toString()
+            binding.ratingBar.rating = 4.0f
+
+            if(itemClickListner != null) {
+                setOnClickListener {
+                    itemClickListner!!.onClick(it)
+                }
+            }
+
+            }
+        }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -20,13 +42,10 @@ class RecommendedRecyclerAdapter(private var items:MutableList<SaleItem>) : Recy
         return items.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = items[position]
-        holder.binding.imgProduct.setImageResource(data.image)
-        holder.binding.tvProductName.text = data.name
-        holder.binding.tvCost.text = data.newPrice.toString()
-        holder.binding.tvOldCost.text = data.price.toString()
-        holder.binding.tvOffPercentage.text = data.salePercent.toString()
-        holder.binding.ratingBar.rating = 4.0f
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
+
+    interface ItemClickListner{
+        fun onClick(view : View)
     }
 }
+

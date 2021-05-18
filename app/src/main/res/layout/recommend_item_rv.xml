@@ -46,7 +46,6 @@
             android:gravity="top|start"
             android:lineHeight="@dimen/_14sdp"
             android:maxLines="2"
-            android:textColor="@color/neutralDark"
             android:textSize="@dimen/_9ssp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

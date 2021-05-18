@@ -180,7 +180,6 @@
                 android:layout_marginTop="@dimen/_13sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/product"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/stepView" />
@@ -204,7 +203,6 @@
                 android:layout_marginTop="@dimen/_13sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/shipping_details"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/productsRv" />
@@ -278,7 +276,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
-                            android:textColor="@color/neutralDark"
                             android:text="January 16, 2020"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="@dimen/_12ssp"
@@ -289,7 +286,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
                             android:text="POS Reggular"
-                            android:textColor="@color/neutralDark"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="@dimen/_12ssp"
                             />
@@ -299,7 +295,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
                             android:text="000192848573"
-                            android:textColor="@color/neutralDark"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="@dimen/_12ssp"
                             />
@@ -309,7 +304,6 @@
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="2727 New  Owerri, Owerri, Imo State 78410"
-                            android:textColor="@color/neutralDark"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="@dimen/_12ssp"
                             />
@@ -326,7 +320,6 @@
                 android:layout_marginTop="@dimen/_13sdp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/payment_details"
-                android:textColor="@color/neutralDark"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/shippingDetailsCard" />
@@ -408,7 +401,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:textColor="@color/neutralDark"
                                 android:textSize="@dimen/_12ssp"
                                 android:text="$598.86" />
 
@@ -418,7 +410,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:textColor="@color/neutralDark"
                                 android:textSize="@dimen/_12ssp"
                                 android:text="$40.00" />
 
@@ -428,7 +419,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:textColor="@color/neutralDark"
                                 android:textSize="@dimen/_12ssp"
                                 android:text="$128.00" />
 
@@ -450,7 +440,6 @@
                         app:layout_constraintTop_toBottomOf="@id/dashed_line"
                         app:layout_constraintStart_toStartOf="parent"
                         android:fontFamily="@font/poppins_bold"
-                        android:textColor="@color/neutralDark"
                         android:textSize="@dimen/_12ssp"
                         android:text="@string/total_price" />
 

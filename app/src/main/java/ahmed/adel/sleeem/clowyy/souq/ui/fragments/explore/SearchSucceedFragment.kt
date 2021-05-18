@@ -44,6 +44,7 @@ class SearchSucceedFragment : Fragment() {
         searchRecyclerAdapter = SearchSucceedAdapter(items = list1)
         binding.searchRv.adapter = searchRecyclerAdapter
 
+
     }
 
     var list1 = mutableListOf<SaleItem>(

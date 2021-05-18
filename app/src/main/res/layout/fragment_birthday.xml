@@ -37,7 +37,6 @@
         android:layout_marginStart="@dimen/_12sdp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/your_birthdate"
-        android:textColor="@color/neutralDark"
         android:textFontWeight="700"
         android:textSize="@dimen/_12sdp"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,7 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOrderDetailsBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.OrderProduct
+import ahmed.adel.sleeem.clowyy.souq.pojo.OrderProductItem
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter.OrderProductsRecyclerAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,9 +15,9 @@ class OrderDetailsFragment : Fragment() {
 
     lateinit var binding:FragmentOrderDetailsBinding
     lateinit var adapter:OrderProductsRecyclerAdapter
-    val data = listOf<OrderProduct>(
-        OrderProduct("Nike Air Zoom Pegasus 36 Miami",299.99f,R.drawable.shoes,true),
-        OrderProduct("Nike Air Zoom Pegasus 36 Miami",250.99f,R.drawable.shoes2,false)
+    val data = listOf<OrderProductItem>(
+        OrderProductItem("Nike Air Zoom Pegasus 36 Miami",299.99f,R.drawable.shoes,true),
+        OrderProductItem("Nike Air Zoom Pegasus 36 Miami",250.99f,R.drawable.shoes2,false)
     )
 
     override fun onCreateView(

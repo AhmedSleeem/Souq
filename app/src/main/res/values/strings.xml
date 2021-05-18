@@ -168,6 +168,8 @@
     <string name="delete">Delete</string>
     <string name="are_you_sure_wanna_delete_address">Are you sure wanna delete address</string>
     <string name="confirmation">Confirmation</string>
+    <string name="favorite">Favorite</string>
+    <string name="activity">Activity</string>
 
     <string-array name="gender_list">
         <item>Male</item>

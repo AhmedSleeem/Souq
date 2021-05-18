@@ -31,15 +31,15 @@ class NotificationFragment : Fragment() {
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
         }
-            binding.notificationOfferTv.setOnClickListener {
+            binding.offerLayout.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_notificationFragment_to_notficationOfferFragment);
             }
 
-            binding.notificationFeedTv.setOnClickListener {
+            binding.feedLayout.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_notificationFragment_to_notificationFeedFragment);
             }
 
-            binding.notificationActivityTv.setOnClickListener {
+            binding.activityLayout.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_notificationFragment_to_notificationActivityFragment);
             }
     }

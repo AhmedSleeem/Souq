@@ -7,53 +7,24 @@
     android:orientation="vertical"
     tools:context=".ui.fragments.cart.CartFragment">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-            android:background="@color/white"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:contentScrim="@color/white"
-                app:expandedTitleMarginStart="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/customToolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
-                    app:layout_collapseMode="pin">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/_8sdp"
-                        android:drawableTint="@color/neutralDark"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="@string/your_cart"
-                        android:textColor="@color/neutralDark"
-                        android:textSize="@dimen/_13ssp"
-                        android:textStyle="bold" />
-                </androidx.appcompat.widget.Toolbar>
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:layout_height="@dimen/_60sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:title="@string/your_cart"
+        app:buttonGravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/AppTheme.ToolbarFont" />
 
     <View
-        android:id="@+id/view7"
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/overlayGray" />
+        android:layout_height="@dimen/_1sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        android:background="@color/overlayGray"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -73,6 +44,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
+                tools:listitem="@layout/item_cart"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +57,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="32dp"
-                android:background="@drawable/cupon_custom_edittext_shape"
+                android:background="@drawable/register_custom_edittext_shape"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="@string/enter_cupon_code"
                 android:inputType="textPersonName"
@@ -104,6 +76,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/apply_button_shape"
+                app:backgroundTint="@color/primaryBlue"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/apply"
                 android:textAllCaps="false"
@@ -168,7 +141,6 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="$598.86"
-                android:textColor="@color/neutralDark"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView5"
                 app:layout_constraintEnd_toEndOf="@+id/view6"
@@ -210,7 +182,6 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="$40.00"
-                android:textColor="@color/neutralDark"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView7"
                 app:layout_constraintEnd_toEndOf="@+id/view6"
@@ -224,7 +195,6 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="$128.00"
-                android:textColor="@color/neutralDark"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView12"
                 app:layout_constraintEnd_toEndOf="@+id/view6"
@@ -254,7 +224,6 @@
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/total_price"
-                android:textColor="@color/neutralDark"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view6"
                 app:layout_constraintStart_toStartOf="@+id/view6"
@@ -276,21 +245,27 @@
 
             <Button
                 android:id="@+id/checkOutButton"
-                android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_12sdp"
                 android:text="@string/check_out"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="@dimen/_12ssp"
+                app:background="@drawable/register_button_shape"
+                app:backgroundTint="@color/primaryBlue"
+                app:layout_constraintTop_toBottomOf="@id/view6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view6" />
+                app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
