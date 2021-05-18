@@ -20,19 +20,19 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var loginResponse :LoginResponse
-   private lateinit var token: String
+    private lateinit var loginResponse: LoginResponse
+    private lateinit var token: String
     lateinit var preferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-         preferences= getSharedPreferences(SHARED_TOKEN_NAME, Context.MODE_PRIVATE)
+        preferences = getSharedPreferences(SHARED_TOKEN_NAME, Context.MODE_PRIVATE)
         val retrivedToken = preferences.getString("TOKEN", null)
-        if(!retrivedToken.isNullOrEmpty()){
+        if (!retrivedToken.isNullOrEmpty()) {
             token = retrivedToken
-            Log.e("TAG", "onCreate: ===> "+token )
+            Log.e("TAG", "onCreate: ===> " + token)
         }
         binding.RegisterLoginTextView.setOnClickListener(this)
         binding.signInLoginButton.setOnClickListener(this)
@@ -54,8 +54,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val email = binding.emailLoginEditText.text.toString().trim()
         val password = binding.passwordLoginEditText.text.toString().trim()
         val loginRequist = LoginRequest(email, password)
+
         val token = token
+
         val registerResponseCall = ApiManager.apiService.loginUser(loginRequist, token)
+
         registerResponseCall.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(
                 call: Call<LoginResponse>,
@@ -65,7 +68,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     loginResponse = response.body()!!
 
                     preferences.edit().putString("TOKEN", response.body()!!.token).apply()
-                    Log.e("TAG", "onCreate: ===> "+response.body()!!.token)
+
+                    Log.e("TAG", "onCreate: ===> " + response.body()!!.token)
                     startActivity(
                         Intent(this@LoginActivity, MainActivity::class.java)
                     )

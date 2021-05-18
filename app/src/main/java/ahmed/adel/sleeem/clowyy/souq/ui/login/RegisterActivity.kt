@@ -45,7 +45,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val email = binding.emailRegisterEditText.text.toString().trim()
         val password = binding.passwordRegisterEditText.text.toString().trim()
         val registerRequist = RegisterRequest(name, email, password)
+
         val registerResponseCall = ApiManager.apiService.registerUser(registerRequist)
+
         registerResponseCall.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(
                 call: Call<RegisterResponse>,
@@ -53,6 +55,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             ) {
                 if (response.isSuccessful) {
                     val sharedPreferences = getSharedPreferences(SHARED_TOKEN_NAME, Context.MODE_PRIVATE)
+
                     val token = response.headers()["X-Auth-Token"]
                     sharedPreferences.edit().putString("TOKEN",token).apply()
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
