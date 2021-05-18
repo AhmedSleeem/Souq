@@ -474,7 +474,8 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp"
-                app:background="@drawable/register_button_shape" />
+                app:background="@drawable/register_button_shape"
+                android:backgroundTint="@color/primaryBlue"/>
 
 
 
