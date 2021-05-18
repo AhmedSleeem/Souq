@@ -1,8 +1,10 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.home_fragment
 
 import ahmed.adel.sleeem.clowyy.souq.*
+import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
+import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
@@ -11,6 +13,7 @@ import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleViewPagerAdap
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +24,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() , View.OnClickListener {
@@ -76,8 +82,16 @@ class HomeFragment : Fragment() , View.OnClickListener {
         return view
     }
 
+    private  fun getItems() = CoroutineScope(Dispatchers.IO).launch {
+         var items:ItemResponse = RetrofitHandler.getItemWebService().getAllItems()
+        Log.e("ssss",items.get(0).title);
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        getItems()
+
 
 
 

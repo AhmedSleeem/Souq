@@ -16,7 +16,6 @@
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/LoginTheme">
-
         </activity>
 
 
