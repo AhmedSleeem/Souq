@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui
+package ahmed.adel.sleeem.clowyy.souq.ui.activity
 
 
 import ahmed.adel.sleeem.clowyy.souq.R

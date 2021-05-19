@@ -2,7 +2,6 @@ package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
-import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import android.view.LayoutInflater
 import android.view.ViewGroup

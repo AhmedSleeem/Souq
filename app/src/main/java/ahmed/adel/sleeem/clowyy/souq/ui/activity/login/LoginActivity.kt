@@ -1,10 +1,10 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.login
+package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityLoginBinding
 import ahmed.adel.sleeem.clowyy.souq.models.ApiManager
 import ahmed.adel.sleeem.clowyy.souq.pojo.LoginRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.LoginResponse
-import ahmed.adel.sleeem.clowyy.souq.ui.MainActivity
+import ahmed.adel.sleeem.clowyy.souq.ui.activity.MainActivity
 import ahmed.adel.sleeem.clowyy.souq.utils.Constants.SHARED_TOKEN_NAME
 import android.content.Context
 import android.content.Intent

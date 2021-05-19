@@ -1,7 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentExploreBinding
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentSearchSucceedBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter.SearchSucceedAdapter

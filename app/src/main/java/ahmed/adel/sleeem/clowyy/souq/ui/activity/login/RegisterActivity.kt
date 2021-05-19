@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.login
+package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityRegisterBinding
 import ahmed.adel.sleeem.clowyy.souq.models.ApiManager

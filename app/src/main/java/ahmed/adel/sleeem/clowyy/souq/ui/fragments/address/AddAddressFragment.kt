@@ -1,21 +1,18 @@
-package ahmed.adel.sleeem.clowyy.souq
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.address
 
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentAccountBinding
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentAddressBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.AddressItem
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.address.AddressAdapter
+import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentAddAddressBinding
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.navigation.Navigation
 
-class AddressFragment : Fragment() {
+class AddAddressFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private lateinit var binding: FragmentAddressBinding
-    private lateinit var addressAdapter: AddressAdapter
-
+    private lateinit var binding: FragmentAddAddressBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +24,16 @@ class AddressFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentAddressBinding.inflate(inflater, container, false)
+        binding = FragmentAddAddressBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        val tybes = resources.getStringArray(R.array.country_list)
+        var arrayAdapter = ArrayAdapter(requireContext() ,
+            R.layout.gender_dropdown_item, tybes)
+        binding.autoCompleteTextView.setAdapter(arrayAdapter)
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,26 +43,11 @@ class AddressFragment : Fragment() {
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
         }
-
         // add address navigation
         binding.addAddressBtn.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.action_adressFragment_to_addAddressFragment);
+            Navigation.findNavController(it).navigate(R.id.action_addAddressFragment_to_deleteAddressConfigrationFragment);
 
         }
-
-        initShipToRecyclerView()
     }
 
-    private fun initShipToRecyclerView() {
-        addressAdapter = AddressAdapter { _, _, _ -> }
-
-        var item1 = AddressItem()
-        var item3 = AddressItem()
-
-        var starList = mutableListOf<AddressItem>(item1,item3)
-        addressAdapter.swapData(starList)
-        binding.shipToRecyclerView.apply {
-            adapter = addressAdapter
-        }
-    }
 }

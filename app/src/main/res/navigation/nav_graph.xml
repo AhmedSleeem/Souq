@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.home_fragment.HomeFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -254,7 +254,7 @@
         tools:layout="@layout/fragment_success" />
     <fragment
         android:id="@+id/adressFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.AddressFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.address.AddressFragment"
         android:label="fragment_adress"
         tools:layout="@layout/fragment_address">
         <action
@@ -266,7 +266,7 @@
     </fragment>
     <fragment
         android:id="@+id/addAddressFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.AddAddressFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.address.AddAddressFragment"
         android:label="fragment_add_address"
         tools:layout="@layout/fragment_add_address">
         <action
@@ -275,7 +275,7 @@
     </fragment>
     <fragment
         android:id="@+id/deleteAddressConfigrationFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.DeleteAddressConfigrationFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.address.DeleteAddressConfigrationFragment"
         android:label="fragment_delete_address_configration"
         tools:layout="@layout/fragment_delete_address_configration" >
         <action

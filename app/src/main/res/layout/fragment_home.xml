@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.home_fragment.HomeFragment">
+    tools:context=".ui.fragments.home.HomeFragment">
 
     <LinearLayout
         android:id="@+id/topView"
@@ -57,6 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topView" />
 
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -79,13 +80,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/sale_viewPager"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_170sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="@dimen/_170sdp">
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/sale_viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <ProgressBar
+                        android:id="@+id/viewPagerProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
             <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
@@ -103,6 +117,8 @@
                 app:layout_constraintTop_toBottomOf="@id/viewpager_card"
                 app:progressMode="true"
                 app:selectedDotColor="@color/primaryBlue" />
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -177,6 +193,7 @@
                 android:id="@+id/sale_rv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/_50sdp"
                 tools:listitem="@layout/item_sale_rv"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/_12sdp"
@@ -185,8 +202,16 @@
                 app:layout_constraintTop_toBottomOf="@id/saleSeeMore_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 />
+            <ProgressBar
+                android:id="@+id/saleProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/sale_rv"
+                app:layout_constraintTop_toTopOf="@id/sale_rv"
+                app:layout_constraintStart_toStartOf="@id/sale_rv"
+                app:layout_constraintEnd_toEndOf="@id/sale_rv" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/image_card"
@@ -239,7 +264,7 @@
             </androidx.cardview.widget.CardView>
 
             <ProgressBar
-                android:id="@+id/progress"
+                android:id="@+id/recommendedProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/recommended"
