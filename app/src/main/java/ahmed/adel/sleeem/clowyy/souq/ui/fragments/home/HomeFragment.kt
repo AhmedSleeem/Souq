@@ -4,7 +4,7 @@ import ahmed.adel.sleeem.clowyy.souq.*
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
-import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
@@ -31,7 +31,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
     var navController : NavController? = null
 
-    private var saleData = arrayListOf<ItemResponse.ItemResponseItem>()
+    private var saleData = arrayListOf<ProductResponse.Item>()
     private val categories = listOf<ExplorerItem>(
         ExplorerItem( R.drawable.ic_dress),
         ExplorerItem( R.drawable.ic_man_bag),

@@ -2,7 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home
 
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
-import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +10,9 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel:ViewModel() {
 
-    val itemsLiveData = MutableLiveData<Resource<ItemResponse>>()
-    val filterLiveData = MutableLiveData<Resource<ArrayList<ItemResponse.ItemResponseItem>>>()
+    val itemsLiveData = MutableLiveData<Resource<ProductResponse>>()
+
+    val filterLiveData = MutableLiveData<Resource<ArrayList<ProductResponse.Item>>>()
 
 
     fun getItems() = viewModelScope.launch {
@@ -30,8 +31,8 @@ class HomeViewModel:ViewModel() {
         val response = RetrofitHandler.getItemWebService().getAllItems()
 
         if (response.isSuccessful){
-            var list : ItemResponse = response.body()!!
-            val data = arrayListOf<ItemResponse.ItemResponseItem>()
+            var list : ProductResponse = response.body()!!
+            val data = arrayListOf<ProductResponse.Item>()
             for (item in list){
                 if (item.category == category)
                     data.add(item)
