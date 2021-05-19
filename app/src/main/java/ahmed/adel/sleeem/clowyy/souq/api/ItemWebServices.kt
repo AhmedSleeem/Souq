@@ -12,5 +12,5 @@ import retrofit2.http.POST
 
 interface ItemWebServices {
     @GET("products/getall")
-    suspend fun getAllItems(): ItemResponse
+    suspend fun getAllItems(): Response<ItemResponse>
 }

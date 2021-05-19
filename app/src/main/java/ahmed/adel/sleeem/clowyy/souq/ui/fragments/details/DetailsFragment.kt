@@ -72,8 +72,8 @@ class DetailsFragment : Fragment() {
             SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
             SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
         )
-        recommendRecyclerAdapter = RecommendedRecyclerAdapter(items = list)
-        binding.recommend.adapter = recommendRecyclerAdapter
+//        recommendRecyclerAdapter = RecommendedRecyclerAdapter(items = list)
+//        binding.recommend.adapter = recommendRecyclerAdapter
 
 
         return view

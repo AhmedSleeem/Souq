@@ -1,11 +1,12 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.home_fragment
 
 import ahmed.adel.sleeem.clowyy.souq.*
-import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
+import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
@@ -20,13 +21,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() , View.OnClickListener {
@@ -54,6 +54,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
     private lateinit var categoryRecyclerAdapter: CategoryRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
     private val sliderHandler = Handler();
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,8 +73,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
             SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
         )
 
-        recommendedRecyclerAdapter = RecommendedRecyclerAdapter(items = list)
-        binding.recommended.adapter = recommendedRecyclerAdapter
+
 
 
         saleRecyclerAdapter = SaleRecyclerAdapter(items = list)
@@ -82,16 +82,13 @@ class HomeFragment : Fragment() , View.OnClickListener {
         return view
     }
 
-    private  fun getItems() = CoroutineScope(Dispatchers.IO).launch {
-         var items:ItemResponse = RetrofitHandler.getItemWebService().getAllItems()
-        Log.e("ssss",items.get(0).title);
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getItems()
 
+        viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java);
+        viewModel.getItemsByCategory("electronics")
+        subscribeToLiveData()
 
 
 
@@ -112,12 +109,12 @@ class HomeFragment : Fragment() , View.OnClickListener {
         }
 
 
-        recommendedRecyclerAdapter.itemClickListner = object: RecommendedRecyclerAdapter.ItemClickListner{
-            override fun onClick(view: View) {
-               Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
-            }
-
-        }
+//        recommendedRecyclerAdapter.itemClickListner = object: RecommendedRecyclerAdapter.ItemClickListner{
+//            override fun onClick(view: View) {
+//               Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
+//            }
+//
+//        }
 
         viewPagerAdapter = SaleViewPagerAdapter(images = images)
         binding.saleViewPager.adapter = viewPagerAdapter
@@ -146,6 +143,50 @@ class HomeFragment : Fragment() , View.OnClickListener {
         binding.moreCategoryTv.setOnClickListener(this)
 
 
+    }
+
+    private fun subscribeToLiveData() {
+        viewModel.itemsLiveData.observe(requireActivity(), Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+                    Log.e("sssss","Loading........")
+                    binding.progress.visibility = View.VISIBLE
+                }
+                Resource.Status.ERROR ->{
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    binding.progress.visibility = View.GONE
+                }
+                Resource.Status.SUCCESS->{
+                    it.data.let {
+                        recommendedRecyclerAdapter = RecommendedRecyclerAdapter(it!!,requireActivity())
+                        binding.recommended.adapter = recommendedRecyclerAdapter
+                        binding.progress.visibility = View.GONE
+                        //Log.e("sssss", it!!.get(0).title )
+                    }
+                }
+            }
+        })
+        viewModel.filterLiveData.observe(requireActivity(), Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+                    Log.e("sssss","Loading........")
+                    //binding.progress.visibility = View.VISIBLE
+                }
+                Resource.Status.ERROR ->{
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                   // binding.progress.visibility = View.GONE
+                }
+                Resource.Status.SUCCESS->{
+                    it.data.let {
+//                       recommendedRecyclerAdapter = RecommendedRecyclerAdapter(it!!,requireActivity())
+//                         binding.recommended.adapter = recommendedRecyclerAdapter
+//                        binding.progress.visibility = View.GONE
+                        //Log.e("sssss", it!!.get(0).title )
+                        Log.e("sssss",it!!.get(0).category)
+                    }
+                }
+            }
+        })
     }
 
     private val sliderRunnable:Runnable = Runnable {

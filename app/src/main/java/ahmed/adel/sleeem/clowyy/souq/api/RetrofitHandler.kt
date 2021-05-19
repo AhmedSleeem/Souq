@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit
 object RetrofitHandler {
 
     private var logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
     private val client = OkHttpClient.Builder()
         .addInterceptor(logging)
         .callTimeout(5, TimeUnit.SECONDS)
