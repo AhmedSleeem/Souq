@@ -11,23 +11,18 @@ import kotlinx.coroutines.launch
 class HomeViewModel:ViewModel() {
 
     val itemsLiveData = MutableLiveData<Resource<ItemResponse>>()
-    val filterLiveData = MutableLiveData<Resource<List<ItemResponse.ItemResponseItem>>>()
+    val filterLiveData = MutableLiveData<Resource<ArrayList<ItemResponse.ItemResponseItem>>>()
 
-    init {
-        getItems();
-    }
 
-     private fun getItems() = viewModelScope.launch {
+    fun getItems() = viewModelScope.launch {
          itemsLiveData.value = Resource.loading(null)
          val response = RetrofitHandler.getItemWebService().getAllItems()
-
                  if (response.isSuccessful){
                      if(response.body() != null)
                         itemsLiveData.value = Resource.success(response.body()!!);
                  }else{
                         itemsLiveData.value = Resource.error(response.errorBody().toString())
                  }
-
          }
 
      fun getItemsByCategory(category:String) = viewModelScope.launch {
@@ -38,7 +33,7 @@ class HomeViewModel:ViewModel() {
             var list : ItemResponse = response.body()!!
             val data = arrayListOf<ItemResponse.ItemResponseItem>()
             for (item in list){
-                if (item.category === category)
+                if (item.category == category)
                     data.add(item)
             }
              filterLiveData.value = Resource.success(data = data);

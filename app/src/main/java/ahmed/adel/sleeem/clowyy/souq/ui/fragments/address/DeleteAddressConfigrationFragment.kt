@@ -1,7 +1,7 @@
-package ahmed.adel.sleeem.clowyy.souq
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.address
 
+import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDeleteAddressConfigrationBinding
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentFilterBinding
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

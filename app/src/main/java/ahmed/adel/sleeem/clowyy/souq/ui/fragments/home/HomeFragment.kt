@@ -1,12 +1,10 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.home_fragment
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home
 
 import ahmed.adel.sleeem.clowyy.souq.*
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
-import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
@@ -33,15 +31,8 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
     var navController : NavController? = null
 
-    val images = intArrayOf(
-        R.drawable.i1,
-        R.drawable.i2,
-        R.drawable.i3,
-        R.drawable.i1,
-        R.drawable.i2,
-        R.drawable.i3
-    )
-    val categories = listOf<ExplorerItem>(
+    private var saleData = arrayListOf<ItemResponse.ItemResponseItem>()
+    private val categories = listOf<ExplorerItem>(
         ExplorerItem( R.drawable.ic_dress),
         ExplorerItem( R.drawable.ic_man_bag),
         ExplorerItem( R.drawable.ic_woman_bag),
@@ -63,35 +54,34 @@ class HomeFragment : Fragment() , View.OnClickListener {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        var list = mutableListOf<SaleItem>(
-            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.womem_bag,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.bag2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-            SaleItem(R.drawable.shoes2,"FS - Nike Air Max 270 React...","24% Off",299.34f,534.34f),
-        )
+        recommendedRecyclerAdapter = RecommendedRecyclerAdapter(requireContext());
+        binding.recommended.adapter = recommendedRecyclerAdapter
 
+        viewPagerAdapter = SaleViewPagerAdapter(requireContext())
+        binding.saleViewPager.adapter = viewPagerAdapter
+        binding.dotsIndicator.setViewPager2(binding.saleViewPager)
 
-
-
-        saleRecyclerAdapter = SaleRecyclerAdapter(items = list)
+        saleRecyclerAdapter = SaleRecyclerAdapter(requireContext())
         binding.saleRv.adapter = saleRecyclerAdapter
 
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        subscribeToLiveData()
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        //init view model
         viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java);
+
         viewModel.getItemsByCategory("electronics")
-        subscribeToLiveData()
-
-
-
+        viewModel.getItems()
+        //listeners
         binding.notificationIv.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationFragment);
         }
@@ -108,22 +98,12 @@ class HomeFragment : Fragment() , View.OnClickListener {
             onClick(it)
         }
 
-
-//        recommendedRecyclerAdapter.itemClickListner = object: RecommendedRecyclerAdapter.ItemClickListner{
-//            override fun onClick(view: View) {
-//               Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
-//            }
-//
-//        }
-
-        viewPagerAdapter = SaleViewPagerAdapter(images = images)
-        binding.saleViewPager.adapter = viewPagerAdapter
-        binding.dotsIndicator.setViewPager2(binding.saleViewPager)
-
-
-
-
-
+        //recommended adapter item listener
+        recommendedRecyclerAdapter.itemClickListner = object: RecommendedRecyclerAdapter.ItemClickListner{
+            override fun onClick(view: View) {
+               Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
+            }
+        }
 
         binding.saleViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback()  {
@@ -131,7 +111,6 @@ class HomeFragment : Fragment() , View.OnClickListener {
                 super.onPageSelected(position)
                 sliderHandler.removeCallbacks(sliderRunnable)
                 sliderHandler.postDelayed(sliderRunnable,3000)
-
             }
         })
 
@@ -150,39 +129,43 @@ class HomeFragment : Fragment() , View.OnClickListener {
             when(it.status){
                 Resource.Status.LOADING ->{
                     Log.e("sssss","Loading........")
-                    binding.progress.visibility = View.VISIBLE
+                    binding.recommendedProgress.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR ->{
                     Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
-                    binding.progress.visibility = View.GONE
+                    binding.recommendedProgress.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS->{
                     it.data.let {
-                        recommendedRecyclerAdapter = RecommendedRecyclerAdapter(it!!,requireActivity())
-                        binding.recommended.adapter = recommendedRecyclerAdapter
-                        binding.progress.visibility = View.GONE
-                        //Log.e("sssss", it!!.get(0).title )
+                        recommendedRecyclerAdapter.changeData(it!!)
+                        binding.recommendedProgress.visibility = View.GONE
+                        Log.e("sssss", it!!.get(0).title )
                     }
                 }
             }
         })
+
         viewModel.filterLiveData.observe(requireActivity(), Observer {
             when(it.status){
+
                 Resource.Status.LOADING ->{
                     Log.e("sssss","Loading........")
-                    //binding.progress.visibility = View.VISIBLE
+                    binding.viewPagerProgress.visibility = View.VISIBLE
+                    binding.saleProgress.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR ->{
                     Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
-                   // binding.progress.visibility = View.GONE
+                    binding.viewPagerProgress.visibility = View.GONE
+                    binding.saleProgress.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS->{
                     it.data.let {
-//                       recommendedRecyclerAdapter = RecommendedRecyclerAdapter(it!!,requireActivity())
-//                         binding.recommended.adapter = recommendedRecyclerAdapter
-//                        binding.progress.visibility = View.GONE
-                        //Log.e("sssss", it!!.get(0).title )
-                        Log.e("sssss",it!!.get(0).category)
+                        binding.viewPagerProgress.visibility = View.GONE
+                        binding.saleProgress.visibility = View.GONE
+                        binding.dotsIndicator.setViewPager2(binding.saleViewPager)
+                        viewPagerAdapter.changeData(it!!)
+                        saleRecyclerAdapter.changeData(it!!)
+                        saleData = it
                     }
                 }
             }
@@ -193,9 +176,9 @@ class HomeFragment : Fragment() , View.OnClickListener {
         kotlin.run {
             binding.saleViewPager.currentItem = binding.saleViewPager.currentItem + 1
 
-            if (binding.saleViewPager.currentItem == images.size-1) {
-                images.shuffle()
-                viewPagerAdapter.changeData(images)
+            if (binding.saleViewPager.currentItem == saleData.size-1) {
+                saleData.shuffle()
+                viewPagerAdapter.changeData(saleData)
                 binding.saleViewPager.currentItem = 0
             }
 

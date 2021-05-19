@@ -1,12 +1,11 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class RecommendRecyclerAdapter (private var items:MutableList<SaleItem>) : RecyclerView.Adapter<RecommendRecyclerAdapter.ViewHolder>() {
+class RecommendRecyclerAdapter () : RecyclerView.Adapter<RecommendRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemSaleRvBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -17,15 +16,15 @@ class RecommendRecyclerAdapter (private var items:MutableList<SaleItem>) : Recyc
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return 0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = items[position]
-        holder.binding.imgProductSaleIv.setImageResource(data.image)
-        holder.binding.productNameSaleTc.text = data.name
-        holder.binding.costSaleTv.text = data.newPrice.toString()
-        holder.binding.oldCostSaleTv.text = data.price.toString()
-        holder.binding.offPercentageSaleTv.text = data.salePercent.toString()
+//        //val data = items[position]
+//        holder.binding.imgProductSaleIv.setImageResource(data.image)
+//        holder.binding.productNameSaleTc.text = data.name
+//        holder.binding.costSaleTv.text = data.newPrice.toString()
+//        holder.binding.oldCostSaleTv.text = data.price.toString()
+//        holder.binding.offPercentageSaleTv.text = data.salePercent.toString()
     }
 }
