@@ -182,7 +182,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
 //                         binding.recommended.adapter = recommendedRecyclerAdapter
 //                        binding.progress.visibility = View.GONE
                         //Log.e("sssss", it!!.get(0).title )
-                        Log.e("sssss",it!!.get(0).category)
+//                        Log.e("sssss",it!!.get(0).category)
                     }
                 }
             }
