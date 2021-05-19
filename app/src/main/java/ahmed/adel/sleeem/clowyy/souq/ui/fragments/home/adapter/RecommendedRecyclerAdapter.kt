@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<RecommendedRecyclerAdapter.ViewHolder>() {
-    private var items = arrayListOf<ItemResponse.ItemResponseItem>()
+    private var items = arrayListOf<ProductResponse.Item>()
 
-    fun changeData(newData:ArrayList<ItemResponse.ItemResponseItem>){
+    fun changeData(newData:ArrayList<ProductResponse.Item>){
         val oldData = items
         val diffResult:DiffUtil.DiffResult = DiffUtil.calculateDiff(
             ItemsDiffCallback(
@@ -28,18 +28,18 @@ class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<Rec
     var itemClickListner : ItemClickListner? = null
 
     inner class ViewHolder(val binding: ItemRecommendedRvBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind( item : ItemResponse.ItemResponseItem ) = with(itemView){
+        fun bind(product : ProductResponse.Item ) = with(itemView){
 
             Glide.with(context)
-                .load(item.image)
+                .load(product.image)
                 .fitCenter()
                 .into(binding.imgProduct)
 
-            binding.tvProductName.text = item.title
-            binding.tvCost.text = (item.price - 5).toString()
-            binding.tvOldCost.text = item.price.toString()
+            binding.tvProductName.text = product.title
+            binding.tvCost.text = (product.price - 5).toString()
+            binding.tvOldCost.text = product.price.toString()
             binding.tvOffPercentage.text = "5%"
-            binding.ratingBar.rating = (item.rating/2).toFloat()
+            binding.ratingBar.rating = (product.rating/2).toFloat()
 
             if(itemClickListner != null) {
                 setOnClickListener {
@@ -64,8 +64,8 @@ class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items.get(position))
 
     class ItemsDiffCallback(
-        private val oldData:ArrayList<ItemResponse.ItemResponseItem>,
-        private val newData:ArrayList<ItemResponse.ItemResponseItem>
+        private val oldData:ArrayList<ProductResponse.Item>,
+        private val newData:ArrayList<ProductResponse.Item>
     ): DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldData[oldItemPosition].id == newData[newItemPosition].id

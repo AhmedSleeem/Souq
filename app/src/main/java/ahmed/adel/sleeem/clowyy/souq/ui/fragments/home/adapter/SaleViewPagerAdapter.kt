@@ -2,12 +2,10 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleViewpagerBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +13,10 @@ import com.bumptech.glide.Glide
 
 
 class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewPagerAdapter.ViewHolder>(){
-    private var data = arrayListOf<ItemResponse.ItemResponseItem>()
+    private var data = arrayListOf<ProductResponse.Item>()
 
 
-    fun changeData(newData: ArrayList<ItemResponse.ItemResponseItem>){
+    fun changeData(newData: ArrayList<ProductResponse.Item>){
         val oldData = data
         val diffResult:DiffUtil.DiffResult = DiffUtil.calculateDiff(
             ItemsDiffCallback(
@@ -31,10 +29,10 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
     }
 
     class ViewHolder(val binding: ItemSaleViewpagerBinding) :RecyclerView.ViewHolder(binding.root){
-        fun bind(item: ItemResponse.ItemResponseItem) = with(itemView) {
+        fun bind(product: ProductResponse.Item) = with(itemView){
 
             Glide.with(context)
-                .load(item.image)
+                .load(product.image)
                 .centerCrop()
                 .into(binding.imageView)
 
@@ -55,11 +53,11 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
        return data.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int)=holder.bind(data[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(data[position])
 
     class ItemsDiffCallback(
-        private val oldData:ArrayList<ItemResponse.ItemResponseItem>,
-        private val newData:ArrayList<ItemResponse.ItemResponseItem>
+        private val oldData:ArrayList<ProductResponse.Item>,
+        private val newData:ArrayList<ProductResponse.Item>
     ): DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldData[oldItemPosition].id == newData[newItemPosition].id
