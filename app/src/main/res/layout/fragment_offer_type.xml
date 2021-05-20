@@ -132,6 +132,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/sale_title"
                         android:layout_width="@dimen/_220sdp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_16sdp"

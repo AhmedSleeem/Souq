@@ -196,7 +196,8 @@ class HomeFragment : Fragment() , View.OnClickListener {
             }
 
             binding.saleSeeMoreTv ->{
-                val action = HomeFragmentDirections.actionHomeFragmentToOfferTypeFragment()
+                val saleTitle = "flash sale" //binding.saleTxt.text.toString()
+                val action = HomeFragmentDirections.actionHomeFragmentToOfferTypeFragment(saleTitle)
                 view?.findNavController()?.navigate(action)
                 Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
             }

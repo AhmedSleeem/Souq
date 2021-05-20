@@ -43,7 +43,12 @@
         android:id="@+id/offerFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer.OfferFragment"
         android:label="fragment_offer"
-        tools:layout="@layout/fragment_offer" />
+        tools:layout="@layout/fragment_offer" >
+        <action
+            android:id="@+id/action_offerFragment_to_offerTypeFragment"
+            app:destination="@id/offerTypeFragment"
+            app:enterAnim="@anim/top_animation" />
+    </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.AccountFragment"
@@ -112,6 +117,9 @@
             android:id="@+id/action_offerTypeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/top_animation" />
+        <argument
+            android:name="saleTitle"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/writeReviewFragment"

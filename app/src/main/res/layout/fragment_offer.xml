@@ -53,6 +53,7 @@
         app:layout_constraintTop_toBottomOf="@id/textview">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/flash_sale_layout"
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
@@ -132,6 +133,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/flash_sale_title"
                 android:layout_width="@dimen/_220sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_16sdp"
@@ -150,7 +152,7 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/recommended_iv"
+        android:id="@+id/Mega_sale"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_170sdp"
         android:scaleType="centerCrop"
@@ -160,11 +162,11 @@
         app:layout_constraintTop_toBottomOf="@+id/card1"
         android:src="@drawable/i2"/>
     <TextView
-        android:id="@+id/recommended_product_tv"
+        android:id="@+id/Mega_sale_tv"
         android:layout_width="@dimen/_180sdp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/recommended_iv"
-        app:layout_constraintStart_toStartOf="@id/recommended_iv"
+        app:layout_constraintTop_toTopOf="@id/Mega_sale"
+        app:layout_constraintStart_toStartOf="@id/Mega_sale"
         android:text="@string/_90_off_super_mega_sale"
         android:textSize="@dimen/_22sdp"
         android:layout_marginTop="@dimen/_40sdp"
@@ -182,7 +184,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_12sdp"
         app:layout_constraintStart_toStartOf="@+id/recommended_product_tv"
-        app:layout_constraintTop_toBottomOf="@id/recommended_product_tv"
+        app:layout_constraintTop_toBottomOf="@id/Mega_sale_tv"
         tools:ignore="RtlCompat" />
 
 

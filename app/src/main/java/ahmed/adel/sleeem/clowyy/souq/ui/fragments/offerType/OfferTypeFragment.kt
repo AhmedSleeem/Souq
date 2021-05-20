@@ -1,21 +1,32 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType
 
 import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOfferTypeBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer.OfferViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType.adapter.OfferTypeAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import kotlin.math.log
 
 
 class OfferTypeFragment : Fragment() {
 
+    private var saleData = arrayListOf<ProductResponse.Item>()
     private lateinit var saleRecyclerAdapter: OfferTypeAdapter
     private lateinit var binding: FragmentOfferTypeBinding
+    private lateinit var viewmodel : OfferViewModel
+    private lateinit var saleTitle : String
 
 
     override fun onCreateView(
@@ -24,73 +35,66 @@ class OfferTypeFragment : Fragment() {
     ): View? {
         binding = FragmentOfferTypeBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        arguments?.let {
+            val args = OfferTypeFragmentArgs.fromBundle(it)
+            saleTitle = args.saleTitle
+        }
+
+        saleRecyclerAdapter = OfferTypeAdapter(requireContext())
+        binding.recommended.adapter = saleRecyclerAdapter
+
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        subscribeToLiveData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        saleRecyclerAdapter = OfferTypeAdapter(items = list1)
-        binding.recommended.adapter = saleRecyclerAdapter
+        //init viewmodel
+        viewmodel = ViewModelProvider(requireActivity()).get(OfferViewModel::class.java)
+        viewmodel.getItemsBySale(saleTitle)
+
+
+
+        binding.saleTitle.setText(saleTitle)
 
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.appBar.setTitle(saleTitle)
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
         }
 
     }
 
-    var list1 = mutableListOf<SaleItem>(
-        SaleItem(
-            R.drawable.bag2,
-            "FS - Nike Air Max 270 React...",
-            "24% Off",
-            299.34f,
-            534.34f
-        ),
-        SaleItem(
-            R.drawable.shoes,
-            "FS - Nike Air Max 270 React...",
-            "24% Off",
-            299.34f,
-            534.34f
-        ),
-        SaleItem(
-            R.drawable.shoes2,
-            "FS - Nike Air Max 270 React...",
-            "24% Off",
-            299.34f,
-            534.34f
-        ),
-        SaleItem(
-            R.drawable.womem_bag,
-            "FS - Nike Air Max 270 React...",
-            "24% Off",
-            299.34f,
-            534.34f
-        ),
-        SaleItem(
-            R.drawable.shoes,
-            "FS - Nike Air Max 270 React...",
-            "24% Off",
-            299.34f,
-            534.34f
-        ),
-        SaleItem(
-            R.drawable.bag2,
-            "FS - Nike Air Max 270 React...",
-            "24% Off",
-            299.34f,
-            534.34f
-        ),
-        SaleItem(
-            R.drawable.shoes2,
-            "FS - Nike Air Max 270 React...",
-            "24% Off",
-            299.34f,
-            534.34f
-        ),
-    )
+
+    private fun subscribeToLiveData(){
+        viewmodel.filterLiveData.observe(requireActivity(), Observer {
+            when(it.status){
+                Resource.Status.LOADING->{
+                    Log.e("sss" , "loading........")
+                }
+                Resource.Status.ERROR->{
+                    Toast.makeText(requireContext(),it.message, Toast.LENGTH_LONG).show()
+                }
+                Resource.Status.SUCCESS->{
+                    it.data.let {
+                        saleRecyclerAdapter.changeData(it!!)
+                        saleData = it
+                    }
+
+                }
+            }
+        })
+
+
+    }
+
+
 
 }
