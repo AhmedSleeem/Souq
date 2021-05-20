@@ -3,6 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,10 +37,18 @@ class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<Rec
                 .into(binding.imgProduct)
 
             binding.tvProductName.text = product.title
-            binding.tvCost.text = (product.price - 5).toString()
-            binding.tvOldCost.text = product.price.toString()
-            binding.tvOffPercentage.text = "5%"
-            binding.ratingBar.rating = (product.rating/2).toFloat()
+            binding.tvOldCost.text = product.price.toString()+" Egp"
+            if(product.sale != null){
+                val newPrice : Float = (product.price * (1.0 - product.sale.amount.toFloat()/100)).toFloat()
+                Log.e("price = " , newPrice.toString())
+                binding.tvCost.text = newPrice .toString() + " Egp"
+                binding.tvOffPercentage.text = (product.sale.duration .toString() +"%")
+            }else{
+                binding.tvCost.text = product.price.toString()+" Egp"
+                binding.tvOffPercentage.visibility = View.INVISIBLE
+                binding.tvOldCost.visibility = View.INVISIBLE
+            }
+            binding.ratingBar.rating = (product.rating/2.0f)
 
             if(itemClickListner != null) {
                 setOnClickListener {

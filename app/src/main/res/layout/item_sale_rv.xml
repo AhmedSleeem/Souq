@@ -56,7 +56,7 @@
 
         <TextView
             android:id="@+id/cost_sale_tv"
-            android:layout_width="@dimen/_40sdp"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/_17sdp"
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginLeft="@dimen/_12sdp"
@@ -75,7 +75,7 @@
         <TextView
             android:id="@+id/old_cost_sale_tv"
             style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="@dimen/_32sdp"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/_11sdp"
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginBottom="@dimen/_6sdp"
