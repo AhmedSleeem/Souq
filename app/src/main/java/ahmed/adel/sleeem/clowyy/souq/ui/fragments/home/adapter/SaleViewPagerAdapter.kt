@@ -13,10 +13,10 @@ import com.bumptech.glide.Glide
 
 
 class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewPagerAdapter.ViewHolder>(){
-    private var data = arrayListOf<ProductResponse.Item>()
+    private var data = mutableListOf<ProductResponse.Item>()
 
 
-    fun changeData(newData: ArrayList<ProductResponse.Item>){
+    fun changeData(newData: List<ProductResponse.Item>){
         val oldData = data
         val diffResult:DiffUtil.DiffResult = DiffUtil.calculateDiff(
             ItemsDiffCallback(
@@ -24,7 +24,7 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
                 newData
             )
         )
-        data = newData
+        data = newData as MutableList<ProductResponse.Item>
         diffResult.dispatchUpdatesTo(this)
     }
 
@@ -50,14 +50,14 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
     }
 
     override fun getItemCount(): Int {
-       return data.size
+        return data.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(data[position])
 
     class ItemsDiffCallback(
-        private val oldData:ArrayList<ProductResponse.Item>,
-        private val newData:ArrayList<ProductResponse.Item>
+        private val oldData: MutableList<ProductResponse.Item>,
+        private val newData: List<ProductResponse.Item>
     ): DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldData[oldItemPosition].id == newData[newItemPosition].id

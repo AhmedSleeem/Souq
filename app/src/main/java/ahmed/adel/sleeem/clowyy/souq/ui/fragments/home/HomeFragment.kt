@@ -27,17 +27,17 @@ import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
 
 
-class HomeFragment : Fragment() , View.OnClickListener {
+class HomeFragment : Fragment(), View.OnClickListener {
 
-    var navController : NavController? = null
+    var navController: NavController? = null
 
-    private var saleData = arrayListOf<ProductResponse.Item>()
+    private var saleData = mutableListOf<ProductResponse.Item>()
     private val categories = listOf<ExplorerItem>(
-        ExplorerItem( R.drawable.ic_dress),
-        ExplorerItem( R.drawable.ic_man_bag),
-        ExplorerItem( R.drawable.ic_woman_bag),
-        ExplorerItem( R.drawable.ic_man_bag),
-        ExplorerItem( R.drawable.ic_dress)
+        ExplorerItem(R.drawable.ic_dress),
+        ExplorerItem(R.drawable.ic_man_bag),
+        ExplorerItem(R.drawable.ic_woman_bag),
+        ExplorerItem(R.drawable.ic_man_bag),
+        ExplorerItem(R.drawable.ic_dress)
     )
     private lateinit var viewPagerAdapter: SaleViewPagerAdapter
     private lateinit var saleRecyclerAdapter: SaleRecyclerAdapter
@@ -83,7 +83,8 @@ class HomeFragment : Fragment() , View.OnClickListener {
         viewModel.getItems()
         //listeners
         binding.notificationIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationFragment);
+            Navigation.findNavController(it)
+                .navigate(R.id.action_homeFragment_to_notificationFragment);
         }
 
         binding.favoriteIv.setOnClickListener {
@@ -91,26 +92,28 @@ class HomeFragment : Fragment() , View.OnClickListener {
         }
 
         binding.moreCategoryTv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_listCategoryFragment);
+            Navigation.findNavController(it)
+                .navigate(R.id.action_homeFragment_to_listCategoryFragment);
         }
 
-        binding.saleSeeMoreTv.setOnClickListener {
-            onClick(it)
-        }
+        binding.saleSeeMoreTv.setOnClickListener(this)
+
 
         //recommended adapter item listener
-        recommendedRecyclerAdapter.itemClickListner = object: RecommendedRecyclerAdapter.ItemClickListner{
-            override fun onClick(view: View) {
-               Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
+        recommendedRecyclerAdapter.itemClickListner =
+            object : RecommendedRecyclerAdapter.ItemClickListner {
+                override fun onClick(view: View) {
+                    Navigation.findNavController(view)
+                        .navigate(R.id.action_homeFragment_to_detailsFragment)
+                }
             }
-        }
 
         binding.saleViewPager.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback()  {
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 sliderHandler.removeCallbacks(sliderRunnable)
-                sliderHandler.postDelayed(sliderRunnable,3000)
+                sliderHandler.postDelayed(sliderRunnable, 3000)
             }
         })
 
@@ -126,57 +129,64 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
     private fun subscribeToLiveData() {
         viewModel.itemsLiveData.observe(requireActivity(), Observer {
-            when(it.status){
-                Resource.Status.LOADING ->{
-                    Log.e("sssss","Loading........")
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    Log.e("sssss", "Loading........")
                     binding.recommendedProgress.visibility = View.VISIBLE
                 }
-                Resource.Status.ERROR ->{
-                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                Resource.Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     binding.recommendedProgress.visibility = View.GONE
                 }
-                Resource.Status.SUCCESS->{
+                Resource.Status.SUCCESS -> {
                     it.data.let {
                         recommendedRecyclerAdapter.changeData(it!!)
                         binding.recommendedProgress.visibility = View.GONE
-                        Log.e("sssss", it!!.get(0).title )
+                        Log.e("sssss", it!!.get(0).title)
+                        Log.e("TAG", "aboutaha: " + it.size)
+                        for (item in it) {
+                            if (item.sale != null)
+                                saleData.add(item)
+                        }
+                        Log.e("TAG", "aboutaha: " + saleData.size)
+                        viewPagerAdapter.changeData(saleData)
+                        saleRecyclerAdapter.changeData(saleData)
                     }
                 }
             }
         })
 
         viewModel.filterLiveData.observe(requireActivity(), Observer {
-            when(it.status){
+            when (it.status) {
 
-                Resource.Status.LOADING ->{
-                    Log.e("sssss","Loading........")
+                Resource.Status.LOADING -> {
+                    Log.e("sssss", "Loading........")
                     binding.viewPagerProgress.visibility = View.VISIBLE
                     binding.saleProgress.visibility = View.VISIBLE
                 }
-                Resource.Status.ERROR ->{
-                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                Resource.Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     binding.viewPagerProgress.visibility = View.GONE
                     binding.saleProgress.visibility = View.GONE
                 }
-                Resource.Status.SUCCESS->{
+                Resource.Status.SUCCESS -> {
                     it.data.let {
                         binding.viewPagerProgress.visibility = View.GONE
                         binding.saleProgress.visibility = View.GONE
                         binding.dotsIndicator.setViewPager2(binding.saleViewPager)
-                        viewPagerAdapter.changeData(it!!)
-                        saleRecyclerAdapter.changeData(it!!)
-                        saleData = it
+
+
                     }
                 }
             }
         })
     }
 
-    private val sliderRunnable:Runnable = Runnable {
+    private val sliderRunnable: Runnable = Runnable {
         kotlin.run {
             binding.saleViewPager.currentItem = binding.saleViewPager.currentItem + 1
 
-            if (binding.saleViewPager.currentItem == saleData.size-1) {
+            if (binding.saleViewPager.currentItem == saleData.size - 1) {
                 saleData.shuffle()
                 viewPagerAdapter.changeData(saleData)
                 binding.saleViewPager.currentItem = 0
@@ -186,25 +196,22 @@ class HomeFragment : Fragment() , View.OnClickListener {
     }
 
 
-
     override fun onClick(v: View) {
-        when(v){
-            binding.moreCategoryTv ->{
+        when (v) {
+            binding.moreCategoryTv -> {
                 val action = HomeFragmentDirections.actionHomeFragmentToListCategoryFragment()
                 view?.findNavController()?.navigate(action)
-                Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "aaaaaa", Toast.LENGTH_SHORT).show()
             }
 
-            binding.saleSeeMoreTv ->{
-                val saleTitle = "flash sale" //binding.saleTxt.text.toString()
+            binding.saleSeeMoreTv -> {
+                val saleTitle = "flash sale"
                 val action = HomeFragmentDirections.actionHomeFragmentToOfferTypeFragment(saleTitle)
                 view?.findNavController()?.navigate(action)
-                Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "aaaaaa", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
-
 
 
 }

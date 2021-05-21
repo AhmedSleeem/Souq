@@ -40,16 +40,16 @@ class OfferTypeAdapter(val context: Context) :
 
             round(3.554786)
             binding.tvProductName.text = product.title
-            binding.tvOldCost.text = product.price.toString()+" Egp"
+            binding.tvOldCost.text = String.format("%.2f" , product.price) + "Egp"
             if(product.sale != null){
                 val newPrice:Float  = (product.price * (1.0 - product.sale.amount.toFloat()/100)).toFloat()
                 val num:Int=(newPrice*100).toInt()
                 val  num2:Double = (num/100.0)
                 Log.e("price = " , num2.toString())
-                binding.tvCost.text = newPrice .toString() + " Egp"
+                binding.tvCost.text = String.format("%.2f" , newPrice) + "Egp"
                 binding.tvOffPercentage.text = (product.sale.duration .toString() +"%")
             }else{
-                binding.tvCost.text = product.price.toString()+" Egp"
+                binding.tvCost.text = String.format("%.2f" , product.price) + "Egp"
                 binding.tvOffPercentage.visibility = View.INVISIBLE
                 binding.tvOldCost.visibility = View.INVISIBLE
             }
