@@ -2,7 +2,9 @@ package ahmed.adel.sleeem.clowyy.souq.pojo
 
 class ProductResponse : ArrayList<ProductResponse.Item>(){
     data class Item(
-        val category: String,
+        val brand: String,
+        val category: Category,
+        val color: List<String>,
         val companyName: String,
         val description: String,
         val id: Int,
@@ -11,11 +13,17 @@ class ProductResponse : ArrayList<ProductResponse.Item>(){
         val quantity: Int,
         val rating: Float,
         val sale: Sale,
+        val size: List<String>,
         val title: String
     ) {
+        data class Category(
+            val name: String,
+            val url: String
+        )
+
         data class Sale(
             val amount: Int,
-            val duration: Int,
+            val duration: String,
             val type: String
         )
     }

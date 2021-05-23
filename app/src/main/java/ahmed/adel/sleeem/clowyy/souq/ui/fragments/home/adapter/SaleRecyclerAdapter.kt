@@ -43,7 +43,7 @@ class SaleRecyclerAdapter(val context:Context) :
                 val  num2:Double = (num/100.0)
                 Log.e("price = " , num2.toString())
                 binding.costSaleTv.text =String.format("%.2f", newPrice) + " Egp"
-                binding.offPercentageSaleTv.text = (product.sale.duration .toString() +"%")
+                binding.offPercentageSaleTv.text = (product.sale.amount.toString() +"%")
             }else{
                 binding.costSaleTv.text = String.format("%.2f", product.price) + " Egp"
                 binding.offPercentageSaleTv.visibility = View.INVISIBLE
