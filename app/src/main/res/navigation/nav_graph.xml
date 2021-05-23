@@ -38,6 +38,11 @@
         <action
             android:id="@+id/action_homeFragment_to_searchSucceedFragment"
             app:destination="@id/searchSucceedFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/offerFragment"
@@ -147,6 +152,9 @@
             android:id="@+id/action_detailsFragment_self"
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/top_animation" />
+        <argument
+            android:name="itemData"
+            app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse$Item" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -341,4 +349,15 @@
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ShortByFragment"
         android:label="fragment_short_by"
         tools:layout="@layout/fragment_short_by" />
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.onboarding.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_homeFragment3"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/viewPagerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

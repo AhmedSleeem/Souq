@@ -3,8 +3,10 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityMainBinding
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
@@ -23,5 +25,16 @@ class MainActivity : AppCompatActivity() {
         badge.isVisible = true
         badge.number = 2
 
+        if(!isFirstRunning()) {
+            this.findNavController(R.id.navHost)
+                .navigate(R.id.action_homeFragment_to_viewPagerFragment)
+        }
     }
+
+    private fun isFirstRunning(): Boolean{
+        val sharedPref = this.getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("Finished", false)
+    }
+
+
 }

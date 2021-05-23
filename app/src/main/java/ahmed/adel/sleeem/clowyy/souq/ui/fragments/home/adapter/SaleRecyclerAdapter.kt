@@ -34,14 +34,10 @@ class SaleRecyclerAdapter(val context:Context) :
                 .load(product.image)
                 .fitCenter()
                 .into(binding.imgProductSaleIv)
-            round(3.554786)
             binding.productNameSaleTc.text = product.title
             binding.oldCostSaleTv.text = String.format("%.2f", product.price) + " Egp"
             if(product.sale != null){
                 val newPrice:Float  = (product.price * (1.0 - product.sale.amount.toFloat()/100)).toFloat()
-                val num:Int=(newPrice*100).toInt()
-                val  num2:Double = (num/100.0)
-                Log.e("price = " , num2.toString())
                 binding.costSaleTv.text =String.format("%.2f", newPrice) + " Egp"
                 binding.offPercentageSaleTv.text = (product.sale.duration .toString() +"%")
             }else{

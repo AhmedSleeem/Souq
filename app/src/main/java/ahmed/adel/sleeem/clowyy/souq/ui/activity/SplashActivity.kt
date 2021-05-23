@@ -1,6 +1,8 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.activity
 
 import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.ui.activity.login.LoginActivity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +11,7 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 
 class SplashActivity : AppCompatActivity() {
 
@@ -40,8 +43,17 @@ class SplashActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
+
+//            if(onBoardingFinished()){
+//                val intent = Intent(this, LoginActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }else{
+//
+//            }
         }, 5000) // 3000 is the delayed time in milliseconds.
     }
+
 
 
 }

@@ -77,6 +77,7 @@ class OfferTypeFragment : Fragment() {
         viewmodel.filterLiveData.observe(requireActivity(), Observer {
             when(it.status){
                 Resource.Status.LOADING->{
+                    binding.offerProgress.visibility = View.VISIBLE
                     Log.e("sss" , "loading........")
                 }
                 Resource.Status.ERROR->{
@@ -84,6 +85,7 @@ class OfferTypeFragment : Fragment() {
                 }
                 Resource.Status.SUCCESS->{
                     it.data.let {
+                        binding.offerProgress.visibility = View.GONE
                         saleRecyclerAdapter.changeData(it!!)
                         saleData = it
                     }

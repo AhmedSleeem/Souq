@@ -4,13 +4,12 @@
     android:fillViewport="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.login.LoginActivity">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/imageView"
@@ -176,6 +175,7 @@
             android:textAllCaps="false"
             android:textColor="@color/gray"
             app:background="@drawable/login_button"
+            app:backgroundTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
@@ -195,6 +195,7 @@
             android:textAllCaps="false"
             android:textColor="@color/gray"
             app:background="@drawable/login_button"
+            app:backgroundTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/googleSignIn"
