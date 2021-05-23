@@ -99,10 +99,12 @@ class HomeFragment : Fragment() , View.OnClickListener {
         }
 
         //recommended adapter item listener
-        recommendedRecyclerAdapter.itemClickListner = object: RecommendedRecyclerAdapter.ItemClickListner{
-            override fun onClick(view: View) {
-               Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_detailsFragment)
+        recommendedRecyclerAdapter.itemClickListener = object: RecommendedRecyclerAdapter.ItemClickListener{
+            override fun onClick(view: View, item: ProductResponse.Item) {
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item)
+                view.findNavController().navigate(action)
             }
+
         }
 
         binding.saleViewPager.registerOnPageChangeCallback(object :

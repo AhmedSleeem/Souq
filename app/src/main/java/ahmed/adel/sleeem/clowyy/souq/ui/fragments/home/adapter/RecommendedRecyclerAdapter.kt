@@ -26,7 +26,7 @@ class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<Rec
         diffResult.dispatchUpdatesTo(this)
     }
 
-    var itemClickListner : ItemClickListner? = null
+    var itemClickListener : ItemClickListener? = null
 
     inner class ViewHolder(val binding: ItemRecommendedRvBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(product : ProductResponse.Item ) = with(itemView){
@@ -50,9 +50,9 @@ class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<Rec
             }
             binding.ratingBar.rating = (product.rating/2.0f)
 
-            if(itemClickListner != null) {
+            if(itemClickListener != null) {
                 setOnClickListener {
-                    itemClickListner!!.onClick(it)
+                    itemClickListener!!.onClick(it,product)
                 }
             }
 
@@ -93,8 +93,8 @@ class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<Rec
         }
 
     }
-    interface ItemClickListner{
-        fun onClick(view : View)
+    interface ItemClickListener{
+        fun onClick(view: View, item: ProductResponse.Item)
     }
 }
 
