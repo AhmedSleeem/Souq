@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.details.DetailsFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,26 +12,26 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
+        app:buttonGravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:title="@string/details"
-        app:buttonGravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/AppTheme.ToolbarFont" />
+        app:theme="@style/AppTheme.ToolbarFont"
+        app:title="@string/details" />
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
+        android:background="@color/overlayGray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar"
-        android:background="@color/overlayGray"/>
+        app:layout_constraintTop_toBottomOf="@id/appBar" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/_20sdp"
         android:fillViewport="true"
+        android:paddingBottom="@dimen/_20sdp"
         tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,13 +46,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/sale_viewPager1"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_170sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="@dimen/_170sdp">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/sale_viewPager1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_170sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/viewPagerProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -74,7 +90,7 @@
 
 
             <TextView
-                android:id="@+id/itemTitle"
+                android:id="@+id/product_name_tv"
                 style="@style/TextAppearance.MaterialComponents.Headline1"
                 android:layout_width="@dimen/_215sdp"
                 android:layout_height="@dimen/_46sdp"
@@ -95,9 +111,9 @@
                 android:layout_marginEnd="18dp"
                 android:layout_marginRight="18dp"
                 android:src="@drawable/ic_baseline_favorite_border_24"
-                app:layout_constraintBottom_toBottomOf="@+id/itemTitle"
+                app:layout_constraintBottom_toBottomOf="@+id/product_name_tv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/itemTitle"
+                app:layout_constraintTop_toTopOf="@+id/product_name_tv"
                 app:layout_constraintVertical_bias="0.472" />
 
             <RatingBar
@@ -116,7 +132,7 @@
                 android:transformPivotX="0dp"
                 android:transformPivotY="0dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/itemTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/product_name_tv" />
 
             <TextView
                 android:id="@+id/price"
@@ -340,9 +356,9 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@drawable/layout_style"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/see_more"
-                android:background="@drawable/layout_style"
                 android:textColor="@color/primaryBlue"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -496,15 +512,15 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:id="@+id/dateReviewTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="December 10, 2016"
                 android:textColor="@color/gray"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/reviewTextView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier3"
@@ -520,12 +536,12 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/like"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barrier3"
+                app:layout_constraintTop_toBottomOf="@+id/dateReviewTextView"
                 tools:ignore="RtlCompat" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -538,9 +554,17 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/like"
-                tools:listitem="@layout/recommend_item_rv"
+                tools:listitem="@layout/recommend_item_rv" />
 
-                />
+            <ProgressBar
+                android:id="@+id/recommendedProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/recommend"
+                app:layout_constraintEnd_toEndOf="@id/recommend"
+                app:layout_constraintStart_toStartOf="@id/recommend"
+                app:layout_constraintTop_toTopOf="@id/recommend" />
 
             <Button
                 android:id="@+id/add_to_cart_btn"
@@ -564,7 +588,6 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

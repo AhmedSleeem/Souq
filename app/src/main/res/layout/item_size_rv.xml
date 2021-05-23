@@ -16,6 +16,6 @@
         android:text="6"
         android:textSize="@dimen/_12sdp"
         android:gravity="center"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/poppins_bold"
         />
 </LinearLayout>
