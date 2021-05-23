@@ -6,7 +6,6 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityMainBinding
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.LabelVisibilityMode

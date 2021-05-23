@@ -152,9 +152,7 @@
             android:id="@+id/action_detailsFragment_self"
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/top_animation" />
-        <argument
-            android:name="itemData"
-            app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse$Item" />
+
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
