@@ -39,7 +39,7 @@ class SaleRecyclerAdapter(val context:Context) :
             if(product.sale != null){
                 val newPrice:Float  = (product.price * (1.0 - product.sale.amount.toFloat()/100)).toFloat()
                 binding.costSaleTv.text =String.format("%.2f", newPrice) + " Egp"
-                binding.offPercentageSaleTv.text = (product.sale.duration .toString() +"%")
+                binding.offPercentageSaleTv.text = (product.sale.amount.toString() +"%")
             }else{
                 binding.costSaleTv.text = String.format("%.2f", product.price) + " Egp"
                 binding.offPercentageSaleTv.visibility = View.INVISIBLE

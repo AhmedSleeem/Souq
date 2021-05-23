@@ -45,7 +45,7 @@ class RecommendedRecyclerAdapter(val context: Context) :
                     (product.price * (1.0 - product.sale.amount.toFloat() / 100)).toFloat()
                 Log.e("price = ", newPrice.toString())
                 binding.tvCost.text = String.format("%.2f", newPrice) + " Egp"
-                binding.tvOffPercentage.text = (product.sale.duration.toString() + "%")
+                binding.tvOffPercentage.text = product.sale.amount.toString() + "%"
             } else {
                 binding.tvCost.text =String.format("%.2f", product.price) + " Egp"
                 binding.tvOffPercentage.visibility = View.INVISIBLE
