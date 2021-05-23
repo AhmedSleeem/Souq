@@ -1,5 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.pojo
 
+import java.io.Serializable
+
 class ProductResponse : ArrayList<ProductResponse.Item>(){
     data class Item(
         val brand: String,
@@ -15,7 +17,7 @@ class ProductResponse : ArrayList<ProductResponse.Item>(){
         val sale: Sale,
         val size: List<String>,
         val title: String
-    ) {
+    ) : Serializable{
         data class Category(
             val name: String,
             val url: String

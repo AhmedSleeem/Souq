@@ -37,14 +37,14 @@ class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<Rec
                 .into(binding.imgProduct)
 
             binding.tvProductName.text = product.title
-            binding.tvOldCost.text = product.price.toString()+" Egp"
+            binding.tvOldCost.text = String.format("%.2f", product.price) + " Egp"
             if(product.sale != null){
                 val newPrice : Float = (product.price * (1.0 - product.sale.amount.toFloat()/100)).toFloat()
                 Log.e("price = " , newPrice.toString())
-                binding.tvCost.text = newPrice .toString() + " Egp"
+                binding.tvCost.text = String.format("%.2f", newPrice) + " Egp"
                 binding.tvOffPercentage.text = (product.sale.duration .toString() +"%")
             }else{
-                binding.tvCost.text = product.price.toString()+" Egp"
+                binding.tvCost.text = String.format("%.2f", product.price) + " Egp"
                 binding.tvOffPercentage.visibility = View.INVISIBLE
                 binding.tvOldCost.visibility = View.INVISIBLE
             }

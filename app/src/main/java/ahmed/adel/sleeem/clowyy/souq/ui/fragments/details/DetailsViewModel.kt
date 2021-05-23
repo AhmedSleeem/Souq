@@ -21,7 +21,7 @@ class DetailsViewModel : ViewModel() {
             var list: ProductResponse = response.body()!!
             val data = arrayListOf<ProductResponse.Item>()
             for (item in list) {
-                if (item.category == category)
+                if (item.category.name == category)
                     data.add(item)
             }
             filterLiveData.value = Resource.success(data = data)

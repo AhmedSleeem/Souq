@@ -78,8 +78,6 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java);
-
-        viewModel.getItemsByCategory("electronics")
         viewModel.getItems()
         //listeners
         binding.notificationIv.setOnClickListener {
@@ -132,15 +130,21 @@ class HomeFragment : Fragment() , View.OnClickListener {
                 Resource.Status.LOADING ->{
                     Log.e("sssss","Loading........")
                     binding.recommendedProgress.visibility = View.VISIBLE
+                    binding.viewPagerProgress.visibility = View.VISIBLE
+                    binding.saleProgress.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR ->{
                     Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
                     binding.recommendedProgress.visibility = View.GONE
+                    binding.viewPagerProgress.visibility = View.GONE
+                    binding.saleProgress.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS->{
                     it.data.let {
                         recommendedRecyclerAdapter.changeData(it!!)
                         binding.recommendedProgress.visibility = View.GONE
+                        binding.viewPagerProgress.visibility = View.GONE
+                        binding.saleProgress.visibility = View.GONE
                         Log.e("sssss", it!!.get(0).title)
                         Log.e("TAG", "aboutaha: " + it.size)
                         for (item in it) {
@@ -155,31 +159,6 @@ class HomeFragment : Fragment() , View.OnClickListener {
             }
         })
 
-        viewModel.filterLiveData.observe(requireActivity(), Observer {
-            when(it.status){
-
-                Resource.Status.LOADING ->{
-                    Log.e("sssss","Loading........")
-                    binding.viewPagerProgress.visibility = View.VISIBLE
-                    binding.saleProgress.visibility = View.VISIBLE
-                }
-                Resource.Status.ERROR ->{
-                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
-                    binding.viewPagerProgress.visibility = View.GONE
-                    binding.saleProgress.visibility = View.GONE
-                }
-                Resource.Status.SUCCESS->{
-                    it.data.let {
-                        binding.viewPagerProgress.visibility = View.GONE
-                        binding.saleProgress.visibility = View.GONE
-                        binding.dotsIndicator.setViewPager2(binding.saleViewPager)
-                        viewPagerAdapter.changeData(it!!)
-                        saleRecyclerAdapter.changeData(it!!)
-                        saleData = it
-                    }
-                }
-            }
-        })
     }
 
     private val sliderRunnable:Runnable = Runnable {
@@ -206,7 +185,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
             }
 
             binding.saleSeeMoreTv ->{
-                val action = HomeFragmentDirections.actionHomeFragmentToOfferTypeFragment()
+                val action = HomeFragmentDirections.actionHomeFragmentToOfferTypeFragment("flash sale")
                 view?.findNavController()?.navigate(action)
                 Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
             }
