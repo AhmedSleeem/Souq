@@ -333,12 +333,19 @@
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/top_animation"
             app:exitAnim="@anim/fragment_close_exit" />
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/listCategoryFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ListCategoryFragment"
         android:label="fragment_list_category"
-        tools:layout="@layout/fragment_list_category" />
+        tools:layout="@layout/fragment_list_category" >
+        <action
+            android:id="@+id/action_listCategoryFragment_to_searchSucceedFragment"
+            app:destination="@id/searchSucceedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/filterFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.FilterFragment"

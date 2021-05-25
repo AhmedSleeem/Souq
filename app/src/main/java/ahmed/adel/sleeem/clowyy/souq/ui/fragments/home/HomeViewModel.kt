@@ -2,6 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home
 
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
+import ahmed.adel.sleeem.clowyy.souq.pojo.CategoryResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,8 +12,9 @@ import kotlinx.coroutines.launch
 class HomeViewModel:ViewModel() {
 
     val itemsLiveData = MutableLiveData<Resource<ProductResponse>>()
+    val saleItemsLiveData = MutableLiveData<Resource<ProductResponse>>()
+    val categoryLiveData = MutableLiveData<Resource<CategoryResponse>>()
 
-    val filterLiveData = MutableLiveData<Resource<ArrayList<ProductResponse.Item>>>()
 
 
     fun getItems() = viewModelScope.launch {
@@ -26,22 +28,28 @@ class HomeViewModel:ViewModel() {
                  }
          }
 
-     fun getItemsByCategory(category:String) = viewModelScope.launch {
-        itemsLiveData.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().getAllItems()
 
+    fun getSaleItems() = viewModelScope.launch {
+        saleItemsLiveData.value = Resource.loading(null)
+        val response = RetrofitHandler.getItemWebService().getSaleItems()
         if (response.isSuccessful){
-            var list : ProductResponse = response.body()!!
-            val data = arrayListOf<ProductResponse.Item>()
-            for (item in list){
-                if (item.category.name == category)
-                    data.add(item)
-            }
-             filterLiveData.value = Resource.success(data = data);
+            if(response.body() != null)
+                saleItemsLiveData.value = Resource.success(response.body()!!);
         }else{
-            itemsLiveData.value = Resource.error(response.errorBody().toString())
+            saleItemsLiveData.value = Resource.error(response.errorBody().toString())
         }
+    }
 
+
+    fun getAllCategories() = viewModelScope.launch {
+        categoryLiveData.value = Resource.loading(null)
+        val response = RetrofitHandler.getItemWebService().getCategory()
+        if (response.isSuccessful){
+            if(response.body() != null)
+                categoryLiveData.value = Resource.success(response.body()!!);
+        }else{
+            categoryLiveData.value = Resource.error(response.errorBody().toString())
+        }
     }
 
 

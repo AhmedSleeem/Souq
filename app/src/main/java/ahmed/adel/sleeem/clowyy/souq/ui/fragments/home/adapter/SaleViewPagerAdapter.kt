@@ -36,6 +36,7 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
                 .centerCrop()
                 .into(binding.imageView)
 
+            binding.saleTitleVp.text = product.sale.type
             setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_detailsFragment)
             }

@@ -64,6 +64,9 @@ class HomeFragment : Fragment() , View.OnClickListener {
         saleRecyclerAdapter = SaleRecyclerAdapter(requireContext())
         binding.saleRv.adapter = saleRecyclerAdapter
 
+        categoryRecyclerAdapter = CategoryRecyclerAdapter(requireContext())
+        binding.categoryRv.adapter = categoryRecyclerAdapter
+
         return view
     }
 
@@ -79,6 +82,8 @@ class HomeFragment : Fragment() , View.OnClickListener {
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java);
         viewModel.getItems()
+        viewModel.getSaleItems()
+        viewModel.getAllCategories()
         //listeners
         binding.notificationIv.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationFragment);
@@ -94,6 +99,11 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
         binding.saleSeeMoreTv.setOnClickListener {
             onClick(it)
+        }
+
+        binding.searchEd.setOnClickListener{
+            val action = HomeFragmentDirections.actionHomeFragmentToSearchSucceedFragment("")
+            it.findNavController().navigate(action)
         }
 
         //recommended adapter item listener
@@ -114,8 +124,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
             }
         })
 
-        categoryRecyclerAdapter = CategoryRecyclerAdapter(categories)
-        binding.categoryRv.adapter = categoryRecyclerAdapter
+
 
         navController = Navigation.findNavController(view)
         view.findViewById<TextView>(R.id.moreCategory_tv).setOnClickListener(this)
@@ -125,35 +134,71 @@ class HomeFragment : Fragment() , View.OnClickListener {
     }
 
     private fun subscribeToLiveData() {
+        // get all data to Recomend RecyclerView
         viewModel.itemsLiveData.observe(requireActivity(), Observer {
             when(it.status){
                 Resource.Status.LOADING ->{
                     Log.e("sssss","Loading........")
                     binding.recommendedProgress.visibility = View.VISIBLE
-                    binding.viewPagerProgress.visibility = View.VISIBLE
-                    binding.saleProgress.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR ->{
                     Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
                     binding.recommendedProgress.visibility = View.GONE
-                    binding.viewPagerProgress.visibility = View.GONE
-                    binding.saleProgress.visibility = View.GONE
+
                 }
                 Resource.Status.SUCCESS->{
                     it.data.let {
                         recommendedRecyclerAdapter.changeData(it!!)
                         binding.recommendedProgress.visibility = View.GONE
+                    }
+                }
+            }
+        })
+
+
+        // get offer data to Sale RecyclerView and ViewPager
+        viewModel.saleItemsLiveData.observe(requireActivity(), Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+                    Log.e("sssss","Loading........")
+                    binding.viewPagerProgress.visibility = View.VISIBLE
+                    binding.saleProgress.visibility = View.VISIBLE
+                }
+                Resource.Status.ERROR ->{
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    binding.viewPagerProgress.visibility = View.GONE
+                    binding.saleProgress.visibility = View.GONE
+                }
+                Resource.Status.SUCCESS->{
+                    it.data.let {
                         binding.viewPagerProgress.visibility = View.GONE
                         binding.saleProgress.visibility = View.GONE
+                        viewPagerAdapter.changeData(it!!)
+                        saleRecyclerAdapter.changeData(it!!)
                         Log.e("sssss", it!!.get(0).title)
-                        Log.e("TAG", "aboutaha: " + it.size)
-                        for (item in it) {
-                            if (item.sale != null)
-                                saleData.add(item)
-                        }
-                        Log.e("TAG", "aboutaha: " + saleData.size)
-                        viewPagerAdapter.changeData(saleData)
-                        saleRecyclerAdapter.changeData(saleData)
+                        Log.e("sss",  "" + it.size)
+                    }
+                }
+            }
+        })
+
+        // get caegory to category RecyclerView and ViewPager
+        viewModel.categoryLiveData.observe(requireActivity(), Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+                    Log.e("sssss","Loading........")
+                    binding.categoryProgress.visibility = View.VISIBLE
+                }
+                Resource.Status.ERROR ->{
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    binding.categoryProgress.visibility = View.GONE
+                }
+                Resource.Status.SUCCESS->{
+                    it.data.let {
+                        binding.categoryProgress.visibility = View.GONE
+                        categoryRecyclerAdapter.changeData(it!!)
+                        Log.e("sss", it!!.get(1).url)
+                        Log.e("sss",  "" + it.size)
                     }
                 }
             }

@@ -27,6 +27,26 @@
         app:layout_constraintTop_toBottomOf="@id/appBar"
         android:background="@color/overlayGray"/>
 
+
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/itemProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        app:shimmer_demo_child_count="4"
+        app:shimmer_demo_grid_child_count="1"
+        app:shimmer_demo_layout="@layout/list_category_progress"
+        app:shimmer_demo_layout_manager_type="linear_vertical"
+        app:shimmer_demo_angle="20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_list_rv"
         android:layout_width="match_parent"
