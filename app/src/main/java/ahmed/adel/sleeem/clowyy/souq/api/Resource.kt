@@ -1,6 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.api
 
-data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
+data class Resource<out T>(val status: Status, val data: T?, val message: String? ,val flag:Int=0) {
 
     enum class Status {
         SUCCESS,
@@ -9,8 +9,8 @@ data class Resource<out T>(val status: Status, val data: T?, val message: String
     }
 
     companion object {
-        fun <T> success(data: T): Resource<T> {
-            return Resource(Status.SUCCESS, data, null)
+        fun <T> success(data: T , flag:Int=0): Resource<T> {
+            return Resource(Status.SUCCESS, data, null, flag)
         }
 
         fun <T> error(message: String, data: T? = null): Resource<T> {

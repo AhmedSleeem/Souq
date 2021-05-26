@@ -3,11 +3,13 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCategoryRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
+import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 class CategoryRecyclerAdapter(private var data:List<ExplorerItem> ): RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder>() {
@@ -35,5 +37,27 @@ class CategoryRecyclerAdapter(private var data:List<ExplorerItem> ): RecyclerVie
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.binding(data[position])
+
+    class ItemsDiffCallback(
+        private val oldData:ArrayList<ProductResponse.Item>,
+        private val newData:ArrayList<ProductResponse.Item>
+    ): DiffUtil.Callback() {
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldData[oldItemPosition].id == newData[newItemPosition].id
+        }
+
+        override fun getOldListSize(): Int {
+            return oldData.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newData.size
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldData[oldItemPosition] == newData[newItemPosition]
+        }
+
+    }
 
 }

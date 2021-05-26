@@ -41,7 +41,6 @@ class HomeViewModel:ViewModel() {
         }else{
             itemsLiveData.value = Resource.error(response.errorBody().toString())
         }
-
     }
 
 

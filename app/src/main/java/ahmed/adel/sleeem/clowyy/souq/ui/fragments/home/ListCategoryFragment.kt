@@ -2,17 +2,14 @@ package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentListCategoryBinding
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentSearchSucceedBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
-import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter.ListCategoryAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter.SearchSucceedAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter.ListCategoryAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
 
 class ListCategoryFragment : Fragment() {
 

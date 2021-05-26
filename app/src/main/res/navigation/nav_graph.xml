@@ -316,7 +316,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchSucceedFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.SearchSucceedFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment"
         android:label="fragment_search_succeed"
         tools:layout="@layout/fragment_search_succeed">
         <action
@@ -333,6 +333,12 @@
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/top_animation"
             app:exitAnim="@anim/fragment_close_exit" />
+        <argument
+            android:name="searchStatus"
+            app:argType="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment$SearchStatus" />
+        <argument
+            android:name="query"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/listCategoryFragment"
@@ -346,7 +352,7 @@
         tools:layout="@layout/fragment_filter" />
     <fragment
         android:id="@+id/shortByFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ShortByFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ShortByFragment"
         android:label="fragment_short_by"
         tools:layout="@layout/fragment_short_by" />
     <fragment

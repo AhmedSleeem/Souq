@@ -5,66 +5,133 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.explore_fragment.SearchSucceedFragment">
+    tools:context=".ui.fragments.explore.SearchSucceedFragment">
 
     <LinearLayout
         android:id="@+id/topView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:weightSum="9"
+        android:layout_height="@dimen/_80sdp"
+        android:orientation="vertical"
+        android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/search_ed"
-            android:layout_width="0dp"
+        <LinearLayout
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_weight="7"
-            android:background="@drawable/ed_search_background"
-            android:drawableStart="@drawable/ic_search_24"
-            android:drawablePadding="@dimen/_8sdp"
-            android:fontFamily="@font/poppins_light"
-            android:hint="Search Product"
-            android:padding="@dimen/_9sdp"
-            android:textSize="@dimen/_12ssp"
-            tools:ignore="RtlCompat" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/_4sdp"
+            android:weightSum="9"
+            >
 
-        <ImageButton
-            android:id="@+id/short_iv"
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_weight="1"
-            android:background="@drawable/layout_style"
-            android:src="@drawable/ic_short" />
+            <EditText
+                android:id="@+id/search_ed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_weight="8"
+                android:background="@drawable/ed_search_background"
+                android:drawableStart="@drawable/ic_search_24"
+                android:drawablePadding="@dimen/_8sdp"
+                android:fontFamily="@font/poppins_light"
+                android:hint="Search Product"
+                android:padding="@dimen/_8sdp"
+                android:textSize="@dimen/_12ssp"
+                tools:ignore="RtlCompat" />
 
-        <ImageButton
-            android:id="@+id/filter_iv"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_weight="1"
-            android:background="@drawable/layout_style"
-            android:src="@drawable/ic_filter" />
+            <ImageButton
+                android:id="@+id/short_iv"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/layout_style"
+                app:srcCompat="@drawable/ic_short" />
+
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/_4sdp"
+                android:weightSum="4.5"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/filterCategoryTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_height="match_parent"
+                    android:text="@string/category"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginStart="@dimen/_1sdp"
+                    android:textColor="@color/primaryBlue"
+                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:background="@drawable/filter_btn_shape"
+                    android:layout_marginLeft="@dimen/_1sdp" />
+
+                <TextView
+                    android:id="@+id/filterPriceTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="@string/price"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:textColor="@color/primaryBlue"
+                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:background="@drawable/filter_btn_shape"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:layout_marginLeft="@dimen/_7sdp" />
+
+                <TextView
+                    android:id="@+id/filterBrandTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="@string/brand"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:textColor="@color/primaryBlue"
+                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:background="@drawable/filter_btn_shape"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"/>
+
+                <TextView
+                    android:id="@+id/filterSaleTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="@string/sale"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:textColor="@color/primaryBlue"
+                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:background="@drawable/filter_btn_shape"
+                    android:paddingLeft="@dimen/_8sdp" />
+            </LinearLayout>
+
+
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/ic_category_vector"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_6sdp"
-        android:layout_marginEnd="@dimen/_18sdp"
-        android:layout_marginRight="@dimen/_18sdp"
-        android:src="@drawable/ic_vector_down"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_category" />
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="@dimen/_41sdp"
-        android:layout_height="@dimen/_17sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_3sdp"
         android:layout_marginLeft="@dimen/_3sdp"
         android:fontFamily="@font/poppins_medium"
@@ -80,10 +147,10 @@
     <TextView
         android:id="@+id/result_count"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_17sdp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginLeft="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="start"
         android:text="145"
@@ -100,7 +167,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginLeft="@dimen/_12sdp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,18 +177,6 @@
         app:spanCount="2"
         tools:listitem="@layout/item_sale_rv" />
 
-    <TextView
-        android:id="@+id/tv_category"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_17sdp"
-        android:layout_marginTop="@dimen/_13sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:layout_marginRight="@dimen/_12sdp"
-        android:fontFamily="@font/poppins_bold"
-        android:gravity="start"
-        android:text="@string/man_shoes"
-        android:textSize="@dimen/_9ssp"
-        app:layout_constraintEnd_toStartOf="@+id/ic_category_vector"
-        app:layout_constraintTop_toBottomOf="@+id/topView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

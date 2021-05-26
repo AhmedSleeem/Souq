@@ -105,7 +105,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
         }
 
-        binding.saleViewPager.registerOnPageChangeCallback(object :
+        binding.saleViewPager.registerOnPageChangeCallback( object :
             ViewPager2.OnPageChangeCallback()  {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)

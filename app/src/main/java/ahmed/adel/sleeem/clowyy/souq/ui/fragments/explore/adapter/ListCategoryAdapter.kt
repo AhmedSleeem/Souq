@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCategoryListRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem

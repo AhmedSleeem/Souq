@@ -170,6 +170,15 @@
     <string name="confirmation">Confirmation</string>
     <string name="favorite">Favorite</string>
     <string name="activity">Activity</string>
+    <string name="price_low_to_high">Price: Low to High</string>
+    <string name="price_high_to_low">Price High to Low</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="brand">Brand</string>
+    <string name="sale">Sale</string>
+    <string name="done">Done</string>
+    <string name="color">Color</string>
+    <string name="products_have_sale_only">products have sale only</string>
+    <string name="all_products">all products</string>
 
     <string-array name="gender_list">
         <item>Male</item>
