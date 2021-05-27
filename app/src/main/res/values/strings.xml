@@ -42,8 +42,8 @@
     <string name="select_size">Select Size</string>
     <string name="select_color">Select Color</string>
     <string name="specification">Specification</string>
-    <string name="shown">Shown</string>
-    <string name="style">Style</string>
+    <string name="company_name">Company Name:</string>
+    <string name="brand">Brand:</string>
     <string name="reviewProduct">Review Product</string>
     <string name="like">You Might Also Like</string>
     <string name="add_to_cart">Add To Cart</string>

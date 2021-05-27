@@ -15,12 +15,15 @@ import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
+import com.facebook.login.Login
+import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -38,6 +41,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.util.*
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -50,6 +54,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var callbackManager: CallbackManager
     private lateinit var buttonFacebookLogin: LoginButton
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,26 +63,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
-        // Initialize Facebook Login button
-        callbackManager = CallbackManager.Factory.create()
-
-        buttonFacebookLogin = LoginButton(this)
-        buttonFacebookLogin.setReadPermissions("email", "public_profile")
-        buttonFacebookLogin.registerCallback(callbackManager, object :
-            FacebookCallback<LoginResult> {
-            override fun onSuccess(loginResult: LoginResult) {
-                Log.d(TAG, "facebook:onSuccess:$loginResult")
-                handleFacebookAccessToken(loginResult.accessToken)
-            }
-
-            override fun onCancel() {
-                Log.d(TAG, "facebook:onCancel")
-            }
-
-            override fun onError(error: FacebookException) {
-                Log.d(TAG, "facebook:onError", error)
-            }
-        })
+        signInFacebook()
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -99,7 +85,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         binding.RegisterLoginTextView.setOnClickListener(this)
         binding.signInLoginButton.setOnClickListener(this)
         binding.googleSignIn.setOnClickListener(this)
-        binding.facebookSignIn.setOnClickListener(this)
     }
 
 
@@ -115,8 +100,33 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             binding.googleSignIn -> {
                 signInGoogle()
             }
-
         }
+    }
+
+    private fun signInFacebook() {
+        // Initialize Facebook Login button
+        callbackManager = CallbackManager.Factory.create()
+
+        buttonFacebookLogin = LoginButton(this)
+        buttonFacebookLogin.setReadPermissions("email", "public_profile")
+
+//        LoginManager.getInstance()
+//            .logInWithReadPermissions(this, Arrays.asList("email", "public_profile"))
+        buttonFacebookLogin.registerCallback(callbackManager, object :
+            FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                Log.d(TAG, "facebook:onSuccess:$loginResult")
+                handleFacebookAccessToken(loginResult.accessToken)
+            }
+
+            override fun onCancel() {
+                Log.d(TAG, "facebook:onCancel")
+            }
+
+            override fun onError(error: FacebookException) {
+                Log.d(TAG, "facebook:onError", error)
+            }
+        })
     }
 
     fun loginUser() {
@@ -162,11 +172,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onStart()
 
         val currentUser = auth.currentUser
-        if (currentUser != null)
-        {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
+//        if (currentUser != null)
+//        {
+//            startActivity(Intent(this, MainActivity::class.java))
+//            finish()
+//        }
 
     }
 
@@ -220,12 +230,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success")
+                    Log.i(TAG, "signInWithCredential:success")
+                    Log.i(TAG, "displayName: ${auth.currentUser?.displayName.toString()}")
+                    Log.i(TAG, "email: ${auth.currentUser?.email.toString()}")
+                    Log.i(TAG, "uid: ${auth.currentUser?.uid.toString()}")
+
+//                    startActivity(Intent(this, MainActivity::class.java))
+
                     val user = auth.currentUser
-                    startActivity(Intent(this, MainActivity::class.java))
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    Log.i(TAG, "signInWithCredential:failure", task.exception)
                     Toast.makeText(
                         baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT
@@ -233,6 +248,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
     }
+
 
     companion object {
         private const val TAG = "GoogleActivity"

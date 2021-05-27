@@ -76,7 +76,9 @@ class DetailsFragment : Fragment() {
         binding.productNameTv.text = item.title
         binding.ratingBar.rating = (item.rating/2.0f)
         binding.price.text = item.price.toString()+" Egp"
-        binding.styleDetails2.text = item.description
+        binding.descriptionTv.text = item.description
+        binding.companyNameTv.text = item.companyName
+        binding.brandTv.text = item.brand
 
         recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
         binding.recommend.adapter = recommendRecyclerAdapter
