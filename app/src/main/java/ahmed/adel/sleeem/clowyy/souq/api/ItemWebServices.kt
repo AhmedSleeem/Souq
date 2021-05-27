@@ -18,4 +18,7 @@ interface ItemWebServices {
 
     @GET("products/getbycategoryname")
     suspend fun getItemsByCategory(@Query("category") categoryTitle:String): Response<ProductResponse>
+
+    @GET("products/getbytitle")
+    suspend fun getItemsByTitle(@Query("title") title:String): Response<ProductResponse>
 }

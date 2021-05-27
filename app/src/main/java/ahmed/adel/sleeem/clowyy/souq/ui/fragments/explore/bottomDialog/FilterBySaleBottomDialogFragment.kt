@@ -35,17 +35,24 @@ class FilterBySaleBottomDialogFragment: BottomSheetDialogFragment() , View.OnCli
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        bindig.saleItemsTv.setOnClickListener(this)
+        bindig.allProductsTv.setOnClickListener(this)
+
     }
 
 
     override fun onClick(v: View?) {
-        val tvSelected = v as TextView
-        mListener!!.onItemClick(tvSelected.tag.toString().toInt())
+        var sale = false
+        when(v){
+            bindig.saleItemsTv->sale=true
+            bindig.allProductsTv->sale=false
+        }
+        mListener!!.onItemClick(sale)
         dismiss()
     }
 
     interface ItemClickListener {
-        fun onItemClick(item: Int)
+        fun onItemClick(isBySale : Boolean)
     }
 
 }

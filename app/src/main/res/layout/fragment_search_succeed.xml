@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/topView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_80sdp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,33 +21,31 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="@dimen/_4sdp"
             android:weightSum="9"
             >
 
-            <EditText
-                android:id="@+id/search_ed"
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                android:id="@+id/searchBar"
+                style="@style/MyCustomTheme"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16sdp"
                 android:layout_weight="8"
-                android:background="@drawable/ed_search_background"
-                android:drawableStart="@drawable/ic_search_24"
-                android:drawablePadding="@dimen/_8sdp"
-                android:fontFamily="@font/poppins_light"
-                android:hint="Search Product"
-                android:padding="@dimen/_8sdp"
-                android:textSize="@dimen/_12ssp"
-                tools:ignore="RtlCompat" />
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:mt_maxSuggestionsCount="10"
+                app:mt_navIconEnabled="false"
+                app:mt_placeholder="@string/action_search"
+                android:layout_marginRight="@dimen/_4sdp" />
+
 
             <ImageButton
                 android:id="@+id/short_iv"
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_32sdp"
+                android:padding="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:layout_weight="1"
                 android:background="@drawable/layout_style"
                 app:srcCompat="@drawable/ic_short" />
@@ -56,6 +54,7 @@
         </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/filterBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
@@ -66,63 +65,71 @@
                 <TextView
                     android:id="@+id/filterCategoryTV"
                     android:layout_width="0dp"
-                    android:layout_weight="1.5"
                     android:layout_height="match_parent"
-                    android:text="@string/category"
-                    android:gravity="center"
-                    android:fontFamily="@font/poppins_medium"
                     android:layout_marginStart="@dimen/_1sdp"
-                    android:textColor="@color/primaryBlue"
-                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:layout_marginLeft="@dimen/_1sdp"
+                    android:layout_weight="1.5"
                     android:background="@drawable/filter_btn_shape"
-                    android:layout_marginLeft="@dimen/_1sdp" />
+                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="@string/category"
+                    android:textColor="@color/primaryBlue" />
 
                 <TextView
                     android:id="@+id/filterPriceTV"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="@string/price"
                     android:layout_marginStart="@dimen/_7sdp"
-                    android:gravity="center"
-                    android:fontFamily="@font/poppins_medium"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:textColor="@color/primaryBlue"
-                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/filter_btn_shape"
+                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_8sdp"
                     android:paddingLeft="@dimen/_8sdp"
-                    android:layout_marginLeft="@dimen/_7sdp" />
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="@string/price"
+                    android:textColor="@color/primaryBlue" />
 
                 <TextView
                     android:id="@+id/filterBrandTV"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="@string/brand"
                     android:layout_marginStart="@dimen/_7sdp"
-                    android:gravity="center"
-                    android:fontFamily="@font/poppins_medium"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:textColor="@color/primaryBlue"
-                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
-                    android:background="@drawable/filter_btn_shape"
-                    android:paddingLeft="@dimen/_8sdp"
                     android:layout_marginLeft="@dimen/_7sdp"
-                    android:layout_marginEnd="@dimen/_7sdp"/>
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/filter_btn_shape"
+                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="@string/brand"
+                    android:textColor="@color/primaryBlue" />
 
                 <TextView
                     android:id="@+id/filterSaleTV"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="@string/sale"
-                    android:gravity="center"
-                    android:fontFamily="@font/poppins_medium"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:textColor="@color/primaryBlue"
-                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:layout_weight="1"
                     android:background="@drawable/filter_btn_shape"
-                    android:paddingLeft="@dimen/_8sdp" />
+                    android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="@string/sale"
+                    android:textColor="@color/primaryBlue" />
             </LinearLayout>
 
 

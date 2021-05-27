@@ -3,7 +3,6 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,30 +12,39 @@ import java.util.*
 
 class SearchResultViewModel:ViewModel() {
     private var _productsLiveData = MutableLiveData<Resource<ProductResponse>>(Resource.loading(null))
-    val productsLiveData:LiveData<Resource<ProductResponse>> get() = _productsLiveData
+    val productsLiveData:LiveData<Resource<ProductResponse>> get() = this._productsLiveData
 
     private var _filteredLiveData = MutableLiveData<Resource<ProductResponse>>(Resource.loading(null))
     val filteredLiveData:LiveData<Resource<ProductResponse>> get() = _filteredLiveData
 
-    private var _itemsShortedLiveData = MutableLiveData<Resource<ProductResponse>>()
-    val itemsShortedLiveData : LiveData<Resource<ProductResponse>> get() = _itemsShortedLiveData
 
+    fun getItemsByQuery(query: String){
+        viewModelScope.launch {
+            this@SearchResultViewModel._productsLiveData.value = Resource.loading(null)
+            val response = RetrofitHandler.getItemWebService().getItemsByTitle(query)
+            if(response.isSuccessful){
+                if (response.body() != null)
+                    this@SearchResultViewModel._productsLiveData.value = Resource.success(response.body()!!)
+            }else
+                this@SearchResultViewModel._productsLiveData.value = Resource.error(response.errorBody().toString())
+        }
+     }
 
     fun getItemsByCategory(query: String) {
         viewModelScope.launch {
-        _productsLiveData.value = Resource.loading(null)
+        this@SearchResultViewModel._productsLiveData.value = Resource.loading(null)
         val response = RetrofitHandler.getItemWebService().getItemsByCategory(query)
         if(response.isSuccessful){
             if (response.body() != null)
-                _productsLiveData.value = Resource.success(response.body()!!)
+                this@SearchResultViewModel._productsLiveData.value = Resource.success(response.body()!!)
         }else
-                _productsLiveData.value = Resource.error(response.errorBody().toString())
+                this@SearchResultViewModel._productsLiveData.value = Resource.error(response.errorBody().toString())
         }
     }
 
     fun shortData(shortBy: Int) {
         val data = getData()
-        _itemsShortedLiveData.value = Resource.loading(null)
+        this._productsLiveData.value = Resource.loading(null)
 
         when(shortBy){
             SearchSucceedFragment.ShortBy.BestMatch.tag->{
@@ -46,7 +54,7 @@ class SearchResultViewModel:ViewModel() {
                 if (data != null){
                     Collections.sort(data
                     ) { o1, o2 -> -(o1!!.price - o2!!.price).toInt() }
-                    _itemsShortedLiveData.value = Resource.success(data)
+                    this._productsLiveData.value = Resource.success(data)
                 }
             }
 
@@ -54,7 +62,7 @@ class SearchResultViewModel:ViewModel() {
                 if (data != null){
                     Collections.sort(data
                     ) { o1, o2 -> (o1!!.price - o2!!.price).toInt() }
-                    _itemsShortedLiveData.value = Resource.success(data)
+                    this._productsLiveData.value = Resource.success(data)
                 }
             }
 
@@ -62,7 +70,7 @@ class SearchResultViewModel:ViewModel() {
                 if (data != null){
                     Collections.sort(data
                     ) { o1, o2 -> -(o1!!.rating*10 - o2!!.rating*10).toInt() }
-                    _itemsShortedLiveData.value = Resource.success(data)
+                    this._productsLiveData.value = Resource.success(data)
                 }
             }
         }
@@ -87,8 +95,14 @@ class SearchResultViewModel:ViewModel() {
     }
 
     fun filterByPrice(min:Int , max:Int){
+        var data :ProductResponse?=null
+        data = if (_filteredLiveData.value?.data != null)
+            _filteredLiveData.value!!.data
+        else
+            getData()
+
         _filteredLiveData.value = Resource.loading(null)
-        val data = getData()
+
         var filteredData = ProductResponse()
         if (data != null) {
             for (item in data){
@@ -97,6 +111,7 @@ class SearchResultViewModel:ViewModel() {
                 }
             }
         }
+        filteredData.filteredByPrice = true
         _filteredLiveData.value = Resource.success(filteredData)
     }
 
@@ -113,26 +128,68 @@ class SearchResultViewModel:ViewModel() {
         return liveData
     }
 
-    fun filteredBySale(){
+    fun filteredBySale(isBySale:Boolean){
         val filteredData = ProductResponse()
-        val data = getData()
+        var data :ProductResponse?=null
+
+        data = if (_filteredLiveData.value?.data != null)
+            _filteredLiveData.value!!.data
+        else
+            getData()
+
+        if (isBySale) {
+            if (data != null) {
+                for (item in data) {
+                    if (item.sale != null)
+                        filteredData.add(item)
+                }
+            }
+        }
+        filteredData.filteredBySale = true
+        _filteredLiveData.value = Resource.success(filteredData)
+    }
+
+    fun filterByCategory(category: String){
+        var data :ProductResponse?=getData()
+        var filteredData=ProductResponse()
+
+        _filteredLiveData.value = Resource.loading(null)
+
         if (data != null) {
             for (item in data){
-                if (item.sale != null)
+                if (item.category.name == category)
                     filteredData.add(item)
             }
         }
+        filteredData.filteredByCategory = true
+        _filteredLiveData.value = Resource.success(filteredData)
     }
 
-    fun filterByCategory(){
-        val data = getData()
+    fun filterByBrands(brand: String){
+        var data :ProductResponse?=null
+        var filteredData=ProductResponse()
+        data = if (_filteredLiveData.value?.data != null)
+            _filteredLiveData.value!!.data
+        else
+            getData()
+
+        _filteredLiveData.value = Resource.loading(null)
+
+        if (data != null) {
+            for (item in data){
+                if (item.brand == brand)
+                    filteredData.add(item)
+            }
+        }
+        filteredData.filteredByBrand = true
+        _filteredLiveData.value = Resource.success(filteredData)
     }
 
     private fun getData():ProductResponse?{
         var data:ProductResponse?=null
-        if (_productsLiveData.value != Resource.loading(null)){
-            if (_productsLiveData.value?.data != null){
-                data = _productsLiveData.value!!.data
+        if (this._productsLiveData.value != Resource.loading(null)){
+            if (this._productsLiveData.value?.data != null){
+                data = this._productsLiveData.value!!.data
             }
         }
         return  data;

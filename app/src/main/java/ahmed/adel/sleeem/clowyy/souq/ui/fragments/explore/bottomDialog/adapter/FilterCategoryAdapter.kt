@@ -1,10 +1,11 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.adapter
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemBottomFragmentCategoryRvBinding
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.FilterByCategoryBottomDialogFragment
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
 class FilterCategoryAdapter () :
     RecyclerView.Adapter<FilterCategoryAdapter.ViewHolder>() {
@@ -15,7 +16,7 @@ class FilterCategoryAdapter () :
     fun changeData(newData: List<Pair<String,Int>>) {
         val oldData = items
         val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(
-            FilterCategoryAdapter.ItemsDiffCallback(
+            ItemsDiffCallback(
                 oldData,
                 newData
             )
@@ -27,10 +28,25 @@ class FilterCategoryAdapter () :
 
     inner class ViewHolder(val binding: ItemBottomFragmentCategoryRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun binding(item: Pair<String, Int>) = with(itemView) {
+        fun binding(item: Pair<String, Int>, position: Int) = with(itemView) {
             binding.categoryTv.text = item.first+" ( "+item.second+" )"
+
+            if ( position == FilterByCategoryBottomDialogFragment.position && FilterByCategoryBottomDialogFragment.position != -1)
+                binding.checkIv.visibility = View.VISIBLE
+
+
             if (onItemClickListener != null){
                 setOnClickListener{
+
+                    if (binding.checkIv.visibility == View.GONE) {
+                        binding.checkIv.visibility = View.VISIBLE
+                        notifyItemChanged(FilterByCategoryBottomDialogFragment.position)
+                        FilterByCategoryBottomDialogFragment.position = position
+                    }else {
+                        binding.checkIv.visibility = View.GONE
+                        notifyItemChanged(FilterByCategoryBottomDialogFragment.position)
+                        FilterByCategoryBottomDialogFragment.position = -1
+                    }
                     onItemClickListener!!.onClick(item.first)
                 }
             }
@@ -47,7 +63,7 @@ class FilterCategoryAdapter () :
         return items.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.binding(items[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.binding(items[position],position)
 
 
     class ItemsDiffCallback(

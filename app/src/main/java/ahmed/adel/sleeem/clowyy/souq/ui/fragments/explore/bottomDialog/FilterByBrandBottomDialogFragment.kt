@@ -43,6 +43,14 @@ class FilterByBrandBottomDialogFragment: BottomSheetDialogFragment() , View.OnCl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindig.filterBrandTV.adapter = adapter
+
+        adapter.onItemClickListener = object : FilterBrandAdapter.OnItemClickListener{
+            override fun onClick(brand: String) {
+                mListener!!.onItemClick(brand)
+                this@FilterByBrandBottomDialogFragment.dismiss()
+            }
+
+        }
     }
 
     private fun subscribeToLiveData() {
@@ -59,7 +67,7 @@ class FilterByBrandBottomDialogFragment: BottomSheetDialogFragment() , View.OnCl
     }
 
     interface ItemClickListener {
-        fun onItemClick(item: String)
+        fun onItemClick(brand: String)
     }
 
 }

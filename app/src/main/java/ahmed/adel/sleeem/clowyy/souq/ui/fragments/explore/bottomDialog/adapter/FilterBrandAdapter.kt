@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class FilterBrandAdapter () :
     RecyclerView.Adapter<FilterBrandAdapter.ViewHolder>() {
     private var items = listOf<String>()
+    var onItemClickListener:OnItemClickListener?=null
 
     fun changeData(newData: List<String>){
         val oldData = items
@@ -24,11 +25,17 @@ class FilterBrandAdapter () :
 
     }
 
-    class ViewHolder(val binding: ItemBottomFragmentCategoryRvBinding) :
+    inner class ViewHolder(val binding: ItemBottomFragmentCategoryRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun binding(item: String) = with(itemView) {
             binding.categoryTv.text = item
+
+            if (onItemClickListener != null){
+                setOnClickListener{
+                    onItemClickListener!!.onClick(item)
+                }
+            }
         }
     }
 
@@ -64,5 +71,9 @@ class FilterBrandAdapter () :
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldData[oldItemPosition] == newData[newItemPosition]
         }
+    }
+
+    interface OnItemClickListener{
+        fun onClick(brand:String)
     }
 }
