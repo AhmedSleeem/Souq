@@ -50,8 +50,12 @@ class SearchSucceedAdapter (val context:Context) :
                 Log.e("price = " , newPrice.toString())
                 binding.tvCost.text = String.format("%.2f", newPrice) + " Egp"
                 binding.tvOffPercentage.text = (product.sale.amount .toString() +"%")
+
+                binding.tvOffPercentage.visibility = View.VISIBLE
+                binding.tvOldCost.visibility = View.VISIBLE
             }else{
                 binding.tvCost.text = String.format("%.2f", product.price) + " Egp"
+
                 binding.tvOffPercentage.visibility = View.INVISIBLE
                 binding.tvOldCost.visibility = View.INVISIBLE
             }

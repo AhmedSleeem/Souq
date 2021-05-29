@@ -31,7 +31,7 @@ class FilterCategoryAdapter () :
         fun binding(item: Pair<String, Int>, position: Int) = with(itemView) {
             binding.categoryTv.text = item.first+" ( "+item.second+" )"
 
-            if ( position == FilterByCategoryBottomDialogFragment.position && FilterByCategoryBottomDialogFragment.position != -1)
+            if ( FilterByCategoryBottomDialogFragment.position != -1)
                 binding.checkIv.visibility = View.VISIBLE
 
 

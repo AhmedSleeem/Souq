@@ -65,7 +65,6 @@ class ExploreFragment : Fragment() {
                     searchStatus = SearchSucceedFragment.SearchStatus.QUERY)
                 view.findNavController().navigate(action)
             }
-
         });
         binding.searchBar.lastSuggestions = lastSearches;
 

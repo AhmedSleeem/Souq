@@ -160,13 +160,79 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="start"
-        android:text="145"
+        android:text="0"
         android:textColor="@color/gray"
         android:textSize="@dimen/_9ssp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topView" />
 
+
+    <LinearLayout
+        android:id="@+id/searchFailedView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/topView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_category_item"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/circle_shape"
+            android:scaleType="center"
+            android:src="@drawable/ic_cross_sign" />
+
+
+        <TextView
+            android:id="@+id/product_name_tv"
+            android:layout_width="@dimen/_181sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="@string/product_not_found"
+            android:textSize="@dimen/_18ssp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/thanks_for_shopping"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_9ssp" />
+
+    </LinearLayout>
+
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/search_rv_shimmer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:shimmer_demo_child_count="4"
+        app:shimmer_demo_grid_child_count="2"
+        app:shimmer_demo_layout="@layout/item_product_shimmer"
+        app:shimmer_demo_layout_manager_type="grid"
+        app:shimmer_demo_angle="20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_rv"

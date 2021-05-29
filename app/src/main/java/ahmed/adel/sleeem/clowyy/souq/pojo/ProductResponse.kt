@@ -4,10 +4,6 @@ import java.io.Serializable
 
 class ProductResponse : ArrayList<ProductResponse.Item>(){
 
-    var filteredByPrice=false
-    var filteredByCategory=false
-    var filteredByBrand=false
-    var filteredBySale=false
 
     data class Item(
         val brand: String,

@@ -16,6 +16,7 @@ class FilterBySaleBottomDialogFragment: BottomSheetDialogFragment() , View.OnCli
 
     companion object{
         val TAG = "SaleBottomDialog"
+        var position = -1
         fun newInstance(): FilterBySaleBottomDialogFragment {
             return FilterBySaleBottomDialogFragment()
         }
@@ -38,21 +39,39 @@ class FilterBySaleBottomDialogFragment: BottomSheetDialogFragment() , View.OnCli
         bindig.saleItemsTv.setOnClickListener(this)
         bindig.allProductsTv.setOnClickListener(this)
 
+        if(position == -1)bindig.allProductIV.visibility = View.VISIBLE
+        else bindig.saleIV.visibility = View.VISIBLE
+
     }
 
 
     override fun onClick(v: View?) {
-        var sale = false
+        var sale = 0
         when(v){
-            bindig.saleItemsTv->sale=true
-            bindig.allProductsTv->sale=false
+            bindig.saleItemsTv->{
+                if (position==-1) {
+                    bindig.saleIV.visibility = View.VISIBLE
+                    bindig.allProductIV.visibility = View.GONE
+                }
+                sale = 1
+                position = 1
+            }
+
+            bindig.allProductsTv->{
+                if (position !=-1) {
+                    bindig.saleIV.visibility = View.GONE
+                    bindig.allProductIV.visibility = View.VISIBLE
+                }
+                sale = 0
+            }
         }
+
         mListener!!.onItemClick(sale)
         dismiss()
     }
 
     interface ItemClickListener {
-        fun onItemClick(isBySale : Boolean)
+        fun onItemClick( sale : Int)
     }
 
 }

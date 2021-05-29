@@ -48,14 +48,18 @@ class FilterByCategoryBottomDialogFragment: BottomSheetDialogFragment() {
 
         adapter.onItemClickListener = object : FilterCategoryAdapter.OnItemClickListener{
             override fun onClick(category: String ) {
-                mListener!!.onItemClick(category)
+                if (position == -1){
+                    mListener!!.onItemClick(null)
+                }else {
+                    mListener!!.onItemClick(category)
+                }
                 this@FilterByCategoryBottomDialogFragment.dismiss()
             }
         }
     }
 
     private fun subscribeToLiveData() {
-        viewModel.getCategoriesAndCount().observe(viewLifecycleOwner, Observer {
+        viewModel.categoriesLiveDirections.observe(viewLifecycleOwner, Observer {
             adapter.changeData(it)
         })
     }
@@ -63,7 +67,7 @@ class FilterByCategoryBottomDialogFragment: BottomSheetDialogFragment() {
 
 
     interface ItemClickListener {
-        fun onItemClick(category: String)
+        fun onItemClick(category: String?)
     }
 
 }

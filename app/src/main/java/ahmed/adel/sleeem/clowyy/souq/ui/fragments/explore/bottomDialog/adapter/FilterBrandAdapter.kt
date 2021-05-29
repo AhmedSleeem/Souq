@@ -1,7 +1,10 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemBottomFragmentCategoryRvBinding
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.FilterByBrandBottomDialogFragment
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.FilterByCategoryBottomDialogFragment
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -28,12 +31,25 @@ class FilterBrandAdapter () :
     inner class ViewHolder(val binding: ItemBottomFragmentCategoryRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun binding(item: String) = with(itemView) {
+        fun binding(item: String, position: Int) = with(itemView) {
+
+            if ( FilterByBrandBottomDialogFragment.position != -1)
+                binding.checkIv.visibility = View.VISIBLE
+
             binding.categoryTv.text = item
 
             if (onItemClickListener != null){
                 setOnClickListener{
-                    onItemClickListener!!.onClick(item)
+                    if (binding.checkIv.visibility == View.GONE) {
+                        binding.checkIv.visibility = View.VISIBLE
+                        notifyItemChanged(FilterByCategoryBottomDialogFragment.position)
+                        FilterByBrandBottomDialogFragment.position = position
+                    }else {
+                        binding.checkIv.visibility = View.GONE
+                        notifyItemChanged(FilterByCategoryBottomDialogFragment.position)
+                        FilterByBrandBottomDialogFragment.position = -1
+                    }
+                        onItemClickListener!!.onClick(item)
                 }
             }
         }
@@ -49,7 +65,7 @@ class FilterBrandAdapter () :
         return items.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.binding(items[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.binding(items[position],position)
 
 
     class ItemsDiffCallback(

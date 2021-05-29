@@ -80,4 +80,9 @@ dependencies {
    // compile 'com.miguelcatalan:materialsearchview:1.4.0'
     implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
 
+    //shimmer view
+    implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
 }

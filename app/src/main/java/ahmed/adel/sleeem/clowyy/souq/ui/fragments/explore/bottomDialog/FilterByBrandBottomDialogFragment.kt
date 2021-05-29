@@ -20,6 +20,7 @@ class FilterByBrandBottomDialogFragment: BottomSheetDialogFragment() , View.OnCl
     private lateinit var adapter: FilterBrandAdapter
 
     companion object{
+        var position = -1
         val TAG = "BrandBottomDialog"
         fun newInstance(): FilterByBrandBottomDialogFragment {
             return FilterByBrandBottomDialogFragment()
@@ -46,10 +47,15 @@ class FilterByBrandBottomDialogFragment: BottomSheetDialogFragment() , View.OnCl
 
         adapter.onItemClickListener = object : FilterBrandAdapter.OnItemClickListener{
             override fun onClick(brand: String) {
-                mListener!!.onItemClick(brand)
-                this@FilterByBrandBottomDialogFragment.dismiss()
-            }
 
+                if ( position == -1 ){
+                    mListener!!.onItemClick( null )
+                }else {
+                    mListener!!.onItemClick( brand )
+                }
+                this@FilterByBrandBottomDialogFragment.dismiss()
+
+            }
         }
     }
 
@@ -67,7 +73,7 @@ class FilterByBrandBottomDialogFragment: BottomSheetDialogFragment() , View.OnCl
     }
 
     interface ItemClickListener {
-        fun onItemClick(brand: String)
+        fun onItemClick(brand: String?)
     }
 
 }

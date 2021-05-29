@@ -3,6 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentSearchSucceedBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.FilterParams
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter.SearchSucceedAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.*
 import android.os.Bundle
@@ -10,7 +11,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -30,6 +30,7 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
     private val saleDialogFragment = FilterBySaleBottomDialogFragment.newInstance()
     private val args by navArgs<SearchSucceedFragmentArgs>()
     private lateinit var viewModel: SearchResultViewModel
+    lateinit var filterParams:FilterParams;
 
     private var lastSearches = mutableListOf<String>()
 
@@ -46,11 +47,11 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(SearchResultViewModel::class.java)
         subscribeToLiveData()
-
+        filterParams=FilterParams()
+        binding.searchRv.adapter = searchRecyclerAdapter
         searchByStatus()
 
 
@@ -62,15 +63,27 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
 
             override fun onSearchStateChanged(enabled: Boolean) {
                 val s = if (enabled) binding.filterBar.visibility=View.GONE else binding.filterBar.visibility=View.VISIBLE
+
             }
 
             override fun onSearchConfirmed(text: CharSequence?) {
-                if (text.toString().isNotBlank() && text.toString().isNotEmpty())
+                if (text.toString().isNotBlank() && text.toString().isNotEmpty()){
                     binding.searchBar.setPlaceHolder(text)
-               viewModel.getItemsByQuery(text.toString())
+                    viewModel.getItemsByQuery(text.toString())
+                    filterParams = FilterParams()
+                    changeFilterTextViewState(
+                        categoryTv = true,
+                        priceTv = true,
+                        brandTv = true,
+                        saleTv = true,
+                        selected = false
+                    )
+                }
             }
 
         });
+
+
 
         binding.searchBar.lastSuggestions = lastSearches;
 
@@ -90,95 +103,167 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
 
         priceDialogFragment.mListener = object : FilterByPriceBottomDialogFragment.ItemClickListener{
             override fun onItemClick(min: Int, max: Int) {
-                changeFilterTextViewBackground(binding.filterPriceTV,false)
-               viewModel.filterByPrice(min,max)
+                if (min>0 || max<10000) {
+                    filterParams.min = min
+                    filterParams.max = max
+                    filterParams.price = 1
+                    changeFilterTextViewState(priceTv = true,selected =true)
+                }else
+                    changeFilterTextViewState(priceTv = true,selected =false)
             }
-
         }
 
         categoryDialogFragment.mListener = object :FilterByCategoryBottomDialogFragment.ItemClickListener{
-            override fun onItemClick(category: String) {
-                viewModel.filterByCategory(category)
-                if (FilterByCategoryBottomDialogFragment.position == -1) {
-                    changeFilterTextViewBackground(binding.filterCategoryTV,true)
-                    searchByStatus()
-                }else
-                    changeFilterTextViewBackground(binding.filterCategoryTV,false)
-            }
+            override fun onItemClick(category: String?) {
 
+                if (category != null){
+                    filterParams.category = category
+                    changeFilterTextViewState(categoryTv = true , selected = true)
+                }else {
+                    changeFilterTextViewState(categoryTv = true , selected = false)
+                }
+
+            }
         }
 
         brandsDialogFragment.mListener = object :FilterByBrandBottomDialogFragment.ItemClickListener{
-            override fun onItemClick(brand: String) {
-                viewModel.filterByBrands(brand)
+            override fun onItemClick(brand: String?) {
+
+                if (brand != null){
+                    filterParams.brand = brand
+                    changeFilterTextViewState(brandTv = true ,selected = true)
+                }else {
+                    changeFilterTextViewState(brandTv = true , selected = false)
+                }
             }
+
         }
 
         saleDialogFragment.mListener = object :FilterBySaleBottomDialogFragment.ItemClickListener{
-            override fun onItemClick(isBySale: Boolean) {
-                viewModel.filteredBySale(isBySale)
+            override fun onItemClick(sale: Int) {
+                filterParams.sale = sale
+                if (sale == 1) changeFilterTextViewState(saleTv = true , selected = true)
+                else  changeFilterTextViewState(saleTv = true , selected = false)
             }
         }
 
-        binding.searchRv.adapter = searchRecyclerAdapter
+
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.e("ssssss life cycle", "onStart: " )
+    }
+    override fun onResume() {
+        super.onResume()
+        Log.e("ssssss life cycle", "onResume: " )
+    }
+
+
 
     private fun searchByStatus() {
         when(args.searchStatus){
-            SearchStatus.CATEGORY -> viewModel.getItemsByCategory(args.query)
-            SearchStatus.QUERY -> viewModel.getItemsByQuery(args.query)
+            SearchStatus.CATEGORY ->{
+                viewModel.getItemsByCategory(args.query)
+                filterParams.category = args.query
+            }
+            SearchStatus.QUERY -> {
+                viewModel.getItemsByQuery(args.query)
+                filterParams.title=args.query
+            }
         }
     }
 
     private fun subscribeToLiveData() {
         viewModel.productsLiveData.observe(viewLifecycleOwner, Observer {
             when(it.status){
-                Resource.Status.LOADING->{}
+                Resource.Status.LOADING->{
+                    binding.searchRvShimmer.showShimmerAdapter()
+                    binding.searchRv.visibility = View.GONE
+
+                }
                 Resource.Status.SUCCESS->{
-                    searchRecyclerAdapter.changeData(it.data!!)
+                    if(it.flag==1)
+                        searchRecyclerAdapter.changeData(it.data!!,true)
+                    else
+                        searchRecyclerAdapter.changeData(it.data!!)
+
+                    viewModel.getCategoriesAndCount()
+                    binding.resultCount.text = it.data.size.toString()
+                    binding.searchRv.visibility = View.VISIBLE
+                    binding.searchFailedView.visibility = View.GONE
+                    binding.searchRvShimmer.hideShimmerAdapter()
+                    binding.searchRv.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR->{
+
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    Log.e("erorrrrrrrrrrrrrrrrrr", it.message.toString() )
+                    binding.resultCount.text = "0"
+                    binding.searchRv.visibility = View.GONE
+                    binding.searchFailedView.visibility = View.VISIBLE
+                    binding.searchRvShimmer.hideShimmerAdapter()
+
                 }
             }
         })
 
-        viewModel.filteredLiveData.observe(viewLifecycleOwner, Observer {
-            when(it.status){
-                Resource.Status.LOADING->{}
-                Resource.Status.SUCCESS->{
-                    searchRecyclerAdapter.changeData(it.data!!,true)
-                }
+
+    }
+
+    fun changeFilterTextViewState(categoryTv:Boolean=false, priceTv:Boolean=false, brandTv:Boolean=false, saleTv:Boolean=false, selected:Boolean){
+        if (categoryTv){
+            if (!selected) {
+                binding.filterCategoryTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_shape)
+                FilterByCategoryBottomDialogFragment.position=-1
+                filterParams.category = null
+                changeFilterTextViewState(brandTv = true, selected = false)
+
+
+            }else {
+                binding.filterCategoryTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_selected_shape)
+              }
             }
-        })
 
+        if (brandTv){
+            if (!selected){
+                binding.filterBrandTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_shape)
+                FilterByBrandBottomDialogFragment.position = -1
+                filterParams.brand=null
+            }else{
+                binding.filterBrandTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_selected_shape)
+            }
+        }
+
+        if (priceTv){
+            if (!selected){
+                binding.filterPriceTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_shape)
+                filterParams.price = 0
+                filterParams.min = null
+                filterParams.max = null
+            }else{
+                binding.filterPriceTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_selected_shape)
+            }
+        }
+
+        if (saleTv){
+            if (!selected){
+                binding.filterSaleTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_shape)
+                FilterBySaleBottomDialogFragment.position = -1
+            }else{
+                binding.filterSaleTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_selected_shape)
+            }
+
+        }
+
+        viewModel.filterProducts(filterParams)
     }
 
-    fun changeFilterTextViewBackground(textView:TextView , isActive:Boolean){
-        if (isActive)
-            textView.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_shape)
-        else
-            textView.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_selected_shape)
-
-
-    }
     private fun<T: BottomSheetDialogFragment> showBottomShortByDialog(type:T , tag:String) {
         type.show(
             requireActivity().supportFragmentManager,
             tag
         )
-    }
-
-    enum class SearchStatus {
-        CATEGORY,
-        QUERY
-    }
-
-    enum class ShortBy(val tag:Int){
-        BestMatch(0) ,
-        LowToHigh(1) ,
-        HighToLow(2) ,
-        TopRated(3)
     }
 
     override fun onClick(v: View?) {
@@ -205,5 +290,20 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
         }
     }
 
+    enum class SearchStatus {
+        CATEGORY,
+        QUERY
+    }
+
+    enum class ShortBy(val tag:Int){
+        BestMatch(0) ,
+        LowToHigh(1) ,
+        HighToLow(2) ,
+        TopRated(3)
+    }
+
+
+
 
 }
+

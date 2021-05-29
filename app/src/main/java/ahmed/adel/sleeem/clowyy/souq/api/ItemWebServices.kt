@@ -21,4 +21,16 @@ interface ItemWebServices {
 
     @GET("products/getbytitle")
     suspend fun getItemsByTitle(@Query("title") title:String): Response<ProductResponse>
+
+    @GET("products/filter")
+    suspend fun filterProducts(@Query("min") min:Int?=null,
+                               @Query("max") max:Int?=null,
+                               @Query("category") category:String?=null,
+                               @Query("sale") sale:Int = 0,
+                               @Query("brand") brand:String?=null,
+                               @Query("title") title:String?=null,
+                               @Query("price") price:Int=0
+
+    ): Response<ProductResponse>
+//https://souqitigraduationproj.herokuapp.com/api/products/filter?min=100&max=1000&category=electronics&sale=1&brand=ACER&title=Fjallrave&price=1
 }

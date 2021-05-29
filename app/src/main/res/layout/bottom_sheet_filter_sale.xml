@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="@dimen/_8sdp">
 
     <TextView
+        android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/_8sdp"
+        android:fontFamily="@font/poppins_bold"
         android:text="@string/sale"
-        android:textSize="@dimen/_12ssp"
         android:textColor="@color/neutralDark"
-        android:fontFamily="@font/poppins_bold"/>
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginRight="@dimen/_8sdp"
         android:layout_height="2dp"
-        android:background="@color/overlayGray"/>
+        android:background="@color/overlayGray"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        tools:layout_editor_absoluteX="2dp" />
 
     <TextView
         android:id="@+id/saleItemsTv"
@@ -31,6 +38,7 @@
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/black"
         android:tag="0"
+        app:layout_constraintTop_toBottomOf="@id/view"
         android:fontFamily="@font/poppins_medium"/>
 
     <TextView
@@ -43,7 +51,27 @@
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/black"
         android:tag="1"
+        app:layout_constraintTop_toBottomOf="@id/saleItemsTv"
         android:fontFamily="@font/poppins_medium"/>
 
+    <ImageView
+        android:id="@+id/allProductIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_check_circle_24"
+        app:layout_constraintBottom_toBottomOf="@+id/allProductsTv"
+        app:layout_constraintEnd_toEndOf="@+id/allProductsTv"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/saleItemsTv" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/saleIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_check_circle_24"
+        app:layout_constraintBottom_toBottomOf="@+id/saleItemsTv"
+        app:layout_constraintEnd_toEndOf="@+id/saleItemsTv"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
