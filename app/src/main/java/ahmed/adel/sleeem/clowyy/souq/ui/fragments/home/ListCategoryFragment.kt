@@ -67,40 +67,25 @@ class ListCategoryFragment : Fragment() {
             when(it.status){
                 Resource.Status.LOADING ->{
                     Log.e("sssss","Loading........")
-                   // binding.viewPagerProgress.visibility = View.VISIBLE
+                    binding.itemProgress.showShimmerAdapter()
+                    binding.categoryListRv.visibility = View.GONE
                 }
                 Resource.Status.ERROR ->{
                     Toast.makeText(requireContext(),it.message, Toast.LENGTH_LONG).show()
-                   // binding.viewPagerProgress.visibility = View.GONE
+                    binding.itemProgress.hideShimmerAdapter()
                 }
                 Resource.Status.SUCCESS->{
                     it.data.let {
-                      //  binding.viewPagerProgress.visibility = View.GONE
+                        binding.itemProgress.hideShimmerAdapter()
+                        binding.categoryListRv.visibility = View.VISIBLE
                         categoryListRecyclerAdapter.changeData(it!!)
-                        Log.e("sss", it!!.get(1).url)
-                        Log.e("sss",  "" + it.size)
+
                     }
                 }
             }
         })
     }
 
-
-        var list = mutableListOf<ExplorerItem>(
-        ExplorerItem(R.drawable.ic_shirt, "Shirt"),
-        ExplorerItem(R.drawable.ic_bikini, "Bikini"),
-        ExplorerItem(R.drawable.ic_dress, "Dress"),
-        ExplorerItem(R.drawable.ic_man_bag, "Work Equipment"),
-        ExplorerItem(R.drawable.ic_man_pants, "Man Pants"),
-        ExplorerItem(R.drawable.ic_man_shoes, "Man Shoes"),
-        ExplorerItem(R.drawable.ic_man_underwear, "Man Underwear"),
-        ExplorerItem(R.drawable.ic_woman_tshirt, "Man T-Shirt"),
-        ExplorerItem(R.drawable.ic_woman_bag, "Woman Bag"),
-        ExplorerItem(R.drawable.ic_woman_pants, "Woman Pants"),
-        ExplorerItem(R.drawable.ic_woman_shoes, "High Heels"),
-        ExplorerItem(R.drawable.ic_woman_tshirt, "Woman T-Shirt"),
-        ExplorerItem(R.drawable.ic_skirt, "Skirt")
-        )
 
 
 }

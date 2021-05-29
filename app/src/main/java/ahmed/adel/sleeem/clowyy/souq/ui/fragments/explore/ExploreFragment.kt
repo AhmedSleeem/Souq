@@ -98,12 +98,17 @@ class ExploreFragment : Fragment() {
         viewModel.categoriesLiveData.observe(requireActivity(), Observer {
             when(it.status){
                 Resource.Status.SUCCESS ->{
+                    binding.categoryProgress.hideShimmerAdapter()
+                    binding.categoryRv.visibility = View.VISIBLE
                     categoryAdapter.changeData(it.data!!)
                 }
                 Resource.Status.ERROR ->{
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    binding.categoryProgress.hideShimmerAdapter()
                 }
                 Resource.Status.LOADING->{
+                    binding.categoryProgress.showShimmerAdapter()
+                    binding.categoryRv.visibility = View.GONE
 
                 }
             }

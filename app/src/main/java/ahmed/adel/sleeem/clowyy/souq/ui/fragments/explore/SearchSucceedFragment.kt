@@ -157,6 +157,7 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
             SearchStatus.QUERY -> {
                 viewModel.getItemsByQuery(args.query)
                 filterParams.title=args.query
+                binding.searchBar.setPlaceHolder(args.query)
             }
         }
     }

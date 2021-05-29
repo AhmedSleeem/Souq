@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/_8sdp"
-        android:text="@string/category"
+        android:text="@string/brand"
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/neutralDark"
         android:fontFamily="@font/poppins_bold"/>

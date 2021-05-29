@@ -88,6 +88,23 @@
                 app:layout_constraintTop_toBottomOf="@id/divider2"
                 tools:ignore="RtlCompat" />
 
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/categoryProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        app:shimmer_demo_child_count="12"
+        app:shimmer_demo_grid_child_count="4"
+        app:shimmer_demo_layout="@layout/item_explore_progress"
+        app:shimmer_demo_layout_manager_type="grid"
+        app:shimmer_demo_angle="20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView5"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginLeft="@dimen/_12sdp" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categoryRv"

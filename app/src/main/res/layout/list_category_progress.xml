@@ -15,19 +15,19 @@
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginLeft="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_12sdp"
-        android:src="@color/demo_light_transparent"
+        android:src="@color/shimmerItemColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_product"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="@dimen/_14sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginLeft="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_15sdp"
         android:fontFamily="@font/poppins_bold"
-        android:background="@color/demo_light_transparent"
+        android:background="@color/shimmerItemColor"
         android:textSize="@dimen/_9ssp"
         app:layout_constraintStart_toEndOf="@+id/img_product"
         app:layout_constraintTop_toTopOf="parent"

@@ -52,23 +52,27 @@
 
 
         </LinearLayout>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
+            >
             <LinearLayout
                 android:id="@+id/filterBar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="@dimen/_4sdp"
                 android:weightSum="4.5"
-                android:layout_gravity="center">
+               >
 
                 <TextView
                     android:id="@+id/filterCategoryTV"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
                     android:layout_marginStart="@dimen/_1sdp"
                     android:layout_marginLeft="@dimen/_1sdp"
-                    android:layout_weight="1.5"
                     android:background="@drawable/filter_btn_shape"
                     android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
                     android:fontFamily="@font/poppins_medium"
@@ -80,8 +84,10 @@
 
                 <TextView
                     android:id="@+id/filterPriceTV"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+
                     android:layout_marginStart="@dimen/_7sdp"
                     android:layout_marginLeft="@dimen/_7sdp"
                     android:layout_weight="1"
@@ -98,8 +104,10 @@
 
                 <TextView
                     android:id="@+id/filterBrandTV"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+
                     android:layout_marginStart="@dimen/_7sdp"
                     android:layout_marginLeft="@dimen/_7sdp"
                     android:layout_marginEnd="@dimen/_7sdp"
@@ -117,9 +125,10 @@
 
                 <TextView
                     android:id="@+id/filterSaleTV"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:padding="@dimen/_5sdp"
                     android:background="@drawable/filter_btn_shape"
                     android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
                     android:fontFamily="@font/poppins_medium"
@@ -131,7 +140,7 @@
                     android:text="@string/sale"
                     android:textColor="@color/primaryBlue" />
             </LinearLayout>
-
+</HorizontalScrollView>
 
     </LinearLayout>
 

@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/_6sdp"
     android:layout_marginTop="@dimen/_8sdp"
+    android:background="@drawable/layout_style"
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
@@ -22,8 +23,9 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:background="@color/gray"
+        android:layout_height="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@color/overlayGray"
         app:layout_constraintTop_toBottomOf="@id/categoryTv"/>
 
     <ImageView

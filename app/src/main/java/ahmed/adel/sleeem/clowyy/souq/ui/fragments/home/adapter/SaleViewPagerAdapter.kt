@@ -51,7 +51,8 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        if(data.size > 5) return 5
+        else return data.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(data[position])

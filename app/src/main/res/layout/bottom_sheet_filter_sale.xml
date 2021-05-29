@@ -39,7 +39,16 @@
         android:textColor="@color/black"
         android:tag="0"
         app:layout_constraintTop_toBottomOf="@id/view"
+        android:background="@drawable/layout_style"
         android:fontFamily="@font/poppins_medium"/>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@color/overlayGray"
+        app:layout_constraintTop_toBottomOf="@id/saleItemsTv"/>
 
     <TextView
         android:id="@+id/allProductsTv"
@@ -50,6 +59,7 @@
         android:text="@string/all_products"
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/black"
+        android:background="@drawable/layout_style"
         android:tag="1"
         app:layout_constraintTop_toBottomOf="@id/saleItemsTv"
         android:fontFamily="@font/poppins_medium"/>

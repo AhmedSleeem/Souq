@@ -36,7 +36,7 @@
         android:layout_marginTop="@dimen/_70sdp"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginLeft="@dimen/_12sdp"
-        app:shimmer_demo_child_count="4"
+        app:shimmer_demo_child_count="8"
         app:shimmer_demo_grid_child_count="1"
         app:shimmer_demo_layout="@layout/list_category_progress"
         app:shimmer_demo_layout_manager_type="linear_vertical"
