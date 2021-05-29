@@ -6,6 +6,7 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentSearchSucceedBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter.SearchSucceedAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ExploreViewModel
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragmentArgs
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -38,15 +39,15 @@ class SearchSucceedFragment : Fragment() {
         binding = FragmentSearchSucceedBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        arguments?.let {
-            val args = SearchSucceedFragmentArgs.fromBundle(it)
-            categoryName = args.categoryName
-        }
+//        arguments?.let {
+//            val args = SearchSucceedFragmentArgs.fromBundle(it)
+//            categoryName = args.categoryName
+//        }
 
         searchRecyclerAdapter = SearchSucceedAdapter(requireContext())
         binding.searchRv.adapter = searchRecyclerAdapter
 
-      
+
         return view
     }
 

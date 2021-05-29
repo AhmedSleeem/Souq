@@ -102,8 +102,8 @@ class HomeFragment : Fragment() , View.OnClickListener {
         }
 
         binding.searchEd.setOnClickListener{
-            val action = HomeFragmentDirections.actionHomeFragmentToSearchSucceedFragment("")
-            it.findNavController().navigate(action)
+//            val action = HomeFragmentDirections.actionHomeFragmentToSearchSucceedFragment("")
+//            it.findNavController().navigate(action)
         }
 
         //recommended adapter item listener
