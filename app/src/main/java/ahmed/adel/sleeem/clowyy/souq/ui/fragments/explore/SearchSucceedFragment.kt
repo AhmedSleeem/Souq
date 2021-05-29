@@ -80,10 +80,7 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
                     )
                 }
             }
-
         });
-
-
 
         binding.searchBar.lastSuggestions = lastSearches;
 
@@ -149,16 +146,6 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
 
 
     }
-
-    override fun onStart() {
-        super.onStart()
-        Log.e("ssssss life cycle", "onStart: " )
-    }
-    override fun onResume() {
-        super.onResume()
-        Log.e("ssssss life cycle", "onResume: " )
-    }
-
 
 
     private fun searchByStatus() {

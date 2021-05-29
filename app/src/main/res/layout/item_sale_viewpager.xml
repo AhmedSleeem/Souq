@@ -79,6 +79,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/sale_title_vp"
         android:layout_width="@dimen/_220sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"

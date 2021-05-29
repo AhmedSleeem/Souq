@@ -235,9 +235,6 @@
             android:id="@+id/action_exploreFragment_to_searchSucceedFragment"
             app:destination="@id/searchSucceedFragment" />
         <action
-            android:id="@+id/action_exploreFragment_to_searchFailedFragment"
-            app:destination="@id/searchFailedFragment" />
-        <action
             android:id="@+id/action_exploreFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment"
             app:enterAnim="@anim/top_animation" />
@@ -300,21 +297,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/searchFailedFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.SearchFailedFragment"
-        android:label="fragment_search_failed"
-        tools:layout="@layout/fragment_search_failed">
-        <action
-            android:id="@+id/action_searchFailedFragment_to_listCategoryFragment"
-            app:destination="@id/listCategoryFragment" />
-        <action
-            android:id="@+id/action_searchFailedFragment_to_filterFragment"
-            app:destination="@id/filterFragment" />
-        <action
-            android:id="@+id/action_searchFailedFragment_to_shortByFragment"
-            app:destination="@id/shortByFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/searchSucceedFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment"
         android:label="fragment_search_succeed"
@@ -322,9 +304,7 @@
         <action
             android:id="@+id/action_searchSucceedFragment_to_listCategoryFragment"
             app:destination="@id/listCategoryFragment" />
-        <action
-            android:id="@+id/action_searchSucceedFragment_to_filterFragment"
-            app:destination="@id/filterFragment" />
+
         <action
             android:id="@+id/action_searchSucceedFragment_to_shortByFragment"
             app:destination="@id/shortByFragment" />
@@ -344,12 +324,12 @@
         android:id="@+id/listCategoryFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ListCategoryFragment"
         android:label="fragment_list_category"
-        tools:layout="@layout/fragment_list_category" />
-    <fragment
-        android:id="@+id/filterFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.FilterFragment"
-        android:label="fragment_filter"
-        tools:layout="@layout/fragment_filter" />
+        tools:layout="@layout/fragment_list_category" >
+        <action
+            android:id="@+id/action_listCategoryFragment_to_searchSucceedFragment"
+            app:destination="@id/searchSucceedFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/shortByFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ShortByFragment"

@@ -90,16 +90,35 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-                    <ProgressBar
+
+                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/viewPagerProgress"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="visible"
+                        android:layout_height="match_parent"
+                        app:shimmer_demo_child_count="10"
+                        android:visibility="gone"
+                        app:shimmer_demo_grid_child_count="1"
+                        app:shimmer_demo_layout="@layout/viewpager_progress_item"
+                        app:shimmer_demo_layout_manager_type="grid"
+                        app:shimmer_demo_angle="20"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        />
+<!--                    <ProgressBar-->
+<!--                        android:id="@+id/viewPagerProgress"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:visibility="visible"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             </androidx.cardview.widget.CardView>
             <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
@@ -161,13 +180,41 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 tools:ignore="RtlCompat" />
 
+            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/categoryProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                app:shimmer_demo_child_count="4"
+                app:shimmer_demo_grid_child_count="4"
+                app:shimmer_demo_layout="@layout/item_category_rv"
+                app:shimmer_demo_layout_manager_type="grid"
+                app:shimmer_demo_angle="20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/moreCategory_tv"
+                app:layout_constraintBottom_toTopOf="@id/saleSeeMore_tv"
+                />
+
+<!--            <ProgressBar-->
+<!--                android:id="@+id/categoryProgress"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/moreCategory_tv"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/sale_txt"/>-->
+
 
             <TextView
                 android:id="@+id/sale_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Flash Sale"
+                android:text="@string/Sale_items"
                 android:textSize="@dimen/_12ssp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -204,15 +251,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
-            <ProgressBar
+
+            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/saleProgress"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@id/sale_rv"
-                app:layout_constraintTop_toTopOf="@id/sale_rv"
-                app:layout_constraintStart_toStartOf="@id/sale_rv"
-                app:layout_constraintEnd_toEndOf="@id/sale_rv" />
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                app:shimmer_demo_child_count="3"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/grid_layout"
+                app:shimmer_demo_layout_manager_type="grid"
+                app:shimmer_demo_angle="20"
+                app:layout_constraintTop_toBottomOf="@id/saleSeeMore_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/image_card"
+                />
+
+<!--            <ProgressBar-->
+<!--                android:id="@+id/saleProgress"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/sale_rv"-->
+<!--                app:layout_constraintTop_toTopOf="@id/sale_rv"-->
+<!--                app:layout_constraintStart_toStartOf="@id/sale_rv"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/sale_rv" />-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/image_card"
@@ -264,14 +330,31 @@
 
             </androidx.cardview.widget.CardView>
 
-            <ProgressBar
+<!--            <ProgressBar-->
+<!--                android:id="@+id/recommendedProgress"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toTopOf="@id/recommended"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/recommended"-->
+<!--                app:layout_constraintStart_toStartOf="@id/recommended"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/recommended"/>-->
+
+            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/recommendedProgress"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/recommended"
-                app:layout_constraintBottom_toBottomOf="@id/recommended"
-                app:layout_constraintStart_toStartOf="@id/recommended"
-                app:layout_constraintEnd_toEndOf="@id/recommended"/>
+                app:shimmer_demo_child_count="6"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/grid_layout"
+                app:shimmer_demo_layout_manager_type="grid"
+                android:visibility="gone"
+                app:shimmer_demo_angle="20"
+                app:layout_constraintTop_toBottomOf="@id/image_card"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recommended"
