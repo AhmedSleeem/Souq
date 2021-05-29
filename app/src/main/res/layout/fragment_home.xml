@@ -6,48 +6,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.home.HomeFragment">
 
-    <LinearLayout
-        android:id="@+id/topView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/topView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_vertical"
-        android:weightSum="9">
+        android:padding="@dimen/_8sdp">
 
-        <EditText
-            android:id="@+id/search_ed"
-            android:layout_width="0dp"
-            android:layout_weight="7"
-            android:drawableStart="@drawable/ic_search_24"
-            android:padding="@dimen/_9sdp"
-            android:drawablePadding="@dimen/_8sdp"
-            android:hint="Search Product"
-            android:textSize="@dimen/_12ssp"
-            android:fontFamily="@font/poppins_light"
-            android:background="@drawable/ed_search_background"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_height="wrap_content"
-            tools:ignore="RtlCompat" />
         <ImageButton
             android:id="@+id/favorite_iv"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:padding="@dimen/_4sdp"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="@dimen/_4sdp"
             android:layout_height="wrap_content"
             android:background="@drawable/layout_style"
-            android:src="@drawable/ic_baseline_favorite_border_24"/>
+            app:layout_constraintEnd_toStartOf="@id/notification_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+            android:layout_marginRight="@dimen/_4sdp" />
 
         <ImageButton
-            android:background="@drawable/layout_style"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:padding="@dimen/_4sdp"
             android:id="@+id/notification_iv"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_notifications_none_24"/>
+            android:background="@drawable/layout_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_notifications_none_24" />
 
-    </LinearLayout>
+        <com.mancj.materialsearchbar.MaterialSearchBar
+            android:id="@+id/searchBar"
+            style="@style/MyCustomTheme"
+            android:layout_width="0dp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@id/favorite_iv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mt_maxSuggestionsCount="10"
+            app:mt_navIconEnabled="false"
+            app:mt_placeholder="@string/action_search"
+            android:layout_marginRight="@dimen/_4sdp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
@@ -83,6 +89,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_170sdp">
+
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/sale_viewPager"
                         android:layout_width="match_parent"
@@ -91,33 +98,29 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/viewPagerProgress"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        app:shimmer_demo_child_count="10"
-                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shimmer_demo_angle="20"
+                        app:shimmer_demo_child_count="1"
                         app:shimmer_demo_grid_child_count="1"
                         app:shimmer_demo_layout="@layout/viewpager_progress_item"
-                        app:shimmer_demo_layout_manager_type="grid"
-                        app:shimmer_demo_angle="20"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        />
-<!--                    <ProgressBar-->
-<!--                        android:id="@+id/viewPagerProgress"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:visibility="visible"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent" />-->
+                        app:shimmer_demo_layout_manager_type="linear_horizontal" />
+                    <!--                    <ProgressBar-->
+                    <!--                        android:id="@+id/viewPagerProgress"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:visibility="visible"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+                    <!--                        app:layout_constraintTop_toTopOf="parent"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
             </androidx.cardview.widget.CardView>
@@ -138,30 +141,31 @@
                 app:selectedDotColor="@color/primaryBlue" />
 
 
-
             <TextView
+                android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/category"
                 android:textSize="@dimen/_12ssp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginStart="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/moreCategory_tv"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
+                app:layout_constraintTop_toTopOf="@id/moreCategory_tv"
                 tools:ignore="RtlCompat" />
 
             <TextView
                 android:id="@+id/moreCategory_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/layout_style"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/more_category"
                 android:textColor="@color/primaryBlue"
-                android:background="@drawable/layout_style"
                 android:textSize="@dimen/_12ssp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_12sdp"
+                app:layout_constraintBottom_toTopOf="@id/category_rv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
                 tools:ignore="RtlCompat" />
@@ -169,14 +173,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/category_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_height="@dimen/_62sdp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/moreCategory_tv"
                 tools:listitem="@layout/item_category_rv"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 tools:ignore="RtlCompat" />
 
@@ -184,19 +188,18 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/categoryProgress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_12sdp"
                 app:shimmer_demo_child_count="4"
                 app:shimmer_demo_grid_child_count="4"
                 app:shimmer_demo_layout="@layout/item_category_rv"
-                app:shimmer_demo_layout_manager_type="grid"
+                app:shimmer_demo_layout_manager_type="linear_horizontal"
                 app:shimmer_demo_angle="20"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/moreCategory_tv"
-                app:layout_constraintBottom_toTopOf="@id/saleSeeMore_tv"
-                />
+                app:layout_constraintTop_toTopOf="@id/category_rv"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_12sdp" />
 
 <!--            <ProgressBar-->
 <!--                android:id="@+id/categoryProgress"-->
@@ -213,35 +216,37 @@
                 android:id="@+id/sale_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/Sale_items"
                 android:textSize="@dimen/_12ssp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginStart="@dimen/_12sdp"
+                app:layout_constraintBottom_toTopOf="@id/sale_rv"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/category_rv"
+                app:layout_constraintTop_toBottomOf="@+id/textView21"
+                app:layout_constraintTop_toTopOf="@+id/saleSeeMore_tv"
                 tools:ignore="RtlCompat" />
 
             <TextView
                 android:id="@+id/saleSeeMore_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@drawable/layout_style"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/see_more"
                 android:textColor="@color/primaryBlue"
-                android:background="@drawable/layout_style"
                 android:textSize="@dimen/_12ssp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_85sdp"
+                app:layout_constraintBottom_toTopOf="@id/sale_rv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/category_rv"
+                app:layout_constraintTop_toBottomOf="@+id/moreCategory_tv"
                 tools:ignore="RtlCompat" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/sale_rv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/_50sdp"
+                android:minHeight="@dimen/_390sdp"
                 tools:listitem="@layout/item_sale_rv"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/_12sdp"
@@ -249,26 +254,21 @@
                 app:spanCount="2"
                 app:layout_constraintTop_toBottomOf="@id/saleSeeMore_tv"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/saleProgress"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
-                app:shimmer_demo_child_count="3"
-                app:shimmer_demo_grid_child_count="2"
-                app:shimmer_demo_layout="@layout/grid_layout"
-                app:shimmer_demo_layout_manager_type="grid"
-                app:shimmer_demo_angle="20"
-                app:layout_constraintTop_toBottomOf="@id/saleSeeMore_tv"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/image_card"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/sale_rv"
+                app:shimmer_demo_angle="20"
+                app:shimmer_demo_child_count="4"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/item_product_shimmer"
+                app:shimmer_demo_layout_manager_type="grid" />
 
 <!--            <ProgressBar-->
 <!--                android:id="@+id/saleProgress"-->
@@ -284,8 +284,10 @@
                 android:id="@+id/image_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 app:cardCornerRadius="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/sale_rv">
@@ -344,11 +346,10 @@
                 android:id="@+id/recommendedProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:shimmer_demo_child_count="6"
+                app:shimmer_demo_child_count="4"
                 app:shimmer_demo_grid_child_count="2"
-                app:shimmer_demo_layout="@layout/grid_layout"
+                app:shimmer_demo_layout="@layout/item_product_shimmer"
                 app:shimmer_demo_layout_manager_type="grid"
-                android:visibility="gone"
                 app:shimmer_demo_angle="20"
                 app:layout_constraintTop_toBottomOf="@id/image_card"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -357,7 +358,7 @@
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recommended"
+                android:id="@+id/recommendedRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_sale_rv"

@@ -10,7 +10,6 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_170sdp"
-
         android:src="@drawable/i3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +42,7 @@
             android:layout_margin="@dimen/_4sdp"
             android:text=":"
             android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/white"
+            android:textColor="@color/shimmerItemColor"
             android:textSize="@dimen/_14ssp"/>
 
         <TextView
@@ -63,7 +62,7 @@
             android:layout_margin="@dimen/_4sdp"
             android:text=":"
             android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/white"
+            android:textColor="@color/shimmerItemColor"
             android:textSize="@dimen/_14ssp"/>
 
         <TextView
@@ -80,15 +79,17 @@
 
     <TextView
         android:id="@+id/sale_title_vp"
-        android:layout_width="@dimen/_220sdp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:layout_marginLeft="@dimen/_16sdp"
+        android:background="@drawable/tv_time_counter_background"
         android:fontFamily="@font/poppins_semibold"
-        android:text="@string/super_flash_sale_n50_off"
         android:maxLines="2"
+        android:gravity="center"
+        android:paddingLeft="@dimen/_4sdp"
+        android:text="@string/super_flash_sale_n50_off"
         android:textColor="@color/white"
         android:textSize="@dimen/_24ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
