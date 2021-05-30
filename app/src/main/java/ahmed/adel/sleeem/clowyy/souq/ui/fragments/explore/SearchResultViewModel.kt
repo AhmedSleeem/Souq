@@ -4,6 +4,7 @@ import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.FilterParams
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.ShortByBottomDialogFragment
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -27,6 +28,7 @@ class SearchResultViewModel:ViewModel() {
             this@SearchResultViewModel._productsLiveData.value = Resource.loading(null)
             val response = RetrofitHandler.getItemWebService().getItemsByTitle(query)
             if(response.isSuccessful){
+                ShortByBottomDialogFragment.position = -1
                 if (response.body() != null)
                     this@SearchResultViewModel._productsLiveData.value = Resource.success(response.body()!!)
             }else
@@ -39,6 +41,7 @@ class SearchResultViewModel:ViewModel() {
         this@SearchResultViewModel._productsLiveData.value = Resource.loading(null)
         val response = RetrofitHandler.getItemWebService().getItemsByCategory(query)
         if(response.isSuccessful){
+            ShortByBottomDialogFragment.position = -1
             if (response.body() != null)
                 this@SearchResultViewModel._productsLiveData.value = Resource.success(response.body()!!)
         }else
@@ -126,6 +129,7 @@ class SearchResultViewModel:ViewModel() {
             
 
             if (response.isSuccessful){
+                ShortByBottomDialogFragment.position = -1
                 if (response.body() != null)
                     _productsLiveData.value = Resource.success(response.body()!!,1)
             }else{

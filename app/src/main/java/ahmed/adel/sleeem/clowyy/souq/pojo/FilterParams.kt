@@ -7,5 +7,5 @@ data class FilterParams (
      var category:String?=null,
      var sale:Int=0,
      var brand:String?=null,
-     var title:String?=null
+     var title:String?=null ,
 )

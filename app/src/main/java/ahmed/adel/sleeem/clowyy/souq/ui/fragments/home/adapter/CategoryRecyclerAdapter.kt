@@ -54,7 +54,10 @@ class CategoryRecyclerAdapter(val context :Context): RecyclerView.Adapter<Catego
         }
 
         override fun getItemCount(): Int {
-            return items.size
+            if(items.size > 5){
+                return 5
+            }else
+                return items.size
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) =

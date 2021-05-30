@@ -67,7 +67,10 @@ class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<Rec
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        if (items.size > 20){
+            return 20
+        }else
+            return items.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items.get(position))

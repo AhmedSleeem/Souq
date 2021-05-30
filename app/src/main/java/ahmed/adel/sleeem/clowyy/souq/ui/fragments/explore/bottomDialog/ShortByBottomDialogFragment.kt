@@ -1,5 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog
 
+import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.BottomSheetShortByBinding
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,8 +14,10 @@ class ShortByBottomDialogFragment: BottomSheetDialogFragment() , View.OnClickLis
 
     private lateinit var bindig:BottomSheetShortByBinding
 
+
     companion object{
         val TAG = "ShortByBottomDialog"
+        var position = -1
         fun newInstance(): ShortByBottomDialogFragment {
             return ShortByBottomDialogFragment()
         }
@@ -38,24 +41,16 @@ class ShortByBottomDialogFragment: BottomSheetDialogFragment() , View.OnClickLis
         bindig.priceHighToLowTv.setOnClickListener(this)
         bindig.priceLowToHighTv.setOnClickListener(this)
         bindig.topRated.setOnClickListener(this)
+
+        changeRawStyle()
     }
 
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        if (context is ItemClickListener)
-//            mListener = context
-//        else
-//            throw RuntimeException(context.toString()
-//                    + " must implement ItemClickListener");
-//    }
 
-//    override fun onDetach() {
-//        super.onDetach()
-//        mListener = null
-//    }
 
     override fun onClick(v: View?) {
         val tvSelected = v as TextView
+        position = tvSelected.tag.toString().toInt()
+        changeRawStyle()
         mListener!!.onItemClick(tvSelected.tag.toString().toInt())
         dismiss()
     }
@@ -64,4 +59,36 @@ class ShortByBottomDialogFragment: BottomSheetDialogFragment() , View.OnClickLis
         fun onItemClick(item: Int)
     }
 
+   private fun changeRawStyle(){
+        when(position){
+            0 -> {
+                bindig.bestMatchTv.setBackgroundColor(resources.getColor(R.color.babyBlue))
+                bindig.priceHighToLowTv.setBackgroundColor(resources.getColor(R.color.white))
+                bindig.priceLowToHighTv.setBackgroundColor(resources.getColor(R.color.white))
+                bindig.topRated.setBackgroundColor(resources.getColor(R.color.white))
+
+            }
+            1 -> {
+                bindig.bestMatchTv.setBackgroundColor(resources.getColor(R.color.white))
+                bindig.priceHighToLowTv.setBackgroundColor(resources.getColor(R.color.white))
+                bindig.priceLowToHighTv.setBackgroundColor(resources.getColor(R.color.babyBlue))
+                bindig.topRated.setBackgroundColor(resources.getColor(R.color.white))
+
+            }
+            2 -> {
+                bindig.bestMatchTv.setBackgroundColor(resources.getColor(R.color.white))
+                bindig.priceHighToLowTv.setBackgroundColor(resources.getColor(R.color.babyBlue))
+                bindig.priceLowToHighTv.setBackgroundColor(resources.getColor(R.color.white))
+                bindig.topRated.setBackgroundColor(resources.getColor(R.color.white))
+
+            }
+            3 -> {
+                bindig.bestMatchTv.setBackgroundColor(resources.getColor(R.color.white))
+                bindig.priceHighToLowTv.setBackgroundColor(resources.getColor(R.color.white))
+                bindig.priceLowToHighTv.setBackgroundColor(resources.getColor(R.color.white))
+                bindig.topRated.setBackgroundColor(resources.getColor(R.color.babyBlue))
+
+            }
+        }
+    }
 }
