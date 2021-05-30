@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/_8sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_8sdp"
+        android:text="@string/short_by"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/neutralDark"
+        android:fontFamily="@font/poppins_bold"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_8sdp"
+        android:layout_height="2dp"
+        android:background="@color/overlayGray"/>
+
+    <TextView
+        android:id="@+id/bestMatchTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:text="@string/best_match"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:tag="0"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <TextView
+        android:id="@+id/priceLowToHighTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:text="@string/price_low_to_high"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:tag="1"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <TextView
+        android:id="@+id/priceHighToLowTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:text="@string/price_high_to_low"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:tag="2"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <TextView
+        android:id="@+id/topRated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:text="@string/top_rated"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:tag="3"
+        android:fontFamily="@font/poppins_medium"/>
+
+
+</LinearLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fav_cardView"
+    android:layout_width="@dimen/_126sdp"
+    android:layout_height="@dimen/_175sdp"
+    android:layout_marginStart="@dimen/_1sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_1sdp"
+    app:cardCornerRadius="@dimen/_4sdp"
+    app:cardElevation="@dimen/_4sdp"
+    app:cardBackgroundColor="@color/shimmerBgColor"
+    app:cardPreventCornerOverlap="true"
+    tools:ignore="RtlCompat">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/layout_style"
+        >
+
+        <ImageView
+            android:id="@+id/img_product_sale_iv"
+            android:layout_width="@dimen/_102sdp"
+            android:layout_height="@dimen/_88sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_102sdp"
+            android:background="@color/shimmerItemColor"
+            app:layout_constraintCircleRadius="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/product_name_sale_tc"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="@dimen/_102sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:gravity="top|start"
+            android:lineHeight="@dimen/_14sdp"
+            android:maxLines="2"
+            android:textSize="@dimen/_9ssp"
+            android:textStyle="bold"
+            android:background="#8FB3B3B3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_product_sale_iv"
+            />
+
+        <TextView
+            android:id="@+id/cost_sale_tv"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:background="#8FB3B3B3"
+            app:layout_constraintEnd_toEndOf="@+id/product_name_sale_tc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_name_sale_tc" />
+
+        <TextView
+            android:id="@+id/old_cost_sale_tv"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_light"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_8ssp"
+            android:background="#8FB3B3B3"
+            android:foreground="@drawable/strikethrough_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/cost_sale_tv"
+            app:layout_constraintTop_toBottomOf="@+id/cost_sale_tv"/>
+
+        <TextView
+            android:layout_width="@dimen/_39sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:background="#8FB3B3B3"
+            app:layout_constraintBottom_toBottomOf="@+id/old_cost_sale_tv"
+            app:layout_constraintEnd_toEndOf="@+id/cost_sale_tv"
+            app:layout_constraintTop_toTopOf="@+id/old_cost_sale_tv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

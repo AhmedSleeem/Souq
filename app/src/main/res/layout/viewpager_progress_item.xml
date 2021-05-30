@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+        <!-- image viwer to view the images -->
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_170sdp"
+            android:background="@color/shimmerBgColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view8"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@color/shimmerItemColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view9"
+            android:layout_width="@dimen/_160sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginLeft="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/shimmerItemColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/view9">
+
+                <View
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@color/shimmerItemColor" />
+
+                <View
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@color/shimmerItemColor" />
+
+                <View
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@color/shimmerItemColor" />
+
+        </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
