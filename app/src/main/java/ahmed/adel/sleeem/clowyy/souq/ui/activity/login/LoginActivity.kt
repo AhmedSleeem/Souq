@@ -108,7 +108,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         callbackManager = CallbackManager.Factory.create()
 
         buttonFacebookLogin = LoginButton(this)
-        buttonFacebookLogin.setReadPermissions("email", "public_profile")
+        buttonFacebookLogin.setReadPermissions("email")
 
 //        LoginManager.getInstance()
 //            .logInWithReadPermissions(this, Arrays.asList("email", "public_profile"))
@@ -172,11 +172,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onStart()
 
         val currentUser = auth.currentUser
-//        if (currentUser != null)
-//        {
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
-//        }
+        if (currentUser != null)
+        {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
     }
 
@@ -234,6 +234,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Log.i(TAG, "displayName: ${auth.currentUser?.displayName.toString()}")
                     Log.i(TAG, "email: ${auth.currentUser?.email.toString()}")
                     Log.i(TAG, "uid: ${auth.currentUser?.uid.toString()}")
+                    Log.i(TAG, "photoUrl: ${auth.currentUser?.photoUrl.toString()}")
 
 //                    startActivity(Intent(this, MainActivity::class.java))
 

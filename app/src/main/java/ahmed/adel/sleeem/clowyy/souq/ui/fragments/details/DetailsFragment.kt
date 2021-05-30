@@ -24,30 +24,6 @@ import androidx.navigation.fragment.navArgs
 
 class DetailsFragment : Fragment() {
 
-    val sizeArr = arrayOf(
-        "6", "6.5", "7", "7.5", "8", "8.5", "9"
-    )
-
-
-    val images = intArrayOf(
-        R.drawable.i1,
-        R.drawable.i2,
-        R.drawable.i3,
-        R.drawable.i1,
-        R.drawable.i2,
-        R.drawable.i3
-    )
-
-    val colors = intArrayOf(
-        R.color.black,
-        R.color.red,
-        R.color.overlayGray,
-        R.color.primaryBlue,
-        R.color.purple_200,
-        R.color.design_default_color_primary_variant,
-        R.color.purple_500,
-    )
-
     private var saleData = arrayListOf<ProductResponse.Item>()
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var selectSizeAdapter: SizeRecyclerAdapter
@@ -74,8 +50,8 @@ class DetailsFragment : Fragment() {
         item = args.itemData
         binding.appBar.title = item.title
         binding.productNameTv.text = item.title
-        binding.ratingBar.rating = (item.rating/2.0f)
-        binding.price.text = item.price.toString()+" Egp"
+        binding.ratingBar.rating = (item.rating / 2.0f)
+        binding.price.text = item.price.toString() + " Egp"
         binding.descriptionTv.text = item.description
         binding.companyNameTv.text = item.companyName
         binding.brandTv.text = item.brand
@@ -86,6 +62,25 @@ class DetailsFragment : Fragment() {
         viewPagerAdapter = ViewPagerAdapter(requireContext())
         binding.saleViewPager1.adapter = viewPagerAdapter
         binding.dotsIndicator1.setViewPager2(binding.saleViewPager1)
+
+
+        if (item.size == null) {
+            binding.sizeRv.visibility = View.GONE
+            binding.selectSizeTxt.visibility = View.GONE
+        } else {
+            selectSizeAdapter = SizeRecyclerAdapter(item.size)
+            binding.sizeRv.adapter = selectSizeAdapter
+            binding.sizeRv.visibility = View.VISIBLE
+        }
+
+        if (item.color == null) {
+            binding.colorRv.visibility = View.GONE
+            binding.selectColorTxt.visibility = View.GONE
+        } else {
+            binding.colorRv.visibility = View.VISIBLE
+            colorAdapter = ColorRecylerAdapter(item.color, requireContext())
+            binding.colorRv.adapter = colorAdapter
+        }
 
         return view
     }
@@ -119,16 +114,9 @@ class DetailsFragment : Fragment() {
 
         binding.morweReviews.setOnClickListener {
             Navigation.findNavController(it)
-                .navigate(R.id.action_detailsFragment_to_reviewFragment);
+                .navigate(R.id.action_detailsFragment_to_reviewFragment)
         }
 
-
-
-        selectSizeAdapter = SizeRecyclerAdapter(sizeArr)
-        binding.sizeRv.adapter = selectSizeAdapter
-
-        colorAdapter = ColorRecylerAdapter(colors)
-        binding.colorRv.adapter = colorAdapter
 
     }
 
@@ -136,16 +124,13 @@ class DetailsFragment : Fragment() {
         viewModel.itemsLiveData.observe(requireActivity(), Observer {
             when (it.status) {
                 Resource.Status.LOADING -> {
-                    Log.e("sssss", "Loading........")
-                    binding.viewPagerProgress.visibility = View.VISIBLE
+                    Log.e("ss", "Loading........")
                 }
                 Resource.Status.ERROR -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    binding.viewPagerProgress.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS -> {
                     it.data.let {
-                        binding.viewPagerProgress.visibility = View.GONE
                         viewPagerAdapter.changeData(it!!)
                         Log.e("sssss", it!!.get(0).title)
                     }

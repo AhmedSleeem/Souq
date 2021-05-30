@@ -26,6 +26,7 @@ class ProductResponse : ArrayList<ProductResponse.Item>(){
         data class Sale(
             val amount: Int,
             val duration: String,
+            val image: List<String>?,
             val type: String
         )
     }

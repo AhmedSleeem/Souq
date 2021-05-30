@@ -1,6 +1,5 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter
 
-
 import ahmed.adel.sleeem.clowyy.souq.databinding.ViewpagerItemBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleViewPagerAdapter

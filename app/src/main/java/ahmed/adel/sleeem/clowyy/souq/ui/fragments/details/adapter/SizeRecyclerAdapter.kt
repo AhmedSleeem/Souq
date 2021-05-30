@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class SizeRecyclerAdapter (private var sizeArr:Array<String>) : RecyclerView.Adapter<SizeRecyclerAdapter.ViewHolder>() {
+class SizeRecyclerAdapter (private var sizeArr:List<String>) : RecyclerView.Adapter<SizeRecyclerAdapter.ViewHolder>() {
 
     var row_index : Int? = null
 
