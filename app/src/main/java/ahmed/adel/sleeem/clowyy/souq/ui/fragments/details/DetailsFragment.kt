@@ -24,6 +24,7 @@ import androidx.navigation.fragment.navArgs
 
 class DetailsFragment : Fragment() {
 
+    private lateinit var listImg: MutableList<String>
     private var saleData = arrayListOf<ProductResponse.Item>()
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var selectSizeAdapter: SizeRecyclerAdapter
@@ -50,7 +51,7 @@ class DetailsFragment : Fragment() {
         item = args.itemData
         binding.appBar.title = item.title
         binding.productNameTv.text = item.title
-        binding.ratingBar.rating = (item.rating / 2.0f)
+        binding.ratingBar.rating = (item.rating/2.0f)
         binding.price.text = item.price.toString() + " Egp"
         binding.descriptionTv.text = item.description
         binding.companyNameTv.text = item.companyName
@@ -62,6 +63,16 @@ class DetailsFragment : Fragment() {
         viewPagerAdapter = ViewPagerAdapter(requireContext())
         binding.saleViewPager1.adapter = viewPagerAdapter
         binding.dotsIndicator1.setViewPager2(binding.saleViewPager1)
+        listImg = mutableListOf(item.image)
+        if (item.sale != null) {
+            if (item.sale!!.image != null) {
+                viewPagerAdapter.changeData(item.sale!!.image!!)
+            } else {
+                viewPagerAdapter.changeData(listImg)
+            }
+        } else {
+            viewPagerAdapter.changeData(listImg)
+        }
 
 
         if (item.size == null) {
@@ -93,9 +104,10 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(DetailsViewModel::class.java);
-        viewModel.getItemsByCategory("women's clothing")
+        viewModel.getItemsByCategory(item.category.name)
 
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
@@ -121,22 +133,6 @@ class DetailsFragment : Fragment() {
     }
 
     private fun subscribeToLiveData() {
-        viewModel.itemsLiveData.observe(requireActivity(), Observer {
-            when (it.status) {
-                Resource.Status.LOADING -> {
-                    Log.e("ss", "Loading........")
-                }
-                Resource.Status.ERROR -> {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                }
-                Resource.Status.SUCCESS -> {
-                    it.data.let {
-                        viewPagerAdapter.changeData(it!!)
-                        Log.e("sssss", it!!.get(0).title)
-                    }
-                }
-            }
-        })
 
         viewModel.filterLiveData.observe(requireActivity(), Observer {
             when (it.status) {
