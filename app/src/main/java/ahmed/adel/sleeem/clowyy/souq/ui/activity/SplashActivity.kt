@@ -1,21 +1,28 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.activity
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.ui.activity.login.LoginActivity
-import android.content.Context
+import ahmed.adel.sleeem.clowyy.souq.api.Resource
+import ahmed.adel.sleeem.clowyy.souq.pojo.UserRequist
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.ProfileViewModel
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.findNavController
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 class SplashActivity : AppCompatActivity() {
+    private lateinit var userRequist: UserRequist
+    private lateinit var viewModel: ProfileViewModel
 
-    val ANIMATION_DURATION:Long = 1000
+    val ANIMATION_DURATION: Long = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +59,34 @@ class SplashActivity : AppCompatActivity() {
 //
 //            }
         }, 5000) // 3000 is the delayed time in milliseconds.
+
+        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        userRequist = LoginUtils.getInstance(applicationContext)!!.getUserRequist()
+        viewModel.updateUserInfo(userRequist)
+        updateUser()
+
     }
 
+
+    private fun updateUser() {
+        viewModel.userInfo.observe(this, Observer {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    Log.e("sssss", "Loading........")
+                }
+                Resource.Status.ERROR -> {
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+
+                }
+                Resource.Status.SUCCESS -> {
+                    it.data.let {
+                        Log.e("sssss", it?.email!!)
+                        LoginUtils.getInstance(applicationContext)!!.saveUserInfo(it)
+                    }
+                }
+            }
+        })
+    }
 
 
 }

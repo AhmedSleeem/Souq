@@ -55,64 +55,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/et_min"
-                android:layout_width="@dimen/_127sdp"
-                android:layout_height="@dimen/_37sdp"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_9sdp"
-                android:background="@drawable/register_custom_edittext_shape"
-                android:drawableStart="@drawable/ic_dollar"
-                android:drawableLeft="@drawable/ic_dollar"
-                android:fontFamily="@font/poppins_bold"
-                android:hint="@string/min"
-                android:inputType="numberDecimal"
-                android:paddingLeft="@dimen/_12sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/_9sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-            <EditText
-                android:id="@+id/et_max"
-                android:layout_width="@dimen/_127sdp"
-                android:layout_height="@dimen/_37sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:layout_marginRight="@dimen/_12sdp"
-                android:background="@drawable/register_custom_edittext_shape"
-                android:drawableStart="@drawable/ic_dollar"
-                android:drawableLeft="@drawable/ic_dollar"
-                android:fontFamily="@font/poppins_bold"
-                android:hint="@string/max"
-                android:inputType="numberDecimal"
-                android:paddingLeft="@dimen/_12sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/_9sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/et_min"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/et_min" />
-
-            <com.google.android.material.slider.RangeSlider
-                android:id="@+id/rangeSlider"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_18sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:layout_marginRight="@dimen/_12sdp"
-                android:valueFrom="0.0"
-                android:valueTo="10.0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_min"
-                app:values="@array/initial_slider_values" />
 
             <TextView
                 android:id="@+id/textView11"

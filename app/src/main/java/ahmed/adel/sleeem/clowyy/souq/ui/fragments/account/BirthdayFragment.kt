@@ -3,6 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentBirthdayBinding
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentProfileBinding
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import java.text.DateFormat
 import java.util.*
 
@@ -65,23 +67,23 @@ class BirthdayFragment : Fragment() , DatePicker.OnDateChangedListener {
             })
 
         binding.datePicker.setOnClickListener{
-                // Update the date picker data by a random date
-                val year = randomInRange(2000,2025)
-                val month = randomInRange(0,11)
-                val day = randomInRange(0,27)
+            // Update the date picker data by a random date
+            val year = randomInRange(2000,2025)
+            val month = randomInRange(0,11)
+            val day = randomInRange(0,27)
 
-                // Update the date picker with random date
-                binding.datePicker.updateDate(
-                    year, // Year
-                    month, // The month which is starting from zero.
-                    day // Day of month
-                )
+            // Update the date picker with random date
+            binding.datePicker.updateDate(
+                year, // Year
+                month, // The month which is starting from zero.
+                day // Day of month
+            )
 
-                // Toast the new date
-                Toast.makeText(
-                    context,
-                    "Set Date : ${formatDate(year,month,day)}",
-                    Toast.LENGTH_SHORT).show()
+            // Toast the new date
+            Toast.makeText(
+                context,
+                "Set Date : ${formatDate(year,month,day)}",
+                Toast.LENGTH_SHORT).show()
 
         }
 
@@ -90,6 +92,9 @@ class BirthdayFragment : Fragment() , DatePicker.OnDateChangedListener {
             val selectedDate = formatDate(binding.datePicker.year,binding.datePicker.month,binding.datePicker.dayOfMonth)
             // Display the date picker selected formatted date
             binding.date.setText( "Selected Date : $selectedDate" )
+            LoginUtils.getInstance(requireContext())!!.updateBirthDay(selectedDate)
+            Toast.makeText(requireContext(),"BirthDay Updated Successfully",Toast.LENGTH_LONG).show()
+            findNavController().navigateUp()
         }
     }
 

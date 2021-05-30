@@ -1,28 +1,28 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
+import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityRegisterBinding
-import ahmed.adel.sleeem.clowyy.souq.models.ApiManager
 import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterRequest
-import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterResponse
-import ahmed.adel.sleeem.clowyy.souq.utils.Constants.SHARED_TOKEN_NAME
-import android.content.Context
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var viewModel: RegisterViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        initViewModel()
         binding.SignInRegisterTextView.setOnClickListener(this)
         binding.signUpRegisterButton.setOnClickListener(this)
 
@@ -35,44 +35,55 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
             binding.signUpRegisterButton -> {
+
                 registerUser()
+                getToken()
             }
         }
     }
 
-    fun registerUser() {
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+    }
+
+    private fun registerUser() {
+
         val name = binding.fullNameRegisterEditText.text.toString().trim()
         val email = binding.emailRegisterEditText.text.toString().trim()
         val password = binding.passwordRegisterEditText.text.toString().trim()
-        val registerRequist = RegisterRequest(name, email, password)
+        val registerRequest = RegisterRequest(name, email, password)
+        viewModel.registerUser(registerRequest)
 
-        val registerResponseCall = ApiManager.apiService.registerUser(registerRequist)
-
-        registerResponseCall.enqueue(object : Callback<RegisterResponse> {
-            override fun onResponse(
-                call: Call<RegisterResponse>,
-                response: Response<RegisterResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val sharedPreferences = getSharedPreferences(SHARED_TOKEN_NAME, Context.MODE_PRIVATE)
-
-                    val token = response.headers()["X-Auth-Token"]
-                    sharedPreferences.edit().putString("TOKEN",token).apply()
-                    startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-                    finish()
-                } else {
-                    Log.e("TAG", "onResponse: errorBody ===>" + response.errorBody() + "   body ==>" + response.body())
+        viewModel.register.observe(this, Observer {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    Log.e("sssss", "Loading........")
+                }
+                Resource.Status.ERROR -> {
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    Log.e("errorrrr",  it.message.toString())
+                }
+                Resource.Status.SUCCESS -> {
+                    it.data.let { response ->
+                        Log.e("sssss", response.toString())
+                        LoginUtils.getInstance(this)!!.saveUserInfo(response!!)
+                        LoginUtils.getInstance(this)!!.updatePassword(password)
+                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                        finish()
+                    }
                 }
             }
-
-            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                Log.e("TAG", "onFailure: " + t.localizedMessage)
-            }
-
         })
     }
-    fun checkValidity(){
-        if (binding.fullNameRegisterEditText.text.toString().length < 6){
+
+    private fun getToken() {
+        viewModel.token.observe(this, Observer { token ->
+            LoginUtils.getInstance(this)!!.saveToken(token)
+        })
+    }
+
+    fun checkValidity() {
+        if (binding.fullNameRegisterEditText.text.toString().length < 6) {
             binding.fullNameRegisterEditText.error
         }
     }

@@ -5,6 +5,9 @@ import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ExploreFragmentDirections
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ExploreViewModel
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
@@ -25,20 +28,15 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.mancj.materialsearchbar.MaterialSearchBar
 
 
 class HomeFragment : Fragment() , View.OnClickListener {
 
     var navController : NavController? = null
-
+    private var lastSearches = mutableListOf<String>("mahmoud","hager")
     private var saleData = arrayListOf<ProductResponse.Item>()
-    private val categories = listOf<ExplorerItem>(
-        ExplorerItem( R.drawable.ic_dress),
-        ExplorerItem( R.drawable.ic_man_bag),
-        ExplorerItem( R.drawable.ic_woman_bag),
-        ExplorerItem( R.drawable.ic_man_bag),
-        ExplorerItem( R.drawable.ic_dress)
-    )
+
     private lateinit var viewPagerAdapter: SaleViewPagerAdapter
     private lateinit var saleRecyclerAdapter: SaleRecyclerAdapter
     private lateinit var recommendedRecyclerAdapter: RecommendedRecyclerAdapter
@@ -55,7 +53,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
         val view = binding.root
 
         recommendedRecyclerAdapter = RecommendedRecyclerAdapter(requireContext());
-        binding.recommended.adapter = recommendedRecyclerAdapter
+        binding.recommendedRv.adapter = recommendedRecyclerAdapter
 
         viewPagerAdapter = SaleViewPagerAdapter(requireContext())
         binding.saleViewPager.adapter = viewPagerAdapter
@@ -63,6 +61,9 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
         saleRecyclerAdapter = SaleRecyclerAdapter(requireContext())
         binding.saleRv.adapter = saleRecyclerAdapter
+
+        categoryRecyclerAdapter = CategoryRecyclerAdapter(requireContext())
+        binding.categoryRv.adapter = categoryRecyclerAdapter
 
         return view
     }
@@ -79,6 +80,33 @@ class HomeFragment : Fragment() , View.OnClickListener {
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java);
         viewModel.getItems()
+        viewModel.getSaleItems()
+        viewModel.getAllCategories()
+
+        //search bar
+        //enable binding.searchBar callbacks
+        binding.searchBar.setOnSearchActionListener(object : MaterialSearchBar.OnSearchActionListener{
+            override fun onButtonClicked(buttonCode: Int) {
+//                when (buttonCode) {
+//                    MaterialSearchBar.B -> //openVoiceRecognizer()
+//                }
+            }
+
+            override fun onSearchStateChanged(enabled: Boolean) {
+//                val s = if (enabled) "enabled" else "disabled"
+//                Toast.makeText(requireContext(), "Search $s", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSearchConfirmed(text: CharSequence?) {
+                val action = HomeFragmentDirections.actionHomeFragmentToSearchSucceedFragment(query = text.toString() ,
+                    searchStatus = SearchSucceedFragment.SearchStatus.QUERY)
+                view.findNavController().navigate(action)
+            }
+        });
+        binding.searchBar.lastSuggestions = lastSearches;
+
+
+
         //listeners
         binding.notificationIv.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationFragment);
@@ -96,6 +124,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
             onClick(it)
         }
 
+
         //recommended adapter item listener
         recommendedRecyclerAdapter.itemClickListener = object: RecommendedRecyclerAdapter.ItemClickListener{
             override fun onClick(view: View, item: ProductResponse.Item) {
@@ -105,7 +134,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
         }
 
-        binding.saleViewPager.registerOnPageChangeCallback(object :
+        binding.saleViewPager.registerOnPageChangeCallback( object :
             ViewPager2.OnPageChangeCallback()  {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -114,8 +143,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
             }
         })
 
-        categoryRecyclerAdapter = CategoryRecyclerAdapter(categories)
-        binding.categoryRv.adapter = categoryRecyclerAdapter
+
 
         navController = Navigation.findNavController(view)
         view.findViewById<TextView>(R.id.moreCategory_tv).setOnClickListener(this)
@@ -125,35 +153,93 @@ class HomeFragment : Fragment() , View.OnClickListener {
     }
 
     private fun subscribeToLiveData() {
+        // get all data to Recomend RecyclerView
         viewModel.itemsLiveData.observe(requireActivity(), Observer {
             when(it.status){
                 Resource.Status.LOADING ->{
-                    Log.e("sssss","Loading........")
-                    binding.recommendedProgress.visibility = View.VISIBLE
-                    binding.viewPagerProgress.visibility = View.VISIBLE
-                    binding.saleProgress.visibility = View.VISIBLE
+                    binding.recommendedProgress.showShimmerAdapter()
+                    binding.recommendedRv.visibility = View.GONE
+
                 }
+
                 Resource.Status.ERROR ->{
+                    binding.recommendedProgress.hideShimmerAdapter()
                     Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
-                    binding.recommendedProgress.visibility = View.GONE
-                    binding.viewPagerProgress.visibility = View.GONE
-                    binding.saleProgress.visibility = View.GONE
                 }
+
                 Resource.Status.SUCCESS->{
                     it.data.let {
+                        binding.recommendedProgress.hideShimmerAdapter()
+                        binding.recommendedRv.visibility = View.VISIBLE
                         recommendedRecyclerAdapter.changeData(it!!)
-                        binding.recommendedProgress.visibility = View.GONE
-                        binding.viewPagerProgress.visibility = View.GONE
-                        binding.saleProgress.visibility = View.GONE
-                        Log.e("sssss", it!!.get(0).title)
-                        Log.e("TAG", "aboutaha: " + it.size)
-                        for (item in it) {
-                            if (item.sale != null)
-                                saleData.add(item)
-                        }
-                        Log.e("TAG", "aboutaha: " + saleData.size)
-                        viewPagerAdapter.changeData(saleData)
-                        saleRecyclerAdapter.changeData(saleData)
+                    }
+                }
+            }
+        })
+
+
+        // get offer data to Sale RecyclerView and ViewPager
+        viewModel.saleItemsLiveData.observe(requireActivity(), Observer {
+
+            when(it.status){
+                Resource.Status.LOADING -> {
+                   // binding.viewPagerProgress.visibility = View.VISIBLE
+                    binding.saleProgress.showShimmerAdapter()
+                    binding.viewPagerProgress.showShimmerAdapter()
+
+                    binding.saleRv.visibility = View.INVISIBLE
+                    binding.saleViewPager.visibility= View.GONE
+                }
+
+                Resource.Status.ERROR -> {
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                   // binding.viewPagerProgress.visibility = View.GONE
+                    binding.saleProgress.hideShimmerAdapter()
+                    binding.viewPagerProgress.hideShimmerAdapter()
+
+                    binding.saleRv.visibility=View.VISIBLE
+                    binding.saleViewPager.visibility=View.VISIBLE
+                }
+
+                Resource.Status.SUCCESS-> {
+                    it.data.let {
+                       // binding.viewPagerProgress.visibility = View.GONE
+                        binding.saleProgress.hideShimmerAdapter()
+                        binding.viewPagerProgress.hideShimmerAdapter()
+
+                        binding.saleRv.visibility=View.VISIBLE
+                        binding.saleViewPager.visibility=View.VISIBLE
+
+                        viewPagerAdapter.changeData(it!!)
+                        saleRecyclerAdapter.changeData(it!!)
+                        binding.dotsIndicator.setViewPager2(binding.saleViewPager)
+                    }
+                }
+            }
+        })
+
+        // get caegory to category RecyclerView and ViewPager
+        viewModel.categoryLiveData.observe(requireActivity(), Observer {
+            when(it.status){
+
+                Resource.Status.LOADING ->{
+                    Log.e("sssss","Loading........")
+                    binding.categoryProgress.showShimmerAdapter()
+                    binding.categoryRv.visibility=View.GONE
+                }
+
+                Resource.Status.ERROR ->{
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
+                    binding.categoryProgress.hideShimmerAdapter()
+                    binding.categoryRv.visibility=View.GONE
+                }
+
+                Resource.Status.SUCCESS->{
+                    it.data.let {
+                        binding.categoryProgress.hideShimmerAdapter()
+                        binding.categoryRv.visibility=View.VISIBLE
+                        categoryRecyclerAdapter.changeData(it!!)
+
                     }
                 }
             }

@@ -162,7 +162,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recommended"
+                android:id="@+id/recommendedRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"

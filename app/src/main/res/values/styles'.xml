@@ -8,11 +8,25 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MyCustomTheme" parent="MaterialSearchBarLight">
+
+        <item name="mt_searchBarColor">#00E8F8FF</item>
+        <item name="mt_searchIconDrawable">@drawable/ic_search_24</item>
+        <item name="mt_dividerColor">@color/searchBarDividerColor</item>
+        <item name="mt_navIconTint">@color/searchBarNavIconTintColor</item>
+        <item name="mt_clearIconTint">@color/searchBarClearIconTintColor</item>
+        <item name="mt_menuIconTint">@color/searchBarMenuIconTintColor</item>
+        <item name="mt_backIconTint">@color/searchBarBackIconTintColor</item>
+        <item name="mt_textCursorTint">@color/searchBarCursorColor</item>
+        <item name="mt_textColor">@color/searchBarTextColor</item>
+        <item name="mt_hintColor">@color/searchBarHintColor</item>
+        <item name="mt_highlightedTextColor">@color/searchBarTextHighlightColor</item>
+    </style>
+
 <!--    <style name="AppTheme.NoActionBar">-->
 <!--        <item name="windowActionBar">false</item>-->
 <!--        <item name="windowNoTitle">true</item>-->
 <!--    </style>-->
-
 
     <style name="parent">
         <item name="android:layout_width">match_parent</item>

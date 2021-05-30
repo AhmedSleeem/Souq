@@ -1,25 +1,29 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 
-import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentExploreBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ExplorerItem
-import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter.ExploreCategoryAdapter
+import ahmed.adel.sleeem.clowyy.souq.pojo.CategoryResponse
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter.ExploreCategoryAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeFragmentDirections
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.mancj.materialsearchbar.MaterialSearchBar
 
 
 class ExploreFragment : Fragment() {
 
-    private var manRecyclerView: RecyclerView? = null
-    private var woManRecyclerView: RecyclerView? = null
-    private var manExploreCategoryAdapter: ExploreCategoryAdapter? = null
-    private var womanExploreCategoryAdapter: ExploreCategoryAdapter? = null
+    lateinit var categoryAdapter: ExploreCategoryAdapter
     private lateinit var binding: FragmentExploreBinding
+    lateinit var viewModel:ExploreViewModel;
+
 
 
     override fun onCreateView(
@@ -27,54 +31,83 @@ class ExploreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentExploreBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+
+        categoryAdapter = ExploreCategoryAdapter(requireContext())
+
+        return binding.root
     }
+
+    private var lastSearches = mutableListOf<String>("mahmoud","hager")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.notificationIv.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_exploreFragment_to_searchFailedFragment);
+        //init view model
+        viewModel = ViewModelProvider(requireActivity()).get(ExploreViewModel::class.java)
+        subscribeToLiveData()
+        viewModel.getCategories()
+
+        //enable binding.searchBar callbacks
+        binding.searchBar.setOnSearchActionListener(object : MaterialSearchBar.OnSearchActionListener{
+            override fun onButtonClicked(buttonCode: Int) {
+//                when (buttonCode) {
+//                    MaterialSearchBar.B -> //openVoiceRecognizer()
+//                }
+            }
+
+            override fun onSearchStateChanged(enabled: Boolean) {
+//                val s = if (enabled) "enabled" else "disabled"
+//                Toast.makeText(requireContext(), "Search $s", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSearchConfirmed(text: CharSequence?) {
+                val action = ExploreFragmentDirections.actionExploreFragmentToSearchSucceedFragment(query = text.toString() ,
+                    searchStatus = SearchSucceedFragment.SearchStatus.QUERY)
+                view.findNavController().navigate(action)
+            }
+        });
+        binding.searchBar.lastSuggestions = lastSearches;
+
+
+
+        //category click listener
+        categoryAdapter.setOnItemClickListener = object : ExploreCategoryAdapter.OnItemClickListener{
+            override fun onClick(
+                view: View,
+                item: CategoryResponse.CategoryResponseItem
+            ) {
+                val action = ExploreFragmentDirections.actionExploreFragmentToSearchSucceedFragment(query = item.name ,
+                    searchStatus = SearchSucceedFragment.SearchStatus.CATEGORY)
+                view.findNavController().navigate(action)
+            }
         }
-        binding.favoriteIv.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_exploreFragment_to_favoriteFragment);
-        }
 
-        manRecyclerView = view.findViewById(R.id.category_man_fashion)
-        woManRecyclerView = view.findViewById(R.id.category_woman_fashion)
+//        binding.notificationIv.setOnClickListener {
+//            Navigation.findNavController(it)
+//                .navigate(R.id.action_exploreFragment_to_searchSucceedFragment);
+//        }
+//        binding.favoriteIv.setOnClickListener {
+//            Navigation.findNavController(it)
+//                .navigate(R.id.action_exploreFragment_to_favoriteFragment);
+//        }
 
-
-        manExploreCategoryAdapter = ExploreCategoryAdapter(items = manList)
-        womanExploreCategoryAdapter = ExploreCategoryAdapter(items = womanList)
-        binding.categoryManFashion.adapter = manExploreCategoryAdapter
-        binding.categoryWomanFashion.adapter = womanExploreCategoryAdapter
-
-        manRecyclerView?.adapter = manExploreCategoryAdapter
-        woManRecyclerView?.adapter = womanExploreCategoryAdapter
-
+        binding.categoryRv.adapter = categoryAdapter
     }
 
-    var manList = mutableListOf<ExplorerItem>(
-        ExplorerItem(R.drawable.ic_shirt, "Man Shirt"),
-        ExplorerItem(R.drawable.ic_man_bag, "Man Work Equipment"),
-        ExplorerItem(R.drawable.ic_tshirt, "Man T-Shirt"),
-        ExplorerItem(R.drawable.ic_man_shoes, "Man Shoes"),
-        ExplorerItem(R.drawable.ic_man_pants, "Man Pants"),
-        ExplorerItem(R.drawable.ic_man_underwear, "Man Underwear")
-    )
+    private fun subscribeToLiveData() {
+        viewModel.categoriesLiveData.observe(requireActivity(), Observer {
+            when(it.status){
+                Resource.Status.SUCCESS ->{
+                    categoryAdapter.changeData(it.data!!)
+                }
+                Resource.Status.ERROR ->{
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                }
+                Resource.Status.LOADING->{
 
-    var womanList = mutableListOf<ExplorerItem>(
-        ExplorerItem(R.drawable.ic_dress, "Dress"),
-        ExplorerItem(R.drawable.ic_woman_tshirt, "Woman T-Shirt"),
-        ExplorerItem(R.drawable.ic_woman_pants, "Woman Pants"),
-        ExplorerItem(R.drawable.ic_skirt, "Skirt"),
-        ExplorerItem(R.drawable.ic_woman_bag, "Woman Bag"),
-        ExplorerItem(R.drawable.ic_woman_shoes, "High Heels"),
-        ExplorerItem(R.drawable.ic_bikini, "Bikini")
-
-    )
+                }
+            }
+        })
+    }
 
 }

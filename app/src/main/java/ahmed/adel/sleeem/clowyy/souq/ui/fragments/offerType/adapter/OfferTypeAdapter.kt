@@ -4,13 +4,16 @@ import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeFragmentDirections
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType.OfferTypeFragmentDirections
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -55,8 +58,8 @@ class OfferTypeAdapter(val context: Context) :
             }
 
             setOnClickListener {
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_offerTypeFragment_to_detailsFragment)
+                val action = OfferTypeFragmentDirections.actionOfferTypeFragmentToDetailsFragment(product)
+                it.findNavController().navigate(action)
             }
         }
     }

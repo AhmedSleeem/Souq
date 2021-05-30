@@ -29,7 +29,7 @@
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             android:layout_marginBottom="@dimen/_102sdp"
-            android:src="@drawable/womem_bag"
+            android:src="@color/demo_light_transparent"
             app:layout_constraintCircleRadius="@dimen/_4sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

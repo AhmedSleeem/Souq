@@ -42,7 +42,7 @@ class OfferTypeFragment : Fragment() {
         }
 
         saleRecyclerAdapter = OfferTypeAdapter(requireContext())
-        binding.recommended.adapter = saleRecyclerAdapter
+        binding.recommendedRv.adapter = saleRecyclerAdapter
 
         return view
     }

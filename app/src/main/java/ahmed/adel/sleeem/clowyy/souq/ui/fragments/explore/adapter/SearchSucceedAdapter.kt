@@ -1,37 +1,79 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter
 
-import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
+import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class SearchSucceedAdapter (private var items: MutableList<SaleItem>) :
+class SearchSucceedAdapter (val context:Context) :
     RecyclerView.Adapter<SearchSucceedAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ItemRecommendedRvBinding) :
-        RecyclerView.ViewHolder(binding.root){
-        fun bind( item : SaleItem ) = with(itemView){
-            binding.imgProduct.setImageResource(item.image)
-            binding.tvProductName.text = item.name
-            binding.tvCost.text = item.newPrice.toString()
-            binding.tvOldCost.text = item.price.toString()
-            binding.tvOffPercentage.text = item.salePercent.toString()
+    private var items = arrayListOf<ProductResponse.Item>()
 
-            setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_searchSucceedFragment_to_detailsFragment)
-            }
+    fun changeData(newData:ArrayList<ProductResponse.Item> , clearOldData:Boolean = false){
+        if (clearOldData) {
+            items = newData
+            notifyDataSetChanged()
+        }else{
+        val oldData = items
+        val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(
+            ItemsDiffCallback(
+                oldData,
+                newData
+            )
+        )
+        items = newData
+        diffResult.dispatchUpdatesTo(this)
         }
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
+    var itemClickListener : ItemClickListener? = null
+
+    inner class ViewHolder(val binding: ItemRecommendedRvBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind(product : ProductResponse.Item ) = with(itemView){
+
+            Glide.with(context)
+                .load(product.image)
+                .fitCenter()
+                .into(binding.imgProduct)
+
+            binding.tvProductName.text = product.title
+            binding.tvOldCost.text = String.format("%.2f", product.price) + " Egp"
+            if(product.sale != null){
+                val newPrice : Float = (product.price * (1.0 - product.sale.amount.toFloat()/100)).toFloat()
+                Log.e("price = " , newPrice.toString())
+                binding.tvCost.text = String.format("%.2f", newPrice) + " Egp"
+                binding.tvOffPercentage.text = (product.sale.amount .toString() +"%")
+
+                binding.tvOffPercentage.visibility = View.VISIBLE
+                binding.tvOldCost.visibility = View.VISIBLE
+            }else{
+                binding.tvCost.text = String.format("%.2f", product.price) + " Egp"
+
+                binding.tvOffPercentage.visibility = View.INVISIBLE
+                binding.tvOldCost.visibility = View.INVISIBLE
+            }
+            binding.ratingBar.rating = (product.rating/2.0f)
+
+            if(itemClickListener != null) {
+                setOnClickListener {
+                    itemClickListener!!.onClick(it,product)
+                }
+            }
+
+        }
+    }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemRecommendedRvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemRecommendedRvBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         )
     }
 
@@ -39,5 +81,31 @@ class SearchSucceedAdapter (private var items: MutableList<SaleItem>) :
         return items.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items.get(position))
+
+    class ItemsDiffCallback(
+        private val oldData:ArrayList<ProductResponse.Item>,
+        private val newData:ArrayList<ProductResponse.Item>
+    ): DiffUtil.Callback() {
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldData[oldItemPosition].id == newData[newItemPosition].id
+        }
+
+        override fun getOldListSize(): Int {
+            return oldData.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newData.size
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldData[oldItemPosition] == newData[newItemPosition]
+        }
+
+    }
+    interface ItemClickListener{
+        fun onClick(view: View, item: ProductResponse.Item)
+    }
 }
+

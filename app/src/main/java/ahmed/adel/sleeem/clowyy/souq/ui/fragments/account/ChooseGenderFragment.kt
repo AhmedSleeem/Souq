@@ -2,40 +2,31 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentChooseGenderBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.UserRequist
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 
 
 class ChooseGenderFragment : Fragment() {
 
+    private lateinit var userRequist: UserRequist
     private lateinit var binding: FragmentChooseGenderBinding
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
+    //  private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentChooseGenderBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-        val tybes = resources.getStringArray(R.array.gender_list)
-        var arrayAdapter = ArrayAdapter(requireContext() ,
-            R.layout.gender_dropdown_item, tybes)
-        binding.autoCompleteTextView.setAdapter(arrayAdapter)
-
-
-        return view
+        return binding.root
     }
 
 
@@ -47,7 +38,57 @@ class ChooseGenderFragment : Fragment() {
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
         }
+        // viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
+
+        val types = resources.getStringArray(R.array.gender_list)
+        var arrayAdapter = ArrayAdapter(
+            requireContext(),
+            R.layout.gender_dropdown_item, types
+        )
+        binding.autoCompleteTextView.setAdapter(arrayAdapter)
+        binding.saveBtn.setOnClickListener {
+            val gender = binding.autoCompleteTextView.text.toString()
+            when (gender) {
+                "Male", "Female" -> {
+                    LoginUtils.getInstance(requireContext())!!.updateGender(gender.toLowerCase())
+                    Toast.makeText(
+                        requireContext(),
+                        "Gender Updated Successfully",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    findNavController().navigateUp()
+//                    userRequist = LoginUtils.getInstance(requireContext())!!.getUserRequist()
+//                    viewModel.updateUserInfo(userRequist)
+//                    updateUser()
+                }
+                else -> Toast.makeText(
+                    requireContext(),
+                    "Please Choose Gender (M/F)",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
 
     }
+    /*  private fun updateUser() {
+         viewModel.userInfo.observe(requireActivity(), Observer {
+              when (it.status) {
+                  Resource.Status.LOADING -> {
+                      Log.e("sssss", "Loading........")
+                  }
+                  Resource.Status.ERROR -> {
+                      Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
 
+                  }
+                  Resource.Status.SUCCESS -> {
+                      it.data.let {
+  //                        Log.e("sssss", it?.email!!)
+  //                        LoginUtils.getInstance(requireActivity())!!.saveUserInfo(it)
+                       //   Toast.makeText(requireContext(),"Gender Updated Successfully",Toast.LENGTH_LONG).show()
+                        findNavController().navigateUp()
+                      }
+                  }
+              }
+          })
+      }*/
 }

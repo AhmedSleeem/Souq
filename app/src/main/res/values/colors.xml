@@ -14,5 +14,7 @@
     <color name="gray">#9098B1</color>#
     <color name="babyBlue">#1A40BFFF</color>
     <color name="DarkGray">#616060</color>
+    <color name="shimmerBgColor">#07000000</color>
+    <color name="shimmerItemColor">#8FB3B3B3</color>
 
 </resources>
