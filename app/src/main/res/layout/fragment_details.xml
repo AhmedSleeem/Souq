@@ -58,15 +58,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <ProgressBar
-                        android:id="@+id/viewPagerProgress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+<!--                    <ProgressBar-->
+<!--                        android:id="@+id/viewPagerProgress"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:visibility="visible"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -172,6 +172,7 @@
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -202,6 +203,7 @@
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -230,7 +232,7 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="@string/shown"
+                android:text="@string/company_name"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_9sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -239,13 +241,13 @@
 
 
             <TextView
-                android:id="@+id/details"
+                android:id="@+id/company_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:lineHeight="@dimen/_18sdp"
-                android:text="Laser \n Blue/Anthracite/Welcome \n on/white"
+                android:text="Fox for fun"
                 android:textAlignment="textEnd"
                 android:textColor="@color/gray"
                 android:textFontWeight="400"
@@ -291,15 +293,15 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="@string/style"
+                android:text="@string/brand"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_9sdp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/details"
+                app:layout_constraintTop_toBottomOf="@+id/company_name_tv"
                 tools:ignore="RtlCompat" />
 
             <TextView
-                android:id="@+id/details_details"
+                android:id="@+id/brand_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_12sdp"
@@ -317,7 +319,7 @@
 
 
             <TextView
-                android:id="@+id/style_details2"
+                android:id="@+id/description_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -347,7 +349,7 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:text="@string/reviewProduct"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/style_details2"
+                app:layout_constraintTop_toBottomOf="@+id/description_tv"
                 tools:ignore="RtlCompat" />
 
             <TextView
@@ -362,7 +364,7 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:textColor="@color/primaryBlue"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/style_details2"
+                app:layout_constraintTop_toBottomOf="@+id/description_tv"
                 tools:ignore="RtlCompat" />
 
 

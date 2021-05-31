@@ -1,9 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter
 
-
 import ahmed.adel.sleeem.clowyy.souq.databinding.ViewpagerItemBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleViewPagerAdapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class ViewPagerAdapter(val context: Context) : RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>() {
-    private var data = arrayListOf<ProductResponse.Item>()
+    private var data = mutableListOf<String>()
 
-    fun changeData(newData: ArrayList<ProductResponse.Item>) {
+    fun changeData(newData: List<String>) {
         val oldData = data
         val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(
             ItemsDiffCallback(
@@ -22,20 +19,18 @@ class ViewPagerAdapter(val context: Context) : RecyclerView.Adapter<ViewPagerAda
                 newData
             )
         )
-        data = newData
+        data = newData as MutableList<String>
         diffResult.dispatchUpdatesTo(this)
     }
 
     class ViewHolder(val binding: ViewpagerItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(product: ProductResponse.Item) = with(itemView) {
-
+        fun bind(product: String) = with(itemView) {
             Glide.with(context)
-                .load(product.image)
+                .load(product)
                 .centerCrop()
                 .into(binding.imageView)
 
             setOnClickListener {
-
             }
         }
     }
@@ -53,11 +48,11 @@ class ViewPagerAdapter(val context: Context) : RecyclerView.Adapter<ViewPagerAda
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(data[position])
 
     class ItemsDiffCallback(
-        private val oldData: ArrayList<ProductResponse.Item>,
-        private val newData: ArrayList<ProductResponse.Item>
+        private val oldData: MutableList<String>,
+        private val newData: List<String>
     ) : DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldData[oldItemPosition].id == newData[newItemPosition].id
+            return oldData[oldItemPosition] == newData[newItemPosition]
         }
 
         override fun getOldListSize(): Int {
@@ -74,3 +69,4 @@ class ViewPagerAdapter(val context: Context) : RecyclerView.Adapter<ViewPagerAda
 
     }
 }
+
