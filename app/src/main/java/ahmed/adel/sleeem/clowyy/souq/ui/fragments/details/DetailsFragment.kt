@@ -4,10 +4,12 @@ import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.ui.activity.MainActivity
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import java.util.*
 
 
 class DetailsFragment : Fragment() {
@@ -127,6 +130,32 @@ class DetailsFragment : Fragment() {
         binding.morweReviews.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_detailsFragment_to_reviewFragment)
+        }
+
+
+        // add to cart action
+
+        binding.addToCartBtn.setOnClickListener{
+            item.countOfSelectedItem = 1
+            CartRoom.cartList.add(item)
+            MainActivity.cartCount++
+
+        }
+
+        // size clickListner
+        selectSizeAdapter.setOnItemClickListner = object : SizeRecyclerAdapter.ClckListner{
+            override fun clickListner(itemSize: String) {
+                item.selectedSize = itemSize
+            }
+
+        }
+
+        //color clickListner
+        colorAdapter.setOnItemClickListner = object : ColorRecylerAdapter.ClckListner{
+            override fun clickListner(itemColor: String) {
+                item.selectedColor = itemColor
+            }
+
         }
 
 

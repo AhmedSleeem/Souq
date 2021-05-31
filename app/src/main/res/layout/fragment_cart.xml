@@ -119,7 +119,7 @@
                 app:layout_constraintTop_toBottomOf="@id/textView" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/totalItemsCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -134,7 +134,7 @@
                 app:layout_constraintTop_toTopOf="@+id/view6" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/totalItemsPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -142,9 +142,9 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="$598.86"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                app:layout_constraintBottom_toBottomOf="@+id/totalItemsCount"
                 app:layout_constraintEnd_toEndOf="@+id/view6"
-                app:layout_constraintTop_toTopOf="@+id/textView5" />
+                app:layout_constraintTop_toTopOf="@+id/totalItemsCount" />
 
             <TextView
                 android:id="@+id/product_name_tv"
@@ -158,7 +158,7 @@
                 android:textColor="@color/gray"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/view6"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/totalItemsCount" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -181,7 +181,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="$40.00"
+                android:text="$0.0"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/product_name_tv"
                 app:layout_constraintEnd_toEndOf="@+id/view6"
@@ -194,7 +194,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="$128.00"
+                android:text="$0.0"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView12"
                 app:layout_constraintEnd_toEndOf="@+id/view6"
@@ -230,7 +230,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/view5" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/total_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"

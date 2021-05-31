@@ -3,52 +3,119 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCartBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.CartItem
+import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 
-class CartAdapter(val listener: (View, CartItem, Int) -> Unit) :
+class CartAdapter(var context : Context) :
     RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
-    private var data: MutableList<CartItem> = ArrayList()
+    private lateinit var _viewBinding : ItemCartBinding
+    val viewBinding : ItemCartBinding get() = _viewBinding
+    private var items = arrayListOf<ProductResponse.Item>()
+    var setOnItemClickListner : ItemClickListener? = null
+
+    fun changeData(newData:ArrayList<ProductResponse.Item>){
+        val oldData = this.items
+        val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(
+            CartAdapter.ItemsDiffCallback(
+                oldData,
+                newData
+            )
+        )
+        this.items = newData
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
+        _viewBinding =   ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CartViewHolder(
-            ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            _viewBinding
         )
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() = this.items.size
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) =
-        holder.bind(data[position])
+        holder.bind(this.items[position] , position)
 
-    fun swapData(data: MutableList<CartItem>) {
-        this.data = data
-        notifyDataSetChanged()
-    }
-
-    fun getRepoAt(position: Int): CartItem? {
-        return data.get(position)
-    }
+//    fun swapData(data: MutableList<CartItem>) {
+//        this.items = data
+//        notifyDataSetChanged()
+//    }
+//
+//    fun getRepoAt(position: Int): CartItem? {
+//        return this.items.get(position)
+//    }
 
     inner class CartViewHolder(var binding: ItemCartBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CartItem) = with(itemView) {
-            binding.descCartTextView.text = item.itemDesc
-            binding.priceCartTextView.text = item.itemPrice
-            binding.countCartTextView.text = item.itemCount.toString()
-            binding.itemCartImageView.setImageResource(item.itemImage)
-            if(item.itemIsFavorite)
-                binding.favoriteCartImageView.setImageResource(R.drawable.ic_love)
-            else
-                binding.favoriteCartImageView.setImageResource(R.drawable.ic_empty_love)
+        fun bind(
+            item: ProductResponse.Item,
+            position: Int
+        ) = with(itemView) {
+            binding.descCartTextView.text = item.title
+            binding.itemQuantity.text = item.quantity.toString()
+            binding.priceCartTextView.text = item.price.toString() +" Egp"
+            binding.countCartTextView.text = item.countOfSelectedItem.toString()
+            Glide.with(context)
+                .load(item.image)
+                .fitCenter()
+                .placeholder(R.drawable.ic_logo)
+                .into(binding.itemCartImageView)
 
-            setOnClickListener {
-                listener.invoke(it, item, adapterPosition)
-            }
+                binding.addBtn.setOnClickListener {
+                    if(item.countOfSelectedItem < item.quantity)
+                        items[position].countOfSelectedItem++
+                    notifyItemChanged(position)
+                }
+
+                binding.minusBtn.setOnClickListener {
+                    if(item.countOfSelectedItem > 0)
+                        items[position].countOfSelectedItem--
+                    notifyItemChanged(position)
+                }
+
+                binding.deleteItemBtn.setOnClickListener{
+                    setOnItemClickListner!!.onClick(it , item , position)
+                }
+
+
+
+
         }
     }
+
+
+    class ItemsDiffCallback(
+        private val oldData:ArrayList<ProductResponse.Item>,
+        private val newData:ArrayList<ProductResponse.Item>
+    ): DiffUtil.Callback() {
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldData[oldItemPosition].id == newData[newItemPosition].id
+        }
+
+        override fun getOldListSize(): Int {
+            return oldData.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newData.size
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldData[oldItemPosition] == newData[newItemPosition]
+        }
+
+    }
+
+    interface ItemClickListener{
+        fun onClick(view: View, item: ProductResponse.Item , position: Int)
+    }
+
 }

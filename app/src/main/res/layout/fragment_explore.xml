@@ -75,7 +75,7 @@
 
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/totalItemsCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -101,7 +101,7 @@
         app:shimmer_demo_angle="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView5"
+        app:layout_constraintTop_toBottomOf="@id/totalItemsCount"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginLeft="@dimen/_12sdp" />
 
@@ -116,7 +116,7 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/totalItemsCount"
                 app:spanCount="4"
                 tools:ignore="RtlCompat"
                 tools:listitem="@layout/item_explore_category" />

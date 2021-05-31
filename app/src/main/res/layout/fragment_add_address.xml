@@ -143,7 +143,7 @@
 
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/totalItemsCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_19sdp"
@@ -172,10 +172,10 @@
                 android:padding="9dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/totalItemsCount" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/totalItemsPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_19sdp"
@@ -204,7 +204,7 @@
                 android:padding="9dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                app:layout_constraintTop_toBottomOf="@+id/totalItemsPrice" />
 
 
             <TextView

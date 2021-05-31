@@ -12,6 +12,7 @@
         android:id="@+id/itemCartImageView"
         android:layout_width="72dp"
         android:layout_height="72dp"
+        android:padding="@dimen/_5sdp"
         android:background="@drawable/register_custom_edittext_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,8 @@
         android:layout_marginRight="16dp"
         android:fontFamily="@font/poppins_bold"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/favoriteCartImageView"
+        android:maxLines="2"
+        app:layout_constraintEnd_toStartOf="@+id/itemQuantity"
         app:layout_constraintStart_toEndOf="@+id/itemCartImageView"
         app:layout_constraintTop_toTopOf="@+id/itemCartImageView"
         tools:text="Nike Air Zoom Pegasus 36 Miami" />
@@ -47,25 +49,33 @@
         tools:text="$299,43" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/deleteItemBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_trash" />
 
-    <ImageView
-        android:id="@+id/favoriteCartImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/itemQuantity"
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="@dimen/_18sdp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_love" />
+        android:background="@drawable/notification_badge_background"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="@dimen/_8ssp"
+        android:gravity="center"
+        android:text="23"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/deleteItemBtn"
+        app:layout_constraintEnd_toStartOf="@+id/deleteItemBtn"
+        app:layout_constraintTop_toTopOf="@+id/deleteItemBtn" />
+
+
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/minus_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/cupon_custom_edittext_shape"
@@ -76,7 +86,7 @@
         app:srcCompat="@drawable/ic_minus" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/plus_custom_edittext_shape"
@@ -91,9 +101,9 @@
         android:layout_width="40dp"
         android:layout_height="0dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintTop_toTopOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/minus_btn"
+        app:layout_constraintEnd_toStartOf="@+id/add_btn"
+        app:layout_constraintTop_toTopOf="@+id/minus_btn"
         tools:text="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

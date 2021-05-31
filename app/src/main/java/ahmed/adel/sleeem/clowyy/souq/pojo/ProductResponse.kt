@@ -18,10 +18,14 @@ class ProductResponse : ArrayList<ProductResponse.Item>(){
         val rating: Float,
         val sale: Sale,
         val size: List<String>,
-        val title: String ,
+        val title: String,
 
+        //cart data
+        var selectedColor : String ? = null,
+        var selectedSize : String ? = null,
+        var countOfSelectedItem : Int  = 1
 
-        ) : Serializable{
+    ) : Serializable{
         data class Category(
             val name: String,
             val url: String

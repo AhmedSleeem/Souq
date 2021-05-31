@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ColorRecylerAdapter (private var colors:List<String> ,val context : Context) : RecyclerView.Adapter<ColorRecylerAdapter.ViewHolder>() {
 
     var row_index : Int? = null
-
+    var setOnItemClickListner : ColorRecylerAdapter.ClckListner? = null
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView = itemView.findViewById<View>(R.id.color_image)
@@ -42,14 +42,22 @@ class ColorRecylerAdapter (private var colors:List<String> ,val context : Contex
 //        holder.imageView.setBackgroundColor(Color.parseColor(colors[position]))
 
 
-        holder.row_linearlayout.setOnClickListener(View.OnClickListener {
-            row_index = position
-            notifyDataSetChanged()
-        })
-        if (row_index === position){
-            holder.imageView1.isVisible = true
-        } else {
-            holder.imageView1.isVisible = false
+        if(setOnItemClickListner !=null){
+            holder.row_linearlayout.setOnClickListener(View.OnClickListener {
+                row_index = position
+                setOnItemClickListner!!.clickListner(colors[position])
+                notifyDataSetChanged()
+            })
+            if (row_index === position){
+                holder.imageView1.isVisible = true
+            } else {
+                holder.imageView1.isVisible = false
+            }
         }
+
+    }
+
+    interface ClckListner{
+        fun clickListner(itemColor : String)
     }
 }

@@ -195,7 +195,7 @@
             app:layout_constraintTop_toBottomOf="@+id/googleSignIn" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/totalItemsPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
@@ -212,7 +212,7 @@
 
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/totalItemsCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -240,8 +240,8 @@
             android:textSize="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintStart_toEndOf="@+id/totalItemsCount"
+            app:layout_constraintTop_toBottomOf="@+id/totalItemsPrice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

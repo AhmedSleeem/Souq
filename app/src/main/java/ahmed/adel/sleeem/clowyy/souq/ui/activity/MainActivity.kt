@@ -11,7 +11,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 
 class MainActivity : AppCompatActivity() {
+    companion object{
+        var cartCount = 0
+    }
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -22,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         var badge =binding.bottomNavView.getOrCreateBadge(R.id.cartFragment)
         badge.isVisible = true
-        badge.number = 2
+        badge.number = cartCount
 
         if(!isFirstRunning()) {
             this.findNavController(R.id.navHost)
