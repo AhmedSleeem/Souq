@@ -19,6 +19,7 @@ class ColorRecylerAdapter (private var colors:List<String> ,val context : Contex
 
     var row_index : Int? = null
 
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView = itemView.findViewById<View>(R.id.color_image)
         var row_linearlayout = itemView.findViewById<RelativeLayout>(R.id.color_layout)
@@ -32,6 +33,7 @@ class ColorRecylerAdapter (private var colors:List<String> ,val context : Contex
     override fun getItemCount(): Int {
         return colors.size
     }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val drawable = AppCompatResources.getDrawable(context,R.drawable.circle_shape)
