@@ -1,10 +1,8 @@
 package ahmed.adel.sleeem.clowyy.souq.api
 
-import ahmed.adel.sleeem.clowyy.souq.pojo.CategoryResponse
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.*
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ItemWebServices {
     @GET("products/getall")
@@ -33,4 +31,21 @@ interface ItemWebServices {
 
     ): Response<ProductResponse>
 //https://souqitigraduationproj.herokuapp.com/api/products/filter?min=100&max=1000&category=electronics&sale=1&brand=ACER&title=Fjallrave&price=1
+@PUT("users/modifyaccount")
+suspend fun updateAccount(@Body userRequist : UserRequist): Response<UserResponse>
+
+    @PUT("users/changepassword")
+    suspend fun updatePassword(@Body passwordRequest: PasswordRequest): Response<PasswordResponse>
+
+    @POST("auth")
+    suspend fun loginUser(
+        @Body request: LoginRequest,
+        // @Header("x-auth-token") token: String
+    ): Response<LoginResponse>
+
+    @POST("users")
+    suspend fun registerUser(
+        @Body request: RegisterRequest,
+    ): Response<RegisterResponse>
+
 }

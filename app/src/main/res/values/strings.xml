@@ -179,6 +179,7 @@
     <string name="color">Color</string>
     <string name="products_have_sale_only">products have sale only</string>
     <string name="all_products">all products</string>
+    <string name="logout">Logout</string>
 
     <string-array name="gender_list">
         <item>Male</item>

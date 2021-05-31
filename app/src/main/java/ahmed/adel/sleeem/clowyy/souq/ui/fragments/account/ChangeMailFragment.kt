@@ -3,12 +3,15 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentChangeMailBinding
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentPhoneNumberBinding
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 
 
 class ChangeMailFragment : Fragment() {
@@ -36,6 +39,17 @@ class ChangeMailFragment : Fragment() {
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
+        }
+        binding.saveBtn.setOnClickListener {
+            val email = binding.mail.text.toString().trim()
+            if(email.isNullOrEmpty()){
+                binding.mail.error = "required field"
+            }else{
+                LoginUtils.getInstance(requireContext())!!.updateEmail(email)
+                Toast.makeText(requireContext(),"Email Updated Successfully", Toast.LENGTH_LONG).show()
+                findNavController().navigateUp()
+            }
+
         }
     }
 
