@@ -18,8 +18,10 @@ class ProductResponse : ArrayList<ProductResponse.Item>(){
         val rating: Float,
         val sale: Sale,
         val size: List<String>,
-        val title: String
-    ) : Serializable{
+        val title: String ,
+
+
+        ) : Serializable{
         data class Category(
             val name: String,
             val url: String
