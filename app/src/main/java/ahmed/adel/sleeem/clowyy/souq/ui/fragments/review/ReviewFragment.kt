@@ -1,10 +1,10 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.review
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.writeReview.ReviewStarAdapter
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentReviewBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ReviewItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.StarItem
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.writeReview.ReviewStarAdapter
 import android.os.Build
 import android.os.Bundle
 import android.view.*

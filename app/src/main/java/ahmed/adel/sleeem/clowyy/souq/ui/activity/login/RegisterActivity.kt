@@ -1,9 +1,9 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityRegisterBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterRequest
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log

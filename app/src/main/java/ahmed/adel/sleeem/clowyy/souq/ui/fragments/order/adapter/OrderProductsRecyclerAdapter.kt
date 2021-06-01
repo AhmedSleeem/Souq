@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class OrderProductsRecyclerAdapter(val data:List<OrderProductItem>): RecyclerView.Adapter<OrderProductsRecyclerAdapter.ViewHolder>() {
-   inner class ViewHolder(val binding:ItemOrderCartItemRvBinding):RecyclerView.ViewHolder(binding.root)
+class OrderProductsRecyclerAdapter(val data: List<OrderProductItem>) :
+    RecyclerView.Adapter<OrderProductsRecyclerAdapter.ViewHolder>() {
+
+    inner class ViewHolder(val binding: ItemOrderCartItemRvBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(

@@ -1,6 +1,6 @@
-package ahmed.adel.sleeem.clowyy.souq.api
+package ahmed.adel.sleeem.clowyy.souq.utils
 
-data class Resource<out T>(val status: Status, val data: T?, val message: String? ,val flag:Int=0) {
+data class Resource<out T>(val status: Status, val data: T?, val message: String?, val flag:Int=0) {
 
     enum class Status {
         SUCCESS,

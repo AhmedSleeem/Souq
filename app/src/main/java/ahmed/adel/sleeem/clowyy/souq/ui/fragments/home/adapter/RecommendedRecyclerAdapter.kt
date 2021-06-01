@@ -76,8 +76,8 @@ class RecommendedRecyclerAdapter(val context:Context) : RecyclerView.Adapter<Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items.get(position))
 
     class ItemsDiffCallback(
-        private val oldData:ArrayList<ProductResponse.Item>,
-        private val newData:ArrayList<ProductResponse.Item>
+        private val oldData: ArrayList<ProductResponse.Item>,
+        private val newData: ArrayList<ProductResponse.Item>
     ): DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldData[oldItemPosition].id == newData[newItemPosition].id

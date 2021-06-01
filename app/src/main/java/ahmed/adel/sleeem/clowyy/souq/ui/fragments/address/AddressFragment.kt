@@ -2,14 +2,13 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.address
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentAddressBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.AddressItem
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 

@@ -1,7 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment
@@ -9,6 +8,7 @@ import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerA
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleViewPagerAdapter
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log

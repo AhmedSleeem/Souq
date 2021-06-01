@@ -1,12 +1,12 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.onboarding.screens
 
+import ahmed.adel.sleeem.clowyy.souq.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ahmed.adel.sleeem.clowyy.souq.R
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 
 class FirstScreen : Fragment() {

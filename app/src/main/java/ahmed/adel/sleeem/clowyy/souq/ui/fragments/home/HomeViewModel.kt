@@ -1,9 +1,9 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home
 
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
-import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
+import ahmed.adel.sleeem.clowyy.souq.api.ApiClient
 import ahmed.adel.sleeem.clowyy.souq.pojo.CategoryResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,7 +19,7 @@ class HomeViewModel:ViewModel() {
 
     fun getItems() = viewModelScope.launch {
          itemsLiveData.value = Resource.loading(null)
-         val response = RetrofitHandler.getItemWebService().getAllItems()
+         val response = ApiClient.apiService().getAllItems()
                  if (response.isSuccessful){
                      if(response.body() != null)
                         itemsLiveData.value = Resource.success(response.body()!!);
@@ -31,7 +31,7 @@ class HomeViewModel:ViewModel() {
 
     fun getSaleItems() = viewModelScope.launch {
         saleItemsLiveData.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().getSaleItems()
+        val response = ApiClient.apiService().getSaleItems()
         if (response.isSuccessful){
             if(response.body() != null)
                 saleItemsLiveData.value = Resource.success(response.body()!!);
@@ -43,7 +43,7 @@ class HomeViewModel:ViewModel() {
 
     fun getAllCategories() = viewModelScope.launch {
         categoryLiveData.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().getCategory()
+        val response = ApiClient.apiService().getCategory()
         if (response.isSuccessful){
             if(response.body() != null)
                 categoryLiveData.value = Resource.success(response.body()!!);

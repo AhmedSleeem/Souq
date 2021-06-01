@@ -1,18 +1,13 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType.adapter
 
-import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
-import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeFragmentDirections
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType.OfferTypeFragmentDirections
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView

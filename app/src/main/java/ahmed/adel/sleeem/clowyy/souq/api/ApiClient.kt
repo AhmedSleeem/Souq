@@ -6,7 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitHandler {
+object ApiClient {
 
     private var logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -20,7 +20,7 @@ object RetrofitHandler {
     .client(client)
     .build()
 
-    fun getItemWebService():ItemWebServices{
-       return retrofit.create(ItemWebServices::class.java)
+    fun apiService():ApiServices{
+       return retrofit.create(ApiServices::class.java)
     }
 }

@@ -1,9 +1,9 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
-import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
+import ahmed.adel.sleeem.clowyy.souq.api.ApiClient
 import ahmed.adel.sleeem.clowyy.souq.pojo.UserRequist
 import ahmed.adel.sleeem.clowyy.souq.pojo.UserResponse
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,7 +16,7 @@ class ProfileViewModel : ViewModel() {
 
     fun updateUserInfo(userRequist: UserRequist) = viewModelScope.launch {
         _userInfo.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().updateAccount(userRequist)
+        val response = ApiClient.apiService().updateAccount(userRequist)
         if (response.isSuccessful) {
             if (response.body() != null)
                 _userInfo.value = Resource.success(response.body()!!);

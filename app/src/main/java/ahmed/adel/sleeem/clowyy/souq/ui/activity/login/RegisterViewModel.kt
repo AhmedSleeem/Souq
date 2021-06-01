@@ -1,9 +1,9 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
-import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
+import ahmed.adel.sleeem.clowyy.souq.api.ApiClient
 import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterResponse
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,7 +19,7 @@ class RegisterViewModel : ViewModel() {
 
     fun registerUser(registerRequest: RegisterRequest) = viewModelScope.launch {
         _register.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().registerUser(registerRequest)
+        val response = ApiClient.apiService().registerUser(registerRequest)
         if (response.isSuccessful) {
             if (response.body() != null) {
                 _token.value = response.headers()["X-Auth-Token"]

@@ -1,14 +1,10 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.BottomSheetFilterPriceBinding
-import ahmed.adel.sleeem.clowyy.souq.databinding.BottomSheetShortByBinding
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.NumberFormat
 import java.util.*

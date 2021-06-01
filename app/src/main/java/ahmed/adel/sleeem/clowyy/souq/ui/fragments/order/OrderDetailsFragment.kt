@@ -5,10 +5,10 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOrderDetailsBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.OrderProductItem
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter.OrderProductsRecyclerAdapter
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 
 class OrderDetailsFragment : Fragment() {

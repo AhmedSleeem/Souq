@@ -1,12 +1,11 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOfferTypeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
-import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer.OfferViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.offerType.adapter.OfferTypeAdapter
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,7 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import kotlin.math.log
 
 
 class OfferTypeFragment : Fragment() {

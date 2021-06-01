@@ -1,14 +1,11 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentProfileBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.FullUserInfo
 import ahmed.adel.sleeem.clowyy.souq.pojo.UserRequist
-import ahmed.adel.sleeem.clowyy.souq.ui.activity.login.LoginActivity
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
-import android.content.Context
-import android.content.Intent
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

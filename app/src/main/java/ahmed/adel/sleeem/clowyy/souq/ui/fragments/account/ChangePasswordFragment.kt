@@ -1,10 +1,10 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentChangePasswordBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.PasswordRequest
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

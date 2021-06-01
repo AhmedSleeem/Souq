@@ -1,10 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.address
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDeleteAddressConfigrationBinding
-import ahmed.adel.sleeem.clowyy.souq.ui.activity.login.LoginActivity
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
-import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

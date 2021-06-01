@@ -3,7 +3,6 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.CartItem
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.ReviewFragmentDirections
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
