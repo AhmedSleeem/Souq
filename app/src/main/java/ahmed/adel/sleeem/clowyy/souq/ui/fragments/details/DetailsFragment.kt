@@ -3,13 +3,14 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewAdapter
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 
 
 class DetailsFragment : Fragment() {
@@ -31,6 +33,7 @@ class DetailsFragment : Fragment() {
     private lateinit var colorAdapter: ColorRecylerAdapter
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var recommendRecyclerAdapter: RecommendedRecyclerAdapter
+    private lateinit var reviewRecyclerAdapter: ReviewAdapter
     private lateinit var viewModel: DetailsViewModel
     private val args by navArgs<DetailsFragmentArgs>()
     private lateinit var item: ProductResponse.Item
@@ -59,6 +62,8 @@ class DetailsFragment : Fragment() {
 
         recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
         binding.recommend.adapter = recommendRecyclerAdapter
+
+
 
         viewPagerAdapter = ViewPagerAdapter(requireContext())
         binding.saleViewPager1.adapter = viewPagerAdapter
@@ -108,6 +113,7 @@ class DetailsFragment : Fragment() {
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(DetailsViewModel::class.java);
         viewModel.getItemsByCategory(item.category.name)
+        viewModel.getReviewsByProductId(item.id.toString())
 
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
@@ -125,8 +131,8 @@ class DetailsFragment : Fragment() {
             }
 
         binding.morweReviews.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_detailsFragment_to_reviewFragment)
+            val action = DetailsFragmentDirections.actionDetailsFragmentToReviewFragment(item.id.toString())
+           view.findNavController().navigate(action)
         }
 
 
@@ -138,7 +144,6 @@ class DetailsFragment : Fragment() {
             when (it.status) {
 
                 Resource.Status.LOADING -> {
-                    Log.e("sssss", "Loading........")
                     binding.recommendedProgress.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR -> {
@@ -154,5 +159,41 @@ class DetailsFragment : Fragment() {
                 }
             }
         })
+
+        viewModel.reviewsLiveData.observe(viewLifecycleOwner , Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+
+                }
+                Resource.Status.SUCCESS ->{
+                    changeReviewUi(it.data!!)
+
+
+
+                }
+            }
+        })
+
+        viewModel.userLiveData.observe(viewLifecycleOwner , Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+
+                }
+                Resource.Status.SUCCESS ->{
+                    Glide.with(requireActivity())
+                        .load(it.data!!.profileImage)
+                        .into(binding.profileReviewImageView)
+                    binding.usernameReviewTextView.text = it.data!!.name
+                }
+            }
+        })
+    }
+
+    private fun changeReviewUi(data: ReviewResponse) {
+        val reviewItem = data[0]
+        viewModel.getUserById(reviewItem.userId)
+        binding.reviewTextView.text = reviewItem.description
+        binding.ratingReviewBar.rating = reviewItem.rating.toFloat()
+
     }
 }

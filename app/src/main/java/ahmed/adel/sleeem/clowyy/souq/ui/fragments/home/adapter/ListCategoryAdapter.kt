@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCategoryListRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.CategoryResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.CategoryResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ListCategoryFragmentDirections
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment
 

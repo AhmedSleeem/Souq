@@ -1,6 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.api
 
-import ahmed.adel.sleeem.clowyy.souq.pojo.*
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.*
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -28,11 +29,23 @@ interface ItemWebServices {
                                @Query("brand") brand:String?=null,
                                @Query("title") title:String?=null,
                                @Query("price") price:Int=0
-
     ): Response<ProductResponse>
-//https://souqitigraduationproj.herokuapp.com/api/products/filter?min=100&max=1000&category=electronics&sale=1&brand=ACER&title=Fjallrave&price=1
-@PUT("users/modifyaccount")
-suspend fun updateAccount(@Body userRequist : UserRequist): Response<UserResponse>
+
+    @GET("review/reviewbyitemid")
+    suspend fun getReviewsByItemId(@Query("itemId") id:String): Response<ReviewResponse>
+
+    @GET("review/reviewbyrating")
+    suspend fun getReviewsByRate(@Query("itemId") id:String,
+                                 @Query("rating") rating:Int): Response<ReviewResponse>
+
+    @POST("review/addreview")
+    suspend fun postReview(@Body reviewRequest: ReviewRequest): Response<ReviewResponse.Item>
+
+    @GET("users/getuserbyid")
+    suspend fun getUserById(@Query("id") id:String): Response<UserResponse>
+
+    @PUT("users/modifyaccount")
+    suspend fun updateAccount(@Body userRequist : UserRequist): Response<UserResponse>
 
     @PUT("users/changepassword")
     suspend fun updatePassword(@Body passwordRequest: PasswordRequest): Response<PasswordResponse>

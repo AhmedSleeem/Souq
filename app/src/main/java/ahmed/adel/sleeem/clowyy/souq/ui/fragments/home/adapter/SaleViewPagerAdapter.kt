@@ -2,7 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleViewpagerBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -2,8 +2,8 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
-import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterRequest
-import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.RegisterRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.RegisterResponse
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ class SearchSucceedAdapter (val context:Context) :
 
     private var items = arrayListOf<ProductResponse.Item>()
 
-    fun changeData(newData:ArrayList<ProductResponse.Item> , clearOldData:Boolean = false){
+    fun changeData(newData:ArrayList<ProductResponse.Item>, clearOldData:Boolean = false){
         if (clearOldData) {
             items = newData
             notifyDataSetChanged()

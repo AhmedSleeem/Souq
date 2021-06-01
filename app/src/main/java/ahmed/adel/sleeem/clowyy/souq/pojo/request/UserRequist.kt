@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.pojo
+package ahmed.adel.sleeem.clowyy.souq.pojo.request
 
 data class UserRequist(
     val Address: String?="N/F",

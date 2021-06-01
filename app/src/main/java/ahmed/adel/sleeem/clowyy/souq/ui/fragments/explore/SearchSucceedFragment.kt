@@ -241,7 +241,6 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
             }else{
                 binding.filterSaleTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_selected_shape)
             }
-
         }
 
         viewModel.filterProducts(filterParams)

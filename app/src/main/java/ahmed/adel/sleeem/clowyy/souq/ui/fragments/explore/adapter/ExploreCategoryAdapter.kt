@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemExploreCategoryBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.CategoryResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.CategoryResponse
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View

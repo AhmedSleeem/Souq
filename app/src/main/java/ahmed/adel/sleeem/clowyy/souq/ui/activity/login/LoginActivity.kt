@@ -2,8 +2,8 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityLoginBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.LoginRequest
-import ahmed.adel.sleeem.clowyy.souq.pojo.LoginResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.LoginRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.LoginResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.activity.SplashActivity
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.content.Intent
@@ -60,7 +60,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         val email = binding.emailLoginEditText.text.toString().trim()
         val password = binding.passwordLoginEditText.text.toString().trim()
-        val loginRequist = LoginRequest(email, password)
+        val loginRequist =
+            LoginRequest(
+                email,
+                password
+            )
         val token = LoginUtils.getInstance(this)!!.userInfo().token
         // viewModel.loginUser(loginRequist, token!!)
         viewModel.loginUser(loginRequist)

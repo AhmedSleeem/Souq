@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_4sdp">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -58,62 +60,6 @@
         app:layout_constraintStart_toStartOf="@+id/profileReviewImageView"
         app:layout_constraintTop_toBottomOf="@+id/profileReviewImageView"
         android:paddingRight="16dp" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/register_custom_edittext_shape"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewTextView"
-        tools:srcCompat="@drawable/product2" />
-
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/register_custom_edittext_shape"
-        app:layout_constraintStart_toEndOf="@id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/reviewTextView"
-        tools:srcCompat="@drawable/product2"
-        android:layout_marginLeft="12dp" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/register_custom_edittext_shape"
-        app:layout_constraintStart_toEndOf="@id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/reviewTextView"
-        tools:srcCompat="@drawable/product2"
-        android:layout_marginLeft="12dp" />
-
-    <TextView
-        android:id="@+id/dateReviewTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="December 10, 2016"
-        android:textSize="10sp"
-        android:textColor="@color/gray"
-        android:fontFamily="@font/poppins_regular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/reviewTextView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="reviewTextView,imageView6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

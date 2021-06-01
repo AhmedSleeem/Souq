@@ -2,7 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
-import ahmed.adel.sleeem.clowyy.souq.pojo.UserRequist
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.UserRequist
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.ProfileViewModel
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.content.Intent

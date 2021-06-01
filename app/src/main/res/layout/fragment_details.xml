@@ -476,39 +476,7 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 app:layout_constraintStart_toStartOf="@+id/profileReviewImageView"
                 app:layout_constraintTop_toBottomOf="@+id/profileReviewImageView" />
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/register_custom_edittext_shape"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reviewTextView"
-                tools:srcCompat="@drawable/product2" />
 
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/register_custom_edittext_shape"
-                app:layout_constraintStart_toEndOf="@id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/reviewTextView"
-                tools:srcCompat="@drawable/product2" />
-
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/register_custom_edittext_shape"
-                app:layout_constraintStart_toEndOf="@id/imageView7"
-                app:layout_constraintTop_toBottomOf="@+id/reviewTextView"
-                tools:srcCompat="@drawable/product2" />
 
             <TextView
                 android:id="@+id/dateReviewTextView"
@@ -516,20 +484,20 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="December 10, 2016"
                 android:textColor="@color/gray"
                 android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                app:layout_constraintTop_toBottomOf="@+id/reviewTextView" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="reviewTextView,imageView6" />
+                app:constraint_referenced_ids="reviewTextView,dateReviewTextView" />
 
 
             <TextView

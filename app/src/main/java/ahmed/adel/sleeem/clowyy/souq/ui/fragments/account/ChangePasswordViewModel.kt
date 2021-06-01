@@ -2,8 +2,8 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
-import ahmed.adel.sleeem.clowyy.souq.pojo.PasswordRequest
-import ahmed.adel.sleeem.clowyy.souq.pojo.PasswordResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.PasswordRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.PasswordResponse
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

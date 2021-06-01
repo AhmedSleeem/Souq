@@ -3,7 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentChangePasswordBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.PasswordRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.PasswordRequest
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.os.Bundle
 import android.util.Log
@@ -56,11 +56,12 @@ class ChangePasswordFragment : Fragment() {
                     Toast.makeText(requireContext(), "password are different", Toast.LENGTH_LONG)
                         .show()
                 } else {
-                    passwordRequest = PasswordRequest(
-                        LoginUtils.getInstance(requireContext())!!.userInfo().email,
-                        newpass,
-                        oldPass
-                    )
+                    passwordRequest =
+                        PasswordRequest(
+                            LoginUtils.getInstance(requireContext())!!.userInfo().email,
+                            newpass,
+                            oldPass
+                        )
                     viewModel.updatePassword(passwordRequest)
                     updatePassword(newpass)
                 }
