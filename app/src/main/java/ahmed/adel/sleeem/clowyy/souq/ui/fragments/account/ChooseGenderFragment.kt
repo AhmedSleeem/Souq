@@ -2,7 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentChooseGenderBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.UserRequist
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.UserRequist
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.os.Bundle
 import android.view.LayoutInflater

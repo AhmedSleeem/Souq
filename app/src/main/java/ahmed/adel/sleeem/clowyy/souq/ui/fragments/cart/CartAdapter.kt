@@ -3,7 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCartBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -20,16 +20,21 @@ class CartAdapter(var context : Context) :
     private var items = arrayListOf<ProductResponse.Item>()
     var setOnItemClickListner : ItemClickListener? = null
 
-    fun changeData(newData:ArrayList<ProductResponse.Item>){
-        val oldData = this.items
-        val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(
-            CartAdapter.ItemsDiffCallback(
-                oldData,
-                newData
+    fun changeData(newData:ArrayList<ProductResponse.Item>, clearOldData:Boolean = false){
+        if (clearOldData) {
+            items = newData
+            notifyDataSetChanged()
+        }else {
+            val oldData = this.items
+            val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(
+                CartAdapter.ItemsDiffCallback(
+                    oldData,
+                    newData
+                )
             )
-        )
-        this.items = newData
-        diffResult.dispatchUpdatesTo(this)
+            this.items = newData
+            diffResult.dispatchUpdatesTo(this)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -109,13 +114,13 @@ class CartAdapter(var context : Context) :
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldData[oldItemPosition] == newData[newItemPosition]
+            return (oldData[oldItemPosition].id == newData[newItemPosition].id) && (oldData[oldItemPosition].quantity == newData[newItemPosition].quantity)
         }
 
     }
 
     interface ItemClickListener{
-        fun onClick(view: View, item: ProductResponse.Item , position: Int)
+        fun onClick(view: View, item: ProductResponse.Item, position: Int)
     }
 
 }

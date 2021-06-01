@@ -1,6 +1,11 @@
 package ahmed.adel.sleeem.clowyy.souq.utils
 
 import ahmed.adel.sleeem.clowyy.souq.pojo.*
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.LoginRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.UserRequist
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.LoginResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.RegisterResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.UserResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.Constants.USER_SHARED_PREF
 import android.content.Context
 

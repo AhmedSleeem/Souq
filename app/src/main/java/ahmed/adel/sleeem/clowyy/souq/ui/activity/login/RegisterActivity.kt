@@ -2,7 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityRegisterBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.RegisterRequest
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.content.Intent
 import android.os.Bundle
@@ -51,7 +51,12 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val name = binding.fullNameRegisterEditText.text.toString().trim()
         val email = binding.emailRegisterEditText.text.toString().trim()
         val password = binding.passwordRegisterEditText.text.toString().trim()
-        val registerRequest = RegisterRequest(name, email, password)
+        val registerRequest =
+            RegisterRequest(
+                name,
+                email,
+                password
+            )
         viewModel.registerUser(registerRequest)
 
         viewModel.register.observe(this, Observer {

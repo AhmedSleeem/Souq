@@ -3,9 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
-import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCartBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.CartItem
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -25,7 +22,6 @@ class CartFragment : Fragment(),View.OnClickListener {
     private lateinit var viewModel: CartViewModel
     private var _binding: FragmentCartBinding? = null
     private  var acceptFlag : Int = -1
-
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +34,6 @@ class CartFragment : Fragment(),View.OnClickListener {
         adapter = CartAdapter(requireContext())
         binding.cartRecyclerView.adapter = adapter
 
-
         return binding.root
     }
 
@@ -46,9 +41,9 @@ class CartFragment : Fragment(),View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getCartItems()
-        for (itwm in CartRoom.cartList) {
-            viewModel.getItemsBytitle(itwm.title)
-        }
+//        for (itwm in CartRoom.cartList) {
+//            viewModel.getItemsByTitle(itwm.title, i)
+//        }
 
         subscribeToLiveData()
         // app bar arrow back
@@ -69,7 +64,6 @@ class CartFragment : Fragment(),View.OnClickListener {
                     }
                 }
             }
-
         }
 
 
@@ -88,7 +82,7 @@ class CartFragment : Fragment(),View.OnClickListener {
                 }
                 Resource.Status.SUCCESS -> {
                     Log.e("ssss", "list : " + it.data)
-                    adapter.changeData(it.data!!)
+                    adapter.changeData(it.data!!,true)
                 }
             }
         })

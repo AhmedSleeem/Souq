@@ -1,14 +1,12 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
-import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCategoryRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.CategoryResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.CategoryResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeFragmentDirections
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView

@@ -1,6 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.api
 
-import ahmed.adel.sleeem.clowyy.souq.pojo.*
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.*
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -30,7 +31,11 @@ interface ItemWebServices {
                                @Query("price") price:Int=0
 
     ): Response<ProductResponse>
-//https://souqitigraduationproj.herokuapp.com/api/products/filter?min=100&max=1000&category=electronics&sale=1&brand=ACER&title=Fjallrave&price=1
+
+    @POST("order/add")
+    suspend fun addOrder(@Body orderRequest: OrderRequest): Response<OrderResponse>
+
+
 @PUT("users/modifyaccount")
 suspend fun updateAccount(@Body userRequist : UserRequist): Response<UserResponse>
 

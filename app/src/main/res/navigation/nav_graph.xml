@@ -154,7 +154,7 @@
             app:enterAnim="@anim/top_animation" />
         <argument
             android:name="itemData"
-            app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse$Item" />
+            app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse$Item" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -306,9 +306,6 @@
             app:destination="@id/listCategoryFragment" />
 
         <action
-            android:id="@+id/action_searchSucceedFragment_to_shortByFragment"
-            app:destination="@id/shortByFragment" />
-        <action
             android:id="@+id/action_searchSucceedFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/top_animation"
@@ -330,11 +327,6 @@
             app:destination="@id/searchSucceedFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/shortByFragment"
-        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.ShortByFragment"
-        android:label="fragment_short_by"
-        tools:layout="@layout/fragment_short_by" />
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.onboarding.ViewPagerFragment"

@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemRecommendedRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater

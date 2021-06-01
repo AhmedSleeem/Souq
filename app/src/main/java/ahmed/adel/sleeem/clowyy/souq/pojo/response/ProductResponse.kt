@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.pojo
+package ahmed.adel.sleeem.clowyy.souq.pojo.response
 
 import java.io.Serializable
 
@@ -14,7 +14,7 @@ class ProductResponse : ArrayList<ProductResponse.Item>(){
         val id: Int,
         val image: String,
         val price: Double,
-        val quantity: Int,
+        var quantity: Int,
         val rating: Float,
         val sale: Sale,
         val size: List<String>,

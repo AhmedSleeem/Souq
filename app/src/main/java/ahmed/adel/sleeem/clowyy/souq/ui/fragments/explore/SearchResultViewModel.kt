@@ -3,16 +3,14 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.FilterParams
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.ShortByBottomDialogFragment
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.Comparator
 
 class SearchResultViewModel:ViewModel() {
     private var _productsLiveData = MutableLiveData<Resource<ProductResponse>>(Resource.loading(null))
@@ -139,8 +137,8 @@ class SearchResultViewModel:ViewModel() {
     }
 
 
-    private fun getData():ProductResponse?{
-        var data:ProductResponse?=null
+    private fun getData(): ProductResponse?{
+        var data: ProductResponse?=null
         if (this._productsLiveData.value != Resource.loading(null)){
             if (this._productsLiveData.value?.data != null){
                 data = this._productsLiveData.value!!.data

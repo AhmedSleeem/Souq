@@ -2,11 +2,9 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentExploreBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.CategoryResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.CategoryResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter.ExploreCategoryAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeFragmentDirections
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

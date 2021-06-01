@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.pojo
+package ahmed.adel.sleeem.clowyy.souq.pojo.response
 
 data class UserResponse(
     val Address: String?,
