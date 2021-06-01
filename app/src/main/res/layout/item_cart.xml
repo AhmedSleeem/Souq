@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
+    android:layout_marginBottom="12dp"
     android:background="@drawable/register_custom_edittext_shape"
-    android:padding="16dp">
+    android:paddingTop="@dimen/_8sdp"
+    android:paddingRight="@dimen/_12sdp"
+    android:paddingLeft="@dimen/_4sdp"
+    >
 
     <ImageView
         android:id="@+id/itemCartImageView"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:padding="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:background="@drawable/register_custom_edittext_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/shoes" />
+        tools:src="@drawable/shoes"
+        android:layout_marginLeft="@dimen/_10sdp" />
 
     <TextView
         android:id="@+id/descCartTextView"
@@ -25,12 +32,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:fontFamily="@font/poppins_bold"
-        android:textSize="14sp"
         android:maxLines="2"
-        app:layout_constraintEnd_toStartOf="@+id/itemQuantity"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/minus_btn"
         app:layout_constraintStart_toEndOf="@+id/itemCartImageView"
         app:layout_constraintTop_toTopOf="@+id/itemCartImageView"
         tools:text="Nike Air Zoom Pegasus 36 Miami" />
@@ -60,17 +65,16 @@
         android:id="@+id/itemQuantity"
         android:layout_width="@dimen/_18sdp"
         android:layout_height="@dimen/_18sdp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="@drawable/notification_badge_background"
         android:fontFamily="@font/poppins_regular"
-        android:textSize="@dimen/_8ssp"
         android:gravity="center"
         android:text="23"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/deleteItemBtn"
-        app:layout_constraintEnd_toStartOf="@+id/deleteItemBtn"
-        app:layout_constraintTop_toTopOf="@+id/deleteItemBtn" />
+        app:layout_constraintTop_toTopOf="@id/itemCartImageView"
+        app:layout_constraintBottom_toTopOf="@id/itemCartImageView"
+        app:layout_constraintStart_toStartOf="@id/itemCartImageView"
+        app:layout_constraintEnd_toStartOf="@id/itemCartImageView"
+        android:textSize="@dimen/_8ssp" />
 
 
 
