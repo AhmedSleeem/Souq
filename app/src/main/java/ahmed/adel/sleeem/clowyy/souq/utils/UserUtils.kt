@@ -126,7 +126,12 @@ class LoginUtils private constructor(private val mCtx: Context) {
         editor.putString("name", name)
         editor.apply()
     }
-
+    fun updateAddress(address: String) {
+        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("Address", address)
+        editor.apply()
+    }
     fun getUserRequist(): UserRequist {
         val sharedPreferences =
             mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)

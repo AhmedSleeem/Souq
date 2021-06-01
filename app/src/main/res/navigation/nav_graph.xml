@@ -65,9 +65,6 @@
         <action
             android:id="@+id/action_accountFragment_to_orderFragment"
             app:destination="@id/orderFragment" />
-        <action
-            android:id="@+id/action_accountFragment_to_adressFragment"
-            app:destination="@id/adressFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -179,6 +176,9 @@
         <action
             android:id="@+id/action_profileFragment_to_birthdayFragment"
             app:destination="@id/birthdayFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_adressFragment"
+            app:destination="@id/adressFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeNameFragment"
@@ -285,6 +285,9 @@
         <action
             android:id="@+id/action_addAddressFragment_to_deleteAddressConfigrationFragment"
             app:destination="@id/deleteAddressConfigrationFragment" />
+        <argument
+            android:name="actionType"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/deleteAddressConfigrationFragment"

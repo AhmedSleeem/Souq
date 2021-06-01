@@ -31,6 +31,5 @@ class OrderProductsRecyclerAdapter(val data:List<OrderProductItem>): RecyclerVie
         else
             holder.binding.favoriteCartImageView.setImageResource(R.drawable.ic_love_gray)
 
-
     }
 }
