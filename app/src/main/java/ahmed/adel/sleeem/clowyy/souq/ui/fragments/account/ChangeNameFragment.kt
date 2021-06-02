@@ -2,7 +2,9 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentChangeNameBinding
+import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +42,7 @@ class ChangeNameFragment : Fragment() {
             else if (lname.isNullOrEmpty())
                 binding.lastName.error = "required field"
             else{
-                LoginUtils.getInstance(requireContext())!!.updateName("$fname $lname")
+              updateName("$fname $lname")
                 Toast.makeText(
                     requireContext(),
                     "Name updated Successfully",
@@ -49,5 +51,11 @@ class ChangeNameFragment : Fragment() {
                 findNavController().navigateUp()
             }
         }
+    }
+    fun updateName(name: String) {
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("name", name)
+        editor.apply()
     }
 }

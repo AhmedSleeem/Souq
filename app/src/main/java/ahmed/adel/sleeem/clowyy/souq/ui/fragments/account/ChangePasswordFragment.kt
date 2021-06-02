@@ -3,8 +3,10 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentChangePasswordBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.PasswordRequest
+import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -82,7 +84,7 @@ class ChangePasswordFragment : Fragment() {
                 }
                 Resource.Status.SUCCESS -> {
                     it.data.let {
-                        LoginUtils.getInstance(requireContext())!!.updatePassword(newpass)
+                        updatePasswordInShared(newpass)
                         Toast.makeText(
                             requireContext(),
                             "Password updated Successfully",
@@ -94,5 +96,10 @@ class ChangePasswordFragment : Fragment() {
             }
         })
     }
-
+    fun updatePasswordInShared(password: String) {
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("password", password)
+        editor.apply()
+    }
 }

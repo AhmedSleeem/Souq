@@ -2,8 +2,10 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityRegisterBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterRequest
+import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -67,7 +69,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     it.data.let { response ->
                         Log.e("sssss", response.toString())
                         LoginUtils.getInstance(this)!!.saveUserInfo(response!!)
-                        LoginUtils.getInstance(this)!!.updatePassword(password)
+                        updatePassword(password)
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                         finish()
                     }
@@ -75,13 +77,23 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
     }
-
+    fun updatePassword(password: String) {
+        val sharedPreferences = this.getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("password", password)
+        editor.apply()
+    }
     private fun getToken() {
         viewModel.token.observe(this, Observer { token ->
-            LoginUtils.getInstance(this)!!.saveToken(token)
+            saveToken(token)
         })
     }
-
+    fun saveToken(token: String) {
+        val sharedPreferences = this.getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("token", token)
+        editor.apply()
+    }
     fun checkValidity() {
         if (binding.fullNameRegisterEditText.text.toString().length < 6) {
             binding.fullNameRegisterEditText.error

@@ -2,7 +2,9 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentChangeMailBinding
+import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,12 +46,17 @@ class ChangeMailFragment : Fragment() {
             if(email.isNullOrEmpty()){
                 binding.mail.error = "required field"
             }else{
-                LoginUtils.getInstance(requireContext())!!.updateEmail(email)
+               updateEmail(email)
                 Toast.makeText(requireContext(),"Email Updated Successfully", Toast.LENGTH_LONG).show()
                 findNavController().navigateUp()
             }
 
         }
     }
-
+    fun updateEmail(email: String) {
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("email", email)
+        editor.apply()
+    }
 }

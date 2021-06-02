@@ -22,11 +22,7 @@ class OrderFragment : Fragment() {
     lateinit var binding: FragmentOrderBinding
     lateinit var adapter: OrderRecyclerAdapter
     lateinit var viewModel: OrderViewModel
-    val data = listOf<OrderItem>(
-        OrderItem("LQNSU346JK", "Order at E-comm : August 1, 2017", "Shipping", 2, 299.50f),
-        OrderItem("SDG1345KJD", "Order at E-comm : August 1, 2017", "Shipping", 1, 350.50f),
-        OrderItem("SDG1345KJD", "Order at E-comm : August 5, 2017", "Shipping", 10, 3500f)
-    )
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +41,6 @@ class OrderFragment : Fragment() {
         initViewModel()
         initOrderRecyclerView()
         viewModel.getOrders(LoginUtils.getInstance(requireContext())!!.userInfo()._id!!)
-        Log.e("TAG", "getAllOrders: LOADING"+LoginUtils.getInstance(requireContext())!!.userInfo()._id!! )
     }
 
     private fun initViewModel() {

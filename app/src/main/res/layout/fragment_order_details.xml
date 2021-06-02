@@ -56,12 +56,11 @@
                     android:orientation="horizontal"
                     android:gravity="center">
 
-                    <ImageView
+                    <View
                         android:id="@+id/packingCheck"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/order_details_shipping_check_gray"
-                        android:src="@drawable/ic_check"
                         android:padding="@dimen/_5sdp"
                         android:contentDescription="TODO" />
 
@@ -72,12 +71,11 @@
                         tools:background="@color/primaryBlue"
                         android:layout_gravity="center_vertical"/>
 
-                    <ImageView
+                    <View
                         android:id="@+id/shippingCheck"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/order_details_shipping_check_gray"
-                        android:src="@drawable/ic_check"
                         android:padding="@dimen/_5sdp"
                         />
 
@@ -88,12 +86,11 @@
                         android:background="@color/primaryBlue"
                         android:layout_gravity="center_vertical"/>
 
-                    <ImageView
+                    <View
                         android:id="@+id/arrivingCheck"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/order_details_shipping_check_gray"
-                        android:src="@drawable/ic_check"
                         android:padding="@dimen/_5sdp"
                         />
 
@@ -104,12 +101,11 @@
                         tools:background="@color/overlayGray"
                         android:layout_gravity="center_vertical"/>
 
-                    <ImageView
+                    <View
                         android:id="@+id/successCheck"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/order_details_shipping_check_gray"
-                        android:src="@drawable/ic_check"
                         android:padding="@dimen/_5sdp"
                         />
 
@@ -195,6 +191,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12"
                 tools:listitem="@layout/item_order_cart_item_rv" />
+
+            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/shimmer_productsRv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_190sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12"
+                app:shimmer_demo_child_count="10"
+                app:shimmer_demo_grid_child_count="2"
+                app:shimmer_demo_layout="@layout/item_shimmer_rv"
+                app:shimmer_demo_layout_manager_type="linear_vertical"
+                app:shimmer_demo_angle="20"
+                />
 
             <TextView
                 android:id="@id/textView13"
@@ -476,16 +487,6 @@
                 android:textSize="@dimen/_12ssp"
                 app:background="@drawable/register_button_shape"
                 android:backgroundTint="@color/primaryBlue"/>
-
-            <ProgressBar
-                android:id="@+id/itemProgressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/productsRv"
-                app:layout_constraintEnd_toEndOf="@+id/productsRv"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/productsRv" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

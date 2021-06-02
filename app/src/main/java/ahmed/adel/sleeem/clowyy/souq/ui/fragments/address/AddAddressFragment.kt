@@ -2,7 +2,9 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.address
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentAddAddressBinding
+import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -68,7 +70,7 @@ class AddAddressFragment : Fragment() {
                 val zipCode = binding.zipCode.text.toString().trim()
                 address = country + "," + city + "," + street + "," + state + "," + zipCode
                 Log.e("TAG", "onViewCreated: " + address)
-                LoginUtils.getInstance(requireContext())!!.updateAddress(address)
+                updateAddress(address)
                 Navigation.findNavController(it).navigateUp()
 
             } else {
@@ -98,7 +100,12 @@ class AddAddressFragment : Fragment() {
         }
         return true
     }
-
+    fun updateAddress(address: String) {
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("Address", address)
+        editor.apply()
+    }
     private fun filterAddress(address: String?) {
         if (address == "N/F" || address.isNullOrEmpty()) {
             Snackbar.make(binding.root, "You Didn`t have address yet", Snackbar.LENGTH_LONG).show()

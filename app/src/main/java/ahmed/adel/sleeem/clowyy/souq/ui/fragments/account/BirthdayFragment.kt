@@ -2,7 +2,9 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentBirthdayBinding
+import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -89,12 +91,17 @@ class BirthdayFragment : Fragment() , DatePicker.OnDateChangedListener {
             val selectedDate = formatDate(binding.datePicker.year,binding.datePicker.month,binding.datePicker.dayOfMonth)
             // Display the date picker selected formatted date
             binding.date.setText( "Selected Date : $selectedDate" )
-            LoginUtils.getInstance(requireContext())!!.updateBirthDay(selectedDate)
+            updateBirthDay(selectedDate)
             Toast.makeText(requireContext(),"BirthDay Updated Successfully",Toast.LENGTH_LONG).show()
             findNavController().navigateUp()
         }
     }
-
+    fun updateBirthDay(birthDay: String) {
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("birthDay", birthDay)
+        editor.apply()
+    }
 
     private fun formatDate(year:Int, month:Int, day:Int):String{
         // Create a Date variable/object with user chosen date

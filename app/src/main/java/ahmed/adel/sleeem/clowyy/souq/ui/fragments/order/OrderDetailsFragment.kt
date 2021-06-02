@@ -83,43 +83,56 @@ class OrderDetailsFragment : Fragment() {
 
     private fun orderStatus(orderState: String) {
         when (orderState.toLowerCase()) {
-            "packing" -> {
-                binding.packingCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
-                binding.shippingLine.setBackgroundResource(R.color.overlayGray)
-                binding.shippingCheck.setImageResource(R.drawable.order_details_shipping_check_gray)
-                binding.arrivingLine.setBackgroundResource(R.color.overlayGray)
-                binding.arrivingCheck.setImageResource(R.drawable.order_details_shipping_check_gray)
-                binding.successLine.setBackgroundResource(R.color.overlayGray)
-                binding.successCheck.setImageResource(R.drawable.order_details_shipping_check_gray)
+
+            Status.PACKING.tag -> {
+                changePackingUI()
             }
-            "shipping" -> {
-                binding.packingCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
-                binding.shippingLine.setBackgroundResource(R.color.primaryBlue)
-                binding.shippingCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
-                binding.arrivingLine.setBackgroundResource(R.color.overlayGray)
-                binding.arrivingCheck.setImageResource(R.drawable.order_details_shipping_check_gray)
-                binding.successLine.setBackgroundResource(R.color.overlayGray)
-                binding.successCheck.setImageResource(R.drawable.order_details_shipping_check_gray)
+            Status.SHIPPING.tag -> {
+                changeShippingUI()
             }
-            "arriving" -> {
-                binding.packingCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
-                binding.shippingLine.setBackgroundResource(R.color.primaryBlue)
-                binding.shippingCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
-                binding.arrivingLine.setBackgroundResource(R.color.primaryBlue)
-                binding.arrivingCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
-                binding.successLine.setBackgroundResource(R.color.overlayGray)
-                binding.successCheck.setImageResource(R.drawable.order_details_shipping_check_gray)
+            Status.ARRIVING.tag -> {
+                changeArrivingUI()
             }
-            "success" -> {
-                binding.packingCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
-                binding.shippingLine.setBackgroundResource(R.color.primaryBlue)
-                binding.shippingCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
-                binding.arrivingLine.setBackgroundResource(R.color.primaryBlue)
-                binding.arrivingCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
-                binding.successLine.setBackgroundResource(R.color.primaryBlue)
-                binding.successCheck.setImageResource(R.drawable.order_details_shipping_check_blue)
+            Status.SUCCESS.tag -> {
+                changeSuccessUI()
             }
         }
+    }
+
+    private fun changeSuccessUI() {
+        changeArrivingUI()
+        changeOrderStatusUI(binding.successLine, R.color.primaryBlue)
+        changeOrderStatusUI(binding.successCheck, R.drawable.order_details_shipping_check_blue)
+    }
+
+    private fun changeArrivingUI() {
+        changeShippingUI()
+        changeOrderStatusUI(binding.arrivingLine, R.drawable.order_details_shipping_check_blue)
+        changeOrderStatusUI(binding.arrivingCheck, R.drawable.order_details_shipping_check_blue)
+    }
+
+    private fun changeShippingUI() {
+        changePackingUI()
+        changeOrderStatusUI(binding.shippingLine, R.color.primaryBlue)
+        changeOrderStatusUI(binding.shippingCheck, R.drawable.order_details_shipping_check_blue)
+    }
+
+    private fun changePackingUI() {
+        changeOrderStatusUI(
+            binding.packingCheck,
+            R.drawable.order_details_shipping_check_blue
+        )
+    }
+
+    fun <T : View> changeOrderStatusUI(view: T, res: Int) {
+        view.setBackgroundResource(res)
+    }
+
+    enum class Status(val tag: String) {
+        PACKING("packing"),
+        SHIPPING("shipping"),
+        ARRIVING("arriving"),
+        SUCCESS("success")
     }
 
     private fun getItemById() {
@@ -127,14 +140,14 @@ class OrderDetailsFragment : Fragment() {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     Log.e("TAG", "getAllOrders: LOADING")
-                    binding.itemProgressBar.visibility = View.VISIBLE
+                    binding.shimmerProductsRv.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR -> {
                     Log.e("TAG", "getAllOrders: ERROR" + it.message)
-                    binding.itemProgressBar.visibility = View.VISIBLE
+                    binding.shimmerProductsRv.visibility = View.VISIBLE
                 }
                 Resource.Status.SUCCESS -> {
-                    binding.itemProgressBar.visibility = View.GONE
+                    binding.shimmerProductsRv.visibility = View.GONE
                     it.data.let {
                         Log.e("TAG", "getAllOrders: ERROR" + it?.size)
                         itemsList.add(it!!)

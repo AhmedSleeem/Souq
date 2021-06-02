@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_90sdp"
+    android:background="@drawable/register_custom_edittext_shape"
+    android:padding="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_4sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+        android:id="@+id/itemCartImageView"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/shimmerBgColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descCartTextView"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toStartOf="@+id/favoriteCartImageView"
+        app:layout_constraintStart_toEndOf="@+id/itemCartImageView"
+        app:layout_constraintTop_toTopOf="@+id/itemCartImageView"
+        android:background="@color/shimmerItemColor"
+        tools:ignore="RtlCompat"
+         />
+
+    <TextView
+        android:id="@+id/priceCartTextView"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:layout_marginLeft="12dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/primaryBlue"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemCartImageView"
+        app:layout_constraintStart_toEndOf="@+id/itemCartImageView"
+        app:layout_constraintTop_toBottomOf="@+id/itemCartImageView"
+        android:background="@color/shimmerItemColor" />
+
+
+    <ImageView
+        android:id="@+id/favoriteCartImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/shimmerItemColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/descCartTextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

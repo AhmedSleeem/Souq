@@ -1,7 +1,9 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.address
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDeleteAddressConfigrationBinding
+import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,10 +31,16 @@ class DeleteAddressConfigrationFragment : Fragment() {
             Navigation.findNavController(it).navigateUp()
         }
         binding.deleteAction.setOnClickListener {
-            LoginUtils.getInstance(requireContext())!!.updateAddress("N/F")
+            updateAddress("N/F")
             Toast.makeText(requireContext(), "Address Deleted Successfully", Toast.LENGTH_LONG)
                 .show()
             Navigation.findNavController(it).navigateUp()
         }
+    }
+    fun updateAddress(address: String) {
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("Address", address)
+        editor.apply()
     }
 }
