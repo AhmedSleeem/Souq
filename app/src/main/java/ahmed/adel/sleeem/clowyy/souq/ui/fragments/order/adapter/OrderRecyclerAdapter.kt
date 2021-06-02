@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 class OrderRecyclerAdapter(val listener: (View, OrderResponse.OrderResponseItem, Int) -> Unit?) :
     RecyclerView.Adapter<OrderRecyclerAdapter.ViewHolder>() {
 
-    private var data = arrayListOf<OrderResponse.OrderResponseItem>()
-    fun changeData(newData: ArrayList<OrderResponse.OrderResponseItem>) {
+    private var data = listOf<OrderResponse.OrderResponseItem>()
+    fun changeData(newData: List<OrderResponse.OrderResponseItem>) {
 
         data = newData
         notifyDataSetChanged()
@@ -21,9 +21,10 @@ class OrderRecyclerAdapter(val listener: (View, OrderResponse.OrderResponseItem,
     inner class ViewHolder(val binding: ItemOrderRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: OrderResponse.OrderResponseItem) = with(itemView) {
-            binding.orderId.text = item._id
+            binding.orderId.text = item.orderCode
             binding.orderDate.text = "Order at Sell3a : "+item.orderDate
             binding.orderStatus.text = item.orderState
+            binding.orderPrice.text = item.totalPrice.toString()
             var itemsCount = 0
             for (itm in item.itemIds) {
                 itemsCount += itm.count

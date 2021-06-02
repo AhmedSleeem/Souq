@@ -20,6 +20,7 @@ interface ApiServices {
     @GET("products/getbytitle")
     suspend fun getItemsByTitle(@Query("title") title: String): Response<ProductResponse>
 
+
     @GET("products/filter")
     suspend fun filterProducts(
         @Query("min") min: Int? = null,
@@ -55,4 +56,7 @@ interface ApiServices {
         @Query("id") id: String
     ): Response<OrderResponse>
 
+    //https://souqitigraduationproj.herokuapp.com/api/products/getitembyid?id=20
+    @GET("products/getitembyid")
+    suspend fun getItemsById(@Query("id") id: String): Response<itemResponse>
 }

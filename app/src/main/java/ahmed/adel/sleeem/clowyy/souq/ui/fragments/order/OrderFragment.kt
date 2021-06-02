@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 
 class OrderFragment : Fragment() {
 
@@ -54,8 +55,8 @@ class OrderFragment : Fragment() {
 
     private fun initOrderRecyclerView() {
         adapter = OrderRecyclerAdapter { view, orderResponseItem, i ->
-            Navigation.findNavController(view)
-                .navigate(R.id.action_orderFragment_to_orderDetailsFragment)
+            val action = OrderFragmentDirections.actionOrderFragmentToOrderDetailsFragment(orderResponseItem)
+            view.findNavController().navigate(action)
 
         }
         getAllOrders()
@@ -76,8 +77,8 @@ class OrderFragment : Fragment() {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
                     it.data.let {
-                        Log.e("TAG", "getAllOrders: ERROR"+it?.size )
-                        adapter.changeData(it!!)
+                        Log.e("TAG", "getAllOrders: ERROR"+it?.order?.size )
+                        adapter.changeData(it!!.order)
                         binding.ordersRv.adapter = adapter
                     }
                 }
