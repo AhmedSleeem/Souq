@@ -168,8 +168,6 @@ class DetailsFragment : Fragment() {
                 Resource.Status.SUCCESS ->{
                     changeReviewUi(it.data!!)
 
-
-
                 }
             }
         })

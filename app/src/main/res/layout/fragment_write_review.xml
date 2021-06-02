@@ -117,7 +117,7 @@
                 android:inputType="textMultiLine"
                 android:padding="16dp"
                 android:textColor="@color/gray"
-                android:textSize="12sp"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -140,6 +140,24 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
+                android:id="@+id/uodateReviewButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_12sdp"
+                android:text="@string/modify_review"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone"
+                app:background="@drawable/register_button_shape"
+                app:backgroundTint="@color/primaryBlue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
                 android:id="@+id/removeReviewButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -153,9 +171,9 @@
                 app:background="@drawable/register_button_shape"
                 app:backgroundTint="@color/red"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@id/writeReviewButton"
-                app:layout_constraintEnd_toEndOf="@+id/writeReviewButton"
-                app:layout_constraintStart_toStartOf="@+id/writeReviewButton" />
+                app:layout_constraintBottom_toTopOf="@id/uodateReviewButton"
+                app:layout_constraintEnd_toEndOf="@+id/uodateReviewButton"
+                app:layout_constraintStart_toStartOf="@+id/uodateReviewButton" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

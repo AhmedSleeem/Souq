@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_70sdp"
+    android:orientation="vertical"
+    android:padding="@dimen/_8sdp"
+    android:background="@color/shimmerBgColor"
+    android:layout_marginBottom="@dimen/_4sdp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_shimmer"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@color/shimmerItemColor"
+        app:civ_border_color="#FF000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_shimmer"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_10sdp"
+        android:layout_marginTop="4dp"
+        android:background="@color/shimmerItemColor"
+        app:layout_constraintStart_toStartOf="@+id/username_shimmer"
+        app:layout_constraintTop_toBottomOf="@+id/username_shimmer" />
+
+    <TextView
+        android:id="@+id/username_shimmer"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_10sdp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@color/shimmerItemColor"
+        app:layout_constraintStart_toEndOf="@+id/profile_shimmer"
+        app:layout_constraintTop_toTopOf="@+id/profile_shimmer" />
+
+    <TextView
+        android:id="@+id/review_shimmer"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_10sdp"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/poppins_regular"
+        android:background="@color/shimmerItemColor"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/profile_shimmer"
+        app:layout_constraintTop_toBottomOf="@+id/profile_shimmer" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

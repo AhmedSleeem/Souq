@@ -169,6 +169,7 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
                     binding.searchRvShimmer.showShimmerAdapter()
                     binding.searchRv.visibility = View.GONE
 
+
                 }
                 Resource.Status.SUCCESS->{
                     if(it.flag==1)
@@ -186,7 +187,6 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
                 Resource.Status.ERROR->{
 
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    Log.e("erorrrrrrrrrrrrrrrrrr", it.message.toString() )
                     binding.resultCount.text = "0"
                     binding.searchRv.visibility = View.GONE
                     binding.searchFailedView.visibility = View.VISIBLE

@@ -41,6 +41,12 @@ interface ItemWebServices {
     @POST("review/addreview")
     suspend fun postReview(@Body reviewRequest: ReviewRequest): Response<ReviewResponse.Item>
 
+    @HTTP(method = "DELETE", path = "review/deleteReview", hasBody = true)
+    suspend fun deleteReview(@Body deleteReviewRequest: DeleteReviewRequest): Response<DeleteReviewResponse>
+
+    @PUT("review/modifyreview")
+    suspend fun modifyReview(@Body modifyReviewRequest: ModifyReviewRequest): Response<ReviewResponse.Item>
+
     @GET("users/getuserbyid")
     suspend fun getUserById(@Query("id") id:String): Response<UserResponse>
 

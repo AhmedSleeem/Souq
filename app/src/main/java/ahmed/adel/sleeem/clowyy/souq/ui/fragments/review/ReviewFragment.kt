@@ -8,6 +8,7 @@ import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewStarAdapter
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -32,14 +33,18 @@ class ReviewFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentReviewBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(requireActivity()).get(ReviewViewModel::class.java)
+        subscribeToLiveData()
+        viewModel.getReviewsByProductId(args.productId!!)
         return binding.root
     }
+
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(ReviewViewModel::class.java)
+
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.appBar.setNavigationOnClickListener {
@@ -71,11 +76,7 @@ class ReviewFragment : Fragment(), View.OnClickListener {
             }
         }
 
-
-        viewModel.getReviewsByProductId(args.productId.toString())
-        subscribeToLiveData()
         setStatusBarColor()
-
         binding.writeReviewButton.setOnClickListener(this)
     }
 
@@ -83,10 +84,19 @@ class ReviewFragment : Fragment(), View.OnClickListener {
         viewModel.reviewsLiveData.observe(viewLifecycleOwner , Observer {
             when(it.status){
                 Resource.Status.LOADING ->{
-
+                    binding.shimmerReviewRv.showShimmerAdapter()
+                    binding.reviewRecyclerView.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS ->{
                     reviewAdapter.changeData(it.data!!,true)
+                    binding.shimmerReviewRv.hideShimmerAdapter()
+                    binding.reviewRecyclerView.visibility = View.VISIBLE
+                }
+
+                Resource.Status.ERROR ->{
+                    binding.shimmerReviewRv.hideShimmerAdapter()
+                    binding.reviewRecyclerView.visibility = View.VISIBLE
+                    reviewAdapter.changeData(ReviewResponse(),true)
                 }
             }
         })

@@ -3,7 +3,10 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.review
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.FullUserInfo
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.DeleteReviewRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.ModifyReviewRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.ReviewRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.DeleteReviewResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.app.Application
@@ -12,22 +15,28 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
 class ReviewViewModel(application: Application):AndroidViewModel(application) {
+
+
     private var _reviewsLiveData = MutableLiveData<Resource<ReviewResponse>>()
     val reviewsLiveData: LiveData<Resource<ReviewResponse>> get() = _reviewsLiveData
 
-    private var _addReviewLiveData = MutableLiveData<Resource<ReviewResponse.Item>>()
-    val addReviewLiveData: LiveData<Resource<ReviewResponse.Item>> get() = _addReviewLiveData
 
-    private var reviewResponse = ReviewResponse()
+    lateinit var reviewResponse:ReviewResponse
     fun getCurrentUserId() = LoginUtils.getInstance(getApplication())!!.userInfo()._id
+
+
+
 
     fun getReviewsByProductId(id:String){
         viewModelScope.launch {
-            Log.e("sasasasasassa", id )
+            reviewResponse = ReviewResponse()
             val response = RetrofitHandler.getItemWebService().getReviewsByItemId(id = id)
             if (response.isSuccessful){
                 if (response.body() != null) {
+
                     reviewResponse = response.body()!!
+                    _reviewsLiveData.value = Resource.success(reviewResponse)
+                    Log.e("eeeeeeeeeeeeeee", "in view Model    $reviewResponse")
                     getReviews()
 
                 }
@@ -70,22 +79,6 @@ class ReviewViewModel(application: Application):AndroidViewModel(application) {
                     _reviewsLiveData.value = Resource.error("empty");
             }else{
                 _reviewsLiveData.value = Resource.error(response.errorBody().toString());
-            }
-        }
-    }
-
-    fun addReview(reviewRequest: ReviewRequest){
-        viewModelScope.launch {
-            _addReviewLiveData.value = Resource.loading(null)
-            val response = RetrofitHandler.getItemWebService().postReview(reviewRequest)
-            if (response.isSuccessful){
-                if (response.body() != null) {
-                    _addReviewLiveData.value = Resource.success(response.body()!!)
-                }
-                else
-                    _addReviewLiveData.value = Resource.error("empty");
-            }else{
-                    _addReviewLiveData.value = Resource.error(response.errorBody().toString());
             }
         }
     }
