@@ -1,17 +1,16 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
-import ahmed.adel.sleeem.clowyy.souq.ui.activity.MainActivity
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment.Companion.badgeCount
+import ahmed.adel.sleeem.clowyy.souq.room.FavouriteItem
+import ahmed.adel.sleeem.clowyy.souq.room.FavouriteViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
-import ahmed.adel.sleeem.clowyy.souq.utils.OnBadgeChangeListener
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -26,11 +25,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 
 
-class DetailsFragment : Fragment() {
-    companion object{
-        private var badgeCount = 0
-        var setOnCountChangeListener : OnBadgeChangeListener? = null
-    }
+class DetailsFragment : Fragment(), View.OnClickListener {
 
     private lateinit var listImg: MutableList<String>
     private var saleData = arrayListOf<ProductResponse.Item>()
@@ -42,7 +37,8 @@ class DetailsFragment : Fragment() {
     private lateinit var viewModel: DetailsViewModel
     private val args by navArgs<DetailsFragmentArgs>()
     private lateinit var item: ProductResponse.Item
-
+    private lateinit var favItem: FavouriteItem
+    private lateinit var favouriteViewModel: FavouriteViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,10 +54,13 @@ class DetailsFragment : Fragment() {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        favouriteViewModel = ViewModelProvider(this).get(FavouriteViewModel::class.java)
+
+
         item = args.itemData
         binding.appBar.title = item.title
         binding.productNameTv.text = item.title
-        binding.ratingBar.rating = (item.rating/2.0f)
+        binding.ratingBar.rating = (item.rating / 2.0f)
         binding.price.text = item.price.toString() + " Egp"
         binding.descriptionTv.text = item.description
         binding.companyNameTv.text = item.companyName
@@ -139,52 +138,7 @@ class DetailsFragment : Fragment() {
                 .navigate(R.id.action_detailsFragment_to_reviewFragment)
         }
 
-
-        // add to cart action
-        binding.addToCartBtn.setOnClickListener{
-            if(item.color != null || item.size != null) {
-                if (item.selectedColor != null && item.selectedSize != null) {
-                    item.countOfSelectedItem = 1
-                    CartRoom.cartList.add(item)
-                    badgeCount++
-                    setOnCountChangeListener?.onChange(badgeCount)
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Please choose colore and size",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }else{
-                item.countOfSelectedItem = 1
-                CartRoom.cartList.add(item)
-                badgeCount++
-                setOnCountChangeListener?.onChange(badgeCount)
-            }
-
-        }
-
-        // size clickListner
-        if(item.size != null) {
-            selectSizeAdapter.setOnItemClickListner = object : SizeRecyclerAdapter.ClckListner {
-                override fun clickListner(itemSize: String) {
-                    item.selectedSize = itemSize
-                }
-
-            }
-        }
-
-        //color clickListner
-        if(item.color != null) {
-            colorAdapter.setOnItemClickListner = object : ColorRecylerAdapter.ClckListner {
-                override fun clickListner(itemColor: String) {
-                    item.selectedColor = itemColor
-                }
-
-            }
-        }
-
-
+        binding.favoritBtn.setOnClickListener(this)
     }
 
     private fun subscribeToLiveData() {
@@ -209,5 +163,42 @@ class DetailsFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun insertDataToDatabase() {
+
+        val productName = item.title
+        val itemId = item.id
+        val userId = LoginUtils.getInstance(requireContext())!!.userInfo()._id
+        val productImage = item.image
+        val rating = item.rating
+        val price = item.price
+        val offer = item.sale.amount
+
+
+        // Create User Object
+        val item = FavouriteItem(
+            0,
+            itemId,
+            userId,
+            productName,
+            productImage,
+            rating,
+            price,
+            offer
+        )
+
+        // Add Data to Database
+        favouriteViewModel.addItem(item)
+        Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
+    }
+
+
+    override fun onClick(v: View?) {
+        when (v) {
+            binding.favoritBtn -> {
+                insertDataToDatabase()
+            }
+        }
     }
 }

@@ -1,46 +1,51 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite.adapter
 
-import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemFavoriteGvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
+import ahmed.adel.sleeem.clowyy.souq.room.FavouriteItem
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class FavoriteAdapter(private var items: MutableList<SaleItem>) :
-    RecyclerView.Adapter<FavoriteAdapter.ViewHolder>(){
+class FavoriteAdapter(val listener: (View, FavouriteItem, Int) -> Unit?) :
+    RecyclerView.Adapter<FavoriteAdapter.RepoViewHolder>() {
 
-    inner class ViewHolder(val binding: ItemFavoriteGvBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: SaleItem) = with(itemView) {
-            binding.imgProduct.setImageResource(item.image)
-            binding.tvProductName.text = item.name
-            binding.tvCost.text = item.newPrice.toString()
-            binding.tvOldCost.text = item.price.toString()
-            binding.tvOffPercentage.text = item.salePercent.toString()
+    private var data: MutableList<FavouriteItem> = ArrayList()
 
-            setOnClickListener {
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_favoriteFragment_to_detailsFragment)
-            }
-        }
-    }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): FavoriteAdapter.ViewHolder {
-        return ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
+        return RepoViewHolder(
             ItemFavoriteGvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
+    override fun getItemCount() = data.size
 
-    override fun getItemCount(): Int {
-        return items.size
+    override fun onBindViewHolder(holder: RepoViewHolder, position: Int) =
+        holder.bind(data[position])
+
+    fun getData(data: MutableList<FavouriteItem>) {
+        this.data = data
+        notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: FavoriteAdapter.ViewHolder, position: Int) = holder.bind(items[position])
+    inner class RepoViewHolder(var binding: ItemFavoriteGvBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: FavouriteItem) = with(itemView) {
 
+            Glide.with(context)
+                .load(item.productImage)
+                .fitCenter()
+                .into(binding.imgProduct)
+            binding.tvProductName.text = item.productName
+            binding.tvCost.text = item.price.toString()
+            binding.tvOldCost.text = item.price.toString()
+            binding.tvOffPercentage.text = item.offer.toString()
+
+            setOnClickListener {
+                listener.invoke(it, item, adapterPosition)
+            }
+        }
+    }
 }

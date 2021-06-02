@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
         badge.isVisible = true
         badge.number = 0
 
-        DetailsFragment.setOnCountChangeListener = this
+//        DetailsFragment.setOnCountChangeListener = this
 
         if(!isFirstRunning()) {
             this.findNavController(R.id.navHost)

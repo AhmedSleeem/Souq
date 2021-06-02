@@ -2,20 +2,22 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentFavoriteBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.SaleItem
+import ahmed.adel.sleeem.clowyy.souq.room.FavouriteItem
+import ahmed.adel.sleeem.clowyy.souq.room.FavouriteViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite.adapter.FavoriteAdapter
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : Fragment(), View.OnClickListener {
 
-    private var favoriteGridView: RecyclerView? = null
     private var favoriteAdapter: FavoriteAdapter? = null
+    private lateinit var favouriteViewModel: FavouriteViewModel
     private lateinit var binding: FragmentFavoriteBinding
 
 
@@ -23,44 +25,42 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // app bar arrow back
-        binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
-        binding.appBar.setNavigationOnClickListener {
-            Navigation.findNavController(it).navigateUp()
+        favoriteAdapter = FavoriteAdapter { it, item, _ ->
+//            val action = FavoriteFragmentDirections.actionFavoriteFragmentToDetailsFragment(item)
+//            it.findNavController().navigate(action)
         }
 
-        favoriteGridView = view.findViewById(R.id.favorite_gridView)
-        favoriteAdapter = FavoriteAdapter(items = favList)
 
-        binding.favoriteGridView.adapter = favoriteAdapter
-        favoriteGridView?.adapter = favoriteAdapter
+        //userViewModel
+        favouriteViewModel = ViewModelProvider(this).get(FavouriteViewModel::class.java)
+        favouriteViewModel.readAllData.observe(viewLifecycleOwner, Observer {
+            favoriteAdapter!!.getData(it as MutableList<FavouriteItem>)
+            binding.favoriteGridView.adapter = favoriteAdapter
+            Log.i("mnem", it.size.toString())
+        })
 
+//        binding.floatingActionBtn.setOnClickListener(this)
+//        binding.btnDeleteAll.setOnClickListener(this)
     }
 
-    var favList = mutableListOf<SaleItem>(
-
-        SaleItem(R.drawable.bag2, "FS - Nike Air Max 270 React...", "24% Off", 299.34f, 534.34f),
-        SaleItem(R.drawable.shoes, "FS - Nike Air Max 270 React...", "24% Off", 299.34f, 534.34f),
-        SaleItem(R.drawable.shoes2, "FS - Nike Air Max 270 React...", "24% Off", 299.34f, 534.34f),
-        SaleItem(
-            R.drawable.womem_bag,
-            "FS - Nike Air Max 270 React...",
-            "24% Off",
-            299.34f,
-            534.34f
-        ),
-        SaleItem(R.drawable.shoes, "FS - Nike Air Max 270 React...", "24% Off", 299.34f, 534.34f),
-        SaleItem(R.drawable.bag2, "FS - Nike Air Max 270 React...", "24% Off", 299.34f, 534.34f),
-        SaleItem(R.drawable.shoes2, "FS - Nike Air Max 270 React...", "24% Off", 299.34f, 534.34f)
-    )
-
+    override fun onClick(v: View?) {
+//        when (v) {
+//            binding.floatingActionBtn -> {
+//                findNavController().navigate(R.id.action_listFragment_to_addFragment)
+//            }
+//            binding.btnDeleteAll -> {
+//                deleteAllUser()
+//            }
+//        }
+    }
 
 }
