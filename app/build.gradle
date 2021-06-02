@@ -102,4 +102,6 @@ dependencies {
 
     //facebook
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
+
+
 }

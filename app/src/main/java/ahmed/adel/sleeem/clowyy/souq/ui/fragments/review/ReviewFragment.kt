@@ -1,88 +1,131 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.review
 
 import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentReviewBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ReviewItem
-import ahmed.adel.sleeem.clowyy.souq.pojo.StarItem
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.writeReview.ReviewStarAdapter
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.ReviewRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewStarAdapter
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 
 class ReviewFragment : Fragment(), View.OnClickListener {
 
     private lateinit var reviewAdapter: ReviewAdapter
     private lateinit var starAdapter: ReviewStarAdapter
-    private var _binding: FragmentReviewBinding? = null
+    lateinit var binding: FragmentReviewBinding
+    private val args by navArgs<ReviewFragmentArgs>()
+    private lateinit var viewModel:ReviewViewModel
 
-    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentReviewBinding.inflate(inflater, container, false)
+        binding = FragmentReviewBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(requireActivity()).get(ReviewViewModel::class.java)
+        subscribeToLiveData()
+        viewModel.getReviewsByProductId(args.productId!!)
         return binding.root
     }
+
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (args.deletedReview != null)
+            showSnackBar(view)
 
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
         }
-        
-        setStatusBarColor()
-        initStarRecyclerView()
-        initReviewRecyclerView()
 
+        reviewAdapter = ReviewAdapter(requireContext())
+        binding.reviewRecyclerView.adapter=reviewAdapter
+
+        starAdapter = ReviewStarAdapter()
+        binding.reviewStarRecyclerView.adapter = starAdapter
+
+        starAdapter.setOnItemClick = object : ReviewStarAdapter.OnItemClick{
+            override fun onClick(position: Int) {
+                viewModel.getReviewByRate(args.productId.toString(),rate = position)
+            }
+        }
+
+        reviewAdapter.setOnItemClick = object  : ReviewAdapter.OnItemClick{
+            override fun onClick(item: ReviewResponse.Item) {
+                if (viewModel.getCurrentUserId() == item.userId){
+                    val action = ReviewFragmentDirections.actionReviewFragmentToWriteReviewFragment(
+                        item,
+                        true,
+                        args.productId
+                    )
+                    view.findNavController().navigate(action)
+                }
+            }
+        }
+
+        setStatusBarColor()
         binding.writeReviewButton.setOnClickListener(this)
+    }
+
+    private fun showSnackBar(view: View) {
+        Snackbar.make(view, "Review Deleted", Snackbar.LENGTH_LONG)
+            .setAction("Undo") { _ ->
+                viewModel.addReview(ReviewRequest(args.deletedReview!!.description
+                    ,args.deletedReview!!.itemId
+                    ,args.deletedReview!!.rating
+                    ,args.deletedReview!!.userId),args.productId!!)
+            }
+            .show()
+    }
+
+    private fun subscribeToLiveData() {
+        viewModel.reviewsLiveData.observe(viewLifecycleOwner , Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+                    binding.progress.visibility = View.VISIBLE
+                    binding.reviewRecyclerView.visibility = View.GONE
+                }
+                Resource.Status.SUCCESS ->{
+                    reviewAdapter.changeData(it.data!!,true)
+                    binding.progress.visibility = View.GONE
+                    binding.reviewRecyclerView.visibility = View.VISIBLE
+                }
+
+                Resource.Status.ERROR ->{
+                    binding.progress.visibility = View.GONE
+                    binding.reviewRecyclerView.visibility = View.VISIBLE
+                    reviewAdapter.changeData(ReviewResponse(),true)
+                }
+            }
+        })
     }
 
     override fun onClick(v: View) {
         when (v) {
              binding.writeReviewButton ->{
-                  val action = ReviewFragmentDirections.actionReviewFragmentToWriteReviewFragment()
+                  val action = ReviewFragmentDirections.actionReviewFragmentToWriteReviewFragment(null,false , args.productId)
                   view?.findNavController()?.navigate(action)
               }
         }
     }
 
-    private fun initStarRecyclerView() {
-        starAdapter = ReviewStarAdapter { _, _, _ -> }
 
-        var star1 = StarItem(1)
-        var star2 = StarItem(2)
-        var star3 = StarItem(3)
-        var star4 = StarItem(4)
-        var star5 = StarItem(5)
-        var starList = mutableListOf<StarItem>(star1, star2, star3, star4, star5)
-        starAdapter.swapData(starList)
-        binding.reviewStarRecyclerView.apply {
-            adapter = starAdapter
-        }
-    }
-
-    private fun initReviewRecyclerView() {
-        reviewAdapter = ReviewAdapter { _, _, _ -> }
-
-        var star1 = ReviewItem()
-        var star2 = ReviewItem()
-
-        var starList = mutableListOf<ReviewItem>(star1, star2)
-        reviewAdapter.changeData(starList)
-        binding.reviewRecyclerView.apply {
-            adapter = reviewAdapter
-        }
-    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setStatusBarColor() {
@@ -93,8 +136,4 @@ class ReviewFragment : Fragment(), View.OnClickListener {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

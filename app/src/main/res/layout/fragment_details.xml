@@ -116,7 +116,7 @@
                 android:layout_marginTop="12dp"
                 android:max="5"
                 android:numStars="5"
-                android:rating="4"
+                android:rating="0"
                 android:stepSize="1"
                 android:theme="@style/RatingBar.YellowStyle"
                 android:transformPivotX="0dp"
@@ -246,35 +246,6 @@
                 app:layout_constraintTop_toTopOf="@+id/shown_txt"
                 tools:ignore="RtlCompat" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/details1"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:fontFamily="@font/poppins_regular"-->
-            <!--                android:layout_marginEnd="@dimen/_12sdp"-->
-            <!--                android:layout_marginTop="@dimen/_12sdp"-->
-            <!--                android:text="Blue/Anthracite/Welcome"-->
-            <!--                android:textColor="@color/gray"-->
-            <!--                android:textFontWeight="400"-->
-            <!--                android:textSize="@dimen/_9sdp"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@id/details"-->
-            <!--                tools:ignore="RtlCompat" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/details2"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:fontFamily="@font/poppins_regular"-->
-            <!--                android:layout_marginEnd="@dimen/_12sdp"-->
-            <!--                android:layout_marginTop="@dimen/_12sdp"-->
-            <!--                android:text="on/white"-->
-            <!--                android:textColor="@color/gray"-->
-            <!--                android:textFontWeight="400"-->
-            <!--                android:textSize="@dimen/_9sdp"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@id/details1"-->
-            <!--                tools:ignore="RtlCompat" />-->
 
             <TextView
                 android:id="@+id/style"
@@ -368,7 +339,7 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_marginTop="8dp"
                 android:max="5"
                 android:numStars="5"
-                android:rating="5"
+                android:rating="0"
                 android:stepSize="1"
                 android:theme="@style/RatingBar.YellowStyle"
                 android:transformPivotX="0dp"
@@ -386,18 +357,18 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="@string/rate"
+                android:text="0.0"
                 android:textColor="@color/gray"
                 android:textFontWeight="700"
                 android:textSize="@dimen/_8sdp"
-                app:layout_constraintEnd_toStartOf="@+id/review1"
+                app:layout_constraintEnd_toStartOf="@+id/countOfReating"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/rating_bar1"
                 app:layout_constraintTop_toTopOf="@+id/rating_bar1"
                 tools:ignore="RtlCompat" />
 
             <TextView
-                android:id="@+id/review1"
+                android:id="@+id/countOfReating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -413,113 +384,119 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 app:layout_constraintVertical_bias="1.0"
                 tools:ignore="RtlCompat" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profileReviewImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:src="@drawable/profile"
-                app:civ_border_color="#FF000000"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rating_bar1" />
-
-            <RatingBar
-                android:id="@+id/ratingReviewBar"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="4dp"
-                android:max="5"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="1"
-                android:theme="@style/RatingBar.YellowStyle"
-                android:transformPivotX="0dp"
-                android:transformPivotY="0dp"
-                app:layout_constraintStart_toStartOf="@+id/usernameReviewTextView"
-                app:layout_constraintTop_toBottomOf="@+id/usernameReviewTextView" />
-
-            <TextView
-                android:id="@+id/usernameReviewTextView"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rateView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="James Lawson"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/profileReviewImageView"
-                app:layout_constraintTop_toTopOf="@+id/profileReviewImageView" />
-
-            <TextView
-                android:id="@+id/reviewTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_regular"
-                android:paddingEnd="16dp"
-                android:text="air max are always very comfortable fit, clean and just perfect in every way. just the box was too small and scrunched the sneakers up a little bit, not sure if the box was always this small but the 90s are and will always be one of my favorites."
-                android:textColor="@color/gray"
-                android:textSize="12sp"
+                android:layout_marginTop="@dimen/_8sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/profileReviewImageView"
-                app:layout_constraintTop_toBottomOf="@+id/profileReviewImageView" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/register_custom_edittext_shape"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reviewTextView"
-                tools:srcCompat="@drawable/product2" />
+                app:layout_constraintTop_toBottomOf="@id/rating_bar1"
+                android:paddingRight="@dimen/_12sdp"
+                android:paddingLeft="@dimen/_12sdp" >
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileReviewImageView"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/profile"
+                    app:civ_border_color="#FF000000"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/register_custom_edittext_shape"
-                app:layout_constraintStart_toEndOf="@id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/reviewTextView"
-                tools:srcCompat="@drawable/product2" />
+                <RatingBar
+                    android:id="@+id/ratingReviewBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:max="5"
+                    android:numStars="5"
+                    android:rating="4"
+                    android:stepSize="1"
+                    android:theme="@style/RatingBar.YellowStyle"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="0dp"
+                    app:layout_constraintStart_toStartOf="@+id/usernameReviewTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/usernameReviewTextView" />
 
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/register_custom_edittext_shape"
-                app:layout_constraintStart_toEndOf="@id/imageView7"
-                app:layout_constraintTop_toBottomOf="@+id/reviewTextView"
-                tools:srcCompat="@drawable/product2" />
+                <TextView
+                    android:id="@+id/usernameReviewTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="James Lawson"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/profileReviewImageView"
+                    app:layout_constraintTop_toTopOf="@+id/profileReviewImageView" />
 
-            <TextView
-                android:id="@+id/dateReviewTextView"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/reviewTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="air max are always very comfortable fit, clean and just perfect in every way. just the box was too small and scrunched the sneakers up a little bit, not sure if the box was always this small but the 90s are and will always be one of my favorites."
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/profileReviewImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/profileReviewImageView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:id="@+id/noReviewViews"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="December 10, 2016"
-                android:textColor="@color/gray"
-                android:textSize="10sp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                app:layout_constraintTop_toBottomOf="@id/rating_bar1">
+
+                <ImageView
+                    android:id="@+id/addReview"
+                    android:layout_width="@dimen/_46sdp"
+                    android:layout_height="@dimen/_46sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/circle_shape"
+                    android:backgroundTint="@color/primaryBlue"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_baseline_add_24" />
+
+
+                <TextView
+                    android:layout_width="@dimen/_181sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="@string/no_review_yet"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_28sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="add one"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginBottom="@dimen/_8sdp"/>
+
+
+            </LinearLayout>
+
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="reviewTextView,imageView6" />
+                app:constraint_referenced_ids="rateView,noReviewViews" />
 
 
             <TextView
@@ -533,7 +510,7 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:text="@string/like"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dateReviewTextView"
+                app:layout_constraintTop_toBottomOf="@+id/barrier3"
                 tools:ignore="RtlCompat" />
 
             <androidx.recyclerview.widget.RecyclerView

@@ -1,15 +1,15 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.utils.Resource
+import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
-import ahmed.adel.sleeem.clowyy.souq.ui.activity.MainActivity
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment.Companion.badgeCount
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewAdapter
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import ahmed.adel.sleeem.clowyy.souq.utils.OnBadgeChangeListener
 import android.os.Bundle
@@ -39,6 +39,7 @@ class DetailsFragment : Fragment() {
     private lateinit var colorAdapter: ColorRecylerAdapter
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var recommendRecyclerAdapter: RecommendedRecyclerAdapter
+    private lateinit var reviewRecyclerAdapter: ReviewAdapter
     private lateinit var viewModel: DetailsViewModel
     private val args by navArgs<DetailsFragmentArgs>()
     private lateinit var item: ProductResponse.Item
@@ -69,6 +70,8 @@ class DetailsFragment : Fragment() {
 
         recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
         binding.recommend.adapter = recommendRecyclerAdapter
+
+
 
         viewPagerAdapter = ViewPagerAdapter(requireContext())
         binding.saleViewPager1.adapter = viewPagerAdapter
@@ -118,11 +121,17 @@ class DetailsFragment : Fragment() {
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(DetailsViewModel::class.java);
         viewModel.getItemsByCategory(item.category.name)
+        viewModel.getReviewsByProductId(item.id.toString())
 
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
+        }
+
+        binding.addReview.setOnClickListener {
+            val action = DetailsFragmentDirections.actionDetailsFragmentToWriteReviewFragment(null,false,item.id.toString())
+            it.findNavController().navigate(action)
         }
 
 
@@ -135,8 +144,8 @@ class DetailsFragment : Fragment() {
             }
 
         binding.morweReviews.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_detailsFragment_to_reviewFragment)
+            val action = DetailsFragmentDirections.actionDetailsFragmentToReviewFragment(item.id.toString())
+           view.findNavController().navigate(action)
         }
 
 
@@ -209,5 +218,52 @@ class DetailsFragment : Fragment() {
                 }
             }
         })
+
+        viewModel.reviewsLiveData.observe(viewLifecycleOwner , Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+
+                }
+                Resource.Status.SUCCESS ->{
+                    changeReviewUi(it.data!!)
+                }
+                Resource.Status.ERROR ->{
+                    binding.rateView.visibility=View.GONE
+                    binding.noReviewViews.visibility=View.VISIBLE
+                }
+            }
+        })
+
+        viewModel.userLiveData.observe(viewLifecycleOwner , Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+
+                }
+                Resource.Status.SUCCESS ->{
+                    Glide.with(requireActivity())
+                        .load(it.data!!.profileImage)
+                        .into(binding.profileReviewImageView)
+                    binding.usernameReviewTextView.text = it.data!!.name
+                }
+            }
+        })
+
+        viewModel.reviewAvgLiveData.observe(viewLifecycleOwner, Observer {
+            binding.ratingBar.rating = it.second
+            binding.ratingBar1.rating = it.second
+            binding.rate.text = String.format("%.2f",it.second)
+        })
+    }
+
+    private fun changeReviewUi(data: ReviewResponse) {
+        val reviewItem = data[0]
+        binding.countOfReating.text = " (${data.size} Reviews)"
+        viewModel.getUserById(reviewItem.userId)
+        binding.reviewTextView.text = reviewItem.description
+        binding.ratingReviewBar.rating = reviewItem.rating.toFloat()
+
+
+
+
     }
 }
