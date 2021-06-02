@@ -1,10 +1,10 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 
+
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
-import ahmed.adel.sleeem.clowyy.souq.pojo.response.OrderResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
@@ -14,7 +14,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -24,7 +23,6 @@ import androidx.navigation.findNavController
 import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import kotlin.random.Random
 
 class CartFragment : Fragment(),View.OnClickListener {
     private lateinit var adapter: CartAdapter
@@ -73,8 +71,8 @@ class CartFragment : Fragment(),View.OnClickListener {
                 orderRequestItemIdsList.add(orderRequestItemId)
             }
             orderRequest.itemIds = orderRequestItemIdsList
-            orderRequest.userId = LoginUtils.getInstance(requireContext())!!.userInfo()._id
-            orderRequest.Address = LoginUtils.getInstance(requireContext())!!.userInfo().Address
+            orderRequest.userId = LoginUtils.getInstance(requireContext())!!.userInfo()._id!!
+            orderRequest.Address = LoginUtils.getInstance(requireContext())!!.userInfo().Address!!
             orderRequest.orderDate = date
             Log.e("sss object", orderRequest.orderCode!!)
             viewModel.addNewOrder(orderRequest)

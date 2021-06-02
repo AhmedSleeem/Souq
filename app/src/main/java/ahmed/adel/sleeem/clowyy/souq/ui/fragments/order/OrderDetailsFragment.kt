@@ -2,8 +2,8 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOrderDetailsBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.OrderResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.OrdersByIdResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter.OrderProductsRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
@@ -22,7 +22,7 @@ class OrderDetailsFragment : Fragment() {
     lateinit var binding: FragmentOrderDetailsBinding
     lateinit var adapter: OrderProductsRecyclerAdapter
     val args: OrderDetailsFragmentArgs by navArgs()
-    lateinit var order: OrderResponse.OrderResponseItem
+    lateinit var order: OrdersByIdResponse.OrderResponseItem
     lateinit var viewModel: OrderDetailsViewModel
     lateinit var itemsList: MutableList<ItemResponse>
     val shippingPrice = 40

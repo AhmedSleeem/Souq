@@ -9,6 +9,7 @@ data class OrderResponse(
     val orderCode: String,
     val orderDate: String,
     val orderState: String,
+    val totalPrice: Double,
     val userId: String
 ) {
     data class ItemId(

@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityRegisterBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.RegisterRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.RegisterRequest
 import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource

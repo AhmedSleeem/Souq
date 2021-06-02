@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home
 
 import ahmed.adel.sleeem.clowyy.souq.*
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment

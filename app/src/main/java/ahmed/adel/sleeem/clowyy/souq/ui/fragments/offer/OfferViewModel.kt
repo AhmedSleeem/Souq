@@ -1,6 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer
 
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import androidx.lifecycle.MutableLiveData

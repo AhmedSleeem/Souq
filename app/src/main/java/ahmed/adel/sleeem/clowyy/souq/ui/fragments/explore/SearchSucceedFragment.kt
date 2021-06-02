@@ -62,7 +62,7 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
             }
 
             override fun onSearchStateChanged(enabled: Boolean) {
-                val s = if (enabled) binding.filterBar.visibility=View.GONE else binding.filterBar.visibility=View.VISIBLE
+                //val s = if (enabled) binding.filterBar.visibility=View.GONE else binding.filterBar.visibility=View.VISIBLE
 
             }
 

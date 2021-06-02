@@ -68,7 +68,7 @@
                         android:id="@+id/shippingLine"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="2dp"
-                        tools:background="@color/primaryBlue"
+                        android:background="@color/primaryBlue"
                         android:layout_gravity="center_vertical"/>
 
                     <View
@@ -98,7 +98,7 @@
                         android:id="@+id/successLine"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="2dp"
-                        tools:background="@color/overlayGray"
+                        android:background="@color/overlayGray"
                         android:layout_gravity="center_vertical"/>
 
                     <View

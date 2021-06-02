@@ -226,7 +226,7 @@
         tools:layout="@layout/fragment_order_details" >
         <argument
             android:name="order"
-            app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.OrderResponse$OrderResponseItem" />
+            app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.response.OrdersByIdResponse$OrderResponseItem" />
     </fragment>
 
 

@@ -1,11 +1,12 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.OrderResponse
+
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.ShortByBottomDialogFragment
+
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
