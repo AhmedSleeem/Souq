@@ -29,10 +29,9 @@ class CartViewModel : ViewModel() {
 
     fun getCartItems(){
         _cartItemsLiveData.value = Resource.loading(null)
-        CartRoom.cartList[0].quantity = 123
         _cartItemsLiveData.value = Resource.success(CartRoom.cartList)
         productResponse = CartRoom.cartList
-        getQuantity()
+       getQuantity()
     }
 
     private fun getQuantity() {

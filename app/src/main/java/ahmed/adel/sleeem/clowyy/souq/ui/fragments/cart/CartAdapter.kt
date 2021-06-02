@@ -19,6 +19,7 @@ class CartAdapter(var context : Context) :
     val viewBinding : ItemCartBinding get() = _viewBinding
     private var items = arrayListOf<ProductResponse.Item>()
     var setOnItemClickListner : ItemClickListener? = null
+    var setOnCountClickListner : CountClickListner? = null
 
     fun changeData(newData:ArrayList<ProductResponse.Item>, clearOldData:Boolean = false){
         if (clearOldData) {
@@ -74,21 +75,31 @@ class CartAdapter(var context : Context) :
                 .placeholder(R.drawable.ic_logo)
                 .into(binding.itemCartImageView)
 
+
+                binding.deleteItemBtn.setOnClickListener{
+                    if(setOnItemClickListner != null)
+                        setOnItemClickListner!!.onClick(it , item , position)
+                }
+
                 binding.addBtn.setOnClickListener {
                     if(item.countOfSelectedItem < item.quantity)
                         items[position].countOfSelectedItem++
+                    if(setOnCountClickListner != null){
+                        setOnCountClickListner!!.onClick()
+                    }
                     notifyItemChanged(position)
                 }
 
                 binding.minusBtn.setOnClickListener {
                     if(item.countOfSelectedItem > 0)
                         items[position].countOfSelectedItem--
+                    if(setOnCountClickListner != null){
+                        setOnCountClickListner!!.onClick()
+                    }
                     notifyItemChanged(position)
                 }
 
-                binding.deleteItemBtn.setOnClickListener{
-                    setOnItemClickListner!!.onClick(it , item , position)
-                }
+
 
 
 
@@ -121,6 +132,9 @@ class CartAdapter(var context : Context) :
 
     interface ItemClickListener{
         fun onClick(view: View, item: ProductResponse.Item, position: Int)
+    }
+    interface CountClickListner{
+        fun onClick()
     }
 
 }

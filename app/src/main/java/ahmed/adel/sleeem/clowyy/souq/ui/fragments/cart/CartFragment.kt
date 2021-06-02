@@ -3,26 +3,39 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.OrderResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import kotlin.random.Random
 
 class CartFragment : Fragment(),View.OnClickListener {
     private lateinit var adapter: CartAdapter
     private lateinit var viewModel: CartViewModel
     private var _binding: FragmentCartBinding? = null
-    private  var acceptFlag : Int = -1
+    private lateinit var  orderRequest : OrderRequest
+    private lateinit var  orderRequestItemId : OrderRequest.ItemId
+    val  orderRequestItemIdsList = mutableListOf<OrderRequest.ItemId>()
+
     private val binding get() = _binding!!
+    val quotes = arrayOf("order id" , )
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,13 +50,36 @@ class CartFragment : Fragment(),View.OnClickListener {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getCartItems()
-//        for (itwm in CartRoom.cartList) {
-//            viewModel.getItemsByTitle(itwm.title, i)
-//        }
+
+        // orderRequest
+        val date = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd HH:mm")
+            .withZone(ZoneOffset.UTC)
+            .format(Instant.now())
+        orderRequest = OrderRequest(itemIds = orderRequestItemIdsList)
+        orderRequestItemId = OrderRequest.ItemId()
+        if (CartRoom.cartList != null) {
+            orderRequest.orderCode = getRandomString(10)
+            for (item in CartRoom.cartList) {
+                orderRequestItemId.id = item.id.toString()
+                orderRequestItemId.color = item.selectedColor.toString()
+                orderRequestItemId.count = item.countOfSelectedItem
+                orderRequestItemId.size = item.selectedSize.toString()
+                orderRequestItemIdsList.add(orderRequestItemId)
+            }
+            orderRequest.itemIds = orderRequestItemIdsList
+            orderRequest.userId = LoginUtils.getInstance(requireContext())!!.userInfo()._id
+            orderRequest.Address = LoginUtils.getInstance(requireContext())!!.userInfo().Address
+            orderRequest.orderDate = date
+            Log.e("sss object", orderRequest.orderCode!!)
+            viewModel.addNewOrder(orderRequest)
+        }
+
 
         subscribeToLiveData()
         // app bar arrow back
@@ -61,10 +97,23 @@ class CartFragment : Fragment(),View.OnClickListener {
                     adapter.viewBinding.deleteItemBtn -> {
                         CartRoom.cartList.remove(item)
                         adapter.notifyItemRemoved(position)
+                        calculateTotalPrice()
                     }
                 }
             }
         }
+
+        adapter.setOnCountClickListner = object : CartAdapter.CountClickListner {
+            override fun onClick() {
+                calculateTotalPrice()
+            }
+
+        }
+
+        //listener --> fragment
+        //listener.onClick
+        // count
+
 
 
 
@@ -89,49 +138,23 @@ class CartFragment : Fragment(),View.OnClickListener {
 
     }
 
-    fun liveDataWithApi(){
-        viewModel.productsLiveData.observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Resource.Status.LOADING -> {
 
-                }
-                Resource.Status.SUCCESS -> {
-                    checkItemsQuantity(it.data!!.get(0))
-                }
-            }
-        })
 
-    }
+
+
+
 
 
     override fun onClick(v: View) {
         when (v) {
             binding.checkOutButton -> {
-                liveDataWithApi()
-                if(acceptFlag == 1) {
                     val action = CartFragmentDirections.actionCartFragmentToShipToFragment()
                     view?.findNavController()?.navigate(action)
-                    acceptFlag = -1
-                }else if(acceptFlag == 0){
-                    Toast.makeText(requireContext(), "Please check item count", Toast.LENGTH_SHORT)
-                    acceptFlag = -1
-                }
             }
         }
     }
 
-    fun checkItemsQuantity(item: ProductResponse.Item) {
-        for (data in CartRoom.cartList) {
-            if (item.quantity < data.quantity) {
-                Toast.makeText(requireContext(), "Please check item count", Toast.LENGTH_SHORT)
-                    .show()
-                acceptFlag = 0
-            } else {
-                Toast.makeText(requireContext(), "Done", Toast.LENGTH_SHORT).show()
-                acceptFlag = 1
-            }
-        }
-    }
+
 
 
     fun calculateTotalPrice() {
@@ -147,5 +170,12 @@ class CartFragment : Fragment(),View.OnClickListener {
         binding.totalPrice.text = price.toString() + " Egp"
 
 
+    }
+
+    fun getRandomString(length: Int) : String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 }

@@ -1,18 +1,18 @@
 package ahmed.adel.sleeem.clowyy.souq.pojo.request
 
 data class OrderRequest(
-    val Address: String,
-    val importCharge: Int = 13,
-    val itemIds: List<ItemId>,
-    val orderCode: String,
-    val orderDate: String,
-    val orderState:String = "shipping",
-    val userId: String
+    var Address: String? = "",
+    val importCharge: Int? = 13,
+    var itemIds: List<ItemId>?,
+    var orderCode: String? = "",
+    var orderDate: String? = "",
+    val orderState:String? = "shipping",
+    var userId: String? = ""
 ) {
     data class ItemId(
-        val color: String,
-        val count: Int,
-        val id: String,
-        val size: String
+        var color: String? = "",
+        var count: Int? = 1,
+        var id: String? = "",
+        var size: String? = ""
     )
 }
