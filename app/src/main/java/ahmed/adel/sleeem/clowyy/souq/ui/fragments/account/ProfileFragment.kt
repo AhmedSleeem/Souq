@@ -1,13 +1,11 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentProfileBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.FullUserInfo
-import ahmed.adel.sleeem.clowyy.souq.pojo.request.UserRequist
-import ahmed.adel.sleeem.clowyy.souq.ui.activity.login.LoginActivity
+import ahmed.adel.sleeem.clowyy.souq.pojo.UserRequist
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
-import android.content.Intent
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -70,9 +68,9 @@ class ProfileFragment : Fragment() {
         }
 
         // change mail navigation
-        binding.mailLayout.setOnClickListener {
+        binding.addressLayout.setOnClickListener {
             Navigation.findNavController(it)
-                .navigate(R.id.action_profileFragment_to_changeMailFragment);
+                .navigate(R.id.action_profileFragment_to_adressFragment);
 
         }
 
@@ -89,36 +87,26 @@ class ProfileFragment : Fragment() {
                 .navigate(R.id.action_profileFragment_to_changePasswordFragment);
 
         }
-        // logout
-        binding.logoutLayout.setOnClickListener {
-            LoginUtils.getInstance(requireContext())!!.clearAll()
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
-            requireActivity().finish()
-        }
+
     }
 
     private fun addUserInfo() {
         fullUserInfo = LoginUtils.getInstance(requireContext())!!.userInfo()
-        binding.moreGenderTxt.text =
-            LoginUtils.getInstance(requireContext())!!.userInfo().Gender
-        binding.usernameTextView.text =
-            LoginUtils.getInstance(requireContext())!!.userInfo().name
-        binding.mailTextview.text = LoginUtils.getInstance(requireContext())!!.userInfo().name
+        binding.moreGenderTxt.text = fullUserInfo.Gender
+        binding.usernameTextView.text = fullUserInfo.name
+        binding.mailTextview.text = fullUserInfo.email
 
         Glide
             .with(requireContext())
-            .load(LoginUtils.getInstance(requireContext())!!.userInfo().profileImage)
+            .load(fullUserInfo.profileImage)
             .centerCrop()
             .error(R.drawable.profile)
             .placeholder(R.drawable.profile)
             .into(binding.profileImage)
-        binding.moreGenderTxt.text =
-            LoginUtils.getInstance(requireContext())!!.userInfo().Gender
-        binding.moreBirthdayTxt.text =
-            LoginUtils.getInstance(requireContext())!!.userInfo().BirthDate
-        binding.moreMailTxt.text = LoginUtils.getInstance(requireContext())!!.userInfo().email
-        binding.morePhoneTxt.text =
-            LoginUtils.getInstance(requireContext())!!.userInfo().phoneNumber
+        binding.moreGenderTxt.text = fullUserInfo.Gender
+        binding.moreBirthdayTxt.text = fullUserInfo.BirthDate
+        binding.morePhoneTxt.text = fullUserInfo.phoneNumber
+        filterAddress(fullUserInfo.Address)
     }
 
 
@@ -141,5 +129,12 @@ class ProfileFragment : Fragment() {
             }
         })
     }
-
+    private fun filterAddress(address: String?) {
+        if (address.isNullOrEmpty()|| address == "N/F") {
+            binding.moreMailTxt.text = "N/F"
+        } else {
+            val list = address.split(",").toTypedArray()
+            binding.moreMailTxt.text = list[0]+" - "+list[1]
+        }
+    }
 }

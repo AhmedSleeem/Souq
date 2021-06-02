@@ -28,23 +28,83 @@
         android:background="@color/overlayGray"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/shipToRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/shipToRecyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginRight="16dp"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/nextShipToButton"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@id/view"-->
+<!--        tools:itemCount="2"-->
+<!--        tools:listitem="@layout/item_ship_to" />-->
+
+    <TextView
+        android:id="@+id/cityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Priscekila"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
+    <TextView
+        android:id="@+id/descAddresstextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/nextShipToButton"
+        android:fontFamily="@font/poppins_regular"
+        android:paddingEnd="16dp"
+        android:paddingRight="16dp"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/view"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_ship_to" />
+        app:layout_constraintTop_toBottomOf="@+id/cityTextView"
+        android:text="3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States" />
 
+    <Button
+        android:id="@+id/editAddressButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins_bold"
+        android:padding="@dimen/_12sdp"
+        android:text="@string/edit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        app:background="@drawable/register_button_shape"
+        app:backgroundTint="@color/primaryBlue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descAddresstextView" />
+
+    <ImageView
+        android:id="@+id/deleteAddressImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editAddressButton"
+        app:layout_constraintStart_toEndOf="@+id/editAddressButton"
+        app:layout_constraintTop_toTopOf="@+id/editAddressButton"
+        app:srcCompat="@drawable/ic_trash" />
     <Button
         android:id="@+id/add_address_btn"
         android:layout_width="match_parent"

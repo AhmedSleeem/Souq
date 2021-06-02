@@ -51,12 +51,6 @@ class LoginUtils private constructor(private val mCtx: Context) {
         editor.apply()
     }
 
-    fun isLoggedIn(isLogin: Boolean): Boolean {
-        val sharedPreferences =
-            mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        return sharedPreferences.getString("id", null) != null && isLogin
-    }
-
     fun saveUserInfo(userRespons: UserResponse) {
         val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -71,66 +65,6 @@ class LoginUtils private constructor(private val mCtx: Context) {
         editor.apply()
     }
 
-    fun saveToken(token: String) {
-        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("token", token)
-        editor.apply()
-    }
-
-    fun setLogin(isLogin: Boolean) {
-        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putBoolean("isLogin", isLogin)
-        editor.apply()
-    }
-
-    fun getLogin(): Boolean {
-        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        return sharedPreferences.getBoolean("isLogin", false)
-    }
-
-    fun updateGender(gender: String) {
-        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("gender", gender)
-        editor.apply()
-    }
-
-    fun updateBirthDay(birthDay: String) {
-        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("birthDay", birthDay)
-        editor.apply()
-    }
-
-    fun updateEmail(email: String) {
-        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("email", email)
-        editor.apply()
-    }
-
-    fun updatePhone(phone: String) {
-        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("phone", phone)
-        editor.apply()
-    }
-
-    fun updatePassword(password: String) {
-        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("password", password)
-        editor.apply()
-    }
-
-    fun updateName(name: String) {
-        val sharedPreferences = mCtx.getSharedPreferences(USER_SHARED_PREF, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("name", name)
-        editor.apply()
-    }
 
     fun getUserRequist(): UserRequist {
         val sharedPreferences =

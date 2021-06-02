@@ -1,8 +1,8 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.BottomSheetFilterBrandBinding
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.adapter.FilterBrandAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchResultViewModel
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.adapter.FilterBrandAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

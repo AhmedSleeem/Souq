@@ -1,11 +1,13 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityLoginBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.LoginRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.LoginResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.activity.SplashActivity
+import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -23,8 +25,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onStart() {
         super.onStart()
         // If user logged in, go directly to ProductActivity
-        val isLogin = LoginUtils.getInstance(applicationContext)!!.getLogin()
-        if (LoginUtils.getInstance(this)!!.isLoggedIn(isLogin)) {
+        if (isLoggedIn(getLogin())) {
             goToSplashActivity()
         }
     }
@@ -83,14 +84,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         loginResponse = it!!
                         LoginUtils.getInstance(applicationContext)!!.saveUserInfo(loginResponse)
                         LoginUtils.getInstance(applicationContext)!!.saveUserInfo(loginRequist)
-                        LoginUtils.getInstance(applicationContext)!!.setLogin(true)
+                        setLogin(true)
                         goToSplashActivity()
                     }
                 }
             }
         })
     }
-
+    fun setLogin(isLogin: Boolean) {
+        val sharedPreferences = this.getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("isLogin", isLogin)
+        editor.apply()
+    }
     private fun goToSplashActivity() {
         startActivity(
             Intent(this@LoginActivity, SplashActivity::class.java)
@@ -98,4 +104,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         finish()
     }
 
+    fun getLogin(): Boolean {
+        val sharedPreferences = this.getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isLogin", false)
+    }
+
+    fun isLoggedIn(isLogin: Boolean): Boolean {
+        val sharedPreferences =
+            this.getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        return sharedPreferences.getString("id", null) != null && isLogin
+    }
 }

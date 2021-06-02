@@ -5,10 +5,10 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentNotificationActivityBin
 import ahmed.adel.sleeem.clowyy.souq.pojo.NotificationItem
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.notification.adapter.NotificationsRecyclerAdapter
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 
 

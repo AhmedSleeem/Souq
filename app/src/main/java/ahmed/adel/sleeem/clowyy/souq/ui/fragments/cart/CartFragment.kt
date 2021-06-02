@@ -148,8 +148,8 @@ class CartFragment : Fragment(),View.OnClickListener {
     override fun onClick(v: View) {
         when (v) {
             binding.checkOutButton -> {
-                    val action = CartFragmentDirections.actionCartFragmentToShipToFragment()
-                    view?.findNavController()?.navigate(action)
+                val action = CartFragmentDirections.actionCartFragmentToShipToFragment()
+                view?.findNavController()?.navigate(action)
             }
         }
     }

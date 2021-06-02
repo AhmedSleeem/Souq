@@ -2,14 +2,15 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentPhoneNumberBinding
-import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentProfileBinding
+import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 
@@ -47,12 +48,18 @@ class PhoneNumberFragment : Fragment() {
             if(phone.isNullOrEmpty()){
                 binding.mail.error = "required field"
             }else{
-                LoginUtils.getInstance(requireContext())!!.updatePhone(phone)
+                updatePhone(phone)
                 Toast.makeText(requireContext(),"Phone Updated Successfully", Toast.LENGTH_LONG).show()
                 findNavController().navigateUp()
             }
 
         }
+    }
+    fun updatePhone(phone: String) {
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("phone", phone)
+        editor.apply()
     }
 
 }

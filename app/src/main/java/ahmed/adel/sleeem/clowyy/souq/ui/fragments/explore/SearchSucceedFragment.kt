@@ -1,11 +1,11 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentSearchSucceedBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.FilterParams
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter.SearchSucceedAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.*
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

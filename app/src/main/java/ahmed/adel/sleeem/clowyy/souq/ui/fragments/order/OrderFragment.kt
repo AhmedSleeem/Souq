@@ -4,28 +4,32 @@ import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOrderBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.OrderItem
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter.OrderRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 
 class OrderFragment : Fragment() {
 
-    lateinit var binding:FragmentOrderBinding
+    lateinit var binding: FragmentOrderBinding
     lateinit var adapter: OrderRecyclerAdapter
-    val data = listOf<OrderItem>(
-        OrderItem("LQNSU346JK","Order at E-comm : August 1, 2017","Shipping",2,299.50f),
-        OrderItem("SDG1345KJD","Order at E-comm : August 1, 2017","Shipping",1,350.50f),
-        OrderItem("SDG1345KJD","Order at E-comm : August 5, 2017","Shipping",10,3500f)
-    )
+    lateinit var viewModel: OrderViewModel
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOrderBinding.inflate(inflater, container, false)
-        return  binding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,15 +38,47 @@ class OrderFragment : Fragment() {
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
         }
-        adapter=
-            OrderRecyclerAdapter(
-                data
-            )
-        binding.ordersRv.adapter = adapter
+        initViewModel()
+        initOrderRecyclerView()
+        viewModel.getOrders(LoginUtils.getInstance(requireContext())!!.userInfo()._id!!)
+    }
 
-
-
-
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
 
     }
+
+    private fun initOrderRecyclerView() {
+        adapter = OrderRecyclerAdapter { view, orderResponseItem, i ->
+            val action = OrderFragmentDirections.actionOrderFragmentToOrderDetailsFragment(orderResponseItem)
+            view.findNavController().navigate(action)
+
+        }
+        getAllOrders()
+
+    }
+
+    private fun getAllOrders() {
+        viewModel.orders.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    Log.e("TAG", "getAllOrders: LOADING" )
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                Resource.Status.ERROR -> {
+                    Log.e("TAG", "getAllOrders: ERROR"+it.message )
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.GONE
+                    it.data.let {
+                        Log.e("TAG", "getAllOrders: ERROR"+it?.size )
+                        adapter.changeData(it!!)
+                        binding.ordersRv.adapter = adapter
+                    }
+                }
+            }
+        })
+    }
+
 }

@@ -1,13 +1,12 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.BottomSheetFilterCategoryBinding
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.adapter.FilterCategoryAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchResultViewModel
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.adapter.FilterCategoryAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

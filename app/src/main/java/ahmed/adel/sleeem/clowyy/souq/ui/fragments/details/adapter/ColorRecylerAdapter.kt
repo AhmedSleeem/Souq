@@ -1,10 +1,8 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import android.app.Application
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
