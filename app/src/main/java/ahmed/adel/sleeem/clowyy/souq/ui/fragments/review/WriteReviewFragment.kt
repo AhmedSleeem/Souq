@@ -1,13 +1,13 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.review
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentWriteReviewBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.FullUserInfo
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.DeleteReviewRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.ModifyReviewRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.ReviewRequest
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Build
 import android.os.Bundle
 import android.util.Log

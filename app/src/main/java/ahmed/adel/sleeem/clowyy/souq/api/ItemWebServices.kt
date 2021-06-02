@@ -37,8 +37,6 @@ interface ItemWebServices {
 
     ): Response<ProductResponse>
 
-    @PUT("users/modifyaccount")
-    suspend fun updateAccount(@Body userRequest: UserRequist): Response<UserResponse>
 
     @POST("order/add")
     suspend fun addOrder(@Body orderRequest: OrderRequest): Response<OrderResponse>

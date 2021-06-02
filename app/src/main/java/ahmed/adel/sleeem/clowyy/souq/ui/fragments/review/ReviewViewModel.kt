@@ -1,6 +1,5 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.review
 
-import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.FullUserInfo
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.DeleteReviewRequest
@@ -9,6 +8,7 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.request.ReviewRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.DeleteReviewResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
+import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
