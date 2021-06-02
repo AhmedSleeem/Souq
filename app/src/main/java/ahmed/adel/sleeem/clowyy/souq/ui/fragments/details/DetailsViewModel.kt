@@ -22,13 +22,18 @@ class DetailsViewModel : ViewModel() {
     private var _userLiveData = MutableLiveData<Resource<UserResponse>>()
     val userLiveData: LiveData<Resource<UserResponse>> get() = _userLiveData
 
+    private var _reviewAvgLiveData = MutableLiveData<Pair<Int,Float>>()
+    val reviewAvgLiveData: LiveData<Pair<Int,Float>> get() = _reviewAvgLiveData
+
     fun getReviewsByProductId(id:String){
         viewModelScope.launch {
             _reviewsLiveData.value = Resource.loading(null)
             val response = RetrofitHandler.getItemWebService().getReviewsByItemId(id = id)
             if (response.isSuccessful){
-                if (response.body() != null)
+                if (response.body() != null) {
                     _reviewsLiveData.value = Resource.success(response.body()!!)
+                    getAvgAndCount(response.body()!!)
+                }
             }else{
                 _reviewsLiveData.value = Resource.error(response.errorBody().toString());
             }
@@ -42,10 +47,20 @@ class DetailsViewModel : ViewModel() {
             if (response.isSuccessful){
                 if (response.body() != null)
                     _userLiveData.value = Resource.success(response.body()!!)
+
             }else{
                 _userLiveData.value = Resource.error(response.errorBody().toString());
             }
         }
+    }
+
+    private fun getAvgAndCount(data: ReviewResponse ) {
+        var rating =0.0
+        for (i in data){
+            rating+=i.rating
+        }
+        val avg=((rating/2.0)/data.size).toFloat()
+        _reviewAvgLiveData.value = Pair(data.size,avg)
     }
 
     fun getItemsByCategory(category: String) = viewModelScope.launch {

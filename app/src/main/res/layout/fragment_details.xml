@@ -58,16 +58,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <!--                    <ProgressBar-->
-                    <!--                        android:id="@+id/viewPagerProgress"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:visibility="visible"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -126,7 +116,7 @@
                 android:layout_marginTop="12dp"
                 android:max="5"
                 android:numStars="5"
-                android:rating="4"
+                android:rating="0"
                 android:stepSize="1"
                 android:theme="@style/RatingBar.YellowStyle"
                 android:transformPivotX="0dp"
@@ -256,35 +246,6 @@
                 app:layout_constraintTop_toTopOf="@+id/shown_txt"
                 tools:ignore="RtlCompat" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/details1"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:fontFamily="@font/poppins_regular"-->
-            <!--                android:layout_marginEnd="@dimen/_12sdp"-->
-            <!--                android:layout_marginTop="@dimen/_12sdp"-->
-            <!--                android:text="Blue/Anthracite/Welcome"-->
-            <!--                android:textColor="@color/gray"-->
-            <!--                android:textFontWeight="400"-->
-            <!--                android:textSize="@dimen/_9sdp"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@id/details"-->
-            <!--                tools:ignore="RtlCompat" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/details2"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:fontFamily="@font/poppins_regular"-->
-            <!--                android:layout_marginEnd="@dimen/_12sdp"-->
-            <!--                android:layout_marginTop="@dimen/_12sdp"-->
-            <!--                android:text="on/white"-->
-            <!--                android:textColor="@color/gray"-->
-            <!--                android:textFontWeight="400"-->
-            <!--                android:textSize="@dimen/_9sdp"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@id/details1"-->
-            <!--                tools:ignore="RtlCompat" />-->
 
             <TextView
                 android:id="@+id/style"
@@ -378,7 +339,7 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_marginTop="8dp"
                 android:max="5"
                 android:numStars="5"
-                android:rating="5"
+                android:rating="0"
                 android:stepSize="1"
                 android:theme="@style/RatingBar.YellowStyle"
                 android:transformPivotX="0dp"
@@ -396,18 +357,18 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="@string/rate"
+                android:text="0.0"
                 android:textColor="@color/gray"
                 android:textFontWeight="700"
                 android:textSize="@dimen/_8sdp"
-                app:layout_constraintEnd_toStartOf="@+id/review1"
+                app:layout_constraintEnd_toStartOf="@+id/countOfReating"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/rating_bar1"
                 app:layout_constraintTop_toTopOf="@+id/rating_bar1"
                 tools:ignore="RtlCompat" />
 
             <TextView
-                android:id="@+id/review1"
+                android:id="@+id/countOfReating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -432,8 +393,7 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rating_bar1"
                 android:paddingRight="@dimen/_12sdp"
-                android:paddingLeft="@dimen/_12sdp"
-                >
+                android:paddingLeft="@dimen/_12sdp" >
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profileReviewImageView"
@@ -498,12 +458,13 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 app:layout_constraintTop_toBottomOf="@id/rating_bar1">
 
                 <ImageView
-                    android:id="@+id/iv_category_item"
+                    android:id="@+id/addReview"
                     android:layout_width="@dimen/_46sdp"
                     android:layout_height="@dimen/_46sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:adjustViewBounds="true"
                     android:background="@drawable/circle_shape"
+                    android:backgroundTint="@color/primaryBlue"
                     android:scaleType="center"
                     android:src="@drawable/ic_baseline_add_24" />
 
@@ -535,7 +496,7 @@ Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white La
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="rateView,rating_bar1" />
+                app:constraint_referenced_ids="rateView,noReviewViews" />
 
 
             <TextView

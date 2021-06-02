@@ -29,14 +29,13 @@ class ReviewViewModel(application: Application):AndroidViewModel(application) {
 
     fun getReviewsByProductId(id:String){
         viewModelScope.launch {
+            _reviewsLiveData.value = Resource.loading(null);
             reviewResponse = ReviewResponse()
             val response = RetrofitHandler.getItemWebService().getReviewsByItemId(id = id)
             if (response.isSuccessful){
                 if (response.body() != null) {
 
                     reviewResponse = response.body()!!
-                    _reviewsLiveData.value = Resource.success(reviewResponse)
-                    Log.e("eeeeeeeeeeeeeee", "in view Model    $reviewResponse")
                     getReviews()
 
                 }
@@ -69,6 +68,7 @@ class ReviewViewModel(application: Application):AndroidViewModel(application) {
 
     fun getReviewByRate(id: String , rate:Int){
         viewModelScope.launch {
+            _reviewsLiveData.value = Resource.loading(null);
             val response = RetrofitHandler.getItemWebService().getReviewsByRate(id = id,rating = rate)
             if (response.isSuccessful){
                 if (response.body() != null) {
@@ -79,6 +79,18 @@ class ReviewViewModel(application: Application):AndroidViewModel(application) {
                     _reviewsLiveData.value = Resource.error("empty");
             }else{
                 _reviewsLiveData.value = Resource.error(response.errorBody().toString());
+            }
+        }
+    }
+
+    fun addReview(reviewRequest: ReviewRequest , productId:String){
+        viewModelScope.launch {
+            val response = RetrofitHandler.getItemWebService().postReview(reviewRequest)
+            if (response.isSuccessful){
+                if (response.body() != null) {
+                    getReviewsByProductId(productId)
+                }
+            }else{
             }
         }
     }

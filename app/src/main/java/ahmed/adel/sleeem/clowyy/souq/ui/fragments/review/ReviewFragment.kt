@@ -3,12 +3,12 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.review
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.api.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentReviewBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.ReviewRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewStarAdapter
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 
 class ReviewFragment : Fragment(), View.OnClickListener {
 
@@ -44,6 +45,8 @@ class ReviewFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (args.deletedReview != null)
+            showSnackBar(view)
 
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
@@ -80,21 +83,32 @@ class ReviewFragment : Fragment(), View.OnClickListener {
         binding.writeReviewButton.setOnClickListener(this)
     }
 
+    private fun showSnackBar(view: View) {
+        Snackbar.make(view, "Review Deleted", Snackbar.LENGTH_LONG)
+            .setAction("Undo") { _ ->
+                viewModel.addReview(ReviewRequest(args.deletedReview!!.description
+                    ,args.deletedReview!!.itemId
+                    ,args.deletedReview!!.rating
+                    ,args.deletedReview!!.userId),args.productId!!)
+            }
+            .show()
+    }
+
     private fun subscribeToLiveData() {
         viewModel.reviewsLiveData.observe(viewLifecycleOwner , Observer {
             when(it.status){
                 Resource.Status.LOADING ->{
-                    binding.shimmerReviewRv.showShimmerAdapter()
+                    binding.progress.visibility = View.VISIBLE
                     binding.reviewRecyclerView.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS ->{
                     reviewAdapter.changeData(it.data!!,true)
-                    binding.shimmerReviewRv.hideShimmerAdapter()
+                    binding.progress.visibility = View.GONE
                     binding.reviewRecyclerView.visibility = View.VISIBLE
                 }
 
                 Resource.Status.ERROR ->{
-                    binding.shimmerReviewRv.hideShimmerAdapter()
+                    binding.progress.visibility = View.GONE
                     binding.reviewRecyclerView.visibility = View.VISIBLE
                     reviewAdapter.changeData(ReviewResponse(),true)
                 }

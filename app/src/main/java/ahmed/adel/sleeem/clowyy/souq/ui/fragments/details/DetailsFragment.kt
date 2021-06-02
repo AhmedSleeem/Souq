@@ -11,6 +11,7 @@ import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapt
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewAdapter
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -121,6 +122,11 @@ class DetailsFragment : Fragment() {
             Navigation.findNavController(it).navigateUp()
         }
 
+        binding.addReview.setOnClickListener {
+            val action = DetailsFragmentDirections.actionDetailsFragmentToWriteReviewFragment(null,false,item.id.toString())
+            it.findNavController().navigate(action)
+        }
+
 
         recommendRecyclerAdapter.itemClickListener =
             object : RecommendedRecyclerAdapter.ItemClickListener {
@@ -167,7 +173,10 @@ class DetailsFragment : Fragment() {
                 }
                 Resource.Status.SUCCESS ->{
                     changeReviewUi(it.data!!)
-
+                }
+                Resource.Status.ERROR ->{
+                    binding.rateView.visibility=View.GONE
+                    binding.noReviewViews.visibility=View.VISIBLE
                 }
             }
         })
@@ -185,13 +194,23 @@ class DetailsFragment : Fragment() {
                 }
             }
         })
+
+        viewModel.reviewAvgLiveData.observe(viewLifecycleOwner, Observer {
+            binding.ratingBar.rating = it.second
+            binding.ratingBar1.rating = it.second
+            binding.rate.text = String.format("%.2f",it.second)
+        })
     }
 
     private fun changeReviewUi(data: ReviewResponse) {
         val reviewItem = data[0]
+        binding.countOfReating.text = " (${data.size} Reviews)"
         viewModel.getUserById(reviewItem.userId)
         binding.reviewTextView.text = reviewItem.description
         binding.ratingReviewBar.rating = reviewItem.rating.toFloat()
+
+
+
 
     }
 }

@@ -114,9 +114,10 @@ class WriteReviewFragment : Fragment() {
         viewModel.addReviewLiveData.observe(viewLifecycleOwner, Observer {
             when (it.status){
                 Resource.Status.SUCCESS ->{
-                    if (view == binding.writeReviewButton)
-                        view.findNavController().navigateUp()
-                    //Toast.makeText(requireContext(), "review added ☺", Toast.LENGTH_SHORT).show()
+                    if (view == binding.writeReviewButton){
+                        val action = WriteReviewFragmentDirections.actionWriteReviewFragmentToReviewFragment(args.productId,null)
+                        view.findNavController().navigate(action)
+                    }
 
                 }
             }
@@ -125,8 +126,10 @@ class WriteReviewFragment : Fragment() {
         viewModel.modifyReviewLiveData.observe(viewLifecycleOwner, Observer {
             when (it.status){
                 Resource.Status.SUCCESS ->{
-                    if (view == binding.uodateReviewButton)
-                    view.findNavController().navigateUp()
+                    if (view == binding.uodateReviewButton){
+                        val action = WriteReviewFragmentDirections.actionWriteReviewFragmentToReviewFragment(args.productId,null)
+                        view.findNavController().navigate(action)
+                    }
                 }
             }
         })
@@ -134,9 +137,10 @@ class WriteReviewFragment : Fragment() {
         viewModel.deleteReviewLiveData.observe(viewLifecycleOwner, Observer {
             when (it.status){
                 Resource.Status.SUCCESS ->{
-                    if (view == binding.removeReviewButton)
-                    view.findNavController().navigateUp()
-                    //Toast.makeText(requireContext(), "review deleted   ☺", Toast.LENGTH_SHORT).show()
+                    if (view == binding.removeReviewButton){
+                        val action = WriteReviewFragmentDirections.actionWriteReviewFragmentToReviewFragment(args.productId,args.reviewResponse)
+                        view.findNavController().navigate(action)
+                    }
                 }
             }
         })
