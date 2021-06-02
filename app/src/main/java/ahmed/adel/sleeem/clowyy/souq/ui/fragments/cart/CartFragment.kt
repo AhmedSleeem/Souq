@@ -4,9 +4,11 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.Cupone
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
+import ahmed.adel.sleeem.clowyy.souq.utils.CuponeUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +16,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -31,6 +34,10 @@ class CartFragment : Fragment(),View.OnClickListener {
     private lateinit var  orderRequest : OrderRequest
     private lateinit var  orderRequestItemId : OrderRequest.ItemId
     val  orderRequestItemIdsList = mutableListOf<OrderRequest.ItemId>()
+    lateinit var currentCupone: Cupone
+    var totalPrice = 0.0f
+    private var cupone : String? = null
+    private var cuponeValue : Int = 0
 
     private val binding get() = _binding!!
     val quotes = arrayOf("order id" , )
@@ -44,6 +51,7 @@ class CartFragment : Fragment(),View.OnClickListener {
         viewModel = ViewModelProvider(requireActivity()).get(CartViewModel::class.java)
         adapter = CartAdapter(requireContext())
         binding.cartRecyclerView.adapter = adapter
+        //binding.cuponeEt.setText(Cupone().cuponeCode)
 
         return binding.root
     }
@@ -52,8 +60,14 @@ class CartFragment : Fragment(),View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        currentCupone = CuponeUtils(requireContext()).getCupone()?:Cupone()
         viewModel.getCartItems()
 
+        if(CartRoom.cartList.size != 0){
+            binding.shippingTv.text = "13.0 Egp"
+        }else{
+            binding.shippingTv.text = "0.0 Egp"
+        }
         // orderRequest
         val date = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HH:mm")
@@ -72,10 +86,8 @@ class CartFragment : Fragment(),View.OnClickListener {
             }
             orderRequest.itemIds = orderRequestItemIdsList
             orderRequest.userId = LoginUtils.getInstance(requireContext())!!.userInfo()._id!!
-            orderRequest.Address = LoginUtils.getInstance(requireContext())!!.userInfo().Address!!
             orderRequest.orderDate = date
-            Log.e("sss object", orderRequest.orderCode!!)
-            viewModel.addNewOrder(orderRequest)
+            orderRequest.totalPrice = totalPrice.toDouble()
         }
 
 
@@ -108,16 +120,11 @@ class CartFragment : Fragment(),View.OnClickListener {
 
         }
 
-        //listener --> fragment
-        //listener.onClick
-        // count
-
-
 
 
         calculateTotalPrice()
-
         binding.checkOutButton.setOnClickListener(this)
+        binding.cuponeBtn.setOnClickListener(this)
     }
 
 
@@ -137,17 +144,26 @@ class CartFragment : Fragment(),View.OnClickListener {
     }
 
 
-
-
-
-
-
-
     override fun onClick(v: View) {
         when (v) {
             binding.checkOutButton -> {
-                val action = CartFragmentDirections.actionCartFragmentToShipToFragment()
-                view?.findNavController()?.navigate(action)
+                if(CartRoom.cartList.size != 0) {
+                    val action =
+                        CartFragmentDirections.actionCartFragmentToShipToFragment(orderRequest)
+                    view?.findNavController()?.navigate(action)
+                }else{
+                    Toast.makeText(requireContext(), "Select Item", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            binding.cuponeBtn ->{
+                cupone = binding.cuponeEt.text.toString()
+                if(currentCupone.cuponeCode == cupone){
+                    binding.cuponeValue.text = currentCupone.cuponeCodeValue.toString() + "%"
+                    calculateTotalPrice()
+                }else{
+                    binding.cuponeEt.setError("Cupone not found")
+                }
             }
         }
     }
@@ -158,16 +174,24 @@ class CartFragment : Fragment(),View.OnClickListener {
     fun calculateTotalPrice() {
         var itemCount = 0
         var price = 0.0f
+        var cuponepercent = 0.000f
 
         for (item in CartRoom.cartList) {
             itemCount += item.countOfSelectedItem
+            cuponepercent = (item.price * (currentCupone.cuponeCodeValue!!.toFloat()/100.0f)).toFloat()
             price = (price + (item.countOfSelectedItem * item.price)).toFloat()
+            totalPrice = (price + 13) - cuponepercent
         }
-        binding.totalItemsCount.text = "Items (" + itemCount.toString() + ")"
-        binding.totalItemsPrice.text = price.toString() + " Egp"
-        binding.totalPrice.text = price.toString() + " Egp"
 
-
+        if(CartRoom.cartList.size == 0){
+            binding.totalItemsCount.text = "Item (0)"
+            binding.totalItemsPrice.text = "0.0"
+            binding.totalPrice.text = "0.0"
+        }else{
+            binding.totalItemsCount.text = "Items (" + itemCount.toString() + ")"
+            binding.totalItemsPrice.text = price.toString() + " Egp"
+            binding.totalPrice.text = String.format("%.2f", totalPrice) + " Egp"
+        }
     }
 
     fun getRandomString(length: Int) : String {

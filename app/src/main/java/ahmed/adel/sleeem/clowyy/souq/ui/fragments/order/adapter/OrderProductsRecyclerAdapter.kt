@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemOrderCartItemRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ItemResponse
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View

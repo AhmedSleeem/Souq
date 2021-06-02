@@ -5,11 +5,13 @@ import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.activity.MainActivity
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment.Companion.badgeCount
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
+import ahmed.adel.sleeem.clowyy.souq.utils.OnBadgeChangeListener
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -25,6 +27,10 @@ import androidx.navigation.fragment.navArgs
 
 
 class DetailsFragment : Fragment() {
+    companion object{
+        private var badgeCount = 0
+        var setOnCountChangeListener : OnBadgeChangeListener? = null
+    }
 
     private lateinit var listImg: MutableList<String>
     private var saleData = arrayListOf<ProductResponse.Item>()
@@ -36,6 +42,8 @@ class DetailsFragment : Fragment() {
     private lateinit var viewModel: DetailsViewModel
     private val args by navArgs<DetailsFragmentArgs>()
     private lateinit var item: ProductResponse.Item
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,28 +141,47 @@ class DetailsFragment : Fragment() {
 
 
         // add to cart action
-
         binding.addToCartBtn.setOnClickListener{
-            item.countOfSelectedItem = 1
-            CartRoom.cartList.add(item)
-            MainActivity.cartCount++
+            if(item.color != null || item.size != null) {
+                if (item.selectedColor != null && item.selectedSize != null) {
+                    item.countOfSelectedItem = 1
+                    CartRoom.cartList.add(item)
+                    badgeCount++
+                    setOnCountChangeListener?.onChange(badgeCount)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Please choose colore and size",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }else{
+                item.countOfSelectedItem = 1
+                CartRoom.cartList.add(item)
+                badgeCount++
+                setOnCountChangeListener?.onChange(badgeCount)
+            }
 
         }
 
         // size clickListner
-        selectSizeAdapter.setOnItemClickListner = object : SizeRecyclerAdapter.ClckListner{
-            override fun clickListner(itemSize: String) {
-                item.selectedSize = itemSize
-            }
+        if(item.size != null) {
+            selectSizeAdapter.setOnItemClickListner = object : SizeRecyclerAdapter.ClckListner {
+                override fun clickListner(itemSize: String) {
+                    item.selectedSize = itemSize
+                }
 
+            }
         }
 
         //color clickListner
-        colorAdapter.setOnItemClickListner = object : ColorRecylerAdapter.ClckListner{
-            override fun clickListner(itemColor: String) {
-                item.selectedColor = itemColor
-            }
+        if(item.color != null) {
+            colorAdapter.setOnItemClickListner = object : ColorRecylerAdapter.ClckListner {
+                override fun clickListner(itemColor: String) {
+                    item.selectedColor = itemColor
+                }
 
+            }
         }
 
 

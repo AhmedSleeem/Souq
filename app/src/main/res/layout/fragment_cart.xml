@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName4"
+                android:id="@+id/cupone_et"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -64,13 +64,13 @@
                 android:padding="16dp"
                 android:textColorHint="@color/gray"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintEnd_toStartOf="@+id/cupone_btn"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cartRecyclerView" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/cupone_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
@@ -82,9 +82,9 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName4"
+                app:layout_constraintBottom_toBottomOf="@+id/cupone_et"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName4" />
+                app:layout_constraintTop_toTopOf="@+id/cupone_et" />
 
             <TextView
                 android:id="@+id/textView"
@@ -99,14 +99,14 @@
                 android:textSize="12sp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+                app:layout_constraintTop_toBottomOf="@+id/cupone_et" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="button2,textView" />
+                app:constraint_referenced_ids="cupone_btn,textView" />
 
             <View
                 android:id="@+id/view6"
@@ -175,20 +175,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/product_name_tv" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/shipping_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="$0.0"
+                android:text="13.0 Egp"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/product_name_tv"
                 app:layout_constraintEnd_toEndOf="@+id/view6"
                 app:layout_constraintTop_toTopOf="@+id/product_name_tv" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/cupone_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -212,7 +212,7 @@
                 android:background="@color/overlayGray"
                 app:layout_constraintEnd_toEndOf="@+id/view6"
                 app:layout_constraintStart_toStartOf="@+id/view6"
-                app:layout_constraintTop_toBottomOf="@id/textView14" />
+                app:layout_constraintTop_toBottomOf="@id/cupone_value" />
 
             <TextView
                 android:id="@+id/textView15"

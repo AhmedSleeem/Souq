@@ -18,15 +18,15 @@ class HomeViewModel:ViewModel() {
 
 
     fun getItems() = viewModelScope.launch {
-         itemsLiveData.value = Resource.loading(null)
-         val response = RetrofitHandler.getItemWebService().getAllItems()
-                 if (response.isSuccessful){
-                     if(response.body() != null)
-                        itemsLiveData.value = Resource.success(response.body()!!);
-                 }else{
-                        itemsLiveData.value = Resource.error(response.errorBody().toString())
-                 }
-         }
+        itemsLiveData.value = Resource.loading(null)
+        val response = RetrofitHandler.getItemWebService().getAllItems()
+        if (response.isSuccessful){
+            if(response.body() != null)
+                itemsLiveData.value = Resource.success(response.body()!!);
+        }else{
+            itemsLiveData.value = Resource.error(response.errorBody().toString())
+        }
+    }
 
 
     fun getSaleItems() = viewModelScope.launch {

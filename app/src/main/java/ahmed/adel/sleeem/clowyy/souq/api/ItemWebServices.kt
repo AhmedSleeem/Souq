@@ -3,6 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.api
 import ahmed.adel.sleeem.clowyy.souq.pojo.*
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.*
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.*
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ItemResponse
 import retrofit2.Response
 import retrofit2.http.*
 

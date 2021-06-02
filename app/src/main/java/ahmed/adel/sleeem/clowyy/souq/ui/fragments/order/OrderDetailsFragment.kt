@@ -2,7 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOrderDetailsBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ItemResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.OrdersByIdResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter.OrderProductsRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource

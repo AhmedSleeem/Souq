@@ -23,6 +23,7 @@ class ProductResponse : ArrayList<ProductResponse.Item>(){
         //cart data
         var selectedColor : String ? = null,
         var selectedSize : String ? = null,
+        var totalPrice : String ? = null,
         var countOfSelectedItem : Int  = 1
 
     ) : Serializable{

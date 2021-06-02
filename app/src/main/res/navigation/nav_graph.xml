@@ -263,12 +263,24 @@
         <action
             android:id="@+id/action_shipToFragment_to_successFragment"
             app:destination="@id/successFragment" />
+        <action
+            android:id="@+id/action_shipToFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+        <argument
+            android:name="orderRequest"
+            app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest" />
     </fragment>
     <fragment
         android:id="@+id/successFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.success.SuccessFragment"
         android:label="fragment_success"
-        tools:layout="@layout/fragment_success" />
+        tools:layout="@layout/fragment_success" >
+        <action
+            android:id="@+id/action_successFragment_to_orderFragment"
+            app:destination="@id/orderFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/adressFragment"
         android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.address.AddressFragment"

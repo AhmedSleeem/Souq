@@ -3,18 +3,20 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityMainBinding
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment
+import ahmed.adel.sleeem.clowyy.souq.utils.OnBadgeChangeListener
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 
-class MainActivity : AppCompatActivity() {
-    companion object{
-        var cartCount = 0
-    }
+class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var badge : BadgeDrawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +26,11 @@ class MainActivity : AppCompatActivity() {
         //val a ppBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment,R.id.exploreFragment,R.id.cartFragment,R.id.offerFragment,R.id.profileFragment))
         binding.bottomNavView.setupWithNavController(findNavController(R.id.navHost));
 
-        var badge =binding.bottomNavView.getOrCreateBadge(R.id.cartFragment)
+        badge =binding.bottomNavView.getOrCreateBadge(R.id.cartFragment)
         badge.isVisible = true
-        badge.number = cartCount
+        badge.number = 0
+
+        DetailsFragment.setOnCountChangeListener = this
 
         if(!isFirstRunning()) {
             this.findNavController(R.id.navHost)
@@ -37,6 +41,10 @@ class MainActivity : AppCompatActivity() {
     private fun isFirstRunning(): Boolean{
         val sharedPref = this.getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("Finished", false)
+    }
+
+    override fun onChange(count: Int) {
+        badge.number = count
     }
 
 

@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
-import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ItemResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.OrdersByIdResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import androidx.lifecycle.MutableLiveData
