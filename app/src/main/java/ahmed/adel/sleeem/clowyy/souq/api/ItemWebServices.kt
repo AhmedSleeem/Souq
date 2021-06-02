@@ -58,5 +58,5 @@ interface ItemWebServices {
 
     //https://souqitigraduationproj.herokuapp.com/api/products/getitembyid?id=20
     @GET("products/getitembyid")
-    suspend fun getItemsById(@Query("id") id: String): Response<itemResponse>
+    suspend fun getItemsById(@Query("id") id: String): Response<ItemResponse>
 }

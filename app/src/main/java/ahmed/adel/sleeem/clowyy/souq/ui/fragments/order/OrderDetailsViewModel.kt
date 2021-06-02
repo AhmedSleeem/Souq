@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
-import ahmed.adel.sleeem.clowyy.souq.pojo.itemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 
 class OrderDetailsViewModel : ViewModel() {
 
-    private val _item = MutableLiveData<Resource<itemResponse>>()
-    val item: MutableLiveData<Resource<itemResponse>> get() = _item
+    private val _item = MutableLiveData<Resource<ItemResponse>>()
+    val item: MutableLiveData<Resource<ItemResponse>> get() = _item
 
 
     fun getItemsById(id: String) = viewModelScope.launch {

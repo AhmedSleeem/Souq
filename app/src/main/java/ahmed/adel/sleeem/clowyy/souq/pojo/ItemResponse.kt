@@ -1,17 +1,17 @@
 package ahmed.adel.sleeem.clowyy.souq.pojo
 
-class itemResponse : ArrayList<itemResponse.itemResponseItem>(){
+class ItemResponse : ArrayList<ItemResponse.itemResponseItem>(){
     data class itemResponseItem(
         val brand: String,
         val category: Category,
         val color: List<String>,
         val companyName: String,
         val description: String,
-        val id: Int,
+        val id: Double,
         val image: String,
         val price: Double,
-        val quantity: Int,
-        val rating: Int,
+        val quantity: Double,
+        val rating: Double,
         val size: List<String>,
         val title: String
     ) {

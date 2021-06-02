@@ -77,8 +77,8 @@ class OrderFragment : Fragment() {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
                     it.data.let {
-                        Log.e("TAG", "getAllOrders: ERROR"+it?.order?.size )
-                        adapter.changeData(it!!.order)
+                        Log.e("TAG", "getAllOrders: ERROR"+it?.size )
+                        adapter.changeData(it!!)
                         binding.ordersRv.adapter = adapter
                     }
                 }

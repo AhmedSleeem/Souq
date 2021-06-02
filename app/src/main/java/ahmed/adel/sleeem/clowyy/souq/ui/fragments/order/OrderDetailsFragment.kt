@@ -2,23 +2,15 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOrderDetailsBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.OrderProductItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.OrderResponse
-import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
-import ahmed.adel.sleeem.clowyy.souq.pojo.itemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter.OrderProductsRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getColor
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -32,7 +24,7 @@ class OrderDetailsFragment : Fragment() {
     val args: OrderDetailsFragmentArgs by navArgs()
     lateinit var order: OrderResponse.OrderResponseItem
     lateinit var viewModel: OrderDetailsViewModel
-    lateinit var itemsList: MutableList<itemResponse>
+    lateinit var itemsList: MutableList<ItemResponse>
     val shippingPrice = 40
 
 
@@ -61,8 +53,8 @@ class OrderDetailsFragment : Fragment() {
         binding.dateShippingTv.text = order.orderDate
         binding.resiNoTv.text = order._id
         binding.addressTv.text = order.Address
-        var itemsCount = 0
-        var itemsPrice = 0
+        var itemsCount = 0.0
+        var itemsPrice = 0.0
         for (itm in order.itemIds) {
             itemsCount += itm.count
             itemsPrice += itm.count

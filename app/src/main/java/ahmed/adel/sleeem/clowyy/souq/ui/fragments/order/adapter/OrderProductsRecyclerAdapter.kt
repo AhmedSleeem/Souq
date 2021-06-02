@@ -1,7 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemOrderCartItemRvBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.itemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.ItemResponse
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class OrderProductsRecyclerAdapter(val listener: (View, itemResponse, Int) -> Unit?, val conext : Context) :
+class OrderProductsRecyclerAdapter(val listener: (View, ItemResponse, Int) -> Unit?, val conext : Context) :
     RecyclerView.Adapter<OrderProductsRecyclerAdapter.ViewHolder>() {
 
-    var data = mutableListOf<itemResponse>()
+    var data = mutableListOf<ItemResponse>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -26,14 +26,14 @@ class OrderProductsRecyclerAdapter(val listener: (View, itemResponse, Int) -> Un
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(data[position])
 
-    fun changeData(newData: MutableList<itemResponse>) {
+    fun changeData(newData: MutableList<ItemResponse>) {
         data = newData
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(val binding: ItemOrderCartItemRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: itemResponse) = with(itemView) {
+        fun bind(item: ItemResponse) = with(itemView) {
 
             Glide.with(conext).load(item[0].image).into(binding.itemCartImageView)
 
