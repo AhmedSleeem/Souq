@@ -1,6 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details
 
-import ahmed.adel.sleeem.clowyy.souq.api.ApiClient
+import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import androidx.lifecycle.MutableLiveData
@@ -15,7 +15,7 @@ class DetailsViewModel : ViewModel() {
 
     fun getItemsByCategory(category: String) = viewModelScope.launch {
         itemsLiveData.value = Resource.loading(null)
-        val response = ApiClient.apiService().getAllItems()
+        val response = RetrofitHandler.getItemWebService().getAllItems()
 
         if (response.isSuccessful) {
             var list: ProductResponse = response.body()!!

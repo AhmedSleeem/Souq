@@ -1,6 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 
-import ahmed.adel.sleeem.clowyy.souq.api.ApiClient
+import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.FilterParams
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.ShortByBottomDialogFragment
@@ -24,7 +24,7 @@ class SearchResultViewModel:ViewModel() {
     fun getItemsByQuery(query: String){
         viewModelScope.launch {
             this@SearchResultViewModel._productsLiveData.value = Resource.loading(null)
-            val response = ApiClient.apiService().getItemsByTitle(query)
+            val response = RetrofitHandler.getItemWebService().getItemsByTitle(query)
             if(response.isSuccessful){
                 ShortByBottomDialogFragment.position = -1
                 if (response.body() != null)
@@ -37,7 +37,7 @@ class SearchResultViewModel:ViewModel() {
     fun getItemsByCategory(query: String) {
         viewModelScope.launch {
         this@SearchResultViewModel._productsLiveData.value = Resource.loading(null)
-        val response = ApiClient.apiService().getItemsByCategory(query)
+        val response = RetrofitHandler.getItemWebService().getItemsByCategory(query)
         if(response.isSuccessful){
             ShortByBottomDialogFragment.position = -1
             if (response.body() != null)
@@ -116,7 +116,7 @@ class SearchResultViewModel:ViewModel() {
     fun filterProducts(params:FilterParams){
         viewModelScope.launch {
             _productsLiveData.value = Resource.loading(null);
-            val response = ApiClient.apiService().filterProducts(
+            val response = RetrofitHandler.getItemWebService().filterProducts(
                 min = params.min,
                 max = params.max,
                 category = params.category,

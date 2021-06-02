@@ -1,6 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
-import ahmed.adel.sleeem.clowyy.souq.api.ApiClient
+import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.OrderResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import androidx.lifecycle.MutableLiveData
@@ -15,7 +15,7 @@ class OrderViewModel : ViewModel() {
 
     fun getOrders(id : String) = viewModelScope.launch {
         _orders.value = Resource.loading(null)
-        val response = ApiClient.apiService().getOrders(id)
+        val response = RetrofitHandler.getItemWebService().getOrders(id)
         if (response.isSuccessful) {
             if (response.body() != null)
                 _orders.value = Resource.success(response.body()!!)

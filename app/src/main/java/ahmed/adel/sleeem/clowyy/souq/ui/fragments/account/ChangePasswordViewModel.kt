@@ -1,6 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.account
 
-import ahmed.adel.sleeem.clowyy.souq.api.ApiClient
+import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.PasswordRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.PasswordResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
@@ -16,7 +16,7 @@ class ChangePasswordViewModel : ViewModel() {
 
     fun updatePassword(passwordRequest: PasswordRequest) = viewModelScope.launch {
         _password.value = Resource.loading(null)
-        val response = ApiClient.apiService().updatePassword(passwordRequest)
+        val response = RetrofitHandler.getItemWebService().updatePassword(passwordRequest)
         if (response.isSuccessful) {
             if (response.body() != null)
                 _password.value = Resource.success(response.body()!!);

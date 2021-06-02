@@ -1,6 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.offer
 
-import ahmed.adel.sleeem.clowyy.souq.api.ApiClient
+import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.pojo.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import androidx.lifecycle.MutableLiveData
@@ -15,7 +15,7 @@ class OfferViewModel : ViewModel() {
 
     fun getItemsBySale(saleType:String) = viewModelScope.launch {
         itemsLiveData.value = Resource.loading(null)
-        val response = ApiClient.apiService().getSaleItems()
+        val response = RetrofitHandler.getItemWebService().getSaleItems()
 
         if (response.isSuccessful){
             var list : ProductResponse = response.body()!!

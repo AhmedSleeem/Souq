@@ -4,7 +4,7 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.*
 import retrofit2.Response
 import retrofit2.http.*
 
-interface ApiServices {
+interface ItemWebServices {
     @GET("products/getall")
     suspend fun getAllItems(): Response<ProductResponse>
 
