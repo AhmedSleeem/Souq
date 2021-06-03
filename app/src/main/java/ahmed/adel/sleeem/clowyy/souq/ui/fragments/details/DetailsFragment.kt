@@ -29,7 +29,7 @@ import com.bumptech.glide.Glide
 
 class DetailsFragment : Fragment() {
     companion object{
-        private var badgeCount = 0
+        var badgeCount = 0
         var setOnCountChangeListener : OnBadgeChangeListener? = null
     }
 

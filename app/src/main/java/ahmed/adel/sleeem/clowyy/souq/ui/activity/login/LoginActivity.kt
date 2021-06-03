@@ -2,9 +2,9 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityLoginBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.LoginRequest
-import ahmed.adel.sleeem.clowyy.souq.pojo.LoginResponse
-import ahmed.adel.sleeem.clowyy.souq.pojo.UserResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.request.LoginRequest
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.LoginResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.UserResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.activity.SplashActivity
 import ahmed.adel.sleeem.clowyy.souq.utils.Constants
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils

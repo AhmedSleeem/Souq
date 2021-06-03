@@ -6,6 +6,7 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.AddressItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.Cupone
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart.CartViewModel
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import ahmed.adel.sleeem.clowyy.souq.utils.CuponeUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
@@ -81,6 +82,8 @@ class ShipToFragment : Fragment(),View.OnClickListener {
                     CartRoom.cartList.clear()
                     var cupone = Cupone()
                     CuponeUtils(requireContext()).editCupone(cupone)
+                    DetailsFragment.badgeCount = 0
+                    DetailsFragment.setOnCountChangeListener?.onChange(DetailsFragment.badgeCount)
                 }else{
                     Toast.makeText(requireContext(), "Enter your Address", Toast.LENGTH_SHORT).show()
                 }

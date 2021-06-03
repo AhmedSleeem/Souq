@@ -201,7 +201,7 @@
                 app:shimmer_demo_layout_manager_type="linear_vertical" />
 
             <TextView
-                android:id="@id/textView13"
+                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_13sdp"
@@ -322,7 +322,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@id/textView14"
+                android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_13sdp"

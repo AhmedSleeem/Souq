@@ -29,6 +29,7 @@ class OrderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOrderBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -55,7 +56,7 @@ class OrderFragment : Fragment() {
 
         }
         getAllOrders()
-
+        binding.ordersRv.adapter = adapter
     }
 
     private fun getAllOrders() {
