@@ -24,6 +24,14 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        if(intent.getStringExtra("google") == "google"){
+            val name = LoginUtils.getInstance(this)!!.userInfo().name
+            val email = LoginUtils.getInstance(this)!!.userInfo().email
+            binding.fullNameRegisterEditText.setText(name)
+            binding.fullNameRegisterEditText.isEnabled =false
+            binding.emailRegisterEditText.setText(email)
+            binding.emailRegisterEditText.isEnabled =false
+        }
         initViewModel()
         binding.SignInRegisterTextView.setOnClickListener(this)
         binding.signUpRegisterButton.setOnClickListener(this)
