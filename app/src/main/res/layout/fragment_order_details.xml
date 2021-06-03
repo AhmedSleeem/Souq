@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.order.OrderDetailsFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
+        app:buttonGravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:title="@string/order_details"
-        app:buttonGravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/AppTheme.ToolbarFont" />
+        app:theme="@style/AppTheme.ToolbarFont"
+        app:title="@string/order_details" />
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
+        android:background="@color/overlayGray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar"
-        android:background="@color/overlayGray"/>
+        app:layout_constraintTop_toBottomOf="@id/appBar" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -45,77 +44,73 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-      >
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <View
                         android:id="@+id/packingCheck"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/order_details_shipping_check_gray"
-                        android:padding="@dimen/_5sdp"
-                        android:contentDescription="TODO" />
+                        android:contentDescription="TODO"
+                        android:padding="@dimen/_5sdp" />
 
                     <View
                         android:id="@+id/shippingLine"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="2dp"
-                        android:background="@color/primaryBlue"
-                        android:layout_gravity="center_vertical"/>
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/overlayGray" />
 
                     <View
                         android:id="@+id/shippingCheck"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/order_details_shipping_check_gray"
-                        android:padding="@dimen/_5sdp"
-                        />
+                        android:padding="@dimen/_5sdp" />
 
                     <View
                         android:id="@+id/arrivingLine"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="2dp"
-                        android:background="@color/primaryBlue"
-                        android:layout_gravity="center_vertical"/>
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/overlayGray" />
 
                     <View
                         android:id="@+id/arrivingCheck"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/order_details_shipping_check_gray"
-                        android:padding="@dimen/_5sdp"
-                        />
+                        android:padding="@dimen/_5sdp" />
 
                     <View
                         android:id="@+id/successLine"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="2dp"
-                        android:background="@color/overlayGray"
-                        android:layout_gravity="center_vertical"/>
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/overlayGray" />
 
                     <View
                         android:id="@+id/successCheck"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/order_details_shipping_check_gray"
-                        android:padding="@dimen/_5sdp"
-                        />
+                        android:padding="@dimen/_5sdp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="@dimen/_6sdp"
+                    android:orientation="horizontal"
                     android:weightSum="4">
 
                     <TextView
@@ -192,23 +187,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView12"
                 tools:listitem="@layout/item_order_cart_item_rv" />
 
-            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.cooltechworks.views.shimmer.ShimmerRecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/shimmer_productsRv"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_190sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12"
+                app:shimmer_demo_angle="20"
                 app:shimmer_demo_child_count="10"
                 app:shimmer_demo_grid_child_count="2"
                 app:shimmer_demo_layout="@layout/item_shimmer_rv"
-                app:shimmer_demo_layout_manager_type="linear_vertical"
-                app:shimmer_demo_angle="20"
-                />
+                app:shimmer_demo_layout_manager_type="linear_vertical" />
 
             <TextView
-                android:id="@id/shipping_tv"
+                android:id="@id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_13sdp"
@@ -217,107 +210,111 @@
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/productsRv" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/shippingDetailsCard"
-                android:layout_marginTop="@dimen/_8sdp"
-                app:layout_constraintTop_toBottomOf="@id/shipping_tv"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:elevation="@dimen/_5sdp"
-                app:cardElevation="@dimen/_5sdp"
-                app:cardCornerRadius="@dimen/_5sdp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:elevation="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_5sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView13">
+
                 <LinearLayout
-                    android:padding="@dimen/_9sdp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
+                    android:padding="@dimen/_9sdp"
                     android:weightSum="3">
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/date_shipping"
                             android:textColor="@color/gray"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textSize="@dimen/_12ssp"
-                            />
+                            android:textSize="@dimen/_12ssp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/shipping"
                             android:textColor="@color/gray"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textSize="@dimen/_12ssp"
-                            />
+                            android:textSize="@dimen/_12ssp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/no_resi"
                             android:textColor="@color/gray"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textSize="@dimen/_12ssp"
-                            />
+                            android:textSize="@dimen/_12ssp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="@string/address"
                             android:textColor="@color/gray"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textSize="@dimen/_12ssp"
-                            />
+                            android:textSize="@dimen/_12ssp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="end">
+                        android:layout_weight="2"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/dateShippingTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
-                            android:text="January 16, 2020"
                             android:fontFamily="@font/poppins_medium"
-                            android:textSize="@dimen/_12ssp"
-                            />
+                            android:text="January 16, 2020"
+                            android:textSize="@dimen/_12ssp" />
+
                         <TextView
                             android:id="@+id/shippingTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
-                            android:text="POS Reggular"
                             android:fontFamily="@font/poppins_medium"
-                            android:textSize="@dimen/_12ssp"
-                            />
+                            android:text="POS Reggular"
+                            android:textSize="@dimen/_12ssp" />
+
                         <TextView
                             android:id="@+id/resiNoTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_9sdp"
-                            android:text="000192848573"
                             android:fontFamily="@font/poppins_medium"
-                            android:textSize="@dimen/_12ssp"
-                            />
+                            android:text="000192848573"
+                            android:textSize="@dimen/_12ssp" />
+
                         <TextView
                             android:id="@+id/addressTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
                             android:gravity="end"
                             android:text="2727 New  Owerri, Owerri, Imo State 78410"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textSize="@dimen/_12ssp"
-                            />
+                            android:textSize="@dimen/_12ssp" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -325,7 +322,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@id/cupone_value"
+                android:id="@id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_13sdp"
@@ -334,17 +331,18 @@
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/shippingDetailsCard" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/paymentDetailsCard"
-                android:layout_marginTop="@dimen/_8sdp"
-                app:layout_constraintTop_toBottomOf="@id/cupone_value"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:elevation="@dimen/_5sdp"
-                app:cardElevation="@dimen/_5sdp"
-                app:cardCornerRadius="@dimen/_5sdp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:elevation="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_5sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView14">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -412,8 +410,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:textSize="@dimen/_12ssp"
-                                android:text="$598.86" />
+                                android:text="$598.86"
+                                android:textSize="@dimen/_12ssp" />
 
                             <TextView
                                 android:id="@+id/shippingPriceTv"
@@ -421,8 +419,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:textSize="@dimen/_12ssp"
-                                android:text="$40.00" />
+                                android:text="$40.00"
+                                android:textSize="@dimen/_12ssp" />
 
                             <TextView
                                 android:id="@+id/importChargesTv"
@@ -430,11 +428,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:textSize="@dimen/_12ssp"
-                                android:text="$128.00" />
+                                android:text="$128.00"
+                                android:textSize="@dimen/_12ssp" />
 
                         </LinearLayout>
                     </LinearLayout>
+
                     <ImageView
                         android:id="@+id/dashed_line"
                         android:layout_width="match_parent"
@@ -448,45 +447,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_9sdp"
-                        app:layout_constraintTop_toBottomOf="@id/dashed_line"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:fontFamily="@font/poppins_bold"
+                        android:text="@string/total_price"
                         android:textSize="@dimen/_12ssp"
-                        android:text="@string/total_price" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dashed_line" />
 
                     <TextView
                         android:id="@+id/totalPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_9sdp"
-                        app:layout_constraintTop_toBottomOf="@id/dashed_line"
-                        app:layout_constraintEnd_toEndOf="parent"
                         android:fontFamily="@font/poppins_bold"
+                        android:text="$766.86"
                         android:textColor="@color/primaryBlue"
                         android:textSize="@dimen/_12ssp"
-                        android:text="$766.86" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dashed_line" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
             <Button
-                app:layout_constraintTop_toBottomOf="@id/paymentDetailsCard"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_16sdp"
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:backgroundTint="@color/primaryBlue"
                 android:fontFamily="@font/poppins_bold"
                 android:padding="@dimen/_12sdp"
-                android:text="@string/notify_me"
+                android:text="@string/cancel_order"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp"
                 app:background="@drawable/register_button_shape"
-                android:backgroundTint="@color/primaryBlue"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/paymentDetailsCard" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

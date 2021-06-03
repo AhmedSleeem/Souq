@@ -228,5 +228,6 @@
     <string name="remove_review">Remove Review</string>
     <string name="modify_review">Modify Review</string>
     <string name="no_review_yet">No Review Yet</string>
+    <string name="cancel_order">Cancel Order</string>
 
 </resources>

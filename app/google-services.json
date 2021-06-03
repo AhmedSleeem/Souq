@@ -7,20 +7,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:749946963569:android:00abb0452f5f9daca73dd0",
+        "mobilesdk_app_id": "1:749946963569:android:bb6118d3c9e8e553a73dd0",
         "android_client_info": {
           "package_name": "ahmed.adel.sleeem.clowyy.souq"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "749946963569-p78fpucrprtt5d8pasecl7937qdsmrol.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "ahmed.adel.sleeem.clowyy.souq",
-            "certificate_hash": "443b9d6a5c9e4677af44ddbfa6377072bdc72ed2"
-          }
-        },
         {
           "client_id": "749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com",
           "client_type": 3
