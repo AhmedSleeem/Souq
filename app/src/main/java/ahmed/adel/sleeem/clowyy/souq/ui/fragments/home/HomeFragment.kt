@@ -125,7 +125,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
         //recommended adapter item listener
         recommendedRecyclerAdapter.itemClickListener = object: RecommendedRecyclerAdapter.ItemClickListener{
             override fun onClick(view: View, item: ProductResponse.Item) {
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item)
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item,null)
                 view.findNavController().navigate(action)
             }
 

@@ -5,12 +5,15 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.room.FavouriteItem
 import ahmed.adel.sleeem.clowyy.souq.room.FavouriteViewModelRoom
+import ahmed.adel.sleeem.clowyy.souq.room.IsInFavourite
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite.adapter.FavoriteAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -38,11 +41,17 @@ class DetailsFragment : Fragment(), View.OnClickListener {
     private val args by navArgs<DetailsFragmentArgs>()
     private lateinit var item: ProductResponse.Item
     private lateinit var favItem: FavouriteItem
+    private lateinit var isInFavItem: IsInFavourite
     private lateinit var favouriteViewModelRoom: FavouriteViewModelRoom
+    private lateinit var favoriteAdapter: FavoriteAdapter
+
+
+    private var check: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
 
@@ -54,10 +63,26 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
 
+
+
+
         favouriteViewModelRoom = ViewModelProvider(this).get(FavouriteViewModelRoom::class.java)
+        favoriteAdapter = FavoriteAdapter(requireContext())
+
+        check = favouriteViewModelRoom.selectItem(isInFavItem.userId,isInFavItem.itemId)
+
+        recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
+        binding.recommend.adapter = recommendRecyclerAdapter
+
+        viewPagerAdapter = ViewPagerAdapter(requireContext())
+        binding.saleViewPager1.adapter = viewPagerAdapter
+        binding.dotsIndicator1.setViewPager2(binding.saleViewPager1)
 
 
-        item = args.itemData
+        return view
+    }
+
+    private fun changeUi() {
         binding.appBar.title = item.title
         binding.productNameTv.text = item.title
         binding.ratingBar.rating = (item.rating / 2.0f)
@@ -66,12 +91,6 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         binding.companyNameTv.text = item.companyName
         binding.brandTv.text = item.brand
 
-        recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
-        binding.recommend.adapter = recommendRecyclerAdapter
-
-        viewPagerAdapter = ViewPagerAdapter(requireContext())
-        binding.saleViewPager1.adapter = viewPagerAdapter
-        binding.dotsIndicator1.setViewPager2(binding.saleViewPager1)
         listImg = mutableListOf(item.image)
         if (item.sale != null) {
             if (item.sale!!.image != null) {
@@ -101,8 +120,6 @@ class DetailsFragment : Fragment(), View.OnClickListener {
             colorAdapter = ColorRecylerAdapter(item.color, requireContext())
             binding.colorRv.adapter = colorAdapter
         }
-
-        return view
     }
 
     override fun onResume() {
@@ -113,10 +130,21 @@ class DetailsFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(DetailsViewModel::class.java);
-        viewModel.getItemsByCategory(item.category.name)
+        Log.i("aa", args.id.toString())
+        if (args.id != null) {
+            viewModel.getItemsById(args.id!!)
+//            viewModel.item.observe(this, Observer {
+//                item = it.
+//                changeUi()
+//            })
+        } else {
+            item = args.itemData!!
+            changeUi()
+            viewModel.getItemsByCategory(item.category.name)
+
+        }
 
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
@@ -128,7 +156,7 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         recommendRecyclerAdapter.itemClickListener =
             object : RecommendedRecyclerAdapter.ItemClickListener {
                 override fun onClick(view: View, item: ProductResponse.Item) {
-                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(item)
+                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(item, null)
                     view.findNavController().navigate(action)
                 }
             }
@@ -142,6 +170,24 @@ class DetailsFragment : Fragment(), View.OnClickListener {
     }
 
     private fun subscribeToLiveData() {
+
+        viewModel.itemsLiveData.observe(requireActivity(), Observer {
+            when (it.status) {
+
+                Resource.Status.LOADING -> {
+
+                }
+                Resource.Status.ERROR -> {
+                }
+                Resource.Status.SUCCESS -> {
+                    it.data.let {
+                        item = it!![0]
+                        changeUi()
+                    }
+                }
+            }
+        })
+
 
         viewModel.filterLiveData.observe(requireActivity(), Observer {
             when (it.status) {
@@ -188,11 +234,33 @@ class DetailsFragment : Fragment(), View.OnClickListener {
             offer
         )
 
+
         // Add Data to Database
-        favouriteViewModelRoom.addItem(item)
-        Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
+        if (check == false) {
+            favouriteViewModelRoom.addItem(item)
+            Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
+            binding.favoritBtnRed.visibility = View.VISIBLE
+            check = true
+        } else {
+            deleteItem(item)
+            check = false
+            binding.favoritBtnRed.visibility = View.GONE
+
+        }
     }
 
+    private fun deleteItem(item: FavouriteItem) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("YES") { _, _ ->
+            favouriteViewModelRoom.deleteItem(item)
+            Toast.makeText(requireContext(), "item deleted", Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("NO") { _, _ -> }
+        builder.setTitle("Delete !")
+        builder.setMessage("Are you sure yo want to delete ${item.productName} ?")
+        builder.create().show()
+        favoriteAdapter.notifyDataSetChanged()
+    }
 
     override fun onClick(v: View?) {
         when (v) {

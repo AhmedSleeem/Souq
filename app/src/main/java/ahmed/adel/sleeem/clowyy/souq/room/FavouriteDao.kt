@@ -7,10 +7,16 @@ import androidx.room.*
 interface FavouriteDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addItem(item:FavouriteItem)
+    suspend fun addItem(item: FavouriteItem)
 
     @Delete
-    suspend fun deleteItem(item:FavouriteItem)
+    suspend fun deleteItem(item: FavouriteItem)
+
+//    @Delete
+//    suspend fun deleteItemById(item: String)
+
+    @Query("select isInFavourite from in_favourite_table where userId = :id and itemId = :itd ")
+    fun selectItem(id: String, itd: String): Boolean
 
     @Query("SELECT * FROM favourite_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<FavouriteItem>>

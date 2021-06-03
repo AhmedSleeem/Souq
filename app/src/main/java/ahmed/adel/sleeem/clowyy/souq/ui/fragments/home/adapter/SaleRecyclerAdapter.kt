@@ -49,7 +49,7 @@ class SaleRecyclerAdapter(val context:Context) :
 //                Navigation.findNavController(it)
 //                    .navigate(R.id.action_homeFragment_to_detailsFragment)
 //                val itemDetails = items[position]
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(product)
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(product,null)
                 it.findNavController().navigate(action)
             }
         }

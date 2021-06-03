@@ -3,7 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.room
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [FavouriteItem::class], version = 3, exportSchema = false)
+@Database(entities = [FavouriteItem::class,IsInFavourite::class], version = 5 , exportSchema = false)
 abstract class FavouriteDatabase : RoomDatabase() {
     abstract fun favouriteDao(): FavouriteDao
 
@@ -11,7 +11,7 @@ abstract class FavouriteDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: FavouriteDatabase? = null
 
-        fun getDatabse(context: Context): FavouriteDatabase {
+        fun getDatabase(context: Context): FavouriteDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance

@@ -1,12 +1,9 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite
 
-import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentFavoriteBinding
-import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.room.FavouriteItem
 import ahmed.adel.sleeem.clowyy.souq.room.FavouriteViewModelRoom
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite.adapter.FavoriteAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.OrderDetailsViewModel
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.app.AlertDialog
 import android.os.Bundle
@@ -18,7 +15,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 
 class FavoriteFragment : Fragment() {
 
@@ -28,6 +25,7 @@ class FavoriteFragment : Fragment() {
     lateinit var viewModel: FavouriteViewModel
     private lateinit var itemFav: FavouriteItem
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,8 +33,7 @@ class FavoriteFragment : Fragment() {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         val view = binding.root
 
-
-        favoriteAdapter = FavoriteAdapter(requireContext());
+        favoriteAdapter = FavoriteAdapter(requireContext())
         binding.favoriteGridView.adapter = favoriteAdapter
 
         return view
@@ -63,9 +60,11 @@ class FavoriteFragment : Fragment() {
             override fun onClickItem(view: View, item: FavouriteItem) {
                 itemFav = item
                 initViewModel()
-                getItemById()
-                Log.i("a", item.productName)
-                Toast.makeText(requireContext(), "item clicked", Toast.LENGTH_SHORT).show()
+                val action = FavoriteFragmentDirections.actionFavoriteFragmentToDetailsFragment(null,item.itemId.toString())
+                view.findNavController().navigate(action)
+//                getItemById()
+//                Log.i("a", item.productName)
+//                Toast.makeText(requireContext(), "item clicked", Toast.LENGTH_SHORT).show()
             }
         }
 
