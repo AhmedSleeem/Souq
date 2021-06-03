@@ -3,7 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.room
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [FavouriteItem::class], version = 1, exportSchema = false)
+@Database(entities = [FavouriteItem::class], version = 3, exportSchema = false)
 abstract class FavouriteDatabase : RoomDatabase() {
     abstract fun favouriteDao(): FavouriteDao
 
@@ -21,7 +21,7 @@ abstract class FavouriteDatabase : RoomDatabase() {
                     context.applicationContext,
                     FavouriteDatabase::class.java,
                     "favourite_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 Companion.INSTANCE = instance
                 return instance
             }

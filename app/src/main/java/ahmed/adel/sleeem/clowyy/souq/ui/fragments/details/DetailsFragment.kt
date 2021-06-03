@@ -4,7 +4,7 @@ import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.room.FavouriteItem
-import ahmed.adel.sleeem.clowyy.souq.room.FavouriteViewModel
+import ahmed.adel.sleeem.clowyy.souq.room.FavouriteViewModelRoom
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
@@ -38,7 +38,7 @@ class DetailsFragment : Fragment(), View.OnClickListener {
     private val args by navArgs<DetailsFragmentArgs>()
     private lateinit var item: ProductResponse.Item
     private lateinit var favItem: FavouriteItem
-    private lateinit var favouriteViewModel: FavouriteViewModel
+    private lateinit var favouriteViewModelRoom: FavouriteViewModelRoom
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,7 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        favouriteViewModel = ViewModelProvider(this).get(FavouriteViewModel::class.java)
+        favouriteViewModelRoom = ViewModelProvider(this).get(FavouriteViewModelRoom::class.java)
 
 
         item = args.itemData
@@ -168,7 +168,7 @@ class DetailsFragment : Fragment(), View.OnClickListener {
     private fun insertDataToDatabase() {
 
         val productName = item.title
-        val itemId = item.id
+        val itemId = item.id.toString()
         val userId = LoginUtils.getInstance(requireContext())!!.userInfo()._id
         val productImage = item.image
         val rating = item.rating
@@ -189,7 +189,7 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         )
 
         // Add Data to Database
-        favouriteViewModel.addItem(item)
+        favouriteViewModelRoom.addItem(item)
         Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
     }
 

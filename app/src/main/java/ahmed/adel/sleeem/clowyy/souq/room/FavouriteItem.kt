@@ -8,7 +8,7 @@ import java.io.Serializable
 data class FavouriteItem(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val itemId: Int,
+    val itemId: String,
     val userId: String?,
     var productName: String,
     var productImage: String,

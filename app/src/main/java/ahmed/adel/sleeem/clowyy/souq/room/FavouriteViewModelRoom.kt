@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FavouriteViewModel (application: Application) : AndroidViewModel(application) {
+class FavouriteViewModelRoom (application: Application) : AndroidViewModel(application) {
     val readAllData: LiveData<List<FavouriteItem>>
     private val repository: FavouriteRepository
 
