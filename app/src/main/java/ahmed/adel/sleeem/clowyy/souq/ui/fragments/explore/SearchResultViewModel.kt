@@ -19,33 +19,9 @@ class SearchResultViewModel:ViewModel() {
     private var _categoriesLiveData = MutableLiveData<List<Pair<String,Int>>>()
     val categoriesLiveDirections:LiveData<List<Pair<String,Int>>> get() = _categoriesLiveData
 
+    private var _itemsCountLiveData = MutableLiveData<Int>()
+    val itemsCountLiveData:LiveData<Int> get() = _itemsCountLiveData
 
-
-    fun getItemsByQuery(query: String){
-        viewModelScope.launch {
-            this@SearchResultViewModel._productsLiveData.value = Resource.loading(null)
-            val response = RetrofitHandler.getItemWebService().getItemsByTitle(query)
-            if(response.isSuccessful){
-                ShortByBottomDialogFragment.position = -1
-                if (response.body() != null)
-                    this@SearchResultViewModel._productsLiveData.value = Resource.success(response.body()!!)
-            }else
-                    this@SearchResultViewModel._productsLiveData.value = Resource.error(response.errorBody().toString())
-        }
-    }
-
-    fun getItemsByCategory(query: String) {
-        viewModelScope.launch {
-        this@SearchResultViewModel._productsLiveData.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().getItemsByCategory(query)
-        if(response.isSuccessful){
-            ShortByBottomDialogFragment.position = -1
-            if (response.body() != null)
-                this@SearchResultViewModel._productsLiveData.value = Resource.success(response.body()!!)
-        }else
-                this@SearchResultViewModel._productsLiveData.value = Resource.error(response.errorBody().toString())
-        }
-    }
 
     fun shortData(shortBy: Int) {
         val data = getData()
@@ -89,11 +65,11 @@ class SearchResultViewModel:ViewModel() {
         var categoryMap = mutableMapOf<String,Int>()
         if (data != null) {
             for (item in data){
-                var count=0
-                count = if (categoryMap[item.category.name] ==null)
+
+                var count = if (categoryMap[item.category.name] ==null)
                     0
                 else
-                    categoryMap.get(item.category.name)!!
+                    categoryMap[item.category.name]!!
                 categoryMap[item.category.name] = ++count
             }
         }
@@ -109,7 +85,7 @@ class SearchResultViewModel:ViewModel() {
                 list.add(item.brand)
             }
         }
-         liveData.value = list.toList()
+        liveData.value = list.toList()
         return liveData
     }
 
@@ -122,14 +98,19 @@ class SearchResultViewModel:ViewModel() {
                 category = params.category,
                 sale= params.sale,
                 brand= params.brand,
-                price = params.price
+                price = params.price,
+                page = params.page
             )
-            
+
 
             if (response.isSuccessful){
                 ShortByBottomDialogFragment.position = -1
-                if (response.body() != null)
-                    _productsLiveData.value = Resource.success(response.body()!!,1)
+                if (!response.body()!!.items!!.isNullOrEmpty()) {
+                    _itemsCountLiveData.value = response.body()!!.count!!
+                    _productsLiveData.value = Resource.success(response.body()!!.items!!, 1)
+                }else
+                    _productsLiveData.value = Resource.error("not found")
+
             }else{
                 _productsLiveData.value = Resource.error(response.errorBody().toString())
             }

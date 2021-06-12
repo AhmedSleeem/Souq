@@ -229,5 +229,6 @@
     <string name="modify_review">Modify Review</string>
     <string name="no_review_yet">No Review Yet</string>
     <string name="cancel_order">Cancel Order</string>
+    <string name="retry">Retry</string>
 
 </resources>

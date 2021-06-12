@@ -111,15 +111,6 @@
                         app:shimmer_demo_grid_child_count="1"
                         app:shimmer_demo_layout="@layout/viewpager_progress_item"
                         app:shimmer_demo_layout_manager_type="linear_horizontal" />
-                    <!--                    <ProgressBar-->
-                    <!--                        android:id="@+id/viewPagerProgress"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:visibility="visible"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                        app:layout_constraintTop_toTopOf="parent"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -201,17 +192,6 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginLeft="@dimen/_12sdp" />
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/categoryProgress"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:visibility="visible"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/moreCategory_tv"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintBottom_toTopOf="@id/sale_txt"/>-->
-
-
             <TextView
                 android:id="@+id/sale_txt"
                 android:layout_width="wrap_content"
@@ -256,8 +236,59 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <LinearLayout
+                android:id="@+id/retry_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/saleSeeMore_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <ImageView
+                    android:id="@+id/iv_search_error"
+                    android:layout_width="@dimen/_46sdp"
+                    android:layout_height="@dimen/_46sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:adjustViewBounds="true"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/circle_shape"
+                    android:scaleType="center"
+                    app:srcCompat="@drawable/ic_cross_sign" />
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_gravity="center" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/retry_button"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textAllCaps="false"
+                    android:textColor="@color/neutralDark"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/login_button"
+                    android:text="@string/retry" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/sale_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="sale_rv , retry_view">
+
+            </androidx.constraintlayout.widget.Barrier>
+
             <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-                android:id="@+id/saleProgress"
+                android:id="@+id/saleShimmer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_12sdp"
@@ -270,15 +301,6 @@
                 app:shimmer_demo_layout="@layout/item_product_shimmer"
                 app:shimmer_demo_layout_manager_type="grid" />
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/saleProgress"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:visibility="visible"-->
-<!--                app:layout_constraintBottom_toBottomOf="@id/sale_rv"-->
-<!--                app:layout_constraintTop_toTopOf="@id/sale_rv"-->
-<!--                app:layout_constraintStart_toStartOf="@id/sale_rv"-->
-<!--                app:layout_constraintEnd_toEndOf="@id/sale_rv" />-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/image_card"
@@ -290,7 +312,9 @@
                 android:layout_marginEnd="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sale_rv">
+                app:layout_constraintTop_toBottomOf="@id/sale_barrier">
+
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -303,6 +327,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:src="@drawable/i2"/>
+
                     <TextView
                         android:id="@+id/recommended_product_tv"
                         android:layout_width="@dimen/_180sdp"
@@ -316,6 +341,7 @@
                         android:fontFamily="@font/poppins_semibold"
                         android:textColor="@color/white"
                         tools:ignore="RtlCompat" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -328,29 +354,67 @@
                         app:layout_constraintTop_toBottomOf="@id/recommended_product_tv"
                         app:layout_constraintStart_toStartOf="parent"
                         tools:ignore="RtlCompat" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/recommendedProgress"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintTop_toTopOf="@id/recommended"-->
-<!--                app:layout_constraintBottom_toBottomOf="@id/recommended"-->
-<!--                app:layout_constraintStart_toStartOf="@id/recommended"-->
-<!--                app:layout_constraintEnd_toEndOf="@id/recommended"/>-->
+
+            <LinearLayout
+                android:id="@+id/recommended_retry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintTop_toBottomOf="@id/image_card"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <ImageView
+                    android:id="@+id/recommend_error_iv"
+                    android:layout_width="@dimen/_46sdp"
+                    android:layout_height="@dimen/_46sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:adjustViewBounds="true"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/circle_shape"
+                    android:scaleType="center"
+                    app:srcCompat="@drawable/ic_cross_sign" />
+                <ProgressBar
+                    android:id="@+id/recommend_error_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_gravity="center" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/recommend_error_retry"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textAllCaps="false"
+                    android:textColor="@color/neutralDark"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/login_button"
+                    android:text="@string/retry" />
+
+            </LinearLayout>
 
             <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/recommendedProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_12sdp"
                 app:shimmer_demo_child_count="4"
                 app:shimmer_demo_grid_child_count="2"
                 app:shimmer_demo_layout="@layout/item_product_shimmer"
                 app:shimmer_demo_layout_manager_type="grid"
                 app:shimmer_demo_angle="20"
+                android:layout_marginBottom="@dimen/_10ssp"
                 app:layout_constraintTop_toBottomOf="@id/image_card"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -361,6 +425,7 @@
                 android:id="@+id/recommendedRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:maxHeight="@dimen/_190sdp"
                 tools:listitem="@layout/item_sale_rv"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/_2sdp"
@@ -370,7 +435,6 @@
                 app:layout_constraintTop_toBottomOf="@id/image_card"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

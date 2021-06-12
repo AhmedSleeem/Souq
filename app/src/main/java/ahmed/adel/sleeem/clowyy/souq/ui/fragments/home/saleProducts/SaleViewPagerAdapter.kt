@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.saleProducts
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleViewpagerBinding
@@ -46,7 +46,7 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemSaleViewpagerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+            ItemSaleViewpagerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 

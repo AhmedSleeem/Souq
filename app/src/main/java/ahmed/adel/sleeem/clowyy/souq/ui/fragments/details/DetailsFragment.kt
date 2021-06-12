@@ -7,7 +7,7 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.recommended.RecommendedAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewAdapter
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import ahmed.adel.sleeem.clowyy.souq.utils.OnBadgeChangeListener
@@ -39,7 +39,7 @@ class DetailsFragment : Fragment() {
     private lateinit var selectSizeAdapter: SizeRecyclerAdapter
     private lateinit var colorAdapter: ColorRecylerAdapter
     private lateinit var binding: FragmentDetailsBinding
-    private lateinit var recommendRecyclerAdapter: RecommendedRecyclerAdapter
+    private lateinit var recommendRecyclerAdapter: RecommendedAdapter
     private lateinit var reviewRecyclerAdapter: ReviewAdapter
     private lateinit var viewModel: DetailsViewModel
     private val args by navArgs<DetailsFragmentArgs>()
@@ -69,8 +69,8 @@ class DetailsFragment : Fragment() {
         binding.companyNameTv.text = item.companyName
         binding.brandTv.text = item.brand
 
-        recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
-        binding.recommend.adapter = recommendRecyclerAdapter
+//        recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
+//        binding.recommend.adapter = recommendRecyclerAdapter
 
 
 
@@ -136,13 +136,13 @@ class DetailsFragment : Fragment() {
         }
 
 
-        recommendRecyclerAdapter.itemClickListener =
-            object : RecommendedRecyclerAdapter.ItemClickListener {
-                override fun onClick(view: View, item: ProductResponse.Item) {
-                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(item)
-                    view.findNavController().navigate(action)
-                }
-            }
+//        recommendRecyclerAdapter.itemClickListener =
+//            object : RecommendedRecyclerAdapter.ItemClickListener {
+//                override fun onClick(view: View, item: ProductResponse.Item) {
+//                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(item)
+//                    view.findNavController().navigate(action)
+//                }
+//            }
 
         binding.morweReviews.setOnClickListener {
             val action = DetailsFragmentDirections.actionDetailsFragmentToReviewFragment(item.id.toString())
@@ -213,8 +213,8 @@ class DetailsFragment : Fragment() {
                 Resource.Status.SUCCESS -> {
                     it.data.let {
                         binding.recommendedProgress.visibility = View.GONE
-                        recommendRecyclerAdapter.changeData(it!!)
-                        saleData = it
+//                        recommendRecyclerAdapter.changeData(it!!)
+//                        saleData = it
                     }
                 }
             }
