@@ -3,12 +3,16 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home
 import ahmed.adel.sleeem.clowyy.souq.*
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentHomeBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.FilterParams
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.RecommendedRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleRecyclerAdapter
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.SaleViewPagerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.category.*
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.recommended.RecommendedAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.recommended.RecommendedStateAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.saleProducts.SaleStateAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.saleProducts.SaleRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.saleProducts.SaleViewPagerAdapter
+import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 
 import android.os.Bundle
 import android.os.Handler
@@ -19,28 +23,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.paging.LoadState
 import androidx.viewpager2.widget.ViewPager2
 import com.mancj.materialsearchbar.MaterialSearchBar
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+
 
 
 class HomeFragment : Fragment() , View.OnClickListener {
 
     var navController : NavController? = null
-    private var lastSearches = mutableListOf<String>("mahmoud","hager")
+    private var lastSearches = mutableListOf("mahmoud","hager")
     private var saleData = arrayListOf<ProductResponse.Item>()
 
     private lateinit var viewPagerAdapter: SaleViewPagerAdapter
-    private lateinit var saleRecyclerAdapter: SaleRecyclerAdapter
-    private lateinit var recommendedRecyclerAdapter: RecommendedRecyclerAdapter
+    private lateinit var recommendedAdapter: RecommendedAdapter
     private lateinit var categoryRecyclerAdapter: CategoryRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
     private val sliderHandler = Handler();
     private lateinit var viewModel: HomeViewModel
+    private lateinit var saleRecyclerAdapter: SaleRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,15 +60,14 @@ class HomeFragment : Fragment() , View.OnClickListener {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        recommendedRecyclerAdapter = RecommendedRecyclerAdapter(requireContext());
-        binding.recommendedRv.adapter = recommendedRecyclerAdapter
 
-        viewPagerAdapter = SaleViewPagerAdapter(requireContext())
+        viewPagerAdapter =
+            SaleViewPagerAdapter(
+                requireContext()
+            )
         binding.saleViewPager.adapter = viewPagerAdapter
         binding.dotsIndicator.setViewPager2(binding.saleViewPager)
 
-        saleRecyclerAdapter = SaleRecyclerAdapter(requireContext())
-        binding.saleRv.adapter = saleRecyclerAdapter
 
         categoryRecyclerAdapter = CategoryRecyclerAdapter(requireContext())
         binding.categoryRv.adapter = categoryRecyclerAdapter
@@ -68,20 +78,135 @@ class HomeFragment : Fragment() , View.OnClickListener {
     override fun onResume() {
         super.onResume()
         subscribeToLiveData()
+    }
 
+    private var getSaleJob: Job? = null
+    private fun getSaleProducts() {
+        // Make sure we cancel the previous job before creating a new one
+        getSaleJob?.cancel()
+        getSaleJob = lifecycleScope.launch {
+            viewModel.getProductsHaveSale().collect{
+                binding.saleRv.visibility=View.VISIBLE
+                binding.saleShimmer.hideShimmerAdapter()
+                saleRecyclerAdapter.submitData(it)
+            }
+        }
+    }
+
+    private var getRecommendedJob: Job? = null
+    private fun getRecommendedProducts() {
+        // Make sure we cancel the previous job before creating a new one
+        getRecommendedJob?.cancel()
+        getRecommendedJob = lifecycleScope.launch {
+            viewModel.getRecommended(FilterParams(title = CartRoom.lastSearch)).collect{
+                binding.recommendedRv.visibility=View.VISIBLE
+                binding.recommendedProgress.hideShimmerAdapter()
+                recommendedAdapter.submitData(it)
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if(isAdded) {
+            binding.saleShimmer.showShimmerAdapter()
+            //init view model
+            viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
 
-        //init view model
-        viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java);
-        viewModel.getItems()
-        viewModel.getSaleItems()
-        viewModel.getAllCategories()
+            initSaleRecyclerView()
+            initRecommendedRecyclerView()
+            getSaleProducts()
+            getRecommendedProducts()
 
-        //search bar
-        //enable binding.searchBar callbacks
+            viewModel.getSaleItems()
+            viewModel.getAllCategories()
+
+
+            // search bar
+            // enable binding.searchBar callbacks
+            initSearchBar(view)
+
+
+            //listeners
+            binding.notificationIv.setOnClickListener {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_homeFragment_to_notificationFragment);
+            }
+
+            binding.favoriteIv.setOnClickListener {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_homeFragment_to_favoriteFragment);
+            }
+
+            binding.moreCategoryTv.setOnClickListener {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_homeFragment_to_listCategoryFragment);
+            }
+
+            binding.saleSeeMoreTv.setOnClickListener {
+                onClick(it)
+            }
+
+
+            //recommended adapter item listener
+            recommendedAdapter.itemClickListener = object : RecommendedAdapter.ItemClickListener {
+                override fun onClick(view: View, item: ProductResponse.Item) {
+                    val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item)
+                    view.findNavController().navigate(action)
+                }
+
+            }
+
+            binding.saleViewPager.registerOnPageChangeCallback(object :
+                ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    sliderHandler.removeCallbacks(sliderRunnable)
+                    sliderHandler.postDelayed(sliderRunnable, 3000)
+                }
+            })
+
+
+
+            navController = Navigation.findNavController(view)
+            view.findViewById<TextView>(R.id.moreCategory_tv).setOnClickListener(this)
+            binding.moreCategoryTv.setOnClickListener(this)
+
+        }
+    }
+
+    private fun initRecommendedRecyclerView() {
+        recommendedAdapter =
+            RecommendedAdapter()
+        binding.recommendedRv.adapter = recommendedAdapter
+
+        binding.recommendedRv.visibility=View.INVISIBLE
+        binding.recommendedProgress.showShimmerAdapter()
+
+        binding.recommendedRv.adapter = recommendedAdapter.withLoadStateHeaderAndFooter(
+            header = RecommendedStateAdapter { recommendedAdapter.retry() },
+            footer = RecommendedStateAdapter { recommendedAdapter.retry() }
+        )
+
+        recommendedAdapter.addLoadStateListener { loadState ->
+            //val isEmptyList = loadState.refresh is LoadState.NotLoading && saleRecyclerAdapter.itemCount == 0
+            //showEmptyList(isEmptyList)
+
+            // Only show the list if refresh succeeds
+            binding.recommendedRv.isVisible = loadState.source.refresh is LoadState.NotLoading
+
+            // Show loading spinner during initial load or refresh
+            binding.recommendErrorProgress.isVisible = loadState.source.refresh is LoadState.Loading
+
+            // Show the retry state if initial load or refresh fails
+            binding.recommendErrorIv.isVisible = loadState.source.refresh is LoadState.Error
+            binding.recommendErrorRetry.isVisible = loadState.source.refresh is LoadState.Error
+        }
+
+        binding.recommendErrorRetry.setOnClickListener { recommendedAdapter.retry() }
+    }
+
+    private fun initSearchBar(view:View) {
         binding.searchBar.setOnSearchActionListener(object : MaterialSearchBar.OnSearchActionListener{
             override fun onButtonClicked(buttonCode: Int) {
 //                when (buttonCode) {
@@ -95,84 +220,49 @@ class HomeFragment : Fragment() , View.OnClickListener {
             }
 
             override fun onSearchConfirmed(text: CharSequence?) {
+                CartRoom.lastSearch = text.toString()
                 val action = HomeFragmentDirections.actionHomeFragmentToSearchSucceedFragment(query = text.toString() ,
                     searchStatus = SearchSucceedFragment.SearchStatus.QUERY)
                 view.findNavController().navigate(action)
             }
         });
         binding.searchBar.lastSuggestions = lastSearches;
+    }
 
+    private fun initSaleRecyclerView() {
+        saleRecyclerAdapter =
+            SaleRecyclerAdapter()
+        binding.saleRv.adapter = saleRecyclerAdapter
 
+        binding.saleRv.visibility=View.INVISIBLE
+        binding.saleShimmer.showShimmerAdapter()
 
-        //listeners
-        binding.notificationIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_notificationFragment);
+        binding.saleRv.adapter = saleRecyclerAdapter.withLoadStateHeaderAndFooter(
+            header = SaleStateAdapter { saleRecyclerAdapter.retry() },
+            footer = SaleStateAdapter { saleRecyclerAdapter.retry() }
+        )
+
+        saleRecyclerAdapter.addLoadStateListener { loadState ->
+            val isEmptyList = loadState.refresh is LoadState.NotLoading && saleRecyclerAdapter.itemCount == 0
+            //showEmptyList(isEmptyList)
+
+            // Only show the list if refresh succeeds
+            binding.saleRv.isVisible = loadState.source.refresh is LoadState.NotLoading
+
+            // Show loading spinner during initial load or refresh
+            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+
+            // Show the retry state if initial load or refresh fails
+            binding.ivSearchError.isVisible = loadState.source.refresh is LoadState.Error
+            binding.retryButton.isVisible = loadState.source.refresh is LoadState.Error
         }
 
-        binding.favoriteIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_favoriteFragment);
-        }
-
-        binding.moreCategoryTv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_listCategoryFragment);
-        }
-
-        binding.saleSeeMoreTv.setOnClickListener {
-            onClick(it)
-        }
-
-
-        //recommended adapter item listener
-        recommendedRecyclerAdapter.itemClickListener = object: RecommendedRecyclerAdapter.ItemClickListener{
-            override fun onClick(view: View, item: ProductResponse.Item) {
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item)
-                view.findNavController().navigate(action)
-            }
-
-        }
-
-        binding.saleViewPager.registerOnPageChangeCallback( object :
-            ViewPager2.OnPageChangeCallback()  {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                sliderHandler.removeCallbacks(sliderRunnable)
-                sliderHandler.postDelayed(sliderRunnable,3000)
-            }
-        })
-
-
-
-        navController = Navigation.findNavController(view)
-        view.findViewById<TextView>(R.id.moreCategory_tv).setOnClickListener(this)
-        binding.moreCategoryTv.setOnClickListener(this)
-
-
+        binding.retryButton.setOnClickListener { saleRecyclerAdapter.retry() }
     }
 
     private fun subscribeToLiveData() {
-        // get all data to Recomend RecyclerView
-        viewModel.itemsLiveData.observe(requireActivity(), Observer {
-            when(it.status){
-                Resource.Status.LOADING ->{
-                    binding.recommendedProgress.showShimmerAdapter()
-                    binding.recommendedRv.visibility = View.GONE
+        // get all data to Recommended RecyclerView
 
-                }
-
-                Resource.Status.ERROR ->{
-                    binding.recommendedProgress.hideShimmerAdapter()
-                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
-                }
-
-                Resource.Status.SUCCESS->{
-                    it.data.let {
-                        binding.recommendedProgress.hideShimmerAdapter()
-                        binding.recommendedRv.visibility = View.VISIBLE
-                        recommendedRecyclerAdapter.changeData(it!!)
-                    }
-                }
-            }
-        })
 
 
         // get offer data to Sale RecyclerView and ViewPager
@@ -180,35 +270,21 @@ class HomeFragment : Fragment() , View.OnClickListener {
 
             when(it.status){
                 Resource.Status.LOADING -> {
-                   // binding.viewPagerProgress.visibility = View.VISIBLE
-                    binding.saleProgress.showShimmerAdapter()
                     binding.viewPagerProgress.showShimmerAdapter()
-
-                    binding.saleRv.visibility = View.INVISIBLE
                     binding.saleViewPager.visibility= View.GONE
                 }
 
                 Resource.Status.ERROR -> {
                     Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
-                   // binding.viewPagerProgress.visibility = View.GONE
-                    binding.saleProgress.hideShimmerAdapter()
                     binding.viewPagerProgress.hideShimmerAdapter()
-
-                    binding.saleRv.visibility=View.VISIBLE
                     binding.saleViewPager.visibility=View.VISIBLE
                 }
 
                 Resource.Status.SUCCESS-> {
                     it.data.let {
-                       // binding.viewPagerProgress.visibility = View.GONE
-                        binding.saleProgress.hideShimmerAdapter()
                         binding.viewPagerProgress.hideShimmerAdapter()
-
-                        binding.saleRv.visibility=View.VISIBLE
                         binding.saleViewPager.visibility=View.VISIBLE
-
                         viewPagerAdapter.changeData(it!!)
-                        saleRecyclerAdapter.changeData(it!!)
                         binding.dotsIndicator.setViewPager2(binding.saleViewPager)
                     }
                 }
@@ -226,7 +302,6 @@ class HomeFragment : Fragment() , View.OnClickListener {
                 }
 
                 Resource.Status.ERROR ->{
-                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
                     binding.categoryProgress.hideShimmerAdapter()
                     binding.categoryRv.visibility=View.GONE
                 }
@@ -264,13 +339,11 @@ class HomeFragment : Fragment() , View.OnClickListener {
             binding.moreCategoryTv ->{
                 val action = HomeFragmentDirections.actionHomeFragmentToListCategoryFragment()
                 view?.findNavController()?.navigate(action)
-                Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
             }
 
             binding.saleSeeMoreTv ->{
                 val action = HomeFragmentDirections.actionHomeFragmentToOfferTypeFragment("flash sale")
                 view?.findNavController()?.navigate(action)
-                Toast.makeText(requireContext(),"aaaaaa",Toast.LENGTH_SHORT).show()
             }
         }
     }

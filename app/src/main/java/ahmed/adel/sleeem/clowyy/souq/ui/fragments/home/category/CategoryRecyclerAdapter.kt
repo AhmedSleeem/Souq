@@ -1,4 +1,4 @@
-package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter
+package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.category
 
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCategoryRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.CategoryResponse

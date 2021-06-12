@@ -4,8 +4,6 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.*
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.*
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.*
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ItemResponse
-import ahmed.adel.sleeem.clowyy.souq.pojo.request.*
-import ahmed.adel.sleeem.clowyy.souq.pojo.response.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -14,7 +12,7 @@ interface ItemWebServices {
     suspend fun getAllItems(): Response<ProductResponse>
 
     @GET("products/getsales")
-    suspend fun getSaleItems(): Response<ProductResponse>
+    suspend fun getSaleItems(@Query("page") page:Int=1): Response<ProductResponse>
 
     @GET("products/getcategories")
     suspend fun getCategory(): Response<CategoryResponse>
@@ -33,9 +31,9 @@ interface ItemWebServices {
         @Query("sale") sale: Int = 0,
         @Query("brand") brand: String? = null,
         @Query("title") title: String? = null,
-        @Query("price") price: Int = 0
-
-    ): Response<ProductResponse>
+        @Query("price") price: Int = 0,
+        @Query("page") page: Int = 1
+    ): Response<FilterResponse>
 
 
     @POST("order/add")

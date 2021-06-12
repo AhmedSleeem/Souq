@@ -107,6 +107,9 @@ dependencies {
     //facebook
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
+    implementation 'androidx.paging:paging-runtime:3.0.0'
+    // alternatively - without Android dependencies for tests
+    testImplementation "androidx.paging:paging-common:3.0.0"
 
 
 

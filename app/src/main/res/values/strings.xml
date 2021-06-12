@@ -230,5 +230,6 @@
     <string name="no_review_yet">No Review Yet</string>
     <string name="cancel_order">Cancel Order</string>
     <string name="notification_Channel_ID">ahmed.adel.sleeem.clowyy.channel1</string>
+    <string name="retry">Retry</string>
 
 </resources>
