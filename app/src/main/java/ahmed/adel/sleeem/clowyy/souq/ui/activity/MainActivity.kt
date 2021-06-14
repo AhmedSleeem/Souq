@@ -4,9 +4,11 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityMainBinding
 import ahmed.adel.sleeem.clowyy.souq.notifications.Notifications
+import ahmed.adel.sleeem.clowyy.souq.services.MyService
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment
 import ahmed.adel.sleeem.clowyy.souq.utils.OnBadgeChangeListener
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -66,20 +68,8 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
         }
 
 
+        startService(Intent(applicationContext,MyService::class.java));
 
-        //Notification
-        notification = Notifications(this);
-
-
-        //Socet Io
-        mySocket = IO.socket("https://souqitigraduationproj.herokuapp.com");
-
-        mySocket.open()
-
-        mySocket.on("newProductAdded", onNewMessage);
-        mySocket.on(Socket.EVENT_CONNECT, Emitter.Listener {
-            Log.i(TAG, "onCreate: connected");
-        });
     }
 
     private fun isFirstRunning(): Boolean{
