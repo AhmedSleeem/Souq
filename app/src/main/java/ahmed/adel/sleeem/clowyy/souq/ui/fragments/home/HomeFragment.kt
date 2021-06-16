@@ -80,6 +80,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
         subscribeToLiveData()
     }
 
+
     private var getSaleJob: Job? = null
     private fun getSaleProducts() {
         // Make sure we cancel the previous job before creating a new one
@@ -117,6 +118,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
             initRecommendedRecyclerView()
             getSaleProducts()
             getRecommendedProducts()
+
 
             viewModel.getSaleItems()
             viewModel.getAllCategories()
@@ -294,7 +296,6 @@ class HomeFragment : Fragment() , View.OnClickListener {
         // get caegory to category RecyclerView and ViewPager
         viewModel.categoryLiveData.observe(requireActivity(), Observer {
             when(it.status){
-
                 Resource.Status.LOADING ->{
                     Log.e("sssss","Loading........")
                     binding.categoryProgress.showShimmerAdapter()
@@ -311,12 +312,10 @@ class HomeFragment : Fragment() , View.OnClickListener {
                         binding.categoryProgress.hideShimmerAdapter()
                         binding.categoryRv.visibility=View.VISIBLE
                         categoryRecyclerAdapter.changeData(it!!)
-
                     }
                 }
             }
         })
-
     }
 
     private val sliderRunnable:Runnable = Runnable {
@@ -328,7 +327,6 @@ class HomeFragment : Fragment() , View.OnClickListener {
                 viewPagerAdapter.changeData(saleData)
                 binding.saleViewPager.currentItem = 0
             }
-
         }
     }
 

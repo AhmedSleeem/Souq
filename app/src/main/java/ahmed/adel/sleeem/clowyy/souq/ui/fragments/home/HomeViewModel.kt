@@ -56,17 +56,12 @@ class HomeViewModel:ViewModel() {
         return newResult
     }
 
-    private val coroutineExceptionHandler = CoroutineExceptionHandler{_ , throwable ->
-        //handle error here
-       // saleItemsLiveData.value =Resource.error("time out Exception")
-    }
-
-    fun getSaleItems() = viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+    fun getSaleItems() = viewModelScope.launch{
         saleItemsLiveData.value = Resource.loading(null)
         val response = RetrofitHandler.getItemWebService().getSaleItems(1)
         if (response.isSuccessful){
             if(response.body() != null)
-                saleItemsLiveData.value = Resource.success(response.body()!!);
+                saleItemsLiveData.value = Resource.success(response.body()!!)
         }else{
             saleItemsLiveData.value = Resource.error(response.errorBody().toString())
         }
