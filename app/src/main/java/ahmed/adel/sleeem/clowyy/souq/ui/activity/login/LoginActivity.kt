@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -105,7 +105,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 firebaseAuthWithGoogle(account!!.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e)
+                Log.w(TAG, "Google sign in failed"+ e.localizedMessage.toString())
             }
         }
     }
