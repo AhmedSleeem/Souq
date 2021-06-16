@@ -14,6 +14,8 @@ object RetrofitHandler {
         .addInterceptor(logging)
         .build()
 
+
+
     private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_API)
     .addConverterFactory(GsonConverterFactory.create())

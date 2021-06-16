@@ -14,11 +14,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
 import org.json.JSONObject
+
 
 class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
     private lateinit var binding: ActivityMainBinding
@@ -37,9 +39,10 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
             val data = args[0] as JSONObject
             val message = data.getString("message");
 
-            notification.createNotificationChannelID(resources.getString(R.string.notification_Channel_ID)
-            ,"push notifications",
-            "Item Added In Our System ${message}")
+            notification.createNotificationChannelID(
+                resources.getString(R.string.notification_Channel_ID), "push notifications",
+                "Item Added In Our System ${message}"
+            )
 
             notification.displayNotification("New Product Added");
 
@@ -63,6 +66,8 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
         if(!isFirstRunning()) {
             this.findNavController(R.id.navHost)
                 .navigate(R.id.action_homeFragment_to_viewPagerFragment)
+//            val navBar: BottomNavigationView = getActivity().findViewById(R.id.bottomBar)
+            binding.bottomNavView.visibility = View.GONE
         }
 
 

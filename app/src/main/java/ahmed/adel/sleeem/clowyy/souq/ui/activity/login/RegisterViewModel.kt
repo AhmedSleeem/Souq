@@ -26,7 +26,7 @@ class RegisterViewModel : ViewModel() {
                 _register.value = Resource.success(response.body()!!)
             }
         } else {
-            _register.value = Resource.error(response.errorBody().toString())
+            _register.value = Resource.error("user already registered")
         }
     }
 }

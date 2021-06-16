@@ -55,6 +55,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val email = LoginUtils.getInstance(this)?.userInfo()?.email ?: ""
+        val password = LoginUtils.getInstance(this)?.userInfo()?.password ?: ""
+        binding.emailLoginEditText.setText(email)
+        binding.passwordLoginEditText.setText(password)
+
         auth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -82,7 +88,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 loginUser()
             }
             binding.googleSignIn -> {
-                auth.signOut()
                 loginUserWithGoogle()
             }
         }
@@ -140,8 +145,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             val personPhoto = inAccount.photoUrl.toString()
 
             val userResponse = UserResponse(
-                "N/F", "N/F", "N/F", personId, inAccount.email,
-                "$personName $personFamilyName", "N/F", personPhoto
+                "N/F", "N/F", "male", personId, inAccount.email,
+                "$personName $personFamilyName", "0123456789", personPhoto
             )
             LoginUtils.getInstance(this)!!.saveUserInfo(userResponse)
             startActivity(Intent(this,RegisterActivity::class.java).putExtra("google","google"))

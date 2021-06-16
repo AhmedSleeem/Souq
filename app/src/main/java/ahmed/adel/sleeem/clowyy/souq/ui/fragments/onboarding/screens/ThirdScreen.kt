@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ThirdScreen : Fragment() {
 
@@ -21,6 +22,8 @@ class ThirdScreen : Fragment() {
 
         view.findViewById<TextView>(R.id.finish).setOnClickListener {
             findNavController().navigate(R.id.action_viewPagerFragment_to_homeFragment3)
+            val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavView)
+            navBar.visibility = View.VISIBLE
             onBoardingFinished()
         }
 

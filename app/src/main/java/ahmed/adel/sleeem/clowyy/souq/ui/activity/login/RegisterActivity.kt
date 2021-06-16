@@ -71,7 +71,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 Resource.Status.ERROR -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                    Log.e("errorrrr",  it.message.toString())
+                    startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                    finish()
                 }
                 Resource.Status.SUCCESS -> {
                     it.data.let { response ->
