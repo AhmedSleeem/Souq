@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -54,8 +56,12 @@ class HomeViewModel:ViewModel() {
         return newResult
     }
 
+    private val coroutineExceptionHandler = CoroutineExceptionHandler{_ , throwable ->
+        //handle error here
+       // saleItemsLiveData.value =Resource.error("time out Exception")
+    }
 
-    fun getSaleItems() = viewModelScope.launch {
+    fun getSaleItems() = viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
         saleItemsLiveData.value = Resource.loading(null)
         val response = RetrofitHandler.getItemWebService().getSaleItems(1)
         if (response.isSuccessful){
