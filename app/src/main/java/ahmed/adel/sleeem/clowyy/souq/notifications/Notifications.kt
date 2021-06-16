@@ -41,6 +41,4 @@ class Notifications(val context: Context) {
 
         notificationMannger?.notify(notificationID,notification);
     }
-
-
 }

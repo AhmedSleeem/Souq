@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "749946963569-qccnfatd3b08lfetcv4fkviiekq6q6bs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahmed.adel.sleeem.clowyy.souq",
+            "certificate_hash": "c9ea5fe806ed1686d4a494161d85c982a750147c"
+          }
+        },
+        {
           "client_id": "749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com",
           "client_type": 3
         }
