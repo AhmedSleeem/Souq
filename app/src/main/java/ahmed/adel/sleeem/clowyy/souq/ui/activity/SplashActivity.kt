@@ -83,7 +83,7 @@ class SplashActivity : AppCompatActivity() {
                 }
                 Resource.Status.SUCCESS -> {
                     it.data.let {
-                        Log.e("sssss", it?.email!!)
+                        Log.e("sssss", it?._id!!)
                         LoginUtils.getInstance(applicationContext)!!.saveUserInfo(it)
                     }
                 }

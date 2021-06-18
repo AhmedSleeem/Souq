@@ -39,6 +39,11 @@ class OrderFragment : Fragment() {
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
         }
+
+        binding.retryButton.setOnClickListener {
+            val action = OrderFragmentDirections.actionOrderFragmentSelf()
+            it.findNavController().navigate(action)
+        }
         initViewModel()
         initOrderRecyclerView()
         viewModel.getOrders(LoginUtils.getInstance(requireContext())!!.userInfo()._id!!)

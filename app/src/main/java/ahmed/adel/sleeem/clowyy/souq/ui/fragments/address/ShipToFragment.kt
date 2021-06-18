@@ -23,9 +23,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 
 
-class ShipToFragment : Fragment(),View.OnClickListener {
+class ShipToFragment : Fragment(), View.OnClickListener {
     private lateinit var addressAdapter: AddressAdapter
     private var _binding: FragmentShipToBinding? = null
 
@@ -35,9 +36,9 @@ class ShipToFragment : Fragment(),View.OnClickListener {
     var city: String = ""
     var state: String = ""
     var zipCode: String = ""
-    val args : ShipToFragmentArgs by navArgs()
-    private lateinit var viewModel : CartViewModel
-    private lateinit var orderRequest : OrderRequest
+    val args: ShipToFragmentArgs by navArgs()
+    private lateinit var viewModel: CartViewModel
+    private lateinit var orderRequest: OrderRequest
 
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -54,7 +55,7 @@ class ShipToFragment : Fragment(),View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         orderRequest = args.orderRequest
-        viewModel.addNewOrder(orderRequest =orderRequest)
+        viewModel.addNewOrder(orderRequest = orderRequest)
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.appBar.setNavigationOnClickListener {
@@ -69,14 +70,15 @@ class ShipToFragment : Fragment(),View.OnClickListener {
 
         binding.nextBtn.setOnClickListener(this)
     }
+
     override fun onClick(v: View) {
         when (v) {
-            binding.nextBtn ->{
+            binding.nextBtn -> {
                 subscribeToLiveData()
                 if (LoginUtils.getInstance(requireContext())!!.userInfo().Address != null) {
                     orderRequest.Address =
                         LoginUtils.getInstance(requireContext())!!.userInfo().Address!!
-                    viewModel.addNewOrder(orderRequest =orderRequest)
+                    viewModel.addNewOrder(orderRequest = orderRequest)
                     val action = ShipToFragmentDirections.actionShipToFragmentToSuccessFragment()
                     view?.findNavController()?.navigate(action)
                     CartRoom.cartList.clear()
@@ -84,22 +86,26 @@ class ShipToFragment : Fragment(),View.OnClickListener {
                     CuponeUtils(requireContext()).editCupone(cupone)
                     DetailsFragment.badgeCount = 0
                     DetailsFragment.setOnCountChangeListener?.onChange(DetailsFragment.badgeCount)
-                }else{
-                    Toast.makeText(requireContext(), "Enter your Address", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Enter your Address", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
             }
         }
     }
 
-    fun subscribeToLiveData(){
-        viewModel.addOrderLiveData.observe(viewLifecycleOwner , Observer {
-            when(it.status){
-                Resource.Status.LOADING ->{
+    fun subscribeToLiveData() {
+        viewModel.addOrderLiveData.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Resource.Status.LOADING -> {
 
                 }
-                Resource.Status.SUCCESS ->{
-                    Log.e("ssss", it.status.toString() )
+                Resource.Status.ERROR -> {
+                    Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG).show()
+                }
+                Resource.Status.SUCCESS -> {
+                    Log.e("ssss", it.status.toString())
                 }
             }
         })

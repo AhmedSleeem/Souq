@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 
 
 class OfferTypeFragment : Fragment() {
@@ -66,6 +67,10 @@ class OfferTypeFragment : Fragment() {
         binding.appBar.setTitle(saleTitle)
         binding.appBar.setNavigationOnClickListener {
             Navigation.findNavController(it).navigateUp()
+        }
+        binding.retryButton.setOnClickListener {
+            val action = OfferTypeFragmentDirections.actionOfferTypeFragmentSelf(saleTitle)
+            it.findNavController().navigate(action)
         }
 
     }

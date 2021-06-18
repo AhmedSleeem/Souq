@@ -125,6 +125,9 @@
         <argument
             android:name="saleTitle"
             app:argType="string" />
+        <action
+            android:id="@+id/action_offerTypeFragment_self"
+            app:destination="@id/offerTypeFragment" />
     </fragment>
     <fragment
         android:id="@+id/writeReviewFragment"
@@ -252,6 +255,9 @@
         <action
             android:id="@+id/action_orderFragment_to_orderDetailsFragment"
             app:destination="@id/orderDetailsFragment" />
+        <action
+            android:id="@+id/action_orderFragment_self"
+            app:destination="@id/orderFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderDetailsFragment"
@@ -261,6 +267,9 @@
         <argument
             android:name="order"
             app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.response.OrdersByIdResponse$OrderResponseItem" />
+        <action
+            android:id="@+id/action_orderDetailsFragment_self"
+            app:destination="@id/orderDetailsFragment" />
     </fragment>
 
 
