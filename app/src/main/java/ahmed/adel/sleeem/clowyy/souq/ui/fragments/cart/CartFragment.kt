@@ -151,7 +151,6 @@ class CartFragment : Fragment(),View.OnClickListener {
         when (v) {
             binding.checkOutButton -> {
                 if(CartRoom.cartList.size != 0) {
-                    orderRequest.totalPrice = totalPrice.toDouble();
                     val action =
                         CartFragmentDirections.actionCartFragmentToShipToFragment(orderRequest)
                     view?.findNavController()?.navigate(action)

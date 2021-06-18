@@ -222,7 +222,7 @@
         <item>Suez</item>
     </string-array>
 
-    <!--    <string name="default_web_client_id" translatable="false">749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com</string>-->
+<!--    <string name="default_web_client_id" translatable="false">749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com</string>-->
     <string name="facebook_app_id">157083326380693</string>
     <string name="fb_login_protocol_scheme">fb157083326380693</string>
     <string name="remove_review">Remove Review</string>
