@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "ahmed.adel.sleeem.clowyy.souq"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -137,9 +137,15 @@ dependencies {
 
 
 
+    //Socket io that used for push notifications
     implementation ('io.socket:socket.io-client:2.0.0') {
         exclude group: 'org.json', module: 'json'
     }
+
+    // Stripe that used for payment
+    implementation 'com.stripe:stripe-android:16.8.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.google.code.gson:gson:2.8.7'
 
 
 }
