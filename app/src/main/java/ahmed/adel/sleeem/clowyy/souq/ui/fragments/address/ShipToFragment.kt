@@ -71,21 +71,26 @@ class ShipToFragment : Fragment(),View.OnClickListener {
     }
     override fun onClick(v: View) {
         when (v) {
-            binding.nextBtn ->{
+            binding.nextBtn -> {
                 subscribeToLiveData()
                 if (LoginUtils.getInstance(requireContext())!!.userInfo().Address != null) {
                     orderRequest.Address =
                         LoginUtils.getInstance(requireContext())!!.userInfo().Address!!
-                    viewModel.addNewOrder(orderRequest =orderRequest)
-                    val action = ShipToFragmentDirections.actionShipToFragmentToSuccessFragment()
+                    viewModel.addNewOrder(orderRequest = orderRequest)
+
+                    Log.i( "onClick: ",orderRequest.totalPrice.toString());
+                    val action =
+                        ShipToFragmentDirections.actionShipToFragmentToPaymentFragment(orderRequest.totalPrice.toString())
+
                     view?.findNavController()?.navigate(action)
                     CartRoom.cartList.clear()
                     var cupone = Cupone()
                     CuponeUtils(requireContext()).editCupone(cupone)
                     DetailsFragment.badgeCount = 0
                     DetailsFragment.setOnCountChangeListener?.onChange(DetailsFragment.badgeCount)
-                }else{
-                    Toast.makeText(requireContext(), "Enter your Address", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Enter your Address", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
             }

@@ -13,10 +13,7 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
-            app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_fade_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            />
 
         <action
             android:id="@+id/action_homeFragment_to_listCategoryFragment"
@@ -292,14 +289,14 @@
         android:label="fragment_ship_to"
         tools:layout="@layout/fragment_ship_to">
         <action
-            android:id="@+id/action_shipToFragment_to_successFragment"
-            app:destination="@id/successFragment" />
-        <action
             android:id="@+id/action_shipToFragment_to_addAddressFragment"
             app:destination="@id/addAddressFragment" />
         <argument
             android:name="orderRequest"
             app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest" />
+        <action
+            android:id="@+id/action_shipToFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/successFragment"
@@ -352,7 +349,7 @@
             android:id="@+id/action_searchSucceedFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/top_animation"
-            app:exitAnim="@anim/fragment_close_exit" />
+            />
         <argument
             android:name="searchStatus"
             app:argType="ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment$SearchStatus" />
@@ -381,4 +378,18 @@
             app:popUpTo="@id/viewPagerFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="ahmed.adel.sleeem.clowyy.souq.ui.fragments.payment.PaymentFragment"
+        android:label="PaymentFragment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_successFragment"
+            app:destination="@id/successFragment" />
+        <argument
+            android:name="totalPrice"
+            app:argType="string"
+            android:defaultValue="0"/>
+    </fragment>
+
+
 </navigation>

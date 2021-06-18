@@ -2,6 +2,7 @@ package ahmed.adel.sleeem.clowyy.souq.services
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.notifications.Notifications
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
@@ -36,6 +37,31 @@ class MyService : Service() {
         };
     }
 
+    var onShipStatusChange = Emitter.Listener { args ->
+
+
+        run {
+
+            val data = args[0] as JSONObject
+            val email = data.getString("email");
+            val message = data.getString("message");
+
+            var user = LoginUtils.getInstance(applicationContext)!!.userInfo()
+
+
+            if(user.email == email) {
+
+                notification.createNotificationChannelID(
+                    resources.getString(R.string.notification_Channel_ID), "push notifications",
+                    "${message}"
+                )
+
+                notification.displayNotification("Your Order getting in progress");
+            }
+
+        };
+    }
+
     override fun onCreate() {
         super.onCreate()
 
@@ -49,6 +75,11 @@ class MyService : Service() {
         mySocket.open()
 
         mySocket.on("newProductAdded", onNewMessage);
+
+        mySocket.on("onShipStatusChange", onShipStatusChange);
+
+
+
         mySocket.on(Socket.EVENT_CONNECT, Emitter.Listener {
             Log.i(TAG, "onCreate: connected");
         });
@@ -62,6 +93,14 @@ class MyService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? {
         TODO("Not yet implemented")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        mySocket.disconnect();
+        mySocket.off("newProductAdded",onNewMessage);
+        mySocket.off("onShipStatusChange",onShipStatusChange);
     }
 
 
