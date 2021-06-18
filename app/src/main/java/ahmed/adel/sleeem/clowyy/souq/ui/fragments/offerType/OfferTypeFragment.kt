@@ -24,8 +24,8 @@ class OfferTypeFragment : Fragment() {
     private var saleData = arrayListOf<ProductResponse.Item>()
     private lateinit var saleRecyclerAdapter: OfferTypeAdapter
     private lateinit var binding: FragmentOfferTypeBinding
-    private lateinit var viewmodel : OfferViewModel
-    private lateinit var saleTitle : String
+    private lateinit var viewmodel: OfferViewModel
+    private lateinit var saleTitle: String
 
 
     override fun onCreateView(
@@ -76,18 +76,18 @@ class OfferTypeFragment : Fragment() {
     }
 
 
-    private fun subscribeToLiveData(){
+    private fun subscribeToLiveData() {
         viewmodel.filterLiveData.observe(requireActivity(), Observer {
-            when(it.status){
-                Resource.Status.LOADING->{
+            when (it.status) {
+                Resource.Status.LOADING -> {
                     binding.offerProgress.visibility = View.VISIBLE
                     binding.retryView.visibility = View.INVISIBLE
-                    Log.e("sss" , "loading........")
+                    Log.e("sss", "loading........")
                 }
-                Resource.Status.ERROR->{
-                   binding.retryView.visibility = View.VISIBLE
+                Resource.Status.ERROR -> {
+                    binding.retryView.visibility = View.VISIBLE
                 }
-                Resource.Status.SUCCESS->{
+                Resource.Status.SUCCESS -> {
                     it.data.let {
                         binding.retryView.visibility = View.INVISIBLE
                         binding.offerProgress.visibility = View.GONE
@@ -101,7 +101,6 @@ class OfferTypeFragment : Fragment() {
 
 
     }
-
 
 
 }

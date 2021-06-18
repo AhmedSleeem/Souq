@@ -210,7 +210,8 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
 
                 }
                 Resource.Status.ERROR -> {
-                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
+                        .show()
                 }
                 Resource.Status.SUCCESS -> {
 
