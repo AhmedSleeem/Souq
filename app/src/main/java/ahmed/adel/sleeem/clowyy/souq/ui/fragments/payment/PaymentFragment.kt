@@ -77,6 +77,7 @@ class PaymentFragment : Fragment() {
 
         //dont change currency in testing phase otherwise it won't work
 
+
         itemMap["id"] = "photo_subscription"
         var amount :Int = args.totalPrice.toDouble().toInt()
         Log.i( "startCheckout: $amount",amount.toString())
