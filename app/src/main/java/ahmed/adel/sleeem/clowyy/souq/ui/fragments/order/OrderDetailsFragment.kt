@@ -148,13 +148,16 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     Log.e("TAG", "getAllOrders: LOADING")
+                    binding.retryView.visibility = View.INVISIBLE
                     binding.shimmerProductsRv.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR -> {
                     Log.e("TAG", "getAllOrders: ERROR" + it.message)
-                    binding.shimmerProductsRv.visibility = View.VISIBLE
+                    binding.retryView.visibility = View.VISIBLE
+                    binding.shimmerProductsRv.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS -> {
+                    binding.retryView.visibility = View.INVISIBLE
                     binding.shimmerProductsRv.visibility = View.GONE
                     it.data.let {
                         Log.e("TAG", "getAllOrders: ERROR" + it?.size)

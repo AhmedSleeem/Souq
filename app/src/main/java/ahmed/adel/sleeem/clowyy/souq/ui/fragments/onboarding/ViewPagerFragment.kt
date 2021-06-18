@@ -43,7 +43,8 @@ class ViewPagerFragment : Fragment() {
         viewPager.adapter = adapter
         wormDotsIndicator.setViewPager2(viewPager)
 
-        return view    }
+        return view
+    }
 
 
 }

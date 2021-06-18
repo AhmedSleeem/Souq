@@ -3,6 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.saleProducts
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleRvBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeFragmentDirections
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

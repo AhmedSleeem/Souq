@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,119 +7,172 @@
     tools:context=".ui.fragments.home.HomeFragment">
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@id/topView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="@dimen/_8sdp">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/favorite_iv"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:padding="@dimen/_4sdp"
-            android:layout_width="wrap_content"
-            android:layout_marginEnd="@dimen/_4sdp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@id/topView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/layout_style"
-            app:layout_constraintEnd_toStartOf="@id/notification_iv"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_favorite_border_24"
-            android:layout_marginRight="@dimen/_4sdp" />
-
-        <ImageButton
-            android:layout_marginTop="@dimen/_4sdp"
-            android:padding="@dimen/_4sdp"
-            android:id="@+id/notification_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/layout_style"
+            android:padding="@dimen/_8sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_notifications_none_24" />
-
-        <com.mancj.materialsearchbar.MaterialSearchBar
-            android:id="@+id/searchBar"
-            style="@style/MyCustomTheme"
-            android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/_4sdp"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:layout_constraintEnd_toStartOf="@id/favorite_iv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:mt_maxSuggestionsCount="10"
-            app:mt_navIconEnabled="false"
-            app:mt_placeholder="@string/action_search"
-            android:layout_marginRight="@dimen/_4sdp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent">
 
-
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/overlayGray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topView" />
-
-
-
-            <TextView
-                android:id="@+id/totalItemsCount"
+            <ImageButton
+                android:id="@+id/favorite_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/category"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider2"
-                tools:ignore="RtlCompat" />
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_4sdp"
+                android:background="@drawable/layout_style"
+                android:padding="@dimen/_4sdp"
+                app:layout_constraintEnd_toStartOf="@id/notification_iv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
-    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/categoryProgress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        app:shimmer_demo_child_count="12"
-        app:shimmer_demo_grid_child_count="4"
-        app:shimmer_demo_layout="@layout/item_explore_progress"
-        app:shimmer_demo_layout_manager_type="grid"
-        app:shimmer_demo_angle="20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/totalItemsCount"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginLeft="@dimen/_12sdp" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/categoryRv"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/notification_iv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_9sdp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/layout_style"
+                android:padding="@dimen/_4sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/totalItemsCount"
-                app:spanCount="4"
-                tools:ignore="RtlCompat"
-                tools:listitem="@layout/item_explore_category" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_notifications_none_24" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                android:id="@+id/searchBar"
+                style="@style/MyCustomTheme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_4sdp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@id/favorite_iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:mt_maxSuggestionsCount="10"
+                app:mt_navIconEnabled="false"
+                app:mt_placeholder="@string/action_search" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/overlayGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topView" />
+
+
+        <TextView
+            android:id="@+id/totalItemsCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/category"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            tools:ignore="RtlCompat" />
+
+        <com.cooltechworks.views.shimmer.ShimmerRecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/categoryProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/totalItemsCount"
+            app:shimmer_demo_angle="20"
+            app:shimmer_demo_child_count="12"
+            app:shimmer_demo_grid_child_count="4"
+            app:shimmer_demo_layout="@layout/item_explore_progress"
+            app:shimmer_demo_layout_manager_type="grid" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/totalItemsCount"
+            app:spanCount="4"
+            tools:ignore="RtlCompat"
+            tools:listitem="@layout/item_explore_category" />
+
+        <LinearLayout
+            android:id="@+id/retry_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_search_error"
+                android:layout_width="@dimen/_46sdp"
+                android:layout_height="@dimen/_46sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/circle_shape"
+                android:backgroundTint="@color/red"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_cross_sign" />
+
+            <TextView
+                android:id="@+id/OOPStextView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/oops"
+                android:textSize="@dimen/_24sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/please_check_your_internet_connection"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/retry_button"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@drawable/login_button"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/retry"
+                android:textAllCaps="false"
+                android:textColor="@color/neutralDark"
+                android:textSize="@dimen/_14ssp" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

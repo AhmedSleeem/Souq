@@ -41,7 +41,7 @@ class RecommendedAdapter: PagingDataAdapter<ProductResponse.Item, RecommendedAda
             if(product.sale != null){
                 val newPrice : Float = (product.price * (1.0 - product.sale.amount.toFloat()/100)).toFloat()
                 binding.tvCost.text = String.format("%.2f", newPrice) + " Egp"
-                binding.tvOffPercentage.text = (product.sale.duration .toString() +"%")
+                binding.tvOffPercentage.text = (product.sale.amount .toString() +"%")
             }else{
                 binding.tvCost.text = String.format("%.2f", product.price) + " Egp"
                 binding.tvOffPercentage.visibility = View.INVISIBLE

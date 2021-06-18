@@ -22,6 +22,8 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var userRequist: UserRequist
     private lateinit var viewModel: ProfileViewModel
 
+    //login again
+
     val ANIMATION_DURATION: Long = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +64,7 @@ class SplashActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         userRequist = LoginUtils.getInstance(applicationContext)!!.getUserRequist()
+        Log.e("TAGgggggg", userRequist.toString())
         viewModel.updateUserInfo(userRequist)
         updateUser()
 

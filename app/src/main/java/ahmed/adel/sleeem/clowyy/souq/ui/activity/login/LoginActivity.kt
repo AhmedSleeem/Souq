@@ -1,6 +1,7 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.R
+import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityLoginBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.LoginRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.LoginResponse
@@ -55,7 +56,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth
+
+        val email = LoginUtils.getInstance(this)?.userInfo()?.email ?: ""
+        val password = LoginUtils.getInstance(this)?.userInfo()?.password ?: ""
+        binding.emailLoginEditText.setText(email)
+        binding.passwordLoginEditText.setText(password)
+
+        auth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -82,7 +89,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 loginUser()
             }
             binding.googleSignIn -> {
-                auth.signOut()
                 loginUserWithGoogle()
             }
         }
@@ -105,7 +111,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 firebaseAuthWithGoogle(account!!.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e)
+                Log.w(TAG, "Google sign in failed"+ e.localizedMessage.toString())
             }
         }
     }
@@ -140,8 +146,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             val personPhoto = inAccount.photoUrl.toString()
 
             val userResponse = UserResponse(
-                "N/F", "N/F", "N/F", personId, inAccount.email,
-                "$personName $personFamilyName", "N/F", personPhoto
+                "N/F", "N/F", "male", personId, inAccount.email,
+                "$personName $personFamilyName", "0123456789", personPhoto
             )
             LoginUtils.getInstance(this)!!.saveUserInfo(userResponse)
             startActivity(Intent(this,RegisterActivity::class.java).putExtra("google","google"))

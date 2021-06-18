@@ -20,24 +20,34 @@ class OrderDetailsViewModel : ViewModel() {
 
 
     fun getItemsById(id: String) = viewModelScope.launch {
-        _item.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().getItemsById(id)
-        if (response.isSuccessful) {
-            if (response.body() != null)
-                _item.value = Resource.success(response.body()!!)
-        } else {
-            _item.value = Resource.error(response.errorBody().toString())
+        try {
+            _item.value = Resource.loading(null)
+            val response = RetrofitHandler.getItemWebService().getItemsById(id)
+            if (response.isSuccessful) {
+                if (response.body() != null)
+                    _item.value = Resource.success(response.body()!!)
+            } else {
+                _item.value = Resource.error(response.errorBody().toString())
+            }
+        } catch (e: Exception) {
+            _item.value = Resource.error(e.message.toString())
         }
+
     }
 
     fun deleteOrderById(deleteOrderRequest: DeleteOrderRequest) = viewModelScope.launch {
-        deleteOrder.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().deleteOrderById(deleteOrderRequest)
-        if (response.isSuccessful) {
-            if (response.body() != null)
-                deleteOrder.value = Resource.success(response.body()!!)
-        } else {
-            deleteOrder.value = Resource.error(response.errorBody().toString())
+        try {
+            deleteOrder.value = Resource.loading(null)
+            val response = RetrofitHandler.getItemWebService().deleteOrderById(deleteOrderRequest)
+            if (response.isSuccessful) {
+                if (response.body() != null)
+                    deleteOrder.value = Resource.success(response.body()!!)
+            } else {
+                deleteOrder.value = Resource.error(response.errorBody().toString())
+            }
+        } catch (e: Exception) {
+            deleteOrder.value = Resource.error(e.message.toString())
         }
+
     }
 }

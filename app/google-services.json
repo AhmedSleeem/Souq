@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:749946963569:android:bb6118d3c9e8e553a73dd0",
+        "mobilesdk_app_id": "1:749946963569:android:92e4487fc5c42252a73dd0",
         "android_client_info": {
           "package_name": "ahmed.adel.sleeem.clowyy.souq"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "749946963569-qccnfatd3b08lfetcv4fkviiekq6q6bs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ahmed.adel.sleeem.clowyy.souq",
+            "certificate_hash": "c9ea5fe806ed1686d4a494161d85c982a750147c"
+          }
+        },
         {
           "client_id": "749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com",
           "client_type": 3
@@ -29,6 +37,57 @@
             {
               "client_id": "749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "749946963569-9l13s7mg4acas5t2eosnnmcqs4q67cgj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "iti.Sel3a"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749946963569:android:0b0714e2e5e2d4f8a73dd0",
+        "android_client_info": {
+          "package_name": "com.example.souqadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749946963569-cm18ec0htktphjldgvh0eftdi90os3de.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.souqadmin",
+            "certificate_hash": "b09f66e9f830207d97500eaf2280acc124ae1d68"
+          }
+        },
+        {
+          "client_id": "749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdyg0hfRhS8jPT8Ui8-wWUFK2LJyk85CY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "749946963569-9l13s7mg4acas5t2eosnnmcqs4q67cgj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "iti.Sel3a"
+              }
             }
           ]
         }

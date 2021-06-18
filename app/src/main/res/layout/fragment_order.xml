@@ -26,6 +26,60 @@
         app:layout_constraintTop_toBottomOf="@id/appBar"
         android:background="@color/overlayGray"/>
 
+    <LinearLayout
+        android:id="@+id/retry_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_search_error"
+            android:layout_width="@dimen/_46sdp"
+            android:layout_height="@dimen/_46sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/circle_shape"
+            android:backgroundTint="@color/red"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_cross_sign" />
+
+        <TextView
+            android:id="@+id/OOPStextView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/oops"
+            android:textSize="@dimen/_24sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/please_check_your_internet_connection"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/retry_button"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@drawable/login_button"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/retry"
+            android:textAllCaps="false"
+            android:textColor="@color/neutralDark"
+            android:textSize="@dimen/_14ssp" />
+
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/orders_rv"
         android:layout_width="match_parent"

@@ -14,13 +14,18 @@ class OrderViewModel : ViewModel() {
 
 
     fun getOrders(id : String) = viewModelScope.launch {
-        _orders.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().getOrders(id)
-        if (response.isSuccessful) {
-            if (response.body() != null)
-                _orders.value = Resource.success(response.body()!!)
-        } else {
-            _orders.value = Resource.error(response.errorBody().toString())
+        try {
+            _orders.value = Resource.loading(null)
+            val response = RetrofitHandler.getItemWebService().getOrders(id)
+            if (response.isSuccessful) {
+                if (response.body() != null)
+                    _orders.value = Resource.success(response.body()!!)
+            } else {
+                _orders.value = Resource.error("You have no order ")
+            }
+        }catch (e:Exception){
+            _orders.value = Resource.error(e.message.toString())
         }
+
     }
 }

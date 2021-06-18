@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -71,7 +72,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 Resource.Status.ERROR -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                    Log.e("errorrrr",  it.message.toString())
+                    startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                    finish()
                 }
                 Resource.Status.SUCCESS -> {
                     it.data.let { response ->
@@ -86,7 +88,10 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
     fun updatePassword(password: String) {
-        val sharedPreferences = this.getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val sharedPreferences = this.getSharedPreferences(
+            Constants.USER_SHARED_PREF,
+            Context.MODE_PRIVATE
+        )
         val editor = sharedPreferences.edit()
         editor.putString("password", password)
         editor.apply()
@@ -97,14 +102,28 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
     fun saveToken(token: String) {
-        val sharedPreferences = this.getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val sharedPreferences = this.getSharedPreferences(
+            Constants.USER_SHARED_PREF,
+            Context.MODE_PRIVATE
+        )
         val editor = sharedPreferences.edit()
         editor.putString("token", token)
         editor.apply()
     }
     fun checkValidity() {
-        if (binding.fullNameRegisterEditText.text.toString().length < 6) {
+        if (binding.fullNameRegisterEditText.text.isNullOrEmpty() || binding.fullNameRegisterEditText.text.toString().length < 6) {
             binding.fullNameRegisterEditText.error
+        }
+        fun isValidEmail(email: String?): Boolean {
+            return !Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        }
+
+        fun isValidPassword(password: String): Boolean {
+            return password.length >= 8
+        }
+
+        fun isValidName(name: String): Boolean {
+            return name.length >= 5
         }
     }
 }
