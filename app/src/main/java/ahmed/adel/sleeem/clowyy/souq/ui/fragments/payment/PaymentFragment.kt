@@ -72,7 +72,9 @@ class PaymentFragment : Fragment() {
         val payMap: MutableMap<String, Any> = HashMap()
         val itemMap: MutableMap<String, Any> = HashMap()
         val itemList: MutableList<Map<String, Any>> = ArrayList()
-        payMap["currency"] = "usd" //dont change currency in testing phase otherwise it won't work
+        payMap["currency"] = "usd";
+
+        //dont change currency in testing phase otherwise it won't work
 
         itemMap["id"] = "photo_subscription"
         var amount :Int = args.totalPrice.toDouble().toInt()
