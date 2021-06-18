@@ -43,6 +43,9 @@
             app:destination="@id/viewPagerFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/offerFragment"
@@ -273,6 +276,9 @@
             android:id="@+id/action_exploreFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment"
             app:enterAnim="@anim/top_animation" />
+        <action
+            android:id="@+id/action_exploreFragment_self"
+            app:destination="@id/exploreFragment" />
     </fragment>
 
 

@@ -11,20 +11,20 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
+        app:buttonGravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:title="@string/super_flash_sale"
-        app:buttonGravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/AppTheme.ToolbarFont" />
+        app:theme="@style/AppTheme.ToolbarFont"
+        app:title="@string/super_flash_sale" />
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
+        android:background="@color/overlayGray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar"
-        android:background="@color/overlayGray"/>
+        app:layout_constraintTop_toBottomOf="@id/appBar" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -156,11 +156,64 @@
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewpager_card"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/viewpager_card" />
 
+            <LinearLayout
+                android:id="@+id/retry_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                android:layout_marginTop="@dimen/_50sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewpager_card">
 
+                <ImageView
+                    android:id="@+id/iv_search_error"
+                    android:layout_width="@dimen/_46sdp"
+                    android:layout_height="@dimen/_46sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/circle_shape"
+                    android:backgroundTint="@color/red"
+                    android:scaleType="center"
+                    app:srcCompat="@drawable/ic_cross_sign" />
+
+                <TextView
+                    android:id="@+id/OOPStextView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/oops"
+                    android:textSize="@dimen/_24sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/please_check_your_internet_connection"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/retry_button"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/login_button"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/retry"
+                    android:textAllCaps="false"
+                    android:textColor="@color/neutralDark"
+                    android:textSize="@dimen/_14ssp" />
+
+            </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recommendedRv"
                 android:layout_width="0dp"

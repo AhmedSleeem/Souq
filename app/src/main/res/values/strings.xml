@@ -231,5 +231,7 @@
     <string name="cancel_order">Cancel Order</string>
     <string name="notification_Channel_ID">ahmed.adel.sleeem.clowyy.channel1</string>
     <string name="retry">Retry</string>
+    <string name="please_check_your_internet_connection">Please Check Your Internet Connection</string>
+    <string name="oops">Oops!...</string>
 
 </resources>

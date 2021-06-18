@@ -14,13 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.badge.BadgeDrawable
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
 import org.json.JSONObject
-
 
 class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
     private lateinit var binding: ActivityMainBinding
@@ -30,7 +28,6 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
     private lateinit var mySocket: Socket;
 
     private lateinit var notification : Notifications;
-
 
     var TAG = "MAINACTIVITY_Socket";
     var onNewMessage = Emitter.Listener { args ->
@@ -95,6 +92,5 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
     override fun onChange(count: Int) {
         badge.number = count
     }
-
 
 }
