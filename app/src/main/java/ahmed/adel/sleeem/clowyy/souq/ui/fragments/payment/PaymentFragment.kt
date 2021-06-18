@@ -74,6 +74,7 @@ class PaymentFragment : Fragment() {
         val itemList: MutableList<Map<String, Any>> = ArrayList()
         payMap["currency"] = "usd";
 
+
         //dont change currency in testing phase otherwise it won't work
 
         itemMap["id"] = "photo_subscription"

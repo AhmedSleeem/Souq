@@ -394,7 +394,8 @@
         <argument
             android:name="totalPrice"
             app:argType="string"
-            android:defaultValue="0"/>
+            android:defaultValue="0"
+            />
     </fragment>
 
 
