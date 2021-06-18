@@ -24,7 +24,7 @@ class LoginViewModel : ViewModel() {
                 if (response.body() != null)
                     _login.value = Resource.success(response.body()!!);
             } else {
-                _login.value = Resource.error(response.errorBody().toString())
+                _login.value = Resource.error(response.code().toString())
             }
         } catch (e: SocketTimeoutException) {
             _login.value = Resource.error("Please check internet connection...")

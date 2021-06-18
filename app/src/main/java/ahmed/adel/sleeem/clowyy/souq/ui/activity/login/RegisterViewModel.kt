@@ -28,7 +28,7 @@ class RegisterViewModel : ViewModel() {
                     _register.value = Resource.success(response.body()!!)
                 }
             } else {
-                _register.value = Resource.error("user already registered")
+                _register.value = Resource.error(response.code().toString())
             }
         } catch (e: SocketTimeoutException) {
             _register.value = Resource.error("Please check internet connection...")

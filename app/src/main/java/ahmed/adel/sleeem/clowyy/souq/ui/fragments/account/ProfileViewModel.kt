@@ -24,7 +24,7 @@ class ProfileViewModel : ViewModel() {
                 if (response.body() != null)
                     _userInfo.value = Resource.success(response.body()!!);
             } else {
-                _userInfo.value = Resource.error(response.errorBody().toString())
+                _userInfo.value = Resource.error(response.code().toString())
             }
         }catch (e:SocketTimeoutException){
             _userInfo.value = Resource.error("Please check internet connection...")

@@ -170,7 +170,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Log.e("sssss", "Loading........")
                 }
                 Resource.Status.ERROR -> {
-                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                val errorMessage =    when(it.message?.toInt()){
+                        400  -> "No Internet Connection"
+                        else -> "Server Interrupted"
+                    }
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
 
                 }
                 Resource.Status.SUCCESS -> {

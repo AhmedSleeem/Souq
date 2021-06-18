@@ -79,7 +79,11 @@ class ChangePasswordFragment : Fragment() {
                     Log.e("sssss", "Loading........")
                 }
                 Resource.Status.ERROR -> {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    val errorMessage = when (it.message?.toInt()) {
+                        400 -> "No Internet Connection"
+                        else -> "Server Interrupted"
+                    }
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
 
                 }
                 Resource.Status.SUCCESS -> {
@@ -96,8 +100,10 @@ class ChangePasswordFragment : Fragment() {
             }
         })
     }
+
     fun updatePasswordInShared(password: String) {
-        val sharedPreferences = requireContext().getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
+        val sharedPreferences =
+            requireContext().getSharedPreferences(Constants.USER_SHARED_PREF, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("password", password)
         editor.apply()
