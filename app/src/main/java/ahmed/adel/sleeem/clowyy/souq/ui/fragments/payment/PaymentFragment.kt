@@ -36,7 +36,7 @@ import java.lang.ref.WeakReference
 
 class PaymentFragment : Fragment() {
 
-    private val backendUrl = "https://souqitigraduationproj.herokuapp.com/"
+    private val backendUrl = "https://souqitigraduationproj.herokuapp.com/api/payment/"
     private val httpClient = OkHttpClient()
     private lateinit var paymentIntentClientSecret: String
     private lateinit var stripe: Stripe
@@ -72,7 +72,7 @@ class PaymentFragment : Fragment() {
         val payMap: MutableMap<String, Any> = HashMap()
         val itemMap: MutableMap<String, Any> = HashMap()
         val itemList: MutableList<Map<String, Any>> = ArrayList()
-        payMap["currency"] = "usd";
+        payMap["currency"] = "usd"
 
 
         //dont change currency in testing phase otherwise it won't work
