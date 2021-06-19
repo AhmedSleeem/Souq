@@ -80,6 +80,7 @@ class CartFragment : Fragment(),View.OnClickListener {
             orderRequest.orderCode = getRandomString(10)
             for (item in CartRoom.cartList) {
                 orderRequestItemId.id = item.id.toString()
+                orderRequestItemId.companyName = item.companyName
                 orderRequestItemId.color = item.selectedColor.toString()
                 orderRequestItemId.count = item.countOfSelectedItem
                 orderRequestItemId.size = item.selectedSize.toString()

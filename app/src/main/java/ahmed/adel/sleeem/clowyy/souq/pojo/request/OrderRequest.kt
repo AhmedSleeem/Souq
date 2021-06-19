@@ -16,6 +16,7 @@ data class OrderRequest(
         var color: String="",
         var count: Int=1,
         var id: String="",
+        var companyName : String = "",
         var size: String=""
     )
 }

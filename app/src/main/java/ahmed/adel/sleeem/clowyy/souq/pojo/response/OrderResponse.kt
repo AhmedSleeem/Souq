@@ -15,6 +15,7 @@ data class OrderResponse(
     data class ItemId(
         val color: String,
         val count: Int,
+        val companyName : String,
         val id: String,
         val size: String
     )
