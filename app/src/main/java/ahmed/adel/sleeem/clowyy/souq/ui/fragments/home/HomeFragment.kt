@@ -302,7 +302,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 }
 
                 Resource.Status.ERROR -> {
-                    // Toast.makeText(requireContext(),it.message,Toast.LENGTH_LONG).show()
                     binding.retryView.visibility = View.VISIBLE
                     binding.nestedScrollViewLayout.visibility = View.INVISIBLE
                     binding.viewPagerProgress.hideShimmerAdapter()
@@ -335,6 +334,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 }
 
                 Resource.Status.ERROR -> {
+
                     binding.nestedScrollViewLayout.visibility = View.INVISIBLE
                     binding.retryView.visibility = View.VISIBLE
                     binding.categoryProgress.hideShimmerAdapter()

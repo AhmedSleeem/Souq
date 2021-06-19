@@ -62,7 +62,7 @@ class HomeViewModel:ViewModel() {
                 if(response.body() != null)
                     saleItemsLiveData.value = Resource.success(response.body()!!)
             }else{
-                saleItemsLiveData.value = Resource.error(response.errorBody().toString())
+                saleItemsLiveData.value = Resource.error(response.code().toString())
             }
         }catch (e:Exception){
             saleItemsLiveData.value = Resource.error(e.message.toString())
@@ -79,7 +79,7 @@ class HomeViewModel:ViewModel() {
                 if (response.body() != null)
                     categoryLiveData.value = Resource.success(response.body()!!);
             } else {
-                categoryLiveData.value = Resource.error(response.errorBody().toString())
+                categoryLiveData.value = Resource.error(response.code().toString())
             }
         }catch (e:Exception){
             categoryLiveData.value = Resource.error(e.message.toString())

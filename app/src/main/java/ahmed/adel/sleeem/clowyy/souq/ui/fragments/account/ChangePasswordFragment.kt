@@ -68,8 +68,6 @@ class ChangePasswordFragment : Fragment() {
                 }
             }
         }
-
-
     }
 
     private fun updatePassword(newpass: String) {

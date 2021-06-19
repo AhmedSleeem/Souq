@@ -10,6 +10,7 @@ import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -26,7 +27,7 @@ class ReviewFragment : Fragment(), View.OnClickListener {
     private lateinit var starAdapter: ReviewStarAdapter
     lateinit var binding: FragmentReviewBinding
     private val args by navArgs<ReviewFragmentArgs>()
-    private lateinit var viewModel:ReviewViewModel
+    private lateinit var viewModel: ReviewViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,20 +56,20 @@ class ReviewFragment : Fragment(), View.OnClickListener {
         }
 
         reviewAdapter = ReviewAdapter(requireContext())
-        binding.reviewRecyclerView.adapter=reviewAdapter
+        binding.reviewRecyclerView.adapter = reviewAdapter
 
         starAdapter = ReviewStarAdapter()
         binding.reviewStarRecyclerView.adapter = starAdapter
 
-        starAdapter.setOnItemClick = object : ReviewStarAdapter.OnItemClick{
+        starAdapter.setOnItemClick = object : ReviewStarAdapter.OnItemClick {
             override fun onClick(position: Int) {
-                viewModel.getReviewByRate(args.productId.toString(),rate = position)
+                viewModel.getReviewByRate(args.productId.toString(), rate = position)
             }
         }
 
-        reviewAdapter.setOnItemClick = object  : ReviewAdapter.OnItemClick{
+        reviewAdapter.setOnItemClick = object : ReviewAdapter.OnItemClick {
             override fun onClick(item: ReviewResponse.Item) {
-                if (viewModel.getCurrentUserId() == item.userId){
+                if (viewModel.getCurrentUserId() == item.userId) {
                     val action = ReviewFragmentDirections.actionReviewFragmentToWriteReviewFragment(
                         item,
                         true,
@@ -86,31 +87,41 @@ class ReviewFragment : Fragment(), View.OnClickListener {
     private fun showSnackBar(view: View) {
         Snackbar.make(view, "Review Deleted", Snackbar.LENGTH_LONG)
             .setAction("Undo") { _ ->
-                viewModel.addReview(ReviewRequest(args.deletedReview!!.description
-                    ,args.deletedReview!!.itemId
-                    ,args.deletedReview!!.rating
-                    ,args.deletedReview!!.userId),args.productId!!)
+                viewModel.addReview(
+                    ReviewRequest(
+                        args.deletedReview!!.description,
+                        args.deletedReview!!.itemId,
+                        args.deletedReview!!.rating,
+                        args.deletedReview!!.userId
+                    ), args.productId!!
+                )
             }
             .show()
     }
 
     private fun subscribeToLiveData() {
-        viewModel.reviewsLiveData.observe(viewLifecycleOwner , Observer {
-            when(it.status){
-                Resource.Status.LOADING ->{
+        viewModel.reviewsLiveData.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Resource.Status.LOADING -> {
                     binding.progress.visibility = View.VISIBLE
                     binding.reviewRecyclerView.visibility = View.GONE
                 }
-                Resource.Status.SUCCESS ->{
-                    reviewAdapter.changeData(it.data!!,true)
+                Resource.Status.SUCCESS -> {
+                    reviewAdapter.changeData(it.data!!, true)
                     binding.progress.visibility = View.GONE
                     binding.reviewRecyclerView.visibility = View.VISIBLE
                 }
 
-                Resource.Status.ERROR ->{
+                Resource.Status.ERROR -> {
+                    val errorMessage = when (it.message?.toInt()) {
+                        400 -> "No Internet Connection"
+                        else -> "Server Interrupted"
+                    }
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
+
                     binding.progress.visibility = View.GONE
                     binding.reviewRecyclerView.visibility = View.VISIBLE
-                    reviewAdapter.changeData(ReviewResponse(),true)
+                    reviewAdapter.changeData(ReviewResponse(), true)
                 }
             }
         })
@@ -118,13 +129,16 @@ class ReviewFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v) {
-             binding.writeReviewButton ->{
-                  val action = ReviewFragmentDirections.actionReviewFragmentToWriteReviewFragment(null,false , args.productId)
-                  view?.findNavController()?.navigate(action)
-              }
+            binding.writeReviewButton -> {
+                val action = ReviewFragmentDirections.actionReviewFragmentToWriteReviewFragment(
+                    null,
+                    false,
+                    args.productId
+                )
+                view?.findNavController()?.navigate(action)
+            }
         }
     }
-
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

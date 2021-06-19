@@ -85,6 +85,11 @@ class OfferTypeFragment : Fragment() {
                     Log.e("sss", "loading........")
                 }
                 Resource.Status.ERROR -> {
+                    val errorMessage = when (it.message?.toInt()) {
+                        400 -> "No Internet Connection"
+                        else -> "Server Interrupted"
+                    }
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
                     binding.retryView.visibility = View.VISIBLE
                 }
                 Resource.Status.SUCCESS -> {

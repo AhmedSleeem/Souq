@@ -197,7 +197,12 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
                     binding.searchRv.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR->{
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+//                    val errorMessage = when (it.message?.toInt()) {
+//                        400 -> "No Internet Connectionnnn"
+//                        else -> "Server Interrupted"
+//                    }
+//                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
+                   Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     binding.resultCount.text = "0"
                     binding.searchRv.visibility = View.GONE
                     binding.searchFailedView.visibility = View.VISIBLE
