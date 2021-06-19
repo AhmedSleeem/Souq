@@ -8,6 +8,5 @@ import java.io.Serializable
 data class IsInFavourite(
     @PrimaryKey
     val itemId: String,
-    val isInFavourite: Boolean,
     val userId: String
 ) : Serializable

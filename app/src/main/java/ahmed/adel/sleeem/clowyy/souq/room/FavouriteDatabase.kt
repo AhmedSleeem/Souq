@@ -1,11 +1,14 @@
 package ahmed.adel.sleeem.clowyy.souq.room
 
+import ahmed.adel.sleeem.clowyy.souq.room.cart.Cart
+import ahmed.adel.sleeem.clowyy.souq.room.cart.CartDAO
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [FavouriteItem::class,IsInFavourite::class], version = 5 , exportSchema = false)
+@Database(entities = [FavouriteItem::class,IsInFavourite::class,Cart::class], version = 6 , exportSchema = false)
 abstract class FavouriteDatabase : RoomDatabase() {
     abstract fun favouriteDao(): FavouriteDao
+    abstract fun cartDao():CartDAO
 
     companion object {
         @Volatile
@@ -20,7 +23,7 @@ abstract class FavouriteDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     FavouriteDatabase::class.java,
-                    "favourite_database"
+                    "souqDB"
                 ).fallbackToDestructiveMigration().build()
                 Companion.INSTANCE = instance
                 return instance

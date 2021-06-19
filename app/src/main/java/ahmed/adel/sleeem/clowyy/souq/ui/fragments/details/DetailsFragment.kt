@@ -6,6 +6,8 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.room.FavouriteItem
 import ahmed.adel.sleeem.clowyy.souq.room.FavouriteViewModelRoom
 import ahmed.adel.sleeem.clowyy.souq.room.IsInFavourite
+import ahmed.adel.sleeem.clowyy.souq.room.cart.Cart
+import ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
@@ -41,9 +43,10 @@ class DetailsFragment : Fragment(), View.OnClickListener {
     private val args by navArgs<DetailsFragmentArgs>()
     private lateinit var item: ProductResponse.Item
     private lateinit var favItem: FavouriteItem
-    private lateinit var isInFavItem: IsInFavourite
+//    private lateinit var isInFavItem: IsInFavourite
     private lateinit var favouriteViewModelRoom: FavouriteViewModelRoom
     private lateinit var favoriteAdapter: FavoriteAdapter
+    private lateinit var cartViewModelRoom: CartViewModel
 
 
     private var check: Boolean = false
@@ -65,11 +68,12 @@ class DetailsFragment : Fragment(), View.OnClickListener {
 
 
 
+        cartViewModelRoom = ViewModelProvider(this).get(CartViewModel::class.java);
 
         favouriteViewModelRoom = ViewModelProvider(this).get(FavouriteViewModelRoom::class.java)
         favoriteAdapter = FavoriteAdapter(requireContext())
 
-        check = favouriteViewModelRoom.selectItem(isInFavItem.userId,isInFavItem.itemId)
+//        check = favouriteViewModelRoom.selectItem(isInFavItem.userId,isInFavItem.itemId)
 
         recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
         binding.recommend.adapter = recommendRecyclerAdapter
@@ -167,6 +171,7 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         }
 
         binding.favoritBtn.setOnClickListener(this)
+        binding.addToCartBtn.setOnClickListener(this);
     }
 
     private fun subscribeToLiveData() {
@@ -262,10 +267,27 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         favoriteAdapter.notifyDataSetChanged()
     }
 
+    private fun addToCart(){
+
+        val productName = item.title
+        val itemId = item.id.toString()
+        val userId = LoginUtils.getInstance(requireContext())!!.userInfo()._id
+        val productImage = item.image
+        val price = item.price
+
+        val count = item.countOfSelectedItem
+
+        var tmpCart = Cart(0,itemId.toInt(),productName,count,price,productImage,userId.toString());
+        cartViewModelRoom.insert(tmpCart);
+    }
+
     override fun onClick(v: View?) {
         when (v) {
             binding.favoritBtn -> {
                 insertDataToDatabase()
+            }
+            binding.addToCartBtn ->{
+
             }
         }
     }
