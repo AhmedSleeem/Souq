@@ -74,7 +74,12 @@ class MyService : Service() {
 
         mySocket.open()
 
+
+    }
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+
         mySocket.on("newProductAdded", onNewMessage);
+
 
         mySocket.on("onShipStatusChange", onShipStatusChange);
 
@@ -83,9 +88,6 @@ class MyService : Service() {
         mySocket.on(Socket.EVENT_CONNECT, Emitter.Listener {
             Log.i(TAG, "onCreate: connected");
         });
-
-    }
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
 
         return super.onStartCommand(intent, flags, startId)

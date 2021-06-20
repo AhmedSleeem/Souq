@@ -4,6 +4,7 @@ import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
+import ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
@@ -45,6 +46,7 @@ class DetailsFragment : Fragment() {
     private val args by navArgs<DetailsFragmentArgs>()
     private lateinit var item: ProductResponse.Item
 
+    private lateinit var carViewModel : CartViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +70,8 @@ class DetailsFragment : Fragment() {
         binding.descriptionTv.text = item.description
         binding.companyNameTv.text = item.companyName
         binding.brandTv.text = item.brand
+
+        carViewModel = ViewModelProvider(this).get(CartViewModel::class.java);
 
 //        recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
 //        binding.recommend.adapter = recommendRecyclerAdapter

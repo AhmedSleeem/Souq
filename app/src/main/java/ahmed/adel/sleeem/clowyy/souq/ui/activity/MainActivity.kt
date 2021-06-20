@@ -27,26 +27,8 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
     private lateinit var badge : BadgeDrawable
 
 
-    private lateinit var mySocket: Socket;
 
-    private lateinit var notification : Notifications;
 
-    var TAG = "MAINACTIVITY_Socket";
-    var onNewMessage = Emitter.Listener { args ->
-        runOnUiThread(Runnable {
-
-            val data = args[0] as JSONObject
-            val message = data.getString("message");
-
-            notification.createNotificationChannelID(
-                resources.getString(R.string.notification_Channel_ID), "push notifications",
-                "Item Added In Our System ${message}"
-            )
-
-            notification.displayNotification("New Product Added");
-
-        })
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
