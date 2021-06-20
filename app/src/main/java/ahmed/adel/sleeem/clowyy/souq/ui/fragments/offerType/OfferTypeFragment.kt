@@ -76,13 +76,15 @@ class OfferTypeFragment : Fragment() {
             when(it.status){
                 Resource.Status.LOADING->{
                     binding.offerProgress.visibility = View.VISIBLE
+                    binding.retryView.visibility = View.INVISIBLE
                     Log.e("sss" , "loading........")
                 }
                 Resource.Status.ERROR->{
-                    Toast.makeText(requireContext(),it.message, Toast.LENGTH_LONG).show()
+                   binding.retryView.visibility = View.VISIBLE
                 }
                 Resource.Status.SUCCESS->{
                     it.data.let {
+                        binding.retryView.visibility = View.INVISIBLE
                         binding.offerProgress.visibility = View.GONE
                         saleRecyclerAdapter.changeData(it!!)
                         saleData = it

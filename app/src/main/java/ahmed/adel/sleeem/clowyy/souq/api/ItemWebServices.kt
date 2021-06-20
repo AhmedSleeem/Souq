@@ -12,17 +12,16 @@ interface ItemWebServices {
     suspend fun getAllItems(): Response<ProductResponse>
 
     @GET("products/getsales")
-    suspend fun getSaleItems(): Response<ProductResponse>
+    suspend fun getSaleItems(@Query("page") page:Int=1): Response<ProductResponse>
 
     @GET("products/getcategories")
     suspend fun getCategory(): Response<CategoryResponse>
 
     @GET("products/getbycategoryname")
-    suspend fun getItemsByCategory(@Query("category") categoryTitle: String): Response<ProductResponse>
+    suspend fun getItemsByCategory(@Query("category") categoryTitle:String): Response<ProductResponse>
 
     @GET("products/getbytitle")
-    suspend fun getItemsByTitle(@Query("title") title: String): Response<ProductResponse>
-
+    suspend fun getItemsByTitle(@Query("title") title:String): Response<ProductResponse>
 
     @GET("products/filter")
     suspend fun filterProducts(
@@ -32,16 +31,36 @@ interface ItemWebServices {
         @Query("sale") sale: Int = 0,
         @Query("brand") brand: String? = null,
         @Query("title") title: String? = null,
-        @Query("price") price: Int = 0
+        @Query("price") price: Int = 0,
+        @Query("page") page: Int = 1
+    ): Response<FilterResponse>
 
-    ): Response<ProductResponse>
-
-    @PUT("users/modifyaccount")
-    suspend fun updateAccount(@Body userRequest: UserRequist): Response<UserResponse>
 
     @POST("order/add")
     suspend fun addOrder(@Body orderRequest: OrderRequest): Response<OrderResponse>
 
+
+    @GET("review/reviewbyitemid")
+    suspend fun getReviewsByItemId(@Query("itemId") id:String): Response<ReviewResponse>
+
+    @GET("review/reviewbyrating")
+    suspend fun getReviewsByRate(@Query("itemId") id:String,
+                                 @Query("rating") rating:Int): Response<ReviewResponse>
+
+    @POST("review/addreview")
+    suspend fun postReview(@Body reviewRequest: ReviewRequest): Response<ReviewResponse.Item>
+
+    @HTTP(method = "DELETE", path = "review/deleteReview", hasBody = true)
+    suspend fun deleteReview(@Body deleteReviewRequest: DeleteReviewRequest): Response<DeleteReviewResponse>
+
+    @PUT("review/modifyreview")
+    suspend fun modifyReview(@Body modifyReviewRequest: ModifyReviewRequest): Response<ReviewResponse.Item>
+
+    @GET("users/getuserbyid")
+    suspend fun getUserById(@Query("id") id:String): Response<UserResponse>
+
+    @PUT("users/modifyaccount")
+    suspend fun updateAccount(@Body userRequist : UserRequist): Response<UserResponse>
 
     @PUT("users/changepassword")
     suspend fun updatePassword(@Body passwordRequest: PasswordRequest): Response<PasswordResponse>
@@ -64,4 +83,8 @@ interface ItemWebServices {
 
     @GET("products/getitembyid")
     suspend fun getItemsById(@Query("id") id: String): Response<ItemResponse>
+
+    //https://souqitigraduationproj.herokuapp.com/api/order/delete
+    @HTTP(method = "DELETE", path = "order/delete", hasBody = true)
+    suspend fun deleteOrderById(@Body deleteOrderRequest: DeleteOrderRequest): Response<DeleteOrderResponse>
 }

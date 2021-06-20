@@ -2,22 +2,31 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.order
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentOrderDetailsBinding
+import ahmed.adel.sleeem.clowyy.souq.pojo.DeleteOrderRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ItemResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.OrderResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.OrdersByIdResponse
+import ahmed.adel.sleeem.clowyy.souq.ui.activity.login.LoginActivity
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.order.adapter.OrderProductsRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 
-class OrderDetailsFragment : Fragment() {
+class OrderDetailsFragment : Fragment(), View.OnClickListener {
 
     lateinit var binding: FragmentOrderDetailsBinding
     lateinit var adapter: OrderProductsRecyclerAdapter
@@ -65,6 +74,8 @@ class OrderDetailsFragment : Fragment() {
         binding.itemsPriceTv.text = "\$${order.totalPrice}"
         val total = order.totalPrice + order.importCharge + shippingPrice
         binding.totalPrice.text = "\$${total}"
+
+        binding.button.setOnClickListener(this)
     }
 
     private fun initProductsRecyclerView() {
@@ -101,27 +112,24 @@ class OrderDetailsFragment : Fragment() {
 
     private fun changeSuccessUI() {
         changeArrivingUI()
-        changeOrderStatusUI(binding.successLine, R.color.primaryBlue)
         changeOrderStatusUI(binding.successCheck, R.drawable.order_details_shipping_check_blue)
     }
 
     private fun changeArrivingUI() {
         changeShippingUI()
-        changeOrderStatusUI(binding.arrivingLine, R.drawable.order_details_shipping_check_blue)
         changeOrderStatusUI(binding.arrivingCheck, R.drawable.order_details_shipping_check_blue)
+        changeOrderStatusUI(binding.successLine, R.color.primaryBlue)
     }
 
     private fun changeShippingUI() {
         changePackingUI()
-        changeOrderStatusUI(binding.shippingLine, R.color.primaryBlue)
         changeOrderStatusUI(binding.shippingCheck, R.drawable.order_details_shipping_check_blue)
+        changeOrderStatusUI(binding.arrivingLine, R.color.primaryBlue)
     }
 
     private fun changePackingUI() {
-        changeOrderStatusUI(
-            binding.packingCheck,
-            R.drawable.order_details_shipping_check_blue
-        )
+        changeOrderStatusUI(binding.packingCheck, R.drawable.order_details_shipping_check_blue)
+        changeOrderStatusUI(binding.shippingLine, R.color.primaryBlue)
     }
 
     fun <T : View> changeOrderStatusUI(view: T, res: Int) {
@@ -140,13 +148,16 @@ class OrderDetailsFragment : Fragment() {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     Log.e("TAG", "getAllOrders: LOADING")
+                    binding.retryView.visibility = View.INVISIBLE
                     binding.shimmerProductsRv.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR -> {
                     Log.e("TAG", "getAllOrders: ERROR" + it.message)
-                    binding.shimmerProductsRv.visibility = View.VISIBLE
+                    binding.retryView.visibility = View.VISIBLE
+                    binding.shimmerProductsRv.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS -> {
+                    binding.retryView.visibility = View.INVISIBLE
                     binding.shimmerProductsRv.visibility = View.GONE
                     it.data.let {
                         Log.e("TAG", "getAllOrders: ERROR" + it?.size)
@@ -156,5 +167,62 @@ class OrderDetailsFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            binding.button -> {
+                if (checkStatus()) {
+                    viewModel.deleteOrderById(DeleteOrderRequest(order._id))
+                    showConfirmDeleteDialog()
+                } else {
+                    Snackbar.make(
+                        binding.root,
+                        "You Can`t delete this order now",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun showConfirmDeleteDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("CANCEL ORDER")
+            .setMessage("Be Careful You Will Delete your Order .")
+            .setPositiveButton("Yes") { dialogInterface, which ->
+                deleteOrder()
+            }
+            .setNegativeButton("No") { dialogInterface, which ->
+                Toast.makeText(requireContext(), "Deleted Canceled.", Toast.LENGTH_LONG).show()
+            }.show()
+    }
+
+    private fun deleteOrder() {
+        viewModel.deleteOrder.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+
+                }
+                Resource.Status.ERROR -> {
+                    Toast.makeText(requireContext(), "Deleted Failed", Toast.LENGTH_LONG).show()
+                }
+                Resource.Status.SUCCESS -> {
+
+                    it.data.let {
+                        Toast.makeText(
+                            requireContext(),
+                            it!!.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                        findNavController().navigateUp()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun checkStatus(): Boolean {
+        return order.orderState.toLowerCase() == Status.PACKING.tag || order.orderState.toLowerCase() == Status.SHIPPING.tag
     }
 }

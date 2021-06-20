@@ -7,6 +7,7 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.Cupone
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import ahmed.adel.sleeem.clowyy.souq.utils.CuponeUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
@@ -107,6 +108,8 @@ class CartFragment : Fragment(),View.OnClickListener {
                     adapter.viewBinding.deleteItemBtn -> {
                         CartRoom.cartList.remove(item)
                         adapter.notifyItemRemoved(position)
+                        DetailsFragment.badgeCount --
+                        DetailsFragment.setOnCountChangeListener?.onChange(DetailsFragment.badgeCount)
                         calculateTotalPrice()
                     }
                 }
@@ -148,6 +151,7 @@ class CartFragment : Fragment(),View.OnClickListener {
         when (v) {
             binding.checkOutButton -> {
                 if(CartRoom.cartList.size != 0) {
+                    orderRequest.totalPrice = totalPrice.toDouble();
                     val action =
                         CartFragmentDirections.actionCartFragmentToShipToFragment(orderRequest)
                     view?.findNavController()?.navigate(action)

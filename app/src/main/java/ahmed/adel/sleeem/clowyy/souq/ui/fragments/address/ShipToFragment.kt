@@ -6,6 +6,7 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.AddressItem
 import ahmed.adel.sleeem.clowyy.souq.pojo.Cupone
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart.CartViewModel
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import ahmed.adel.sleeem.clowyy.souq.utils.CuponeUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
@@ -70,19 +71,26 @@ class ShipToFragment : Fragment(),View.OnClickListener {
     }
     override fun onClick(v: View) {
         when (v) {
-            binding.nextBtn ->{
+            binding.nextBtn -> {
                 subscribeToLiveData()
                 if (LoginUtils.getInstance(requireContext())!!.userInfo().Address != null) {
                     orderRequest.Address =
                         LoginUtils.getInstance(requireContext())!!.userInfo().Address!!
-                    viewModel.addNewOrder(orderRequest =orderRequest)
-                    val action = ShipToFragmentDirections.actionShipToFragmentToSuccessFragment()
+                    viewModel.addNewOrder(orderRequest = orderRequest)
+
+                    Log.i( "onClick: ",orderRequest.totalPrice.toString());
+                    val action =
+                        ShipToFragmentDirections.actionShipToFragmentToPaymentFragment(orderRequest.totalPrice.toString())
+
                     view?.findNavController()?.navigate(action)
                     CartRoom.cartList.clear()
                     var cupone = Cupone()
                     CuponeUtils(requireContext()).editCupone(cupone)
-                }else{
-                    Toast.makeText(requireContext(), "Enter your Address", Toast.LENGTH_SHORT).show()
+                    DetailsFragment.badgeCount = 0
+                    DetailsFragment.setOnCountChangeListener?.onChange(DetailsFragment.badgeCount)
+                } else {
+                    Toast.makeText(requireContext(), "Enter your Address", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
             }

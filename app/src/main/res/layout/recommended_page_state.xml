@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp">
+
+
+    <ImageView
+        android:id="@+id/iv_error"
+        android:layout_width="@dimen/_55sdp"
+        android:layout_height="@dimen/_55sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@drawable/circle_shape"
+        android:scaleType="center"
+        app:srcCompat="@drawable/ic_cross_sign" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_gravity="center" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/retryBtn"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_semibold"
+        android:textAllCaps="false"
+        android:textColor="@color/neutralDark"
+        android:textSize="@dimen/_14ssp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@drawable/login_button"
+        android:text="@string/retry" />
+
+
+
+
+
+
+</LinearLayout>

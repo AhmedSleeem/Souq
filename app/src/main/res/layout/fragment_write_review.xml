@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.fragments.writeReview.WriteReviewFragment">
+    tools:context=".ui.fragments.review.WriteReviewFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/overlayGray" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -61,9 +62,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:isIndicator="false"
                 android:max="5"
                 android:numStars="5"
-                android:rating="4"
+                android:rating="3"
                 android:stepSize="1"
                 android:theme="@style/RatingBar.YellowStyle"
                 android:transformPivotX="0dp"
@@ -72,18 +75,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/rateNumTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:fontFamily="@font/poppins_bold"
-                tools:text="4/5"
                 android:textColor="@color/gray"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
                 app:layout_constraintStart_toEndOf="@+id/rating_bar"
-                app:layout_constraintTop_toTopOf="@+id/rating_bar" />
+                app:layout_constraintTop_toTopOf="@+id/rating_bar"
+                android:text="3/5" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -99,7 +102,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/rating_bar" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/reviewDescriptionEd"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_marginStart="16dp"
@@ -114,86 +117,64 @@
                 android:inputType="textMultiLine"
                 android:padding="16dp"
                 android:textColor="@color/gray"
-                android:textSize="12sp"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/writeReviewButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_margin="@dimen/_16sdp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="@string/add_photo"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+                android:padding="@dimen/_12sdp"
+                android:text="@string/write_review"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:background="@drawable/register_button_shape"
+                app:backgroundTint="@color/primaryBlue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <View
-                android:id="@+id/view2"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/register_custom_edittext_shape"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/uodateReviewButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_plus"
-                app:layout_constraintBottom_toBottomOf="@+id/view2"
-                app:layout_constraintEnd_toEndOf="@+id/view2"
-                app:layout_constraintStart_toStartOf="@+id/view2"
-                app:layout_constraintTop_toTopOf="@+id/view2" />
+                android:layout_margin="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_12sdp"
+                android:text="@string/modify_review"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone"
+                app:background="@drawable/register_button_shape"
+                app:backgroundTint="@color/primaryBlue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/register_custom_edittext_shape"
-                app:layout_constraintStart_toEndOf="@id/view2"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/removeReviewButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_plus"
-                app:layout_constraintBottom_toBottomOf="@+id/view3"
-                app:layout_constraintEnd_toEndOf="@+id/view3"
-                app:layout_constraintStart_toStartOf="@+id/view3"
-                app:layout_constraintTop_toTopOf="@+id/view3" />
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_12sdp"
+                android:text="@string/remove_review"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:background="@drawable/register_button_shape"
+                app:backgroundTint="@color/red"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/uodateReviewButton"
+                app:layout_constraintEnd_toEndOf="@+id/uodateReviewButton"
+                app:layout_constraintStart_toStartOf="@+id/uodateReviewButton" />
 
-            <View
-                android:id="@+id/view4"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/register_custom_edittext_shape"
-                app:layout_constraintStart_toEndOf="@id/view3"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_plus"
-                app:layout_constraintBottom_toBottomOf="@+id/view4"
-                app:layout_constraintEnd_toEndOf="@+id/view4"
-                app:layout_constraintStart_toStartOf="@+id/view4"
-                app:layout_constraintTop_toTopOf="@+id/view4" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

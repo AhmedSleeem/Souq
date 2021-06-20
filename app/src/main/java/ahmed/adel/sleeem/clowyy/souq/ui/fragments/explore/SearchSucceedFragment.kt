@@ -7,7 +7,6 @@ import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter.SearchSucceedA
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.*
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mancj.materialsearchbar.MaterialSearchBar
+
 
 class SearchSucceedFragment : Fragment() , View.OnClickListener  {
 
@@ -31,6 +31,7 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
     private val args by navArgs<SearchSucceedFragmentArgs>()
     private lateinit var viewModel: SearchResultViewModel
     lateinit var filterParams:FilterParams;
+    private var pagesCount = 0
 
     private var lastSearches = mutableListOf<String>()
 
@@ -47,13 +48,12 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        filterParams=FilterParams()
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(SearchResultViewModel::class.java)
         subscribeToLiveData()
-        filterParams=FilterParams()
         binding.searchRv.adapter = searchRecyclerAdapter
         searchByStatus()
-
 
 
         //init searchView
@@ -69,8 +69,9 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
             override fun onSearchConfirmed(text: CharSequence?) {
                 if (text.toString().isNotBlank() && text.toString().isNotEmpty()){
                     binding.searchBar.setPlaceHolder(text)
-                    viewModel.getItemsByQuery(text.toString())
                     filterParams = FilterParams()
+                    filterParams.title=text.toString()
+                    viewModel.filterProducts(filterParams)
                     changeFilterTextViewState(
                         categoryTv = true,
                         priceTv = true,
@@ -119,13 +120,11 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
                 }else {
                     changeFilterTextViewState(categoryTv = true , selected = false)
                 }
-
             }
         }
 
         brandsDialogFragment.mListener = object :FilterByBrandBottomDialogFragment.ItemClickListener{
             override fun onItemClick(brand: String?) {
-
                 if (brand != null){
                     filterParams.brand = brand
                     changeFilterTextViewState(brandTv = true ,selected = true)
@@ -133,7 +132,6 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
                     changeFilterTextViewState(brandTv = true , selected = false)
                 }
             }
-
         }
 
         saleDialogFragment.mListener = object :FilterBySaleBottomDialogFragment.ItemClickListener{
@@ -144,19 +142,31 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
             }
         }
 
+        binding.nextBtn.setOnClickListener {
+            filterParams.page += 1
+            viewModel.filterProducts(filterParams)
+        }
 
+        binding.prevBtn.setOnClickListener {
+            if (filterParams.page != 1){
+                filterParams.page -= 1
+                viewModel.filterProducts(filterParams)
+            }
+        }
     }
 
 
     private fun searchByStatus() {
         when(args.searchStatus){
             SearchStatus.CATEGORY ->{
-                viewModel.getItemsByCategory(args.query)
+
                 filterParams.category = args.query
+                viewModel.filterProducts(filterParams)
             }
             SearchStatus.QUERY -> {
-                viewModel.getItemsByQuery(args.query)
+
                 filterParams.title=args.query
+                viewModel.filterProducts(filterParams)
                 binding.searchBar.setPlaceHolder(args.query)
             }
         }
@@ -167,8 +177,9 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
             when(it.status){
                 Resource.Status.LOADING->{
                     binding.searchRvShimmer.showShimmerAdapter()
-                    binding.searchRv.visibility = View.GONE
-
+                    binding.searchRv.visibility = View.INVISIBLE
+                    binding.fotterView.visibility=View.GONE
+                    binding.searchFailedView.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS->{
                     if(it.flag==1)
@@ -176,27 +187,44 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
                     else
                         searchRecyclerAdapter.changeData(it.data!!)
 
+                    binding.pageCountTv.text = filterParams.page.toString()
+
                     viewModel.getCategoriesAndCount()
-                    binding.resultCount.text = it.data.size.toString()
-                    binding.searchRv.visibility = View.VISIBLE
+
+                    binding.fotterView.visibility=View.VISIBLE
                     binding.searchFailedView.visibility = View.GONE
                     binding.searchRvShimmer.hideShimmerAdapter()
                     binding.searchRv.visibility = View.VISIBLE
                 }
                 Resource.Status.ERROR->{
-
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    Log.e("erorrrrrrrrrrrrrrrrrr", it.message.toString() )
                     binding.resultCount.text = "0"
                     binding.searchRv.visibility = View.GONE
                     binding.searchFailedView.visibility = View.VISIBLE
                     binding.searchRvShimmer.hideShimmerAdapter()
-
+                    binding.fotterView.visibility=View.GONE
                 }
             }
         })
 
+        viewModel.itemsCountLiveData.observe(viewLifecycleOwner, Observer {
+            binding.resultCount.text = it.toString()
+            pagesCount = if (it%10 != 0)
+                (it/10)+1
+            else
+                it/10
 
+            binding.nextBtn.visibility = if(filterParams.page == pagesCount)
+                View.INVISIBLE
+            else
+                View.VISIBLE
+
+            binding.prevBtn.visibility = if(filterParams.page == 1)
+                View.INVISIBLE
+            else
+                View.VISIBLE
+
+        })
     }
 
     fun changeFilterTextViewState(categoryTv:Boolean=false, priceTv:Boolean=false, brandTv:Boolean=false, saleTv:Boolean=false, selected:Boolean){
@@ -210,8 +238,8 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
 
             }else {
                 binding.filterCategoryTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_selected_shape)
-              }
             }
+        }
 
         if (brandTv){
             if (!selected){
@@ -241,7 +269,6 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
             }else{
                 binding.filterSaleTV.background = requireActivity().resources.getDrawable(R.drawable.filter_btn_selected_shape)
             }
-
         }
 
         viewModel.filterProducts(filterParams)
@@ -275,6 +302,7 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
             binding.filterSaleTV->{
                 showBottomShortByDialog(saleDialogFragment,FilterBySaleBottomDialogFragment.TAG)
             }
+
         }
     }
 
@@ -289,9 +317,6 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
         HighToLow(2) ,
         TopRated(3)
     }
-
-
-
 
 }
 

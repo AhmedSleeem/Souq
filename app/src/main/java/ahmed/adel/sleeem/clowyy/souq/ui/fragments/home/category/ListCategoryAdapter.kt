@@ -5,7 +5,7 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.response.CategoryResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.explore_fragment.ListCategoryFragmentDirections
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.SearchSucceedFragment
 
-import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.adapter.CategoryRecyclerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.category.CategoryRecyclerAdapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup

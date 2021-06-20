@@ -61,7 +61,7 @@ class AddressFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        address = LoginUtils.getInstance(requireContext())!!.userInfo().Address!!
+        address = LoginUtils.getInstance(requireContext())!!.userInfo().Address?:"N/F"
         filterAddress(address)
     }
 

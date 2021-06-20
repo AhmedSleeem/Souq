@@ -47,7 +47,7 @@
     <string name="like">You Might Also Like</string>
     <string name="add_to_cart">Add To Cart</string>
     <string name="rate">4.5</string>
-    <string name="review1">( 5 Review )</string>
+    <string name="review1">( 0 Review )</string>
     <string name="overall_review">Please write Overall level of satisfaction with your shipping / Delivery Service</string>
     <string name="write_your_review">Write Your Review</string>
     <string name="write_your_review_here">Write your review here</string>
@@ -222,8 +222,17 @@
         <item>Suez</item>
     </string-array>
 
-<!--    <string name="default_web_client_id" translatable="false">749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com</string>-->
+    <!--    <string name="default_web_client_id" translatable="false">749946963569-blqaeu99ai656927hshfna0ansde3oq7.apps.googleusercontent.com</string>-->
     <string name="facebook_app_id">157083326380693</string>
     <string name="fb_login_protocol_scheme">fb157083326380693</string>
+    <string name="remove_review">Remove Review</string>
+    <string name="modify_review">Modify Review</string>
+    <string name="no_review_yet">No Review Yet</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="notification_Channel_ID">ahmed.adel.sleeem.clowyy.channel1</string>
+    <string name="retry">Retry</string>
+    <string name="please_check_your_internet_connection">Please Check Your Internet Connection</string>
+    <string name="oops">Oops!...</string>
+    <string name="pay">Pay</string>
 
 </resources>

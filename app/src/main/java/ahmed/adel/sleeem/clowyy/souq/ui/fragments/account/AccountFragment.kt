@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.google.firebase.auth.FirebaseAuth
 
 
 class AccountFragment : Fragment() {
@@ -47,6 +48,7 @@ class AccountFragment : Fragment() {
                 .setTitle("Exit")
                 .setMessage("Are You sure you want to Logout.")
                 .setPositiveButton("Yes") { dialogInterface, which ->
+                    FirebaseAuth.getInstance().signOut()
                     LoginUtils.getInstance(requireContext())!!.clearAll()
                     startActivity(Intent(requireContext(), LoginActivity::class.java))
                     requireActivity().finish()

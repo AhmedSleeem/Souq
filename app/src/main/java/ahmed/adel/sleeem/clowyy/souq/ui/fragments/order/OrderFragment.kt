@@ -29,6 +29,7 @@ class OrderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOrderBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -55,7 +56,7 @@ class OrderFragment : Fragment() {
 
         }
         getAllOrders()
-
+        binding.ordersRv.adapter = adapter
     }
 
     private fun getAllOrders() {
@@ -64,12 +65,17 @@ class OrderFragment : Fragment() {
                 Resource.Status.LOADING -> {
                     Log.e("TAG", "getAllOrders: LOADING" )
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.retryView.visibility = View.INVISIBLE
                 }
                 Resource.Status.ERROR -> {
                     Log.e("TAG", "getAllOrders: ERROR"+it.message )
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.retryView.visibility = View.VISIBLE
+                    if(it.message.toString() != "timeout")
+                    binding.textView6.text = it.message.toString()
+                    binding.progressBar.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS -> {
+                    binding.retryView.visibility = View.INVISIBLE
                     binding.progressBar.visibility = View.GONE
                     it.data.let {
                         Log.e("TAG", "getAllOrders: ERROR"+it?.size )

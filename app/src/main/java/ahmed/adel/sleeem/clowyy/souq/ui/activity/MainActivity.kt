@@ -3,20 +3,50 @@ package ahmed.adel.sleeem.clowyy.souq.ui.activity
 
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityMainBinding
+import ahmed.adel.sleeem.clowyy.souq.notifications.Notifications
+import ahmed.adel.sleeem.clowyy.souq.services.MyService
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment
 import ahmed.adel.sleeem.clowyy.souq.utils.OnBadgeChangeListener
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import io.socket.client.IO
+import io.socket.client.Socket
+import io.socket.emitter.Emitter
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var badge : BadgeDrawable
+
+
+    private lateinit var mySocket: Socket;
+
+    private lateinit var notification : Notifications;
+
+    var TAG = "MAINACTIVITY_Socket";
+    var onNewMessage = Emitter.Listener { args ->
+        runOnUiThread(Runnable {
+
+            val data = args[0] as JSONObject
+            val message = data.getString("message");
+
+            notification.createNotificationChannelID(
+                resources.getString(R.string.notification_Channel_ID), "push notifications",
+                "Item Added In Our System ${message}"
+            )
+
+            notification.displayNotification("New Product Added");
+
+        })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +65,13 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
         if(!isFirstRunning()) {
             this.findNavController(R.id.navHost)
                 .navigate(R.id.action_homeFragment_to_viewPagerFragment)
+//            val navBar: BottomNavigationView = getActivity().findViewById(R.id.bottomBar)
+            binding.bottomNavView.visibility = View.GONE
         }
+
+
+        startService(Intent(applicationContext,MyService::class.java));
+
     }
 
     private fun isFirstRunning(): Boolean{
@@ -46,6 +82,5 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
     override fun onChange(count: Int) {
         badge.number = count
     }
-
 
 }
