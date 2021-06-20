@@ -15,8 +15,8 @@ interface FavouriteDao {
 //    @Delete
 //    suspend fun deleteItemById(item: String)
 
-    @Query("select isInFavourite from in_favourite_table where userId = :id and itemId = :itd ")
-    fun selectItem(id: String, itd: String): Boolean
+    @Query("select userId from in_favourite_table where userId = :id and itemId = :itd ")
+    fun selectItem(id: String, itd: String): String
 
     @Query("SELECT * FROM favourite_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<FavouriteItem>>

@@ -15,7 +15,10 @@ class FavouriteRepository(private val favouriteDao: FavouriteDao) {
     }
 
     suspend fun selectItem(id: String,itd:String) : Boolean {
-       return favouriteDao.selectItem(id,itd)
+       var select =  favouriteDao.selectItem(id,itd) != null ;
+
+        select = select and select.equals("");
+        return select
     }
 
 //    suspend fun deleteItemById(item: String) {

@@ -149,8 +149,8 @@ class DetailsFragment : Fragment() {
 //            }
 
         binding.morweReviews.setOnClickListener {
-            val action = DetailsFragmentDirections.actionDetailsFragmentToReviewFragment(item.id.toString())
-           view.findNavController().navigate(action)
+            val action = DetailsFragmentDirections.actionDetailsFragmentToReviewFragment(item.id.toString());
+            view.findNavController().navigate(action);
         }
 
 
