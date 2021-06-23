@@ -4,12 +4,17 @@ import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentDetailsBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
+import ahmed.adel.sleeem.clowyy.souq.room.FavouriteItem
+import ahmed.adel.sleeem.clowyy.souq.room.FavouriteViewModelRoom
+import ahmed.adel.sleeem.clowyy.souq.room.cart.Cart
+import ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.RecommendedDetailsRA
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.recommended.RecommendedAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.review.adapter.ReviewAdapter
-import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
+import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.OnBadgeChangeListener
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.os.Bundle
@@ -25,6 +30,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.*
 
 
 class DetailsFragment : Fragment() {
@@ -33,17 +39,20 @@ class DetailsFragment : Fragment() {
         var setOnCountChangeListener : OnBadgeChangeListener? = null
     }
 
+    private lateinit var cartViewModel: CartViewModel
     private lateinit var listImg: MutableList<String>
     private var saleData = arrayListOf<ProductResponse.Item>()
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var selectSizeAdapter: SizeRecyclerAdapter
     private lateinit var colorAdapter: ColorRecylerAdapter
     private lateinit var binding: FragmentDetailsBinding
-    private lateinit var recommendRecyclerAdapter: RecommendedAdapter
+    private lateinit var recommendRecyclerAdapter: RecommendedDetailsRA
     private lateinit var reviewRecyclerAdapter: ReviewAdapter
     private lateinit var viewModel: DetailsViewModel
     private val args by navArgs<DetailsFragmentArgs>()
-    private lateinit var item: ProductResponse.Item
+    private  var item: ProductResponse.Item? = null
+
+    private lateinit var  favoriteViewModel : FavouriteViewModelRoom
 
 
 
@@ -60,27 +69,62 @@ class DetailsFragment : Fragment() {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        item = args.itemData
-        binding.appBar.title = item.title
-        binding.productNameTv.text = item.title
-        binding.ratingBar.rating = (item.rating/2.0f)
-        binding.price.text = item.price.toString() + " Egp"
-        binding.descriptionTv.text = item.description
-        binding.companyNameTv.text = item.companyName
-        binding.brandTv.text = item.brand
+        if (args.itemData != null) {
 
-//        recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
-//        binding.recommend.adapter = recommendRecyclerAdapter
+            item = args.itemData
+            binding.appBar.title = item!!.title
+            binding.productNameTv.text = item!!.title
+            binding.ratingBar.rating = (item!!.rating / 2.0f)
+            binding.price.text = item!!.price.toString() + " Egp"
+            binding.descriptionTv.text = item!!.description
+            binding.companyNameTv.text = item!!.companyName
+            binding.brandTv.text = item!!.brand
+
+            uiInitialization()
+
+        }else {
+
+            viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java);
+            val itemsById = args.itemId!!
+            viewModel.getItemsByIdFav(itemsById)
+            viewModel.item.observe(requireActivity(),{
+                item = it.data
+            })
+        }
+
+        //View Models
+
+        favoriteViewModel = ViewModelProvider(this).get(FavouriteViewModelRoom::class.java);
+
+        cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java);
+
+        recommendRecyclerAdapter = RecommendedDetailsRA(requireContext())
+        binding.recommend.adapter = recommendRecyclerAdapter
 
 
 
+        val user = LoginUtils.getInstance(requireContext())!!.userInfo()
+        CoroutineScope(Dispatchers.IO).launch{
+            val selectItem = favoriteViewModel.selectItem(user._id.toString(), item!!.id.toString());
+
+            if (selectItem) {
+                withContext(Dispatchers.Main) {
+                    binding.favoritBtnRed.visibility = View.VISIBLE;
+                    binding.favoritBtn.visibility = View.GONE;
+                }
+            }
+        }
+        return view
+    }
+
+    private fun uiInitialization() {
         viewPagerAdapter = ViewPagerAdapter(requireContext())
         binding.saleViewPager1.adapter = viewPagerAdapter
         binding.dotsIndicator1.setViewPager2(binding.saleViewPager1)
-        listImg = mutableListOf(item.image)
-        if (item.sale != null) {
-            if (item.sale!!.image != null) {
-                viewPagerAdapter.changeData(item.sale!!.image!!)
+        listImg = mutableListOf(item!!.image)
+        if (item!!.sale != null) {
+            if (item!!!!.sale!!.image != null) {
+                viewPagerAdapter.changeData(item!!.sale!!.image!!)
             } else {
                 viewPagerAdapter.changeData(listImg)
             }
@@ -89,25 +133,23 @@ class DetailsFragment : Fragment() {
         }
 
 
-        if (item.size == null) {
+        if (item!!.size == null) {
             binding.sizeRv.visibility = View.GONE
             binding.selectSizeTxt.visibility = View.GONE
         } else {
-            selectSizeAdapter = SizeRecyclerAdapter(item.size)
+            selectSizeAdapter = SizeRecyclerAdapter(item!!.size)
             binding.sizeRv.adapter = selectSizeAdapter
             binding.sizeRv.visibility = View.VISIBLE
         }
 
-        if (item.color == null) {
+        if (item!!.color == null) {
             binding.colorRv.visibility = View.GONE
             binding.selectColorTxt.visibility = View.GONE
         } else {
             binding.colorRv.visibility = View.VISIBLE
-            colorAdapter = ColorRecylerAdapter(item.color, requireContext())
+            colorAdapter = ColorRecylerAdapter(item!!.color, requireContext())
             binding.colorRv.adapter = colorAdapter
         }
-
-        return view
     }
 
     override fun onResume() {
@@ -121,8 +163,8 @@ class DetailsFragment : Fragment() {
 
         //init view model
         viewModel = ViewModelProvider(requireActivity()).get(DetailsViewModel::class.java);
-        viewModel.getItemsByCategory(item.category.name)
-        viewModel.getReviewsByProductId(item.id.toString())
+        viewModel.getItemsByCategory(item!!.category.name)
+        viewModel.getReviewsByProductId(item!!.id.toString())
 
         // app bar arrow back
         binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
@@ -131,32 +173,67 @@ class DetailsFragment : Fragment() {
         }
 
         binding.addReview.setOnClickListener {
-            val action = DetailsFragmentDirections.actionDetailsFragmentToWriteReviewFragment(null,false,item.id.toString())
+            val action = DetailsFragmentDirections.actionDetailsFragmentToWriteReviewFragment(null,
+                false,item!!.id.toString())
             it.findNavController().navigate(action)
         }
 
 
-//        recommendRecyclerAdapter.itemClickListener =
-//            object : RecommendedRecyclerAdapter.ItemClickListener {
-//                override fun onClick(view: View, item: ProductResponse.Item) {
-//                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(item)
-//                    view.findNavController().navigate(action)
-//                }
-//            }
+        binding.favoritBtn.setOnClickListener{
+            val user = LoginUtils.getInstance(requireContext())!!.userInfo()
+            val fav = FavouriteItem(0,item!!.id.toString(),user._id,
+                item!!.title,item!!.image,
+                item!!.rating,item!!.price,item!!.sale.amount);
+            favoriteViewModel.addItem(fav);
+
+            binding.favoritBtnRed.visibility = View.VISIBLE;
+            binding.favoritBtn.visibility = View.GONE;
+
+        }
+
+        binding.favoritBtnRed.setOnClickListener{
+            val user = LoginUtils.getInstance(requireContext())!!.userInfo()
+
+            favoriteViewModel.deleteItem(user._id!!,item!!.id.toString());
+
+            binding.favoritBtnRed.visibility = View.GONE;
+            binding.favoritBtn.visibility = View.VISIBLE;
+
+        }
+
+
+        recommendRecyclerAdapter.itemClickListener =
+            object : RecommendedDetailsRA.ItemClickListener {
+                override fun onClick(view: View, item: ProductResponse.Item) {
+                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(item,null)
+                    view.findNavController().navigate(action)
+                }
+            }
 
         binding.morweReviews.setOnClickListener {
-            val action = DetailsFragmentDirections.actionDetailsFragmentToReviewFragment(item.id.toString())
+            val action = DetailsFragmentDirections.actionDetailsFragmentToReviewFragment(item!!.id.toString())
            view.findNavController().navigate(action)
         }
 
 
         // add to cart action
         binding.addToCartBtn.setOnClickListener{
-            if((item.color != null && !item.color.isEmpty() ) || (item.size != null && !item.size.isEmpty() )) {
+            if((item!!.color != null && !item!!.color.isEmpty() ) || (item!!.size != null && !item!!.size.isEmpty() )) {
 
-                if (item.selectedColor != null && item.selectedSize != null) {
-                    item.countOfSelectedItem = 1
-                    CartRoom.cartList.add(item)
+                if (item!!.selectedColor != null && item!!.selectedSize != null) {
+                    item!!.countOfSelectedItem = 1
+
+
+                    val user = LoginUtils.getInstance(requireContext())!!.userInfo()
+
+
+                    val car = Cart(0,item!!.id,item!!.title,
+                        item!!.countOfSelectedItem,item!!.price,item!!.image,user._id!!
+                        ,item!!.selectedColor!!,item!!.selectedSize!!,item!!.companyName);
+
+                    cartViewModel.insert(car);
+
+//                    CartRoom.cartList.add(item!!)
                     badgeCount++
                     setOnCountChangeListener?.onChange(badgeCount)
                 } else {
@@ -167,29 +244,38 @@ class DetailsFragment : Fragment() {
                     ).show()
                 }
             }else{
-                item.countOfSelectedItem = 1
-                CartRoom.cartList.add(item)
+                item!!.countOfSelectedItem = 1
+//                CartRoom.cartList.add(item!!)
+
+                val user = LoginUtils.getInstance(requireContext())!!.userInfo()
+                val car = Cart(0,item!!.id,item!!.title,
+                    item!!.countOfSelectedItem,item!!.price,item!!.image,user._id!!
+                ,"","",item!!.companyName);
+
+                cartViewModel.insert(car);
+
                 badgeCount++
                 setOnCountChangeListener?.onChange(badgeCount)
             }
 
+
         }
 
         // size clickListner
-        if(item.size != null) {
+        if(item!!.size != null) {
             selectSizeAdapter.setOnItemClickListner = object : SizeRecyclerAdapter.ClckListner {
                 override fun clickListner(itemSize: String) {
-                    item.selectedSize = itemSize
+                    item!!.selectedSize = itemSize
                 }
 
             }
         }
 
         //color clickListner
-        if(item.color != null) {
+        if(item!!.color != null) {
             colorAdapter.setOnItemClickListner = object : ColorRecylerAdapter.ClckListner {
                 override fun clickListner(itemColor: String) {
-                    item.selectedColor = itemColor
+                    item!!.selectedColor = itemColor
                 }
 
             }
@@ -214,8 +300,8 @@ class DetailsFragment : Fragment() {
                 Resource.Status.SUCCESS -> {
                     it.data.let {
                         binding.recommendedProgress.visibility = View.GONE
-//                        recommendRecyclerAdapter.changeData(it!!)
-//                        saleData = it
+                        recommendRecyclerAdapter.changeData(it!!)
+                        saleData = it
                     }
                 }
             }

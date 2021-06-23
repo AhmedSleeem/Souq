@@ -58,7 +58,6 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
             Navigation.findNavController(it).navigateUp()
         }
 
-
         binding.dateShippingTv.text = order.orderDate
         binding.resiNoTv.text = order._id
         binding.addressTv.text = order.Address

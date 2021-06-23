@@ -11,6 +11,7 @@ import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
 import org.json.JSONObject
+import java.util.*
 
 class MyService : Service() {
 
@@ -46,7 +47,9 @@ class MyService : Service() {
             val email = data.getString("email");
             val message = data.getString("message");
 
-            var user = LoginUtils.getInstance(applicationContext)!!.userInfo()
+            Log.i(TAG, "onShipStatusChange: ");
+
+            val user = LoginUtils.getInstance(applicationContext)!!.userInfo()
 
 
             if(user.email == email) {
@@ -74,11 +77,12 @@ class MyService : Service() {
 
         mySocket.open()
 
-        mySocket.on("newProductAdded", onNewMessage);
+//        mySocket.on("newProductAdded", onNewMessage);
+//
+//        mySocket.on("onShipStatusChange", onShipStatusChange);
 
-        mySocket.on("onShipStatusChange", onShipStatusChange);
 
-
+        
 
         mySocket.on(Socket.EVENT_CONNECT, Emitter.Listener {
             Log.i(TAG, "onCreate: connected");
@@ -87,6 +91,9 @@ class MyService : Service() {
     }
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
+        mySocket.on("newProductAdded", onNewMessage);
+
+        mySocket.on("onShipStatusChange", onShipStatusChange);
 
         return super.onStartCommand(intent, flags, startId)
     }

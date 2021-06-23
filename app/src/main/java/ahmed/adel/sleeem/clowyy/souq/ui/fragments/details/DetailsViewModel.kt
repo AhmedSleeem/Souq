@@ -1,6 +1,8 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.details
 
 import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
+import ahmed.adel.sleeem.clowyy.souq.pojo.DeleteOrderResponse
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ItemResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ReviewResponse
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.UserResponse
@@ -24,6 +26,10 @@ class DetailsViewModel : ViewModel() {
 
     private var _reviewAvgLiveData = MutableLiveData<Pair<Int,Float>>()
     val reviewAvgLiveData: LiveData<Pair<Int,Float>> get() = _reviewAvgLiveData
+
+    private val _item = MutableLiveData<Resource<ProductResponse.Item>>()
+    val item: MutableLiveData<Resource<ProductResponse.Item>> get() = _item
+
 
     fun getReviewsByProductId(id:String){
         viewModelScope.launch {
@@ -77,6 +83,23 @@ class DetailsViewModel : ViewModel() {
             filterLiveData.value = Resource.success(data = data)
         } else {
             itemsLiveData.value = Resource.error(response.errorBody().toString())
+        }
+
+    }
+
+
+    fun getItemsByIdFav(id: String) = viewModelScope.launch {
+        try {
+            _item.value = Resource.loading(null)
+            val response = RetrofitHandler.getItemWebService().getItemsByIdFav(id)
+            if (response.isSuccessful) {
+                if (response.body() != null)
+                    _item.value = Resource.success(response.body()!!)
+            } else {
+                _item.value = Resource.error(response.errorBody().toString())
+            }
+        } catch (e: Exception) {
+            _item.value = Resource.error(e.message.toString())
         }
 
     }

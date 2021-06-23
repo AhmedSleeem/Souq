@@ -84,6 +84,9 @@ interface ItemWebServices {
     @GET("products/getitembyid")
     suspend fun getItemsById(@Query("id") id: String): Response<ItemResponse>
 
+    @GET("products/getitembyid")
+    suspend fun getItemsByIdFav(@Query("id") id: String): Response<ProductResponse.Item>
+
     //https://souqitigraduationproj.herokuapp.com/api/order/delete
     @HTTP(method = "DELETE", path = "order/delete", hasBody = true)
     suspend fun deleteOrderById(@Body deleteOrderRequest: DeleteOrderRequest): Response<DeleteOrderResponse>

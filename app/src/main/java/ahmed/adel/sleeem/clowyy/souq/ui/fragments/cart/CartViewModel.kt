@@ -6,17 +6,21 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.OrderResponse
 
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.room.FavouriteDatabase
+import ahmed.adel.sleeem.clowyy.souq.room.cart.Cart
+import ahmed.adel.sleeem.clowyy.souq.room.cart.CartRepositories
+import ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel
 
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
-class CartViewModel : ViewModel() {
+class CartViewModel(context : Application) : AndroidViewModel(context) {
 
    private var _cartItemsLiveData = MutableLiveData<Resource<ProductResponse>>()
+
     val cartItemsLiveData : LiveData<Resource<ProductResponse>> get() = _cartItemsLiveData
 
     private var _productsLiveData = MutableLiveData<Resource<ProductResponse>>()
@@ -24,6 +28,20 @@ class CartViewModel : ViewModel() {
 
     private var _addOrderLiveData = MutableLiveData<Resource<OrderResponse>>()
     val addOrderLiveData : LiveData<Resource<OrderResponse>> get() = _addOrderLiveData
+
+   private var carRepo :   CartRepositories
+    init {
+        var doa  = FavouriteDatabase.getDatabase(context).cartDao()
+        carRepo = CartRepositories(doa,context);
+    }
+
+    var cartList : LiveData<List<Cart>>  = carRepo.userFavorites
+
+
+    fun delete(){
+
+        cartList = carRepo.userFavorites.distinctUntilChanged()
+    }
 
 
     private var productResponse = ProductResponse()
