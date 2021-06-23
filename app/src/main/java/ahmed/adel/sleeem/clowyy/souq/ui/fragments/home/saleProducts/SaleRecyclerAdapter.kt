@@ -54,7 +54,7 @@ class SaleRecyclerAdapter: PagingDataAdapter<ProductResponse.Item, SaleRecyclerA
 //                Navigation.findNavController(it)
 //                    .navigate(R.id.action_homeFragment_to_detailsFragment)
 //                val itemDetails = items[position]
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item)
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item,null)
                 it.findNavController().navigate(action)
             }
         }

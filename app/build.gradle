@@ -120,7 +120,7 @@ dependencies {
 
     def room_version = "2.3.0"
 
-    implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-runtime:2.3.0")
     kapt "androidx.room:room-compiler:$room_version"
 
     //  Kotlin Extensions and Coroutines support for Room
@@ -143,7 +143,9 @@ dependencies {
 
     // Stripe that used for payment
     implementation 'com.stripe:stripe-android:16.8.0'
+
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+
     implementation 'com.google.code.gson:gson:2.8.7'
 
 

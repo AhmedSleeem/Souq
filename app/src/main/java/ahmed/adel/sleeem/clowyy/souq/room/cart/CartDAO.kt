@@ -1,6 +1,6 @@
-package ahmed.adel.sleeem.clowyy.souq.db.entities.dao
+package ahmed.adel.sleeem.clowyy.souq.room.cart;
 
-import ahmed.adel.sleeem.clowyy.souq.db.entities.Cart
+
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -8,14 +8,19 @@ import androidx.room.*
 @Dao
 interface CartDAO {
 
+
     @Insert
     suspend fun insertCartItem(item: Cart);
 
     @Update
     suspend fun updateCartItem(item:Cart);
 
-    @Delete
-    suspend fun deleteCartItem(item:Cart);
+    @Query("delete from CART_TABLE where userId = :id and itemId = :itd")
+    suspend fun deleteCartItem(id:String , itd:String);
+
+    @Query("delete from CART_TABLE ")
+    suspend fun deleteAll()
+
 
 
     @Query("select * from CART_TABLE WHERE userId = :id ")

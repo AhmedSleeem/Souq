@@ -7,6 +7,7 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.Cupone
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.room.cart.Cart
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import ahmed.adel.sleeem.clowyy.souq.utils.CuponeUtils
@@ -40,6 +41,8 @@ class CartFragment : Fragment(),View.OnClickListener {
     private var cupone : String? = null
     private var cuponeValue : Int = 0
 
+    private  lateinit var cartViewModel : ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel
+
     private val binding get() = _binding!!
     val quotes = arrayOf("order id" , )
     override fun onCreateView(
@@ -53,6 +56,7 @@ class CartFragment : Fragment(),View.OnClickListener {
         adapter = CartAdapter(requireContext())
         binding.cartRecyclerView.adapter = adapter
         //binding.cuponeEt.setText(Cupone().cuponeCode)
+
 
         return binding.root
     }
@@ -69,28 +73,38 @@ class CartFragment : Fragment(),View.OnClickListener {
         }else{
             binding.shippingTv.text = "0.0 Egp"
         }
+
+        cartViewModel = ViewModelProvider(this).get(ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel::class.java);
         // orderRequest
         val date = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HH:mm")
             .withZone(ZoneOffset.UTC)
             .format(Instant.now())
+
         orderRequest = OrderRequest(itemIds = orderRequestItemIdsList)
         orderRequestItemId = OrderRequest.ItemId()
-        if (CartRoom.cartList != null) {
+
+        cartViewModel.userFavorites.observe(requireActivity()){
+
             orderRequest.orderCode = getRandomString(10)
-            for (item in CartRoom.cartList) {
+            for (item in it) {
                 orderRequestItemId.id = item.id.toString()
                 orderRequestItemId.companyName = item.companyName
-                orderRequestItemId.color = item.selectedColor.toString()
-                orderRequestItemId.count = item.countOfSelectedItem
-                orderRequestItemId.size = item.selectedSize.toString()
+                orderRequestItemId.color = item.color
+                orderRequestItemId.count = item.count
+                orderRequestItemId.size = item.size
                 orderRequestItemIdsList.add(orderRequestItemId)
             }
             orderRequest.itemIds = orderRequestItemIdsList
             orderRequest.userId = LoginUtils.getInstance(requireContext())!!.userInfo()._id!!
             orderRequest.orderDate = date
             orderRequest.totalPrice = totalPrice.toDouble()
+
         }
+
+
+//
+
 
 
         subscribeToLiveData()
@@ -104,16 +118,25 @@ class CartFragment : Fragment(),View.OnClickListener {
         // item clickListners
 
         adapter.setOnItemClickListner = object : CartAdapter.ItemClickListener {
-            override fun onClick(view: View, item: ProductResponse.Item, position: Int) {
-                when (view) {
-                    adapter.viewBinding.deleteItemBtn -> {
-                        CartRoom.cartList.remove(item)
-                        adapter.notifyItemRemoved(position)
-                        DetailsFragment.badgeCount --
+            override fun onClick(view: View, item: Cart, position: Int) {
+//                when (view) {
+                    adapter.viewBinding.deleteItemBtn.setOnClickListener {
+//                        CartRoom.cartList.remove(item)
+
+                        Log.i( "onClick:"," delete cart");
+
+                        val user = LoginUtils.getInstance(requireContext())!!.userInfo()
+
+                        cartViewModel.delete(user._id!!, item.id.toString());
+
+                        viewModel.delete();
+                        adapter.notifyItemRemoved(position);
+
+                        DetailsFragment.badgeCount--
                         DetailsFragment.setOnCountChangeListener?.onChange(DetailsFragment.badgeCount)
                         calculateTotalPrice()
                     }
-                }
+//                }
             }
         }
 
@@ -133,16 +156,12 @@ class CartFragment : Fragment(),View.OnClickListener {
 
 
     fun subscribeToLiveData() {
-        viewModel.cartItemsLiveData.observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Resource.Status.LOADING -> {
 
-                }
-                Resource.Status.SUCCESS -> {
-                    Log.e("ssss", "list : " + it.data)
-                    adapter.changeData(it.data!!,true)
-                }
-            }
+        viewModel.cartList.observe(viewLifecycleOwner, Observer {
+
+                    adapter.changeData(it,true)
+
+
         })
 
     }
@@ -151,7 +170,7 @@ class CartFragment : Fragment(),View.OnClickListener {
     override fun onClick(v: View) {
         when (v) {
             binding.checkOutButton -> {
-                if(CartRoom.cartList.size != 0) {
+                if(viewModel.cartList.value!!.size != 0) {
                     orderRequest.totalPrice = totalPrice.toDouble();
                     val action =
                         CartFragmentDirections.actionCartFragmentToShipToFragment(orderRequest)
@@ -181,21 +200,25 @@ class CartFragment : Fragment(),View.OnClickListener {
         var price = 0.0f
         var cuponepercent = 0.000f
 
-        for (item in CartRoom.cartList) {
-            itemCount += item.countOfSelectedItem
-            cuponepercent = (item.price * (currentCupone.cuponeCodeValue!!.toFloat()/100.0f)).toFloat()
-            price = (price + (item.countOfSelectedItem * item.price)).toFloat()
-            totalPrice = (price + 13) - cuponepercent
-        }
 
-        if(CartRoom.cartList.size == 0){
-            binding.totalItemsCount.text = "Item (0)"
-            binding.totalItemsPrice.text = "0.0"
-            binding.totalPrice.text = "0.0"
-        }else{
-            binding.totalItemsCount.text = "Items (" + itemCount.toString() + ")"
-            binding.totalItemsPrice.text = price.toString() + " Egp"
-            binding.totalPrice.text = String.format("%.2f", totalPrice) + " Egp"
+        viewModel.cartList.observe(requireActivity()) {
+            for (item in it ) {
+                itemCount += item.count
+                cuponepercent =
+                    (item.price * (currentCupone.cuponeCodeValue!!.toFloat() / 100.0f)).toFloat()
+                price = (price + (item.count * item.price)).toFloat()
+                totalPrice = (price + 13) - cuponepercent
+            }
+
+            if (it.size == 0) {
+                binding.totalItemsCount.text = "Item (0)"
+                binding.totalItemsPrice.text = "0.0"
+                binding.totalPrice.text = "0.0"
+            } else {
+                binding.totalItemsCount.text = "Items (" + itemCount.toString() + ")"
+                binding.totalItemsPrice.text = price.toString() + " Egp"
+                binding.totalPrice.text = String.format("%.2f", totalPrice) + " Egp"
+            }
         }
     }
 

@@ -100,7 +100,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
                 android:layout_marginRight="18dp"
-                android:src="@drawable/ic_baseline_favorite_border_24"
+                app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+                app:layout_constraintBottom_toBottomOf="@+id/product_name_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/product_name_tv"
+                app:layout_constraintVertical_bias="0.472" />
+
+            <ImageView
+                android:id="@+id/favorit_btn_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:layout_marginRight="18dp"
+                app:srcCompat="@drawable/ic_favorite_red"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/product_name_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/product_name_tv"

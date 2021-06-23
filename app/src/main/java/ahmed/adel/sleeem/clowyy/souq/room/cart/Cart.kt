@@ -1,5 +1,6 @@
-package ahmed.adel.sleeem.clowyy.souq.db.entities
+package ahmed.adel.sleeem.clowyy.souq.room.cart;
 
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -26,10 +27,20 @@ data class Cart(
     @ColumnInfo(name = "itemImage")
     val itemImage:String,
 
-    @ColumnInfo(name = "isLiked")
-    val isLiked:Boolean,
-
     @ColumnInfo(name = "userId")
-    val userId:String
+    val userId:String,
+
+    @Nullable
+    @ColumnInfo(name = "color")
+    val color:String,
+
+    @Nullable
+    @ColumnInfo(name = "size")
+    val size:String,
+
+    @ColumnInfo(name = "companyName")
+    val companyName:String,
+
+
 
     )

@@ -179,10 +179,15 @@
             app:enterAnim="@anim/top_animation" />
         <argument
             android:name="itemData"
-            app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse$Item" />
+            app:argType="ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse$Item"
+            app:nullable="true" />
         <action
             android:id="@+id/action_detailsFragment_to_writeReviewFragment"
             app:destination="@id/writeReviewFragment" />
+        <argument
+            android:name="itemId"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

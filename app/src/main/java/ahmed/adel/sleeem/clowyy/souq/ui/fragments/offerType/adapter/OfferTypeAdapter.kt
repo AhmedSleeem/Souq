@@ -53,7 +53,7 @@ class OfferTypeAdapter(val context: Context) :
             }
 
             setOnClickListener {
-                val action = OfferTypeFragmentDirections.actionOfferTypeFragmentToDetailsFragment(product)
+                val action = OfferTypeFragmentDirections.actionOfferTypeFragmentToDetailsFragment(product,null)
                 it.findNavController().navigate(action)
             }
         }

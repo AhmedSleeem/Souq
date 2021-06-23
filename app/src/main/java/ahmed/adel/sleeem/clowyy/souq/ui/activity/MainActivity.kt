@@ -5,6 +5,7 @@ import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityMainBinding
 import ahmed.adel.sleeem.clowyy.souq.notifications.Notifications
 import ahmed.adel.sleeem.clowyy.souq.services.MyService
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart.CartViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment
 import ahmed.adel.sleeem.clowyy.souq.utils.OnBadgeChangeListener
 import android.content.Context
@@ -13,6 +14,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.badge.BadgeDrawable
@@ -60,6 +62,10 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
         badge.isVisible = true
         badge.number = 0
 
+        val cartView : CartViewModel = ViewModelProvider(this).get(CartViewModel::class.java);
+        cartView.cartList.observe(this){
+            badge.number = it.size
+        }
         DetailsFragment.setOnCountChangeListener = this
 
         if(!isFirstRunning()) {
