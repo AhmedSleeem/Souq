@@ -20,9 +20,7 @@ import java.net.SocketTimeoutException
 
 class CartViewModel(context : Application) : AndroidViewModel(context) {
 
-   private var _cartItemsLiveData = MutableLiveData<Resource<ProductResponse>>()
 
-    val cartItemsLiveData : LiveData<Resource<ProductResponse>> get() = _cartItemsLiveData
     private var _cartItemsLiveData = MutableLiveData<Resource<ProductResponse>>()
     val cartItemsLiveData: LiveData<Resource<ProductResponse>> get() = _cartItemsLiveData
 
