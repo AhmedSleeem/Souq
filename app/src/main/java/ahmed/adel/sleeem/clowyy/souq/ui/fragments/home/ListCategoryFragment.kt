@@ -69,7 +69,11 @@ class ListCategoryFragment : Fragment() {
                     binding.categoryListRv.visibility = View.GONE
                 }
                 Resource.Status.ERROR ->{
-                    Toast.makeText(requireContext(),it.message, Toast.LENGTH_LONG).show()
+                    val errorMessage = when (it.message?.toInt()) {
+                        400 -> "No Internet Connection"
+                        else -> "Server Interrupted"
+                    }
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
                     binding.itemProgress.hideShimmerAdapter()
                 }
                 Resource.Status.SUCCESS->{

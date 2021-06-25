@@ -34,10 +34,15 @@ class ColorRecylerAdapter (private var colors:List<String> ,val context : Contex
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val drawable = AppCompatResources.getDrawable(context,R.drawable.circle_shape)
-        val com = DrawableCompat.wrap(drawable!!)
-        DrawableCompat.setTint(com,Color.parseColor(colors[position]))
-//        holder.imageView.setBackgroundColor(Color.parseColor(colors[position]))
+//        val drawable = AppCompatResources.getDrawable(context,R.drawable.circle_shape)
+//        val com = DrawableCompat.wrap(drawable!!)
+//        DrawableCompat.setTint(com,Color.parseColor(colors[position]))
+        if (!colors.isEmpty()){
+            holder.imageView.setBackgroundColor(Color.parseColor(colors[position]))
+        }else{
+            holder.imageView.setBackgroundColor(Color.BLUE)
+        }
+
 
 
         if(setOnItemClickListner !=null){

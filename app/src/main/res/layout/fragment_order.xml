@@ -60,6 +60,8 @@
 
         <TextView
             android:id="@+id/textView6"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/please_check_your_internet_connection"

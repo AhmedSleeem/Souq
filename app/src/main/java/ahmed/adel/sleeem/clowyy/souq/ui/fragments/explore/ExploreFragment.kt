@@ -160,7 +160,7 @@ class ExploreFragment : Fragment(), OnNetworkListener {
     }
 
     override fun onNetworkConnected() {
-        Toast.makeText(requireContext(), "Internet Connected", Toast.LENGTH_LONG).show()
+        //Toast.makeText(requireContext(), "Internet Connected", Toast.LENGTH_LONG).show()
     }
 
     override fun onNetworkDisconnected() {

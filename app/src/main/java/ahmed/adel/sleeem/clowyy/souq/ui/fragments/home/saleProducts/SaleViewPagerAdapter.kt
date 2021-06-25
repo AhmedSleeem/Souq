@@ -3,10 +3,12 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.saleProducts
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.ItemSaleViewpagerBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.HomeFragmentDirections
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -38,7 +40,8 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
 
             binding.saleTitleVp.text = product.sale.type
             setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_offerFragment)
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(product,null)
+                it?.findNavController()?.navigate(action)
             }
         }
     }

@@ -122,6 +122,13 @@ class WriteReviewFragment : Fragment() {
                     }
 
                 }
+                Resource.Status.ERROR ->{
+                    val errorMessage = when (it.message?.toInt()) {
+                        400 -> "No Internet Connection"
+                        else -> "Server Interrupted"
+                    }
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
+                }
             }
         })
 
@@ -133,6 +140,13 @@ class WriteReviewFragment : Fragment() {
                         view.findNavController().navigate(action)
                     }
                 }
+                Resource.Status.ERROR ->{
+                    val errorMessage = when (it.message?.toInt()) {
+                        400 -> "No Internet Connection"
+                        else -> "Server Interrupted"
+                    }
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
+                }
             }
         })
 
@@ -143,6 +157,13 @@ class WriteReviewFragment : Fragment() {
                         val action = WriteReviewFragmentDirections.actionWriteReviewFragmentToReviewFragment(args.productId,args.reviewResponse)
                         view.findNavController().navigate(action)
                     }
+                }
+                Resource.Status.ERROR ->{
+                    val errorMessage = when (it.message?.toInt()) {
+                        400 -> "No Internet Connection"
+                        else -> "Server Interrupted"
+                    }
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
                 }
             }
         })

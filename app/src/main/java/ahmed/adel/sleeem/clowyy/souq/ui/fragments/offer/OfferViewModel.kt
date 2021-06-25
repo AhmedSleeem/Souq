@@ -29,7 +29,7 @@ class OfferViewModel : ViewModel() {
                 }
                 filterLiveData.value = Resource.success(data = data);
             } else {
-                itemsLiveData.value = Resource.error(response.errorBody().toString())
+                itemsLiveData.value = Resource.error(response.code().toString())
             }
         } catch (e: Exception) {
             itemsLiveData.value = Resource.error(e.message.toString())

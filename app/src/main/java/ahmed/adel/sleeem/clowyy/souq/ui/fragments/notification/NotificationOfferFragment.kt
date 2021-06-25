@@ -39,8 +39,6 @@ class NotificationOfferFragment : Fragment() {
         }
         adapter = NotificationsRecyclerAdapter(data,isOffer = true);
         binding.offersRv.adapter = adapter
-
-
     }
 
 }
