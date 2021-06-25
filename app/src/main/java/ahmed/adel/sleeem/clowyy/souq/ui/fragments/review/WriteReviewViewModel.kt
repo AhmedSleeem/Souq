@@ -13,8 +13,9 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
+import java.net.SocketTimeoutException
 
-class WriteReviewViewModel(application: Application):AndroidViewModel(application) {
+class WriteReviewViewModel(application: Application) : AndroidViewModel(application) {
 
     private var _addReviewLiveData = MutableLiveData<Resource<ReviewResponse.Item>>()
     val addReviewLiveData: LiveData<Resource<ReviewResponse.Item>> get() = _addReviewLiveData
@@ -26,51 +27,63 @@ class WriteReviewViewModel(application: Application):AndroidViewModel(applicatio
     val deleteReviewLiveData: LiveData<Resource<DeleteReviewResponse>> get() = _deleteReviewLiveData
 
 
-
-
-
-    fun addReview(reviewRequest: ReviewRequest){
+    fun addReview(reviewRequest: ReviewRequest) {
         viewModelScope.launch {
-            _addReviewLiveData.value = Resource.loading(null)
-            val response = RetrofitHandler.getItemWebService().postReview(reviewRequest)
-            if (response.isSuccessful){
-                if (response.body() != null) {
-                    _addReviewLiveData.value = Resource.success(response.body()!!)
+            try {
+                _addReviewLiveData.value = Resource.loading(null)
+                val response = RetrofitHandler.getItemWebService().postReview(reviewRequest)
+                if (response.isSuccessful) {
+                    if (response.body() != null) {
+                        _addReviewLiveData.value = Resource.success(response.body()!!)
+                    } else
+                        _addReviewLiveData.value = Resource.error("empty");
+                } else {
+                    _addReviewLiveData.value = Resource.error(response.code().toString());
                 }
-                else
-                    _addReviewLiveData.value = Resource.error("empty");
-            }else{
-                    _addReviewLiveData.value = Resource.error(response.errorBody().toString());
+            } catch (e: SocketTimeoutException) {
+                _addReviewLiveData.value = Resource.error("No Internet Connection")
+            } catch (ex: Exception) {
+                _addReviewLiveData.value = Resource.error("Error happen. try again ")
             }
         }
     }
 
-    fun modifyReview(modifyReviewRequest: ModifyReviewRequest){
+    fun modifyReview(modifyReviewRequest: ModifyReviewRequest) {
 
         viewModelScope.launch {
-            _modifyReviewLiveData.value = Resource.loading(null)
-            val response = RetrofitHandler.getItemWebService().modifyReview(modifyReviewRequest)
-            if (response.isSuccessful){
-                if (response.body() != null) {
-                    _modifyReviewLiveData.value = Resource.success(response.body()!!)
+            try {
+                _modifyReviewLiveData.value = Resource.loading(null)
+                val response = RetrofitHandler.getItemWebService().modifyReview(modifyReviewRequest)
+                if (response.isSuccessful) {
+                    if (response.body() != null) {
+                        _modifyReviewLiveData.value = Resource.success(response.body()!!)
+                    } else
+                        _modifyReviewLiveData.value = Resource.error("empty");
+                } else {
+                    _modifyReviewLiveData.value = Resource.error(response.code().toString());
                 }
-                else
-                    _modifyReviewLiveData.value = Resource.error("empty");
-            }else{
-                    _modifyReviewLiveData.value = Resource.error(response.errorBody().toString());
+            } catch (e: SocketTimeoutException) {
+                _modifyReviewLiveData.value = Resource.error("No Internet Connection")
+            } catch (ex: Exception) {
+                _modifyReviewLiveData.value = Resource.error("Error happen. try again ")
             }
         }
     }
 
-    fun deleteReview(deleteReviewRequest: DeleteReviewRequest){
+    fun deleteReview(deleteReviewRequest: DeleteReviewRequest) {
         viewModelScope.launch {
-            _deleteReviewLiveData.value = Resource.loading(null)
-            val response = RetrofitHandler.getItemWebService().deleteReview(deleteReviewRequest)
-            if (response.isSuccessful)
+            try {
+                _deleteReviewLiveData.value = Resource.loading(null)
+                val response = RetrofitHandler.getItemWebService().deleteReview(deleteReviewRequest)
+                if (response.isSuccessful)
                     _deleteReviewLiveData.value = Resource.success(response.body()!!)
-            else
-                _deleteReviewLiveData.value = Resource.error(response.errorBody().toString());
-
+                else
+                    _deleteReviewLiveData.value = Resource.error(response.code().toString());
+            } catch (e: SocketTimeoutException) {
+                _deleteReviewLiveData.value = Resource.error("No Internet Connection")
+            } catch (ex: Exception) {
+                _deleteReviewLiveData.value = Resource.error("Error happen. try again ")
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import java.net.SocketTimeoutException
 
 class OrderViewModel : ViewModel() {
     private val _orders = MutableLiveData<Resource<OrdersByIdResponse>>()
@@ -23,8 +24,10 @@ class OrderViewModel : ViewModel() {
             } else {
                 _orders.value = Resource.error("You have no order ")
             }
-        }catch (e:Exception){
+        }catch (e:SocketTimeoutException){
             _orders.value = Resource.error(e.message.toString())
+        }catch (e:Exception){
+            _orders.value = Resource.error("Connecting Failed, Please Try Again...")
         }
 
     }

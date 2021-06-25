@@ -40,9 +40,9 @@ class OrderProductsRecyclerAdapter(val listener: (View, ItemResponse, Int) -> Un
             binding.descCartTextView.text = item[0].title
             binding.priceCartTextView.text = item[0].price.toString()
 
-            binding.favoriteCartImageView.setOnClickListener {
-                listener.invoke(it, item, adapterPosition)
-            }
+//            binding.favoriteCartImageView.setOnClickListener {
+//                listener.invoke(it, item, adapterPosition)
+//            }
             // binding.favoriteCartImageView.setImageResource(R.drawable.ic_love)
 
             // binding.favoriteCartImageView.setImageResource(R.drawable.ic_love_gray)

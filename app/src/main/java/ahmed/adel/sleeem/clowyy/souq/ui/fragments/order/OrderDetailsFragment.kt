@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
@@ -73,7 +74,10 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
         binding.itemsPriceTv.text = "\$${order.totalPrice}"
         val total = order.totalPrice + order.importCharge + shippingPrice
         binding.totalPrice.text = "\$${total}"
-
+        binding.retryButton.setOnClickListener {
+            val action = OrderDetailsFragmentDirections.actionOrderDetailsFragmentSelf(order)
+            it.findNavController().navigate(action)
+        }
         binding.button.setOnClickListener(this)
     }
 
@@ -172,7 +176,7 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
         when (v) {
             binding.button -> {
                 if (checkStatus()) {
-                    viewModel.deleteOrderById(DeleteOrderRequest(order._id))
+
                     showConfirmDeleteDialog()
                 } else {
                     Snackbar.make(
@@ -190,6 +194,7 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
             .setTitle("CANCEL ORDER")
             .setMessage("Be Careful You Will Delete your Order .")
             .setPositiveButton("Yes") { dialogInterface, which ->
+                viewModel.deleteOrderById(DeleteOrderRequest(order._id))
                 deleteOrder()
             }
             .setNegativeButton("No") { dialogInterface, which ->
@@ -204,7 +209,8 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
 
                 }
                 Resource.Status.ERROR -> {
-                    Toast.makeText(requireContext(), "Deleted Failed", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG)
+                        .show()
                 }
                 Resource.Status.SUCCESS -> {
 

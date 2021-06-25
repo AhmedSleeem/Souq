@@ -43,10 +43,10 @@ class OrderDetailsViewModel : ViewModel() {
                 if (response.body() != null)
                     deleteOrder.value = Resource.success(response.body()!!)
             } else {
-                deleteOrder.value = Resource.error(response.errorBody().toString())
+                deleteOrder.value = Resource.error("Deleted Failed")
             }
         } catch (e: Exception) {
-            deleteOrder.value = Resource.error(e.message.toString())
+            deleteOrder.value = Resource.error("Internet Connection Bad")
         }
 
     }

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_90sdp"
+    android:layout_marginBottom="@dimen/_4sdp"
     android:background="@drawable/register_custom_edittext_shape"
-    android:padding="@dimen/_8sdp"
-    android:layout_marginBottom="@dimen/_4sdp">
+    android:padding="@dimen/_8sdp">
 
     <ImageView
         android:id="@+id/itemCartImageView"
@@ -23,6 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/_25sdp"
         android:fontFamily="@font/poppins_bold"
         android:textSize="@dimen/_12ssp"
@@ -37,28 +38,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:paddingBottom="@dimen/_5sdp"
         android:layout_marginLeft="12dp"
         android:fontFamily="@font/poppins_bold"
+        android:paddingBottom="@dimen/_5sdp"
         android:textColor="@color/primaryBlue"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="@+id/itemCartImageView"
         app:layout_constraintStart_toEndOf="@+id/itemCartImageView"
-        app:layout_constraintTop_toBottomOf="@+id/itemCartImageView"
+        app:layout_constraintTop_toBottomOf="@+id/descCartTextView"
         tools:text="$299,43" />
 
 
-    <ImageView
-        android:id="@+id/favoriteCartImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_love"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/descCartTextView" />
-
-
-
-
+    <!--    <ImageView-->
+    <!--        android:id="@+id/favoriteCartImageView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/ic_love"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/descCartTextView" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
