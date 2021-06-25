@@ -3,9 +3,11 @@ package ahmed.adel.sleeem.clowyy.souq.room.cart;
 import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Cart_Table")
+@Entity(tableName = "Cart_Table" , indices = arrayOf(Index(value = ["itemId", "userId"],
+    unique = true)))
 data class Cart(
 
     @PrimaryKey(autoGenerate = true)

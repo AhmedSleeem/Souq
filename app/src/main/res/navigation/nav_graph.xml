@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_homeFragment_self"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_offerFragment"
+            app:destination="@id/offerFragment" />
     </fragment>
     <fragment
         android:id="@+id/offerFragment"

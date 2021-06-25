@@ -38,7 +38,7 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
 
             binding.saleTitleVp.text = product.sale.type
             setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_detailsFragment)
+                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_offerFragment)
             }
         }
     }

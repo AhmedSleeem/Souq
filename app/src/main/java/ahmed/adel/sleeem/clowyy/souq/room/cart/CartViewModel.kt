@@ -5,6 +5,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class CartViewModel(application: Application) : AndroidViewModel(application) {
@@ -17,9 +18,12 @@ class CartViewModel(application: Application) : AndroidViewModel(application) {
 
    var userFavorites = cartRepo.userFavorites;
 
-    fun insert(cart:Cart) = viewModelScope.launch {
-            cartRepo.insertCartItem(cart);
+   suspend fun insert(cart:Cart) : Long {
+        val row = viewModelScope.async {
+            cartRepo.insertCartItem(cart)
         }
+        return row.await()
+    }
 
     fun update(cart:Cart) = viewModelScope.launch {
         cartRepo.updateCartItem(cart);

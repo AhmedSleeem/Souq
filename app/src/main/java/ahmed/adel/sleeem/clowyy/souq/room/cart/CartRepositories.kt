@@ -17,8 +17,8 @@ class CartRepositories(private  val cartDAO: CartDAO,private val context: Contex
 
 
 
-    suspend fun insertCartItem(item: Cart){
-        cartDAO.insertCartItem(item);
+    suspend fun insertCartItem(item: Cart) : Long{
+        return cartDAO.insertCartItem(item);
     }
     suspend fun deleteAll(){
         cartDAO.deleteAll();

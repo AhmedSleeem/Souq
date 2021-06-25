@@ -3,6 +3,7 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentSearchSucceedBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.FilterParams
+import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.adapter.SearchSucceedAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore.bottomDialog.*
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
@@ -14,6 +15,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mancj.materialsearchbar.MaterialSearchBar
@@ -55,6 +57,14 @@ class SearchSucceedFragment : Fragment() , View.OnClickListener  {
         binding.searchRv.adapter = searchRecyclerAdapter
         searchByStatus()
 
+
+        searchRecyclerAdapter.itemClickListener = object : SearchSucceedAdapter.ItemClickListener{
+            override fun onClick(view: View, item: ProductResponse.Item) {
+                val action = SearchSucceedFragmentDirections.actionSearchSucceedFragmentToDetailsFragment(item,null)
+                view.findNavController().navigate(action)
+            }
+
+        }
 
         //init searchView
         binding.searchBar.setOnSearchActionListener(object : MaterialSearchBar.OnSearchActionListener{

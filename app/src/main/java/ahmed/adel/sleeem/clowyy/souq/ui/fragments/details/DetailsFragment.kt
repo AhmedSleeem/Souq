@@ -9,6 +9,7 @@ import ahmed.adel.sleeem.clowyy.souq.room.FavouriteViewModelRoom
 import ahmed.adel.sleeem.clowyy.souq.room.cart.Cart
 import ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ColorRecylerAdapter
+import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.RecommendedDetailsRA
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.SizeRecyclerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.adapter.ViewPagerAdapter
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.home.recommended.RecommendedAdapter
@@ -48,7 +49,7 @@ class DetailsFragment : Fragment() {
     private lateinit var selectSizeAdapter: SizeRecyclerAdapter
     private lateinit var colorAdapter: ColorRecylerAdapter
     private lateinit var binding: FragmentDetailsBinding
-    private lateinit var recommendRecyclerAdapter: RecommendedAdapter
+    private lateinit var recommendRecyclerAdapter: RecommendedDetailsRA
     private lateinit var reviewRecyclerAdapter: ReviewAdapter
     private lateinit var viewModel: DetailsViewModel
     private val args by navArgs<DetailsFragmentArgs>()
@@ -95,8 +96,8 @@ class DetailsFragment : Fragment() {
 
         cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java);
 
-//        recommendRecyclerAdapter = RecommendedRecyclerAdapter(requireContext())
-//        binding.recommend.adapter = recommendRecyclerAdapter
+        recommendRecyclerAdapter = RecommendedDetailsRA(requireContext())
+        binding.recommend.adapter = recommendRecyclerAdapter
 
 
 
@@ -197,13 +198,13 @@ class DetailsFragment : Fragment() {
         }
 
 
-//        recommendRecyclerAdapter.itemClickListener =
-//            object : RecommendedRecyclerAdapter.ItemClickListener {
-//                override fun onClick(view: View, item: ProductResponse.Item) {
-//                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(item)
-//                    view.findNavController().navigate(action)
-//                }
-//            }
+        recommendRecyclerAdapter.itemClickListener =
+            object : RecommendedDetailsRA.ItemClickListener {
+                override fun onClick(view: View, item: ProductResponse.Item) {
+                    val action = DetailsFragmentDirections.actionDetailsFragmentSelf(item , null)
+                    view.findNavController().navigate(action)
+                }
+            }
 
         binding.morweReviews.setOnClickListener {
             val action = DetailsFragmentDirections.actionDetailsFragmentToReviewFragment(item!!.id.toString())
@@ -226,11 +227,19 @@ class DetailsFragment : Fragment() {
                         item!!.countOfSelectedItem,item!!.price,item!!.image,user._id!!
                         ,item!!.selectedColor!!,item!!.selectedSize!!,item!!.companyName);
 
-                    cartViewModel.insert(car);
+                    var count : Long = 0
+                    CoroutineScope(Dispatchers.IO).launch {
+                      count = cartViewModel.insert(car);
+                        withContext(Dispatchers.Main){
+                            if (count > 0){
+                                badgeCount++
+                                setOnCountChangeListener?.onChange(badgeCount)
+                            }
+                        }
+                    }
 
 //                    CartRoom.cartList.add(item!!)
-                    badgeCount++
-                    setOnCountChangeListener?.onChange(badgeCount)
+
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -247,10 +256,17 @@ class DetailsFragment : Fragment() {
                     item!!.countOfSelectedItem,item!!.price,item!!.image,user._id!!
                 ,"","",item!!.companyName);
 
-                cartViewModel.insert(car);
+                var count : Long = 0
+                CoroutineScope(Dispatchers.IO).launch {
+                    count = cartViewModel.insert(car);
+                    withContext(Dispatchers.Main) {
+                        if (count > 0) {
+                            badgeCount++
+                            setOnCountChangeListener?.onChange(badgeCount)
+                        }
+                    }
+                }
 
-                badgeCount++
-                setOnCountChangeListener?.onChange(badgeCount)
             }
 
 
@@ -283,7 +299,6 @@ class DetailsFragment : Fragment() {
 
         viewModel.filterLiveData.observe(requireActivity(), Observer {
             when (it.status) {
-
                 Resource.Status.LOADING -> {
                     Log.e("sssss", "Loading........")
                     binding.recommendedProgress.visibility = View.VISIBLE
@@ -295,8 +310,7 @@ class DetailsFragment : Fragment() {
                 Resource.Status.SUCCESS -> {
                     it.data.let {
                         binding.recommendedProgress.visibility = View.GONE
-//                        recommendRecyclerAdapter.changeData(it!!)
-//                        saleData = it
+                        recommendRecyclerAdapter.changeData(it!!)
                     }
                 }
             }

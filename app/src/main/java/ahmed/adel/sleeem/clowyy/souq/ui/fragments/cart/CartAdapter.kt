@@ -6,6 +6,7 @@ import ahmed.adel.sleeem.clowyy.souq.databinding.ItemCartBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.room.cart.Cart
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,15 +79,18 @@ class CartAdapter(var context : Context) :
 
 
                 binding.deleteItemBtn.setOnClickListener{
-                    if(setOnItemClickListner != null)
-                        setOnItemClickListner!!.onClick(it , item , position)
+                    if(setOnItemClickListner != null) {
+                        setOnItemClickListner!!.onClick(it, item, position)
+                        notifyItemRemoved(position)
+                        Log.e("TAG", "delete", )
+                    }
                 }
 
                 binding.addBtn.setOnClickListener {
                     if(item.count < item.count+10)
                         items[position].count++
                     if(setOnCountClickListner != null){
-                        setOnCountClickListner!!.onClick()
+                        setOnCountClickListner!!.onClick(item)
                     }
                     notifyItemChanged(position)
                 }
@@ -95,7 +99,7 @@ class CartAdapter(var context : Context) :
                     if(item.count > 0)
                         items[position].count--
                     if(setOnCountClickListner != null){
-                        setOnCountClickListner!!.onClick()
+                        setOnCountClickListner!!.onClick(item)
                     }
                     notifyItemChanged(position)
                 }
@@ -136,7 +140,7 @@ class CartAdapter(var context : Context) :
         fun onClick(view: View, item: Cart, position: Int)
     }
     interface CountClickListner{
-        fun onClick()
+        fun onClick(item: Cart)
     }
 
 }

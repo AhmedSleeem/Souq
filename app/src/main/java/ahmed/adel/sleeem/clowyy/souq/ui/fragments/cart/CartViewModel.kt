@@ -39,7 +39,6 @@ class CartViewModel(context : Application) : AndroidViewModel(context) {
 
 
     fun delete(){
-
         cartList = carRepo.userFavorites.distinctUntilChanged()
     }
 

@@ -5,7 +5,7 @@ import ahmed.adel.sleeem.clowyy.souq.room.cart.CartDAO
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [FavouriteItem::class,Cart::class], version = 9 , exportSchema = false)
+@Database(entities = [FavouriteItem::class,Cart::class], version = 11 , exportSchema = false)
 abstract class FavouriteDatabase : RoomDatabase() {
     abstract fun favouriteDao(): FavouriteDao
     abstract fun cartDao():CartDAO

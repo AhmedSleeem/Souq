@@ -122,26 +122,21 @@ class CartFragment : Fragment(),View.OnClickListener {
 //                when (view) {
                     adapter.viewBinding.deleteItemBtn.setOnClickListener {
 //                        CartRoom.cartList.remove(item)
-
                         Log.i( "onClick:"," delete cart");
-
                         val user = LoginUtils.getInstance(requireContext())!!.userInfo()
-
-                        cartViewModel.delete(user._id!!, item.id.toString());
-
-                        viewModel.delete();
-                        adapter.notifyItemRemoved(position);
-
+                        cartViewModel.delete(user._id!!, item.itemId.toString());
                         DetailsFragment.badgeCount--
                         DetailsFragment.setOnCountChangeListener?.onChange(DetailsFragment.badgeCount)
                         calculateTotalPrice()
+                        adapter.notifyItemRemoved(position)
                     }
 //                }
             }
         }
 
         adapter.setOnCountClickListner = object : CartAdapter.CountClickListner {
-            override fun onClick() {
+            override fun onClick(item : Cart) {
+                cartViewModel.update(item)
                 calculateTotalPrice()
             }
 

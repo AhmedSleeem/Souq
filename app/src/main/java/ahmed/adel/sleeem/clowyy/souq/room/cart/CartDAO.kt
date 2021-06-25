@@ -3,14 +3,15 @@ package ahmed.adel.sleeem.clowyy.souq.room.cart;
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.google.firebase.auth.ktx.actionCodeSettings
 
 
 @Dao
 interface CartDAO {
 
 
-    @Insert
-    suspend fun insertCartItem(item: Cart);
+    @Insert(onConflict = OnConflictStrategy.IGNORE )
+    suspend fun insertCartItem(item: Cart) : Long;
 
     @Update
     suspend fun updateCartItem(item:Cart);
