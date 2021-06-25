@@ -77,11 +77,10 @@ class CartAdapter(var context : Context) :
                 .placeholder(R.drawable.ic_logo)
                 .into(binding.itemCartImageView)
 
-
+            if(setOnItemClickListner != null) {
                 binding.deleteItemBtn.setOnClickListener{
-                    if(setOnItemClickListner != null) {
                         setOnItemClickListner!!.onClick(it, item, position)
-                        notifyItemRemoved(position)
+
                         Log.e("TAG", "delete", )
                     }
                 }
