@@ -213,7 +213,7 @@ class DetailsFragment : Fragment() {
 
         // add to cart action
         binding.addToCartBtn.setOnClickListener{
-            if((item!!.color != null && !item!!.color.isEmpty() ) || (item!!.size != null && !item!!.size.isEmpty() )) {
+            if((item!!.color != null && item!!.color.size !=0) && (item!!.size != null && item!!.size.size !=0 )) {
 
                 if (item!!.selectedColor != null && item!!.selectedSize != null) {
                     item!!.countOfSelectedItem = 1

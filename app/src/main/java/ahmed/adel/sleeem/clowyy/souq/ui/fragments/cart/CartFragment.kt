@@ -43,13 +43,14 @@ class CartFragment : Fragment(),View.OnClickListener {
     private var cuponeValue: Int = 0
     private lateinit var itemsStr :String
     private lateinit var cartViewModel: ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel
-
+private lateinit var uId : String
     private val binding get() = _binding!!
     val quotes = arrayOf("order id")
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         itemsStr =context.resources.getString(R.string.items)
+        uId =LoginUtils.getInstance(requireActivity())!!.userInfo()._id!!
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -93,23 +94,23 @@ class CartFragment : Fragment(),View.OnClickListener {
         orderRequest = OrderRequest(itemIds = orderRequestItemIdsList)
         orderRequestItemId = OrderRequest.ItemId()
 
-//        cartViewModel.userFavorites.observe(requireActivity()) {
-//
-//            orderRequest.orderCode = getRandomString(10)
-//            for (item in it) {
-//                orderRequestItemId.id = item.id.toString()
-//                orderRequestItemId.companyName = item.companyName
-//                orderRequestItemId.color = item.color
-//                orderRequestItemId.count = item.count
-//                orderRequestItemId.size = item.size
-//                orderRequestItemIdsList.add(orderRequestItemId)
-//            }
-//            orderRequest.itemIds = orderRequestItemIdsList
-//            orderRequest.userId = LoginUtils.getInstance(requireActivity())!!.userInfo()._id!!
-//            orderRequest.orderDate = date
-//            orderRequest.totalPrice = totalPrice.toDouble()
-//
-//        }
+        cartViewModel.userFavorites.observe(requireActivity()) {
+
+            orderRequest.orderCode = getRandomString(10)
+            for (item in it) {
+                orderRequestItemId.id = item.id.toString()
+                orderRequestItemId.companyName = item.companyName
+                orderRequestItemId.color = item.color
+                orderRequestItemId.count = item.count
+                orderRequestItemId.size = item.size
+                orderRequestItemIdsList.add(orderRequestItemId)
+            }
+            orderRequest.itemIds = orderRequestItemIdsList
+            orderRequest.userId = uId
+            orderRequest.orderDate = date
+            orderRequest.totalPrice = totalPrice.toDouble()
+
+        }
 
 
 //

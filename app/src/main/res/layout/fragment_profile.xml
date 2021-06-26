@@ -136,7 +136,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/layout_style"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gender_layout">
 
@@ -152,7 +151,6 @@
             android:src="@drawable/ic_date"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/offer_txt"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -205,7 +203,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/layout_style"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthday_layout">
 
@@ -276,7 +273,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/layout_style"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/address_layout">
 
