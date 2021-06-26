@@ -59,7 +59,7 @@
     <string name="enter_cupon_code">Enter Cupon Code</string>
 
     <string name="check_out">Check Out</string>
-    <string name="thank_you_for_shopping_using_lafyuu">thank you for shopping using lafyuu</string>
+    <string name="thank_you_for_shopping_using_lafyuu">thank you for shopping using Sel3a</string>
     <string name="back_to_order">Back To Order</string>
     <string name="ship_to">Ship To</string>
     <string name="edit">Edit</string>
@@ -71,7 +71,7 @@
 
     <string name="notification">Notification</string>
     <string name="product_not_found">Product Not Found</string>
-    <string name="thanks_for_shopping">thank you for shopping using lafyuu</string>
+    <string name="thanks_for_shopping">thank you for shopping using Sel3a</string>
     <string name="back_to_home">Back to Home</string>
     <string name="result_0">0 Result</string>
     <string name="result">Result</string>
@@ -155,7 +155,7 @@
     <string name="total_price">Total Price</string>
     <string name="notify_me">Notify Me</string>
     <string name="_90_off_super_mega_sale">90% Off Super Mega Sale</string>
-    <string name="special_birthday_lafyuu">Special birthday Lafyuu</string>
+    <string name="special_birthday_lafyuu">Special birthday Sel3a</string>
     <string name="use_megsl_cupon_for_get_90_off">Use “MEGSL” Cupon For Get 90%off</string>
     <string name="addaddress">Add Address</string>
     <string name="country">Country or region *</string>

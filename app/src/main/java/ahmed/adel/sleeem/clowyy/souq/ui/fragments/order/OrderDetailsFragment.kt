@@ -69,11 +69,11 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
             itemsPrice += itm.count
         }
         binding.itemsTv.text = requireContext().resources.getString(R.string.items)+" ($itemsCount)"
-        binding.shippingPriceTv.text = "\$$shippingPrice"
-        binding.importChargesTv.text = "\$${order.importCharge}"
-        binding.itemsPriceTv.text = "\$${order.totalPrice}"
+        binding.shippingPriceTv.text = "$shippingPrice EGP"
+        binding.importChargesTv.text = "${order.importCharge} EGP"
+        binding.itemsPriceTv.text = String.format("%.2f", order.totalPrice) + " Egp"
         val total = order.totalPrice + order.importCharge + shippingPrice
-        binding.totalPrice.text = "\$${total}"
+        binding.totalPrice.text = String.format("%.2f", total) + " Egp"
         binding.retryButton.setOnClickListener {
             val action = OrderDetailsFragmentDirections.actionOrderDetailsFragmentSelf(order)
             it.findNavController().navigate(action)

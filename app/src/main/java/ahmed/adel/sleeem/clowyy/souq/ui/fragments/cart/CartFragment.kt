@@ -77,11 +77,6 @@ private lateinit var uId : String
         currentCupone = CuponeUtils(requireContext()).getCupone() ?: Cupone()
         viewModel.getCartItems()
 
-        if (CartRoom.cartList.size != 0) {
-            binding.shippingTv.text = "13.0 Egp"
-        } else {
-            binding.shippingTv.text = "0.0 Egp"
-        }
 
         cartViewModel =
             ViewModelProvider(this).get(ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel::class.java);

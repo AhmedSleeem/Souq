@@ -24,7 +24,7 @@ class OrderRecyclerAdapter(val listener: (View, OrdersByIdResponse.OrderResponse
             binding.orderId.text = item.orderCode
             binding.orderDate.text = "Order at Sell3a : "+item.orderDate
             binding.orderStatus.text = item.orderState
-            binding.orderPrice.text = item.totalPrice.toString()
+            binding.orderPrice.text = String.format("%.2f", item.totalPrice) + " Egp"
             var itemsCount = 0.0
             for (itm in item.itemIds) {
                 itemsCount += itm.count

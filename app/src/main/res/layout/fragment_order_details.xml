@@ -462,7 +462,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:text="$598.86"
+                                android:text="598.0 EGP "
                                 android:textSize="@dimen/_12ssp" />
 
                             <TextView
@@ -471,7 +471,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:text="$40.00"
+                                android:text="40.0 EGP"
                                 android:textSize="@dimen/_12ssp" />
 
                             <TextView
@@ -480,7 +480,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:text="$128.00"
+                                android:text="128.0 EGP"
                                 android:textSize="@dimen/_12ssp" />
 
                         </LinearLayout>

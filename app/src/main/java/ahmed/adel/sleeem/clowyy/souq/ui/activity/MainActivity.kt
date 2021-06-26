@@ -68,12 +68,6 @@ class MainActivity : AppCompatActivity() , OnBadgeChangeListener {
         }
         DetailsFragment.setOnCountChangeListener = this
 
-        if(!isFirstRunning()) {
-            this.findNavController(R.id.navHost)
-                .navigate(R.id.action_homeFragment_to_viewPagerFragment)
-//            val navBar: BottomNavigationView = getActivity().findViewById(R.id.bottomBar)
-            binding.bottomNavView.visibility = View.GONE
-        }
 
 
         startService(Intent(applicationContext,MyService::class.java));
