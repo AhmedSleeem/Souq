@@ -181,7 +181,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="13.0 Egp"
+                android:text="@string/_13_0_egp"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/product_name_tv"
                 app:layout_constraintEnd_toEndOf="@+id/view6"

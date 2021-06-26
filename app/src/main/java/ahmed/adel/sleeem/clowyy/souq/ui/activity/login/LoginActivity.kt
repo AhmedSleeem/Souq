@@ -31,7 +31,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
-    private  val TAG = "LoginActivity"
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 121
     private lateinit var auth: FirebaseAuth
@@ -50,7 +49,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setGooglePlusButtonText(binding.googleSignIn,"Sign in with Google"+"       ")
+        setGooglePlusButtonText(binding.googleSignIn,getString(R.string.googleLogin)+"       ")
         val email = LoginUtils.getInstance(this)?.userInfo()?.email ?: ""
         val password = LoginUtils.getInstance(this)?.userInfo()?.password ?: ""
         binding.emailLoginEditText.setText(email)
@@ -115,7 +114,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 firebaseAuthWithGoogle(account!!.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed" + e.localizedMessage.toString())
+                    Toast.makeText(this,"Google sign in failed :"+e.localizedMessage.toString(),Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -126,12 +125,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    Toast.makeText(this,"signInWithCredential:failure",Toast.LENGTH_LONG).show()
                     updateUI(null)
                 }
             }
@@ -140,7 +138,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private fun updateUI(firebaseUser: FirebaseUser?) {
-        Log.e("TAG", "onActivityResult: 5")
         val inAccount = GoogleSignIn.getLastSignedInAccount(applicationContext)
         if (inAccount != null) {
             val personName = inAccount.displayName
@@ -171,12 +168,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.login.observe(this, Observer {
             when (it.status) {
                 Resource.Status.LOADING -> {
-                    Log.e("sssss", "Loading........")
                 }
                 Resource.Status.ERROR -> {
                     val errorMessage = when (it.message?.toInt()) {
-                        400 -> "No Internet Connection"
-                        else -> "Server Interrupted"
+                        400 -> getString(R.string.noInternet)
+                        else -> getString(R.string.serverInterrupted)
                     }
                     Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
 

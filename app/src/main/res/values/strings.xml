@@ -10,6 +10,7 @@
     <string name="cart">Cart</string>
     <string name="offer">Offer</string>
     <string name="profile">Profile</string>
+    <string name="action_search">Search</string>
     <string name="see_more">See More</string>
     <string name="recommended_product">Recommended Product</string>
     <string name="we_recommend_the_best_for_you">We recommend the best for you</string>
@@ -29,9 +30,11 @@
     <string name="image">image</string>
     <string name="E_Mail">Your Email</string>
     <string name="create_a_new_account">Create a new account</string>
-    <string name="welcome">Welcome to E-Come</string>
+    <string name="welcome">Welcome to Sell3a</string>
     <string name="or">OR</string>
-    <string name="googleLogin">Login With Google</string>
+    <string name="noInternet">No Internet Connection</string>
+    <string name="serverInterrupted">Server Interrupted</string>
+    <string name="googleLogin">Sign in with Google</string>
     <string name="facebookLogin">Login With Facebook</string>
     <string name="sign">Sign in to Continue</string>
     <string name="forgetPassword">Forget Password?</string>
@@ -60,7 +63,6 @@
     <string name="thank_you_for_shopping_using_lafyuu">thank you for shopping using lafyuu</string>
     <string name="back_to_order">Back To Order</string>
     <string name="ship_to">Ship To</string>
-    <string name="next">Next</string>
     <string name="edit">Edit</string>
     <string name="feed">Feed</string>
     <string name="man_fashion">Man Fashion</string>
@@ -237,5 +239,19 @@
     <string name="language">Language</string>
     <string name="arabic">Arabic</string>
     <string name="english">English</string>
+    <string name="register">Register</string>
+    <string name="_0_egp">0 EGP</string>
+    <string name="_13_0_egp">13.0 Egp</string>
+    <string name="dominic">Dominic</string>
+    <string name="ovo">Ovo</string>
+    <string name="code113_400">CODE113-400</string>
+    <string name="online_shopping">Online shopping</string>
+    <string name="women_fashion_shopping_online_shop_from_a_huge_range_of_latest_women_clothing_shoes_makeup_kits_watches_footwear_and_more_for_women_at_best_price">Women Fashion Shopping Online - Shop from a huge range of latest women clothing, shoes, makeup Kits, Watches, footwear and more for women at best price</string>
+    <string name="next">Next</string>
+    <string name="prev">Prev</string>
+    <string name="add_to_cart_button_works_on_product_pages_the_customizations_in_this_section_compatible_with_dynamic_checkout_buttons">Add to cart button works on product pages. The customizations in this section compatible with dynamic checkout buttons</string>
+    <string name="payment_successful">Payment Successful</string>
+    <string name="your_payment_has_been_successfully_completed_you_will_receive_a_confirmation_email_within_a_few_minutes">Your payment has been successfully completed. You will receive a confirmation email within a few minutes.</string>
+    <string name="finish">Finish</string>
 
 </resources>
