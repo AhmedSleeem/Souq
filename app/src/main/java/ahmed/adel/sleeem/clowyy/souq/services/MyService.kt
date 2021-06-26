@@ -68,6 +68,7 @@ class MyService : Service() {
     override fun onCreate() {
         super.onCreate()
 
+
         //Notification
         notification = Notifications(this);
 
@@ -82,7 +83,10 @@ class MyService : Service() {
 //        mySocket.on("onShipStatusChange", onShipStatusChange);
 
 
-        
+        mySocket.on("newProductAdded", onNewMessage);
+
+        mySocket.on("onShipStatusChange", onShipStatusChange);
+
 
         mySocket.on(Socket.EVENT_CONNECT, Emitter.Listener {
             Log.i(TAG, "onCreate: connected");
@@ -91,9 +95,6 @@ class MyService : Service() {
     }
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        mySocket.on("newProductAdded", onNewMessage);
-
-        mySocket.on("onShipStatusChange", onShipStatusChange);
 
         return super.onStartCommand(intent, flags, startId)
     }

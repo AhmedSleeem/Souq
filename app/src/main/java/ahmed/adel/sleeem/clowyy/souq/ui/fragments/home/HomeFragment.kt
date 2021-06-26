@@ -147,10 +147,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 it.findNavController().navigate(action)
             }
             //listeners
-            binding.notificationIv.setOnClickListener {
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_homeFragment_to_notificationFragment);
-            }
+//            binding.notificationIv.setOnClickListener {
+//                Navigation.findNavController(it)
+//                    .navigate(R.id.action_homeFragment_to_notificationFragment);
+//            }
 
             binding.favoriteIv.setOnClickListener {
                 Navigation.findNavController(it)

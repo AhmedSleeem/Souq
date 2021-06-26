@@ -75,12 +75,11 @@ class DetailsFragment : Fragment() {
         val view = binding.root
 
         if (args.itemData !=null) {
-
-
             item = args.itemData
+            Log.e("TAG", "onCreateView: id =>>"+item!!.id )
             binding.appBar.title = item!!.title
             binding.productNameTv.text = item!!.title
-            binding.ratingBar.rating = (item!!.rating / 2.0f)
+            binding.ratingBar.rating = (item!!.rating / 2.0f).toFloat()
             binding.price.text = item!!.price.toString() + " Egp"
             binding.descriptionTv.text = item!!.description
             binding.companyNameTv.text = item!!.companyName
@@ -179,7 +178,7 @@ class DetailsFragment : Fragment() {
             val user = LoginUtils.getInstance(requireContext())!!.userInfo()
             val fav = FavouriteItem(0,item!!.id.toString(),user._id,
                 item!!.title,item!!.image,
-                item!!.rating,item!!.price,item!!.sale.amount);
+                item!!.rating.toFloat(),item!!.price,item!!.sale!!.amount);
             favoriteViewModel.addItem(fav);
 
             binding.favoritBtnRed.visibility = View.VISIBLE;

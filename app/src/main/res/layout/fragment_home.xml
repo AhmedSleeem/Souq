@@ -24,20 +24,20 @@
             android:layout_marginRight="@dimen/_4sdp"
             android:background="@drawable/layout_style"
             android:padding="@dimen/_4sdp"
-            app:layout_constraintEnd_toStartOf="@id/notification_iv"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
-        <ImageButton
-            android:id="@+id/notification_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:background="@drawable/layout_style"
-            android:padding="@dimen/_4sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_notifications_none_24" />
+<!--        <ImageButton-->
+<!--            android:id="@+id/notification_iv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_4sdp"-->
+<!--            android:background="@drawable/layout_style"-->
+<!--            android:padding="@dimen/_4sdp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/ic_baseline_notifications_none_24" />-->
 
         <com.mancj.materialsearchbar.MaterialSearchBar
             android:id="@+id/searchBar"

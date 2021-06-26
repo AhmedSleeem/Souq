@@ -1,5 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.explore
 
+import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentExploreBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.CategoryResponse
 import ahmed.adel.sleeem.clowyy.souq.receiver.NetworkChangeReceiver
@@ -19,6 +20,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.mancj.materialsearchbar.MaterialSearchBar
 import java.net.SocketTimeoutException
@@ -105,10 +107,10 @@ class ExploreFragment : Fragment(), OnNetworkListener {
 //            Navigation.findNavController(it)
 //                .navigate(R.id.action_exploreFragment_to_searchSucceedFragment);
 //        }
-//        binding.favoriteIv.setOnClickListener {
-//            Navigation.findNavController(it)
-//                .navigate(R.id.action_exploreFragment_to_favoriteFragment);
-//        }
+        binding.favoriteIv.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(R.id.action_exploreFragment_to_favoriteFragment);
+        }
 
         binding.categoryRv.adapter = categoryAdapter
     }

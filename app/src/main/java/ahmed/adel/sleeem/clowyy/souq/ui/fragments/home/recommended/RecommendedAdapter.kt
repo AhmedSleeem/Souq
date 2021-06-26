@@ -47,7 +47,7 @@ class RecommendedAdapter: PagingDataAdapter<ProductResponse.Item, RecommendedAda
                 binding.tvOffPercentage.visibility = View.INVISIBLE
                 binding.tvOldCost.visibility = View.INVISIBLE
             }
-            binding.ratingBar.rating = (product.rating/2.0f)
+            binding.ratingBar.rating = (product.rating/2.0f).toFloat()
 
             if(itemClickListener != null) {
                 setOnClickListener {

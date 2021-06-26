@@ -38,7 +38,7 @@ class SaleViewPagerAdapter(val context:Context) : RecyclerView.Adapter<SaleViewP
                 .centerCrop()
                 .into(binding.imageView)
 
-            binding.saleTitleVp.text = product.sale.type
+            binding.saleTitleVp.text = product.sale!!.type
             setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(product,null)
                 it?.findNavController()?.navigate(action)

@@ -91,8 +91,10 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(OrderDetailsViewModel::class.java)
-        for (odr in order.itemIds)
+        for (odr in order.itemIds) {
+            Log.e("TAG", "initViewModel: id==>>" + odr.id)
             viewModel.getItemsById(odr.id)
+        }
     }
 
     private fun orderStatus(orderState: String) {

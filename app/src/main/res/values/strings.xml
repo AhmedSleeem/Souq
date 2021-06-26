@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Souq</string>
+    <string name="app_name">Sell3a</string>
     <string name="super_flash_sale_n50_off">Super Flash Sale 50% Off</string>
     <string name="category">Category</string>
     <string name="more_category">More Category</string>
@@ -234,5 +234,8 @@
     <string name="please_check_your_internet_connection">Please Check Your Internet Connection</string>
     <string name="oops">Oops!...</string>
     <string name="pay">Pay</string>
+    <string name="language">Language</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
 
 </resources>

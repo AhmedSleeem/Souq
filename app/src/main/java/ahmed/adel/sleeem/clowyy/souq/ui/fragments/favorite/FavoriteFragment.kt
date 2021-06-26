@@ -1,5 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.fragments.favorite
 
+import ahmed.adel.sleeem.clowyy.souq.R
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentFavoriteBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.room.FavouriteItem
@@ -16,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 
 class FavoriteFragment : Fragment() {
@@ -44,7 +46,10 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        binding.appBar.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.appBar.setNavigationOnClickListener {
+            Navigation.findNavController(it).navigateUp()
+        }
         //userViewModel
         favouriteViewModelRoom = ViewModelProvider(this).get(FavouriteViewModelRoom::class.java)
         favouriteViewModelRoom.readAllData.observe(viewLifecycleOwner, Observer {
@@ -61,11 +66,11 @@ class FavoriteFragment : Fragment() {
             override fun onClickItem(view: View, item: FavouriteItem) {
                 itemFav = item
                 initViewModel()
+                getItemById()
 
 
-
-                val action = FavoriteFragmentDirections.actionFavoriteFragmentToDetailsFragment(null,item.itemId)
-                view.findNavController().navigate(action)
+//                val action = FavoriteFragmentDirections.actionFavoriteFragmentToDetailsFragment(null,item.itemId)
+//                view.findNavController().navigate(action)
 //                getItemById()
 //                Log.i("a", item.productName)
 //                Toast.makeText(requireContext(), "item clicked", Toast.LENGTH_SHORT).show()
@@ -77,6 +82,7 @@ class FavoriteFragment : Fragment() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(FavouriteViewModel::class.java)
         viewModel.getItemsById(itemFav.itemId)
+        Log.e("TAG", "initViewModel: idFav ===>>"+itemFav.itemId )
     }
 
     private fun deleteItem(item: FavouriteItem) {
@@ -94,27 +100,32 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun getItemById() {
-        viewModel.item.observe(viewLifecycleOwner, Observer {
+        viewModel.itemFav.observe(viewLifecycleOwner, Observer {
+            Log.e("TAG", "getAllOrders: LOADING"+it.status)
             when (it.status) {
                 Resource.Status.LOADING -> {
                     Log.e("TAG", "getAllOrders: LOADING")
+
                 }
                 Resource.Status.ERROR -> {
                     Log.e("TAG", "getAllOrders: ERROR" + it.message)
 
                 }
                 Resource.Status.SUCCESS -> {
+
                     it.data.let {
-                        Log.e("TAG", "getAllOrders: ERROR" + it?.size)
-//                        val mnem : ProductResponse.Item = ProductResponse.Item(it[0].brand,it[0].category,it[0].color,it[0].companyName,it[0].description,it[0].id,it[0].image,it[0].price)
-//
-//                        val action =
-//                            FavoriteFragmentDirections.actionFavoriteFragmentToDetailsFragment(mnem)
-//                        findNavController().navigate(action)
+                        Log.e("TAG", "getAllOrders: ERRORRRRR" + it?.size)
+                        val cat = ProductResponse.Item.Category(name = it!![0].category.name,url = it!![0].category.url)
+                        val itm =ProductResponse.Item(brand =it!![0].brand ,category = cat ,color =it!![0].color ,
+                            companyName =it!![0].companyName ,description = it!![0].description,id = it!![0].id,image =it!![0].image ,
+                            price =it!![0].price
+                        ,quantity =it!![0].quantity ,rating = it!![0].rating,size =it!![0].size ,title = it!![0].title )
+                        val action =
+                            FavoriteFragmentDirections.actionFavoriteFragmentToDetailsFragment(itm ,null)
+                        requireView().findNavController().navigate(action)
                     }
                 }
             }
         })
     }
-
 }

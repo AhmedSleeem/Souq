@@ -5,9 +5,13 @@ import ahmed.adel.sleeem.clowyy.souq.pojo.request.UserRequist
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.account.ProfileViewModel
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
@@ -17,6 +21,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import java.util.*
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var userRequist: UserRequist
@@ -34,7 +39,7 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
+        setApplicationLanguage()
         // HERE WE ARE TAKING THE REFERENCE OF OUR IMAGE
         // SO THAT WE CAN PERFORM ANIMATION USING THAT IMAGE
         val backgroundImage: ImageView = findViewById(R.id.SplashScreenImage)
@@ -95,6 +100,15 @@ class SplashActivity : AppCompatActivity() {
         })
     }
 
-
+    private fun setApplicationLanguage() {
+        val sharedPreferences = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE)
+        var language = sharedPreferences.getString("langauge", "")
+        if (language == "") language = "en"
+        val res: Resources = this.resources
+        val display: DisplayMetrics = res.getDisplayMetrics()
+        val configuration: Configuration = res.getConfiguration()
+        configuration.locale = Locale(language)
+        res.updateConfiguration(configuration, display)
+    }
 
 }

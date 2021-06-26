@@ -15,68 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/_16sdp"
-        android:layout_marginBottom="@dimen/_16sdp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
-            android:text="08"
-            android:gravity="center"
-            android:textColor="@color/neutralDark"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="@dimen/_16sdp"
-            android:background="@drawable/tv_time_counter_background"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_margin="@dimen/_4sdp"
-            android:text=":"
-            android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/shimmerItemColor"
-            android:textSize="@dimen/_14ssp"/>
-
-        <TextView
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
-            android:text="34"
-            android:gravity="center"
-            android:textColor="@color/neutralDark"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="@dimen/_16sdp"
-            android:background="@drawable/tv_time_counter_background"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_margin="@dimen/_4sdp"
-            android:text=":"
-            android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/shimmerItemColor"
-            android:textSize="@dimen/_14ssp"/>
-
-        <TextView
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
-            android:text="52"
-            android:gravity="center"
-            android:textColor="@color/neutralDark"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="@dimen/_16sdp"
-            android:background="@drawable/tv_time_counter_background"/>
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/sale_title_vp"
         android:layout_width="0dp"

@@ -1,7 +1,6 @@
 package ahmed.adel.sleeem.clowyy.souq.ui.activity.login
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.api.RetrofitHandler
 import ahmed.adel.sleeem.clowyy.souq.databinding.ActivityLoginBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.LoginRequest
 import ahmed.adel.sleeem.clowyy.souq.pojo.response.LoginResponse
@@ -12,28 +11,23 @@ import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -56,7 +50,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        setGooglePlusButtonText(binding.googleSignIn,"Sign in with Google"+"       ")
         val email = LoginUtils.getInstance(this)?.userInfo()?.email ?: ""
         val password = LoginUtils.getInstance(this)?.userInfo()?.password ?: ""
         binding.emailLoginEditText.setText(email)
@@ -93,7 +87,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
+    private fun setGooglePlusButtonText(signInButton: SignInButton, buttonText: String) {
+        for (i in 0 until signInButton.childCount) {
+            val v = signInButton.getChildAt(i)
+            if (v is TextView) {
+                val tv = v
+                tv.gravity = Gravity.CENTER
+                tv.text = buttonText
+                return
+            }
+        }
+    }
     private fun loginUserWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
@@ -111,7 +115,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 firebaseAuthWithGoogle(account!!.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed"+ e.localizedMessage.toString())
+                Log.w(TAG, "Google sign in failed" + e.localizedMessage.toString())
             }
         }
     }
@@ -136,7 +140,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private fun updateUI(firebaseUser: FirebaseUser?) {
-        Log.e("TAG", "onActivityResult: 5", )
+        Log.e("TAG", "onActivityResult: 5")
         val inAccount = GoogleSignIn.getLastSignedInAccount(applicationContext)
         if (inAccount != null) {
             val personName = inAccount.displayName
@@ -150,7 +154,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 "$personName $personFamilyName", "0123456789", personPhoto
             )
             LoginUtils.getInstance(this)!!.saveUserInfo(userResponse)
-            startActivity(Intent(this,RegisterActivity::class.java).putExtra("google","google"))
+            startActivity(Intent(this, RegisterActivity::class.java).putExtra("google", "google"))
         }
     }
 
@@ -170,8 +174,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Log.e("sssss", "Loading........")
                 }
                 Resource.Status.ERROR -> {
-                val errorMessage =    when(it.message?.toInt()){
-                        400  -> "No Internet Connection"
+                    val errorMessage = when (it.message?.toInt()) {
+                        400 -> "No Internet Connection"
                         else -> "Server Interrupted"
                     }
                     Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()

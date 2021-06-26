@@ -161,18 +161,16 @@
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="@+id/textView3" />
 
-        <Button
+        <com.google.android.gms.common.SignInButton
             android:id="@+id/googleSignIn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="@dimen/_12sdp"
             android:drawableStart="@drawable/ic_google"
             android:drawableLeft="@drawable/ic_google"
             android:fontFamily="@font/poppins_bold"
-            android:padding="@dimen/_12sdp"
-            android:text="@string/googleLogin"
             android:textAllCaps="false"
             android:textColor="@color/gray"
             app:background="@drawable/login_button"
@@ -181,18 +179,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/facebookSignIn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:layout_marginEnd="@dimen/_12sdp"
-            android:paddingTop="@dimen/_13sdp"
-            android:paddingBottom="@dimen/_13sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/googleSignIn" />
+<!--        <com.facebook.login.widget.LoginButton-->
+<!--            android:id="@+id/facebookSignIn"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/_12sdp"-->
+<!--            android:layout_marginTop="@dimen/_6sdp"-->
+<!--            android:layout_marginEnd="@dimen/_12sdp"-->
+<!--            android:paddingTop="@dimen/_13sdp"-->
+<!--            android:paddingBottom="@dimen/_13sdp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/googleSignIn" />-->
 
         <TextView
             android:id="@+id/totalItemsPrice"
@@ -208,7 +206,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/facebookSignIn" />
+            app:layout_constraintTop_toBottomOf="@+id/googleSignIn" />
 
 
         <TextView

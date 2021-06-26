@@ -15,8 +15,8 @@ class ProductResponse : ArrayList<ProductResponse.Item>(){
         val image: String,
         val price: Double,
         var quantity: Int,
-        val rating: Float,
-        val sale: Sale,
+        val rating: Double,
+        val sale: Sale? = null,
         val size: List<String>,
         val title: String,
 

@@ -70,20 +70,25 @@ class DetailsViewModel : ViewModel() {
     }
 
     fun getItemsByCategory(category: String) = viewModelScope.launch {
-        itemsLiveData.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().getAllItems()
+        try{
+            itemsLiveData.value = Resource.loading(null)
+            val response = RetrofitHandler.getItemWebService().getItemsByCategory(category)
 
-        if (response.isSuccessful) {
-            var list: ProductResponse = response.body()!!
-            val data = arrayListOf<ProductResponse.Item>()
-            for (item in list) {
-                if (item.category.name == category)
-                    data.add(item)
+            if (response.isSuccessful) {
+                var list: ProductResponse = response.body()!!
+                val data = arrayListOf<ProductResponse.Item>()
+                for (item in list) {
+                    if (item.category.name == category)
+                        data.add(item)
+                }
+                filterLiveData.value = Resource.success(data = data)
+            } else {
+                itemsLiveData.value = Resource.error("Error happend please try again")
             }
-            filterLiveData.value = Resource.success(data = data)
-        } else {
-            itemsLiveData.value = Resource.error(response.errorBody().toString())
+        }catch (ex : Exception){
+            itemsLiveData.value = Resource.error("You have bad network")
         }
+
 
     }
 

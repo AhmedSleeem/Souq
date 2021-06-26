@@ -23,7 +23,7 @@ class OfferViewModel : ViewModel() {
                 var list: ProductResponse = response.body()!!
                 val data = arrayListOf<ProductResponse.Item>()
                 for (item in list) {
-                    if (item.sale.type == saleType) {
+                    if (item.sale!!.type == saleType) {
                         data.add(item)
                     }
                 }

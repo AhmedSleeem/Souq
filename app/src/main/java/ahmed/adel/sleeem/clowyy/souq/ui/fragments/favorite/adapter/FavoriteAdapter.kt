@@ -66,7 +66,7 @@ class FavoriteAdapter(val context: Context) : RecyclerView.Adapter<FavoriteAdapt
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(items.get(position))
+        holder.bind(items[position])
 
     class ItemsDiffCallback(
         private val oldData: MutableList<FavouriteItem>,

@@ -11,18 +11,24 @@ import kotlinx.coroutines.launch
 
 class FavouriteViewModel: ViewModel() {
 
-    private val _item = MutableLiveData<Resource<ItemResponse>>()
-    val item: MutableLiveData<Resource<ItemResponse>> get() = _item
+    private val _itemFav = MutableLiveData<Resource<ItemResponse>>()
+    val itemFav: MutableLiveData<Resource<ItemResponse>> get() = _itemFav
 
 
     fun getItemsById(id: String) = viewModelScope.launch {
-        _item.value = Resource.loading(null)
-        val response = RetrofitHandler.getItemWebService().getItemsById(id)
-        if (response.isSuccessful) {
-            if (response.body() != null)
-                _item.value = Resource.success(response.body()!!)
-        } else {
-            _item.value = Resource.error(response.errorBody().toString())
+        try {
+            _itemFav.value = Resource.loading(null)
+            val response = RetrofitHandler.getItemWebService().getItemsById(id)
+            if (response.isSuccessful) {
+                if (response.body() != null)
+                    _itemFav.value = Resource.success(response.body()!!)
+            } else {
+                _itemFav.value = Resource.error(response.errorBody().toString())
+            }
+        } catch (e: Exception) {
+            _itemFav.value = Resource.error(e.message.toString())
         }
+
     }
+
 }
