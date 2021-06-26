@@ -39,7 +39,7 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-        setApplicationLanguage()
+      //  setApplicationLanguage()
         // HERE WE ARE TAKING THE REFERENCE OF OUR IMAGE
         // SO THAT WE CAN PERFORM ANIMATION USING THAT IMAGE
         val backgroundImage: ImageView = findViewById(R.id.SplashScreenImage)

@@ -422,7 +422,7 @@
                             <TextView
                                 android:id="@+id/itemsTv"
                                 android:layout_width="wrap_content"
-                                android:layout_height="13dp"
+                                android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_9sdp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:text="Items (3)"

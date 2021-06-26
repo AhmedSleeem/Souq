@@ -250,7 +250,7 @@
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:lineHeight="@dimen/_18sdp"
-                android:text="Fox for fun"
+                android:text="@string/fox_for_fun"
                 android:textAlignment="textEnd"
                 android:textColor="@color/gray"
                 android:textFontWeight="400"
@@ -302,8 +302,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:lineHeight="@dimen/_19sdp"
                 android:padding="@dimen/_4sdp"
-                android:text="Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white
-Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white"
+                android:text="@string/laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white"
                 android:textColor="@color/gray"
                 android:textFontWeight="400"
                 android:textSize="@dimen/_9sdp"

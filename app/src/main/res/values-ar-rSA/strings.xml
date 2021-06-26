@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Sell3a</string>
     <string name="super_flash_sale_n50_off">تخفيضات الفلاش الفائق 50٪ خصم</string>
-    <string name="category">الفئة</string>
+    <string name="category">الفئات</string>
     <string name="more_category">المزيد من الفئات</string>
     <string name="home">الرئيسية</string>
     <string name="explore">إستطلاع</string>
@@ -54,7 +54,6 @@
     <string name="add_photo">إضافة صورة</string>
     <string name="your_cart">عربتك</string>
     <string name="enter_cupon_code">أدخل رمز القسيمة</string>
-    <string name="items_3">العناصر (3)</string>
     <string name="check_out">الدفع</string>
     <string name="action_search">أبحث عن </string>
     <string name="thank_you_for_shopping_using_lafyuu">شكرًا لك على التسوق باستخدام lafyuu</string>
@@ -70,8 +69,8 @@
     <string name="product_not_found">الصنف غير موجود</string>
     <string name="thanks_for_shopping">شكرًا لك على التسوق باستخدام lafyuu</string>
     <string name="back_to_home">العودة إلى المنزل</string>
-    <string name="result_0">0 نتيجة</string>
-    <string name="result">نتيجة</string>
+    <string name="result_0">0 نتائج</string>
+    <string name="result">نتائج</string>
     <string name="man_shoes">أحذية رجالي</string>
     <string name="short_by">باختصار من قبل</string>
     <string name="best_match">أفضل تطابق</string>
@@ -108,7 +107,7 @@
     <string name="authenticity_verified">التحقق من الأصالة</string>
     <string name="apply">تطبيق</string>
     <string name="Account">حساب</string>
-    <string name="order">الطلب</string>
+    <string name="order">الطلبات</string>
     <string name="address">العنوان</string>
     <string name="payment">" الدفع"</string>
     <string name="gender">الجنس</string>
@@ -206,4 +205,6 @@
     <string name="finish">إنهاء</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logo">الرمز</string>
+    <string name="fox_for_fun">Fox for fun</string>
+    <string name="laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white">Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white</string>
 </resources>

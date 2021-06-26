@@ -2,17 +2,16 @@ package ahmed.adel.sleeem.clowyy.souq.ui.fragments.cart
 
 
 import ahmed.adel.sleeem.clowyy.souq.R
-import ahmed.adel.sleeem.clowyy.souq.utils.Resource
 import ahmed.adel.sleeem.clowyy.souq.databinding.FragmentCartBinding
 import ahmed.adel.sleeem.clowyy.souq.pojo.Cupone
 import ahmed.adel.sleeem.clowyy.souq.pojo.request.OrderRequest
-import ahmed.adel.sleeem.clowyy.souq.pojo.response.ProductResponse
 import ahmed.adel.sleeem.clowyy.souq.room.cart.Cart
 import ahmed.adel.sleeem.clowyy.souq.ui.fragments.details.DetailsFragment
 import ahmed.adel.sleeem.clowyy.souq.utils.CartRoom
 import ahmed.adel.sleeem.clowyy.souq.utils.CuponeUtils
 import ahmed.adel.sleeem.clowyy.souq.utils.LoginUtils
-import android.app.Application
+import android.app.Activity
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -30,6 +29,7 @@ import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
+
 class CartFragment : Fragment(),View.OnClickListener {
     private lateinit var adapter: CartAdapter
     private lateinit var viewModel: CartViewModel
@@ -41,11 +41,16 @@ class CartFragment : Fragment(),View.OnClickListener {
     var totalPrice = 0.0f
     private var cupone: String? = null
     private var cuponeValue: Int = 0
-
+    private lateinit var itemsStr :String
     private lateinit var cartViewModel: ahmed.adel.sleeem.clowyy.souq.room.cart.CartViewModel
 
     private val binding get() = _binding!!
-    val quotes = arrayOf("order id",)
+    val quotes = arrayOf("order id")
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        itemsStr =context.resources.getString(R.string.items)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -161,7 +166,7 @@ class CartFragment : Fragment(),View.OnClickListener {
 
         viewModel.cartList.observe(viewLifecycleOwner, Observer {
 
-                    adapter.changeData(it,true)
+            adapter.changeData(it, true)
 
 
         })
@@ -172,22 +177,22 @@ class CartFragment : Fragment(),View.OnClickListener {
     override fun onClick(v: View) {
         when (v) {
             binding.checkOutButton -> {
-                if(viewModel.cartList.value!!.size != 0) {
+                if (viewModel.cartList.value!!.size != 0) {
                     orderRequest.totalPrice = totalPrice.toDouble();
                     val action =
                         CartFragmentDirections.actionCartFragmentToShipToFragment(orderRequest)
                     view?.findNavController()?.navigate(action)
-                }else{
+                } else {
                     Toast.makeText(requireContext(), "Select Item", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            binding.cuponeBtn ->{
+            binding.cuponeBtn -> {
                 cupone = binding.cuponeEt.text.toString()
-                if(currentCupone.cuponeCode == cupone){
+                if (currentCupone.cuponeCode == cupone) {
                     binding.cuponeValue.text = currentCupone.cuponeCodeValue.toString() + "%"
                     calculateTotalPrice()
-                }else{
+                } else {
                     binding.cuponeEt.setError("Cupone not found")
                 }
             }
@@ -213,11 +218,11 @@ class CartFragment : Fragment(),View.OnClickListener {
             }
 
             if (it.size == 0) {
-                binding.totalItemsCount.text = "Item (0)"
+                binding.totalItemsCount.text = "$itemsStr (0)"
                 binding.totalItemsPrice.text = "0.0"
                 binding.totalPrice.text = "0.0"
             } else {
-                binding.totalItemsCount.text = "Items (" + itemCount.toString() + ")"
+                binding.totalItemsCount.text = "$itemsStr ($itemCount)"
                 binding.totalItemsPrice.text = price.toString() + " Egp"
                 binding.totalPrice.text = String.format("%.2f", totalPrice) + " Egp"
             }

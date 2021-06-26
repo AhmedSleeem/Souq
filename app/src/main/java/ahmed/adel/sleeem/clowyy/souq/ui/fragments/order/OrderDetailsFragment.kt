@@ -68,7 +68,7 @@ class OrderDetailsFragment : Fragment(), View.OnClickListener {
             itemsCount += itm.count
             itemsPrice += itm.count
         }
-        binding.itemsTv.text = "Items ($itemsCount)"
+        binding.itemsTv.text = requireContext().resources.getString(R.string.items)+" ($itemsCount)"
         binding.shippingPriceTv.text = "\$$shippingPrice"
         binding.importChargesTv.text = "\$${order.importCharge}"
         binding.itemsPriceTv.text = "\$${order.totalPrice}"

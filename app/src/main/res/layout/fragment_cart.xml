@@ -126,7 +126,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="@string/items_3"
+                android:text="@string/items"
                 android:textColor="@color/gray"
                 android:textSize="12sp"
 

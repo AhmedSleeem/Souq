@@ -66,7 +66,6 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/layout_style"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_image">
 
@@ -82,7 +81,6 @@
             android:src="@drawable/ic_gender"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/gender_txt"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -99,7 +97,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/gender_image"
             app:layout_constraintStart_toEndOf="@+id/gender_image"
             app:layout_constraintTop_toTopOf="@+id/gender_image"
-            tools:ignore="RtlCompat" />
+             />
 
         <TextView
             android:id="@+id/more_gender_txt"
@@ -117,14 +115,14 @@
             app:layout_constraintHorizontal_bias="0.592"
             app:layout_constraintTop_toTopOf="@+id/gender_txt"
             app:layout_constraintVertical_bias="0.666"
-            tools:ignore="RtlCompat" />
+             />
 
         <ImageView
             android:id="@+id/deleteItemBtn"
-            android:layout_width="12dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_12sdp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:src="@drawable/ic_aarrow_right"
             app:layout_constraintBottom_toBottomOf="@+id/more_gender_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/more_gender_txt"
@@ -171,7 +169,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/birthday_image"
             app:layout_constraintStart_toEndOf="@+id/birthday_image"
             app:layout_constraintTop_toTopOf="@+id/birthday_image"
-            tools:ignore="RtlCompat" />
+             />
 
         <TextView
             android:id="@+id/more_birthday_txt"
@@ -186,15 +184,15 @@
             app:layout_constraintEnd_toStartOf="@id/imageView10"
             app:layout_constraintHorizontal_bias="0.762"
             app:layout_constraintTop_toTopOf="@+id/birthday_txt"
-            tools:ignore="RtlCompat" />
+            />
 
         <ImageView
             android:id="@+id/imageView10"
-            android:layout_width="12dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_12sdp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:src="@drawable/ic_aarrow_right"
             app:layout_constraintBottom_toBottomOf="@+id/more_birthday_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/more_birthday_txt"
@@ -240,7 +238,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/mail_image"
             app:layout_constraintStart_toEndOf="@+id/mail_image"
             app:layout_constraintTop_toTopOf="@+id/mail_image"
-            tools:ignore="RtlCompat" />
+             />
 
         <TextView
             android:id="@+id/more_mail_txt"
@@ -256,15 +254,15 @@
             app:layout_constraintHorizontal_bias="0.835"
             app:layout_constraintTop_toTopOf="@+id/mail_image"
             app:layout_constraintVertical_bias="0.0"
-            tools:ignore="RtlCompat" />
+            />
 
         <ImageView
             android:id="@+id/imageView11"
-            android:layout_width="12dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_12sdp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:src="@drawable/ic_aarrow_right"
             app:layout_constraintBottom_toBottomOf="@+id/more_mail_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/more_mail_txt" />
@@ -311,7 +309,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/phone_image"
             app:layout_constraintStart_toEndOf="@+id/phone_image"
             app:layout_constraintTop_toTopOf="@+id/phone_image"
-            tools:ignore="RtlCompat" />
+             />
 
         <TextView
             android:id="@+id/more_phone_txt"
@@ -327,15 +325,15 @@
             app:layout_constraintHorizontal_bias="0.684"
             app:layout_constraintTop_toTopOf="@+id/phone_txt"
             app:layout_constraintVertical_bias="1.0"
-            tools:ignore="RtlCompat" />
+            />
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="12dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_12sdp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:src="@drawable/ic_aarrow_right"
             app:layout_constraintBottom_toBottomOf="@+id/more_phone_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/more_phone_txt" />
@@ -349,7 +347,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/layout_style"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_layout">
 
@@ -365,7 +362,6 @@
             android:src="@drawable/ic_password_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/change_password_txt"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -382,7 +378,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/change_password_image"
             app:layout_constraintStart_toEndOf="@+id/change_password_image"
             app:layout_constraintTop_toTopOf="@+id/change_password_image"
-            tools:ignore="RtlCompat" />
+             />
 
         <TextView
             android:id="@+id/more_change_password_txt"
@@ -397,15 +393,15 @@
             app:layout_constraintEnd_toStartOf="@+id/imageView13"
             app:layout_constraintTop_toTopOf="@+id/change_password_txt"
             app:layout_constraintVertical_bias="1.0"
-            tools:ignore="RtlCompat" />
+            />
 
         <ImageView
             android:id="@+id/imageView13"
-            android:layout_width="12dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_12sdp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:src="@drawable/ic_aarrow_right"
             app:layout_constraintBottom_toBottomOf="@+id/more_change_password_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/more_change_password_txt" />

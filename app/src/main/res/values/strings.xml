@@ -57,7 +57,6 @@
     <string name="add_photo">Add Photo</string>
     <string name="your_cart">Your Cart</string>
     <string name="enter_cupon_code">Enter Cupon Code</string>
-    <string name="items_3">Items (3)</string>
 
     <string name="check_out">Check Out</string>
     <string name="thank_you_for_shopping_using_lafyuu">thank you for shopping using lafyuu</string>
@@ -253,5 +252,7 @@
     <string name="payment_successful">Payment Successful</string>
     <string name="your_payment_has_been_successfully_completed_you_will_receive_a_confirmation_email_within_a_few_minutes">Your payment has been successfully completed. You will receive a confirmation email within a few minutes.</string>
     <string name="finish">Finish</string>
+    <string name="fox_for_fun">Fox for fun</string>
+    <string name="laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white_laser_blue_anthracite_welcome_on_white">Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white Laser Blue/Anthracite/Welcome on/white</string>
 
 </resources>
